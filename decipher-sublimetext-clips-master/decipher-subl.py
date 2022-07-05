@@ -153,17 +153,9 @@ def newSurvey():
 <style name="respview.client.css"><![CDATA[
 <style>
 body { word-break: keep-all; }
-.blackdiv{ width: 80%; text-align: center; height: 100%; line-height: 32px; font-size: 20px; color: #fff!important; background-color: black!important; border-radius: 32px; margin:0 auto;height:100%;padding:5px;margin-top:10px; margin-bottom: 10px;}
-.bluediv{ width: 90%; text-align: center; height: 100%; line-height: 32px; font-size: 20px; color: #fff!important; background-color: #2196F3!important; border-radius: 32px; margin:0 auto;height:100%;padding:5px;}
-.greendiv{ width: 90%; text-align: center; height: 100%; line-height: 32px; font-size: 20px; color: #fff!important; background-color: #86E57F!important; border-radius: 32px; margin:0 auto;height:100%;padding:5px;}
-.bu{ font-weight:bold; text-decoration: underline;}
-.boldblue{ font-weight:bold; color:blue; }
-.boldgreen{ font-weight:bold; color:green; }
-.boldred{ font-weight:bold; color:red; }
-.boldcol{ font-weight:bold; color: #00ACEF;}
+.blackdiv{ width: 80%; text-align: center; height: 100%; line-height: 32px; font-size: 20px; color: #fff!important; background-color: black!important; border-radius: 32px; height:100%;padding:5px; font-weight: bold; margin: 10px auto 30px auto;}
 .autosave-restart{ display:none !important; }
 .hidden{display: none !important;}
-.hangle{color:red;border:0;text-align:right;width:200px; }
 .sq-cardsort-bucket-count{display: none !important;}
 </style>
 ]]></style>
