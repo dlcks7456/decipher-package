@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+<res label="${1}_mditem1">${2}</res>
+<res label="${1}_mditem2">${2}</res>
+<res label="${1}_mditem3">${2}</res>
+<res label="${1}_mditem4">${2}</res>
+<res label="${1}_mditem5">${2}</res>
+<res label="${1}_mditem6">${2}</res>
+<res label="${1}_mditem7">${2}</res>
+<res label="${1}_mditem8">${2}</res>
+<res label="${1}_mditem9">${2}</res>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>maxdiff.res</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>

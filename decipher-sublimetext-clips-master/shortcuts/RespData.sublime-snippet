@@ -1,0 +1,55 @@
+<snippet>
+  <content><![CDATA[
+<text
+  label="RespData"
+  size="40"
+  optional="0">
+  <title><strong>응답자 정보</strong></title>
+  <comment></comment>
+<style name='el.text' rows="name"> <![CDATA[
+<div style="width: 110px; display: flex; flex-direction: row;">
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:25px; margin:0 auto;">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+    </svg>
+  </div>
+  <div>
+    <input type="text" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra) placeholder="\${row.styles.ss.preText or this.styles.ss.preText or ''}"/>
+  </div>
+</div>
+]]${-1}></style>
+<style name='el.text' rows="phone"> <![CDATA[
+<div style="width: 110px; display: flex; flex-direction: row;">
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:25px; margin:0 auto;">
+      <path fill-rule="evenodd" d="M7 2a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7zm3 14a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+    </svg>
+  </div>
+  <div>
+    <input type="text" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra) placeholder="\${row.styles.ss.preText or this.styles.ss.preText or ''}"/>
+  </div>
+</div>
+]]${-1}></style>
+<style name='el.text' rows="address"> <![CDATA[
+<div style="width: 110px; display: flex; flex-direction: row;">
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:25px; margin:0 auto;">
+      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+    </svg>
+  </div>
+  <div>
+    <input type="text" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra) placeholder="\${row.styles.ss.preText or this.styles.ss.preText or ''}"/>
+  </div>
+</div>
+]]${-1}></style>
+  <row label="name" ss:preText="이름"/>
+  <row label="phone" verify="number" ss:preText="전화번호"/>
+  <row label="address" ss:preText="주소"/>
+</text>
+<suspend/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>respdata</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

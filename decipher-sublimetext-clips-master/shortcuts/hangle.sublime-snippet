@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+<style name="question.after" wrap="ready"><![CDATA[
+han(''); // 원 단위
+//han('0000'); // 만원 단위
+]]${-1}></style>
+<style name="el.text"><![CDATA[
+<span class="hanchange">\${row.styles.ss.preText if not row.styles.ss.preText == None else '} <input type="text" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra)/> \${row.styles.ss.postText if not row.styles.ss.postText == None else ''}<br/><span class="hangle" name="hangle_\$(name)"></span></span>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>han</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

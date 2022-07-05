@@ -1,0 +1,10 @@
+[
+{
+  "id": "SPSS syntax",
+  "caption": "SPSS make syntax",
+  "children": 
+   [
+        { "id": "MakeSyntax", "caption": "spss syntax(xml selected base)", "command": "make_syntax"}
+   ]
+ }
+ ]

@@ -1,0 +1,36 @@
+<snippet>
+  <content><![CDATA[
+/* add this only if you have scrollbars in IE7,8
+div.dcm {
+    overflow: hidden;
+}
+*/
+.dcm tr.legend th.legend {
+    font-weight: bold;
+    width: auto;
+    text-align:center;
+}
+.dcm th, .dcm td {
+    padding: 15px;
+}
+.dcm tr.dcm_even {
+    background-color: #FFFFFF;
+}
+.dcm tr.dcm_odd {
+    background-color: #EFEFEF;
+}
+.dcm td.dcm_legend {
+    font-weight: bold;
+    text-align: left;
+    width: 120px;
+}
+.dcm tr.dcm_even td.dcm_item, .dcm tr.dcm_odd td.dcm_item {
+    text-align: center;
+    width: 120px;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dcm.css</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

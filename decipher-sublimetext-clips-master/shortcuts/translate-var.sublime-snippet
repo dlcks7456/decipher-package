@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+  <textarea 
+   label="${0}_ko"
+   translateable="0"
+   where="execute,survey,report">
+    <title>${0} Korean Translate</title>
+  </textarea>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tr-var</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

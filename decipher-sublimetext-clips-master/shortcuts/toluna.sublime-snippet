@@ -1,0 +1,39 @@
+<snippet>
+  <content><![CDATA[
+<samplesource list="2">
+    <title>Toluna</title>
+    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+    <completed>It seems you have already entered this survey.</completed>
+    <var name="GID" unique="1"/>
+    <var name="sname" required="1"/>
+    <exit cond="terminated" url="http://ups.surveyrouter.com/trafficui/mscui/SOTerminated.aspx?sname=\${sname}&amp;TolunaEnc=\${HQTolunaEnc.val}&amp;GID=\${GID}"/>
+    <exit cond="overquota" url="http://ups.surveyrouter.com/trafficui/mscui/SOQuotafull.aspx?sname=\${sname}&amp;TolunaEnc=\${HQTolunaEnc.val}&amp;GID=\${GID}"/>
+    <exit cond="qualified" url="http://ups.surveyrouter.com/trafficui/mscui/SOQualified.aspx?sname=\${sname}&amp;TolunaEnc=\${HQTolunaEnc.val}&amp;GID=\${GID}"/>
+</samplesource>
+
+<exec sst="0">
+if list=="2":
+
+ TolunaEncKey = (int(int(GID) + 3) % 4001) * 17
+ HQTolunaEnc.val = TolunaEncKey
+ #setExtra("TolunaEnc",str(TolunaEncKey))
+</exec>
+
+<suspend/>
+
+<text 
+  label="HQTolunaEnc"
+  randomize="0"
+  size="25"
+  translateable="0"
+  where="execute,survey,report">
+  <title>TolunaEnc</title>
+</text>
+
+<suspend/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>toluna</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

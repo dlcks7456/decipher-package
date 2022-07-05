@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+<col label="c${1}" ss:colClassNames="rank${1}">${1}${2}</col>
+${3}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>rkcol</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,25 @@
+<snippet>
+    <content><![CDATA[
+def setupMaxDiffFile(fname, fileDelimiter="\t"):
+    try:
+        f = open("%s/%s" % (gv.survey.path, fname))
+        mdObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
+        d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj )
+    except IOError:
+        d = {}
+    return d
+
+def setupMaxDiffItemsA(d, vt, question, parentLabel):
+    items = d[vt]
+
+    print "*****STAFF ONLY*****"
+    print "Version_Task: %s" % vt
+    for r in question.rows:
+        r.text = res[ "%s_mditem%s" % (parentLabel, items[r.index]) ]
+        print "Item %s: %s" % (r.index+1, items[r.index])
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>maxdiff.exec</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>

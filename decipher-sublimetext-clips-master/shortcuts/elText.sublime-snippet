@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+<style name='el.text'> <![CDATA[
+\@if row.styles.ss.preText or this.styles.ss.preText
+    \${row.styles.ss.preText or this.styles.ss.preText or ""}&nbsp;
+\@endif
+<input type="text" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra)/>
+\@if row.styles.ss.postText or this.styles.ss.postText
+    &nbsp;\${row.styles.ss.postText or this.styles.ss.postText or ""}
+\@endif
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>el.text</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

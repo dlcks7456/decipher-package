@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+<style name='el.open'> <![CDATA[
+<input type="text" name="\$(name)" id="\$(name)" value="\$(value)" data-cell="\$(cell.parent.label)_\$(cell.label)" size="\$(size)" class="input text-input oe oe-\$(align)" \$(extra)/>
+\$(scripts)
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>el.open</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

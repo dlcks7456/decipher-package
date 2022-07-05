@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[
+<number 
+   label="$1"
+   amount="100"
+   autosum:postText="%"
+   optional="0"
+   size="3"
+   uses="autosum.5"
+   verify="range(0,100)">
+    <title>$2 </title>
+$3
+  </number>
+
+  <suspend/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>sum100</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

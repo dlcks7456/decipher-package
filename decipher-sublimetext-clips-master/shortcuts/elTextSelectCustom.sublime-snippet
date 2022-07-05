@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+<style name="el.text"><![CDATA[
+<select name="\$(name)" class="input dropdown"> 
+<option></option>
+\@for value in range(${1:1}, ${2:999})
+<option value="\$(value)" \${"SELECTED" if str(value)==ec.value else ""}>\$(value)</option> 
+\@end
+</select>
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>el.text.select</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

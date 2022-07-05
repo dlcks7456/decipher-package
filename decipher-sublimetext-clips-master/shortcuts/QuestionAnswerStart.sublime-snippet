@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[
+<style name='survey.question.answers.start'> <![CDATA[
+<div class="answers \$(answerClassNames)">
+\$(fir)
+\@if not ec.simpleList
+<\$(tag) class="grid \$(gridClassNames)" data-settings="\$(gridOptions)" data-height="\${this.styles.ss.rowHeight if this.styles.ss.rowHeight else ""}" summary="This table contains form elements to answer the survey question">
+\@if not simple
+<tbody>
+\@endif
+\@if not forceDesktop
+\${v2_insertStyle('question.borderfix')}
+\@endif
+\@endif
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>question.answer.start</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

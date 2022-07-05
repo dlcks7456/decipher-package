@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+<div style="text-align:center;width:100%;"><img width="\$\{100 if device.mobileDevice else 50\}%" src="\$\{imgdr\}/$2.png"/></div>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>img</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

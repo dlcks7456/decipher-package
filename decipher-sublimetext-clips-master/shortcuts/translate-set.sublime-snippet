@@ -1,0 +1,47 @@
+<snippet>
+	<content><![CDATA[
+<exec>
+qArray = []
+labelArray = []
+
+qidArray = [${0}]
+
+for q in qidArray :
+  if q in allQuestions.keys():
+    base = allQuestions[q]
+    base_ko = allQuestions["%s_ko"%q]
+    if base.val is not None:
+      qArray.append(base.val)
+      labelArray.append(base_ko.label)
+
+trData = dict(q=qArray,target="ko",key="AIzaSyD2PtmC5OORvmVWQ9lsL024d-ia3kkJfdo")
+</exec>
+
+  <logic label="trCall" cond="not(gv.isSST()) " api:method="POST" api:params="trData" api:url="https://translation.googleapis.com/language/translate/v2" uses="api.1">
+    <title>Translating the Open-end questions</title></logic>
+  <suspend/>
+
+  <exec>
+print "Translate Start"
+if trCall.status == 200:
+  rcount=0
+  try:
+    for tr in trCall.r['data']['translations']: 
+      allQuestions[labelArray[rcount]].val = trCall.r['data']['translations'][rcount]['translatedText'].encode('utf8')
+      rcount = rcount + 1
+    print "Success"
+  except:
+    print "Failed"
+    pass
+else:
+  allQuestions[labelArray[0]].val = trCall.status
+  print "API call failed"
+  </exec>
+
+  <suspend/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tr-set</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

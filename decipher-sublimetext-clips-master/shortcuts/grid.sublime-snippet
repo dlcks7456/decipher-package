@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+<radio
+  label="$1"
+  shuffle="rows"
+  uses="onerowatatime.3">
+  <title>$2 $3</title>
+  <validate>
+samegrid()
+  </validate>
+$4
+</radio>
+<suspend/>
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>grid</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

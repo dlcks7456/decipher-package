@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+<res label="[DCM_QID]_legend1">Attr1</res>
+<res label="[DCM_QID]_legend2">Attr2</res>
+
+<res label="[DCM_QID]_att1_level1">Attr1 level1</res>
+<res label="[DCM_QID]_att1_level2">Attr1 level2</res>
+
+<res label="[DCM_QID]_att2_level1">Attr2 level1</res>
+<res label="[DCM_QID]_att2_level2">Attr2 level2</res>
+
+<res label="NoneText">속성 없음 텍스트</res>
+<res label="TopText">좌측 상단 텍스트</res>
+<res label="rowText">좌측 하단 텍스트</res>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dcm.res</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

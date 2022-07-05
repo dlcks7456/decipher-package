@@ -1,0 +1,142 @@
+<snippet>
+    <content><![CDATA[
+<block label="${1}_maxdiff_block">
+    <quota label="${2}_label" overquota="noqual" sheet="${2}"/>
+    
+    <number label="${1}_Version" size="3" optional="1" verify="range(1,16)" where="execute">
+      <title>${1} - MaxDiff Version</title>
+      <exec>
+print p.markers
+for x in p.markers:
+    if "/${2}/MD_ver_" in x:
+        ${1}_Version.val = int(x.split("_")[-1])
+        break
+      </exec>
+    </number>
+    <suspend/>
+    
+    <exec>p.startTime = timeSpent()</exec>
+
+    <loop label="${1}_md_loop" vars="task" randomizeChildren="0">
+      <block label="${1}_md_block" randomize="1">
+
+        <radio label="${1}_[loopvar: task]" adim="cols" grouping="cols" unique="1" ss:questionClassNames="maxdiff">
+          <title>${3}</title>
+          <comment></comment>
+          <exec>
+${1}_md = setupMaxDiffFile("${4}.dat")
+setupMaxDiffItemsA( ${1}_md, "v%d_t%d" % (${1}_Version.val, [loopvar: task]), ${1}_[loopvar: task], "${1}")
+p.MDcount = str(${1}_md_loop_expanded.order.index([loopvar: task]-1)+1)
+          </exec>
+
+          <col label="best">${5:Most Important}</col>
+          <col label="worst">${6:Least Important}</col>
+          ${7:<row label="item1">Item 1</row>
+          <row label="item2">Item 2</row>
+          <row label="item3">Item 3</row>
+          <row label="item4">Item 4</row>}
+<style name="question.top-legend"><![CDATA[
+\@if ec.simpleList
+    \$(legends)
+\@else
+    <\$(tag) class="maxdiff-header-legend row row-col-legends row-col-legends-top \${"mobile-top-row-legend " if mobileOnly else ""}\${"GtTenColumns " if ec.colCount > 10 else ""}colCount-\$(colCount)">
+        \${"%s%s" % (legends.split("</th>")[0],"</th>")}
+       \$(left)
+        \${"%s%s" % (legends.split("</th>")[1],"</th>")}
+    </\$(tag)>
+    \@if not simple
+  </tbody>
+  <tbody>
+    \@endif
+\@endif
+]]${-1}></style>
+<style name="question.row"><![CDATA[
+\@if ec.simpleList
+    \$(elements)
+\@else
+    <\$(tag) class="maxdiff-row row row-elements \$(style) colCount-\$(colCount)">
+        \${"%s%s" % (elements.split("</td>")[0],"</td>")}
+        \$(left)
+        \${"%s%s" % (elements.split("</td>")[1],"</td>")}
+    </\$(tag)>
+\@endif
+]]${-1}></style>
+
+  </radio>
+      </block>
+      
+      <looprow label="1">
+        <loopvar name="task">1</loopvar>
+      </looprow>
+      
+      <looprow label="2">
+        <loopvar name="task">2</loopvar>
+      </looprow>
+      
+      <looprow label="3">
+        <loopvar name="task">3</loopvar>
+      </looprow>
+      
+      <looprow label="4">
+        <loopvar name="task">4</loopvar>
+      </looprow>
+      
+      <looprow label="5">
+        <loopvar name="task">5</loopvar>
+      </looprow>
+      
+      <looprow label="6">
+        <loopvar name="task">6</loopvar>
+      </looprow>
+      
+      <looprow label="7">
+        <loopvar name="task">7</loopvar>
+      </looprow>
+      
+      <looprow label="8">
+        <loopvar name="task">8</loopvar>
+      </looprow>
+      
+      <looprow label="9">
+        <loopvar name="task">9</loopvar>
+      </looprow>
+      
+      <looprow label="10">
+        <loopvar name="task">10</loopvar>
+      </looprow>
+      
+      <looprow label="11">
+        <loopvar name="task">11</loopvar>
+      </looprow>
+      
+      <looprow label="12">
+        <loopvar name="task">12</loopvar>
+      </looprow>
+      
+      <looprow label="13">
+        <loopvar name="task">13</loopvar>
+      </looprow>
+      
+      <looprow label="14">
+        <loopvar name="task">14</loopvar>
+      </looprow>
+      
+      <looprow label="15">
+        <loopvar name="task">15</loopvar>
+      </looprow>
+    
+    </loop>
+    
+    <float label="${1}_Timer" size="15" where="execute">
+      <title>${1} - MaxDiff Timer (Minutes)</title>
+      <exec>${1}_Timer.val = (timeSpent() - p.startTime) / 60.0</exec>
+    </float>
+</block>
+<note>${1}_maxdiff_block END</note>
+<suspend/>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>maxdiff.question</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+import datetime
+now = datetime.datetime.now()
+cYear=int(now.year)
+cMonth=int(now.month)
+cDay=int(now.day)
+cHour=int(now.hour)
+cHour=cHour-1
+cMinute=int(now.minute)
+cSecond=int(now.second)
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>date</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+def setupDCMFile(fname, fileDelimiter="\t"):
+    f = open("%s/%s" % (gv.survey.path, fname))
+    dcmObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
+
+    d = {}
+    dcm_concepts = []
+
+    for i,row in enumerate(dcmObj):
+        if i:
+            d["v%s_t%s_c%s" % (row[0],row[1],row[2])] = row[3:]
+            if row[2] not in dcm_concepts:
+                dcm_concepts.append(row[2])
+
+    concepts = [ int(x) for x in dcm_concepts ]
+    concepts.sort()
+    d["concepts"] = dcm_concepts
+
+    return d
+
+#set persistent items, format: p.concept#_att#
+def setupDCMItems(d, vt, prefix="1"):
+    print "***** STAFF ONLY *****"
+    print "***** DCM Matrix *****"
+    print "Version_Task: %s" % vt
+
+    for concept in d.get("concepts"):
+        attributes = d[ "%s_c%s" % (vt,concept) ]
+        print "Concept %s: %s" % (concept,attributes)
+
+        for i,attr in enumerate(attributes):
+            p[ "concept%s_att%s" % (concept,i+1) ] = res[ "%s_att%s_level%s" % (prefix,i+1,attr) ]
+            p[ "dcmLegend_att%s" % (i+1) ] = res[ "%s_legend%s" % (prefix,i+1) ]
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dcm.exec</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

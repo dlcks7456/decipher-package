@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+<checkbox 
+	label="${1}"
+	audio:file="/survey/${gv.survey.path}/${2}.mp3"
+	randomize="0"
+	sst="0"
+	uses="audio.3"
+	where="survey,notdp">
+	<title>${3:Please click the "Play" button below.}</title>
+</checkbox>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>audio</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

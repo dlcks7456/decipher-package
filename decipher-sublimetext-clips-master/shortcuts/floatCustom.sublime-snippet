@@ -1,0 +1,34 @@
+<snippet>
+  <content><![CDATA[
+<float 
+    label="${4}"
+    optional="0"
+    range="${1:0.1},${2:99}"
+    size="3">
+      <title>${5}</title>
+      <validate>
+#to_str = str(this.val)
+#if '.' in to_str :
+#  chk = to_str.split(".")[1]
+# one decimal only
+#  if len(chk) gt ${6:1} :
+#    error("")
+      </validate>
+      <style name="el.text"><![CDATA[
+\@if row.styles.ss.preText or this.styles.ss.preText
+    \${row.styles.ss.preText or this.styles.ss.preText or ""}&nbsp;
+\@endif
+<input type="number" min="${1:0.1}" max="${2:99}" step="${3:0.1}" style="width: 80px" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra)/>
+\@if row.styles.ss.postText or this.styles.ss.postText
+    &nbsp;\${row.styles.ss.postText or this.styles.ss.postText or ""}
+\@endif
+]]${-1}></style>
+    </float>
+
+    <suspend/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>float.html</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

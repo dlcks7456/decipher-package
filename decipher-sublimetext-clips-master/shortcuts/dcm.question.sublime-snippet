@@ -1,0 +1,227 @@
+<snippet>
+  <content><![CDATA[
+<block label="${1:QID}_dcm_block">
+
+    <quota label="${2}_label" sheet="${2}"/>
+
+    <exec when="init">
+${1:QID}_dcm = setupDCMFile("${3:FILENAME}.dat")
+    </exec>
+
+    <number 
+    label="${1:QID}_Version"
+    size="3"
+    where="execute,survey,report">
+      <title>${1:QID} - DCM Version</title>
+      <exec>
+print p.markers
+for x in p.markers:
+    if "/${2}/DCM_ver_" in x:
+        ${1}_Version.val = int(x.split("_")[-1])
+        break
+      </exec>
+
+    </number>
+
+    <suspend/>
+
+    <exec>
+p.startTime = timeSpent()
+    </exec>
+
+    <suspend/>
+
+    <loop label="${1:QID}_dcm_loop" randomizeChildren="1" vars="task">
+      <title>${1:QID} - DCM Loop</title>
+      <block label="${1:QID}_dcm_block">
+        <radio 
+      label="${1:QID}_[loopvar: task]"
+      optional="0"
+      ss:questionClassNames="dcm"
+      surveyDisplay="desktop">
+          <title>${4}</title>
+          <exec>
+setupDCMItems( ${1:QID}_dcm, "v%s_t%s" % (${1:QID}_Version.val,"[loopvar: task]"),"${1:QID}" )
+p.DCMcount = "%d" % (${1:QID}_dcm_loop_expanded.order.index([loopvar: task]-1) + 1)
+          </exec>
+
+          <alt>DCM Task: [loopvar: task]</alt>
+          <col label="c1">Concept 1</col>
+          <col label="c2">Concept 2</col>
+          <col label="c3">Concept 3</col>
+          <col label="c4">Concept 4</col>
+          <col label="c5" alt="None of these"/>
+          <style arg:addNoneColumn="1" arg:attributes="${5:[Attr CNT]}" arg:noneText="\${res.NoneText}" arg:top="\${res.TopText}" arg:yeslegend="1" name="question.top-legend"><![CDATA[
+\@if this.styles.ss.colLegendHeight
+<tr class="legend top-legend\${" GtTenColumns" if ec.colCount > 10 else ""} \$(colError)" style="height:\${this.styles.ss.colLegendHeight};">
+\@else
+<tr class="legend top-legend\${" GtTenColumns" if ec.colCount > 10 else ""} \$(colError)">
+\@endif
+
+\@if yeslegend == '1'
+    <th class="dcm_legend2">\$(top)</th>
+\@endif
+    \$(left)
+    \$(legends)
+    \$(right)
+</tr>
+
+\@for x in range(1,int(attributes)+1)
+<tr class="\${'dcm_%s' % ['odd','even'][x % 2]}">
+\@if yeslegend == '1'
+    <td class="dcm_legend">\${p.get('dcmLegend_att%d' % x)}</td>
+\@endif
+    <td class="dcm_item">\${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][0],x) )}</td>
+    <td class="dcm_item">\${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][1],x) )}</td>
+    <td class="dcm_item">\${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][2],x) )}</td>
+    <td class="dcm_item">\${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][3],x) )}</td>
+
+\@if addNoneColumn == '1'
+\@if x == 1
+     <td rowspan="\${int(\$(attributes))}" style="border-top: none; text-align: center;"><b>\$(noneText)</b></td>
+\@endif
+\@endif
+
+</tr>
+
+\@end
+<tbody>
+]]${-1}></style>
+          <style arg:row="\${res.rowText}" arg:yeslegend="1" name="question.row"><![CDATA[
+\@if this.styles.ss.rowHeight
+    <tr class="\$(style) colCount-\$(colCount)" style="height:\${this.styles.ss.rowHeight};">
+\@else
+    <tr class="\$(style) colCount-\$(colCount)">
+\@endif
+
+\@if yeslegend == '1'
+    <td class="dcm_legend">\$(row)</td>
+\@endif
+\$(left)
+\$(elements)
+\$(right)
+</tr>
+]]${-1}></style>
+          <style arg:addNoneColumn="1" name="question.top-legend-item"><![CDATA[
+\@if this.styles.ss.colWidth
+    <th id="\$(this.label)_\$(col.label)" class="dcm_legend legend survey-q-grid-collegend \$(col.styles.ss.colClassNames) \${col.group.styles.ss.groupClassNames if col.group else ""}" style="width:\${this.styles.ss.colWidth}; min-width:\${this.styles.ss.colWidth}">
+        \$(text)
+    </th>
+\@else
+
+\@if addNoneColumn == '1' and col.index == (ec.colCount - 1)
+    <th id="\$(this.label)_\$(col.label)" style="border-bottom: none; width: 125px;" >
+        \$(text)
+    </th>
+\@else
+    <th id="\$(this.label)_\$(col.label)" class="legend survey-q-grid-collegend \$(col.styles.ss.colClassNames) \${col.group.styles.ss.groupClassNames if col.group else ""}">
+        \$(text)
+    </th>
+\@endif
+
+\@endif
+]]${-1}></style>
+        </radio>
+
+        <suspend/>
+      </block>
+
+      <looprow label="1">
+        <loopvar name="task">1</loopvar>
+      </looprow>
+
+      <looprow label="2">
+        <loopvar name="task">2</loopvar>
+      </looprow>
+
+      <looprow label="3">
+        <loopvar name="task">3</loopvar>
+      </looprow>
+
+      <looprow label="4">
+        <loopvar name="task">4</loopvar>
+      </looprow>
+
+      <looprow label="5">
+        <loopvar name="task">5</loopvar>
+      </looprow>
+
+      <looprow label="6">
+        <loopvar name="task">6</loopvar>
+      </looprow>
+
+      <looprow label="7">
+        <loopvar name="task">7</loopvar>
+      </looprow>
+
+      <looprow label="8">
+        <loopvar name="task">8</loopvar>
+      </looprow>
+
+      <looprow label="9">
+        <loopvar name="task">9</loopvar>
+      </looprow>
+
+      <looprow label="10">
+        <loopvar name="task">10</loopvar>
+      </looprow>
+
+      <looprow label="11">
+        <loopvar name="task">11</loopvar>
+      </looprow>
+
+      <looprow label="12">
+        <loopvar name="task">12</loopvar>
+      </looprow>
+
+      <looprow label="13">
+        <loopvar name="task">13</loopvar>
+      </looprow>
+
+      <looprow label="14">
+        <loopvar name="task">14</loopvar>
+      </looprow>
+
+      <looprow label="15">
+        <loopvar name="task">15</loopvar>
+      </looprow>
+
+      <looprow label="16">
+        <loopvar name="task">16</loopvar>
+      </looprow>
+
+      <looprow label="17">
+        <loopvar name="task">17</loopvar>
+      </looprow>
+
+      <looprow label="18">
+        <loopvar name="task">18</loopvar>
+      </looprow>
+
+      <looprow label="19">
+        <loopvar name="task">19</loopvar>
+      </looprow>
+
+      <looprow label="20">
+        <loopvar name="task">20</loopvar>
+      </looprow>
+    </loop>
+
+    <float 
+    label="${1:QID}_Timer"
+    size="15"
+    where="execute,survey,report">
+      <title>${1:QID} - DCM Timer (Minutes)</title>
+      <exec>
+${1:QID}_Timer.val = (timeSpent() - p.startTime) / 60.0
+      </exec>
+
+    </float>
+</block>
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dcm.question</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

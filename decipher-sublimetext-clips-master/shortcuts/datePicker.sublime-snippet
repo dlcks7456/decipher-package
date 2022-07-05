@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+<text 
+  label="${1}"
+  optional="0"
+  size="25"
+  uses="fvdatepicker.1"
+  verify="dateRange(yyyy/mm/dd, any, any)">
+  <title>${2}</title>
+  <comment></comment>
+</text>
+
+<suspend/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>datepicker</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

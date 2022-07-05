@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+uses="atm1d.10"
+atm1d:viewMode="Tiled"
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tiled</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

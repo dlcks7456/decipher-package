@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[
+<note>
+uses="multicol.7"
+
+multicol:flow="vertical"
+multicol:flow="horizontal"
+multicol:flow="start"
+
+multicol:count="2"
+
+multicol:start="r1,r5,r10"
+
+ss:legendColWidth="230px"
+</note>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>multicol</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
