@@ -88,6 +88,7 @@ def newSurvey():
   ss:enableNavigation="1"
   ss:hideProgressBar="0"
   ss:logoAlt="Nielsen Consumer LLC"
+  ss:includeCSS="/survey/selfserve/nielseniq.css"
   ss:logoFile="selfserve/nielseniq.png"
   ss:logoPosition="left"
   theme="company/nielseniq-new"
@@ -153,8 +154,6 @@ def newSurvey():
 <style name="respview.client.css"><![CDATA[
 <style>
 body { word-break: keep-all; }
-.blackdiv{ width: 80%; text-align: center; height: 100%; line-height: 32px; font-size: 20px; color: #fff!important; background-color: black!important; border-radius: 32px; height:100%;padding:5px; font-weight: bold; margin: 10px auto 30px auto;}
-.autosave-restart{ display:none !important; }
 .hidden{display: none !important;}
 .sq-cardsort-bucket-count{display: none !important;}
 </style>
@@ -186,42 +185,6 @@ function range(start, end) {
   return array;
 }
 
-function base_item(n){
-  var base = $ ('.bases.r'+n+'br').find('select');
-  var item = $ ('.items.r'+n+'br').find('select');
-  
-  if(!item.find('option').hasClass("base0")){
-    var mClone = item.clone();
-    var DrOpt1 = base.val();
-    var baseClass = base.find("option:selected").attr('class');
-
-    if( DrOpt1 == -1 ){
-      item.find("option").remove();
-      item.append(mClone.find("option[value=-1]").clone());
-    }else{
-      selectval = item.val();
-      item.find("option").remove();
-      item.append(mClone.find("option[value=-1]").clone());
-      item.append(mClone.find("option[class="+baseClass+"]").clone());
-      item.val(selectval);
-    }
-    item.find("option[value=-1]").addClass("base0");
-
-   base.change(function(){
-      DrOpt1 = base.val();
-      baseClass = base.find("option:selected").attr('class');
-
-      if( DrOpt1 == -1 ){
-        item.find("option").remove();
-        item.append(mClone.find("option[value=-1]").clone());
-      }else{
-        item.find("option").remove();
-        item.append(mClone.find("option[value=-1]").clone());
-        item.append(mClone.find("option[class="+baseClass+"]").clone());
-      }
-    });
-  }
-}
 
 function viewKorean(num,dan){
   string=num;
@@ -305,7 +268,9 @@ function han(d){
 <suspend/>
 
 <exec when="init">
-imgdr = "https://nielsenkor.cafe24.com/OURWEB/KOREA/"
+survey_path = gv.survey.path.split("/")[-1]
+# Addhoc = ADD / Tracking = TRC
+imgdr = "https://nielsenkor.cafe24.com/Decipher/ADD/{}/".format(survey_path)
 
 from datetime import datetime
 import random

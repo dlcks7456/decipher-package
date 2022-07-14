@@ -1,0 +1,44 @@
+<snippet>
+    <content><![CDATA[
+<block label="${1}_block">
+
+  <select 
+   label="${1}">
+    <title>${2}</title>
+    <validate>
+brand_model_check(use_open=True)
+    </validate>
+
+    <style copy="bmHeader" name="el.select.header"/>
+    <style copy="bmDefault" name="el.select.default"/>
+    <style cols="brand" copy="brandSelect" name="el.select.element"/>
+    <style cols="model" copy="modelSelect" name="el.select.element"/>
+    <style copy="bmFooter" name="el.select.footer"/>
+    <style copy="bmJS" name="question.after" wrap="ready"/>
+    <col label="brand" ss:colClassNames="brand">${3}</col>
+    <col label="model" ss:colClassNames="model">${4}</col>
+    <row label="r1">${5}</row>
+    <insert as="choices" source="brandList"/>
+    <insert as="choices" source="modelList"/>
+  </select>
+
+  <text 
+   label="${1}oe"
+   onLoad="copy('${1}', rows=True, cols=True)"
+   size="40"
+   ss:postText="${6:기타}"
+   ss:questionClassNames="hidden">
+    <title>(HIDDEN) oe</title>
+    <style copy="bmOpen" name="el.text"/>
+  </text>
+
+  <suspend/>
+
+</block>
+<suspend/>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>bm.open</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+<res label="img_guide_slide"><div style="width:100%;text-align:center;"><b>Please flip the view card to the side to check all the pages<br />(Click &gt; on the right side of the page to see the next page)</b></div></res>
+<res label="img_guide_error"><div style="width:100%;text-align:center;"><b>You need to check all the pages to proceed</b></div></res>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>slideshow.res.eng</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

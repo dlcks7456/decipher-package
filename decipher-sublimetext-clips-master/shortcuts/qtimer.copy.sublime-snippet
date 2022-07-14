@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+  <radio 
+    label="${2}"
+    optional="1">
+    <title>${3}</title>
+	<style copy="timer_head" name='survey.question'>
+	<style copy="timer_js" arg:timer="${1}" name="question.after" wrap="ready"/>
+	<row label="dummy" ss:rowClassNames="hidden"/>
+	</radio>
+<suspend/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>timer.copy</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

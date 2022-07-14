@@ -1,0 +1,271 @@
+<snippet>
+    <content><![CDATA[
+<style label="bmCss" name="page.head"><![CDATA[
+<style>
+select{
+  max-width:200px !important;
+}
+.select-oe-div{
+  margin-top: 5px;
+}
+.other-open{
+  border-radius: 5px;
+  max-width:200px !important;
+}
+.input-disabled {
+  pointer-events: none;
+  background-color: #e3e2e2 !important;
+}
+.row-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+\@media all and (max-width: 675px){
+ .row-text{
+    align-items: flex-start;
+  }
+}
+.none {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+.none-input{
+  margin-left: 5px;
+}
+.none-input .fir-icon{
+  display: none !important;
+}
+.none-input .fir-hidden{
+  left: auto !important;
+}
+  </style>
+]]${-1}></style>
+
+<style label="bmHeader" name="el.select.header"><![CDATA[
+<select name="\$(name)" id="\$(id)" class="input dropdown" \$(extra) data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)">
+]]${-1}></style>
+<style label="bmDefault" name="el.select.default"><![CDATA[
+<option value="-1" \$(selected) data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)">@(select)</option>
+]]${-1}></style>
+<style label="brandSelect" cols="brand" name="el.select.element"><![CDATA[
+\@if 'br' in choice.label
+<option value="\$(value)" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}" data-brand="\$(choice.value)" data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)" \${'data-oe="1"' if hasattr(BMbase.attr(choice.label), 'open') else ""}>\$(text)</option>
+\@endif
+]]${-1}></style>
+<style label="modelSelect" cols="model" name="el.select.element"><![CDATA[
+\@if 'md' in choice.label
+<option value="\$(value)" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""} hidden" data-brand="\${choice.value//100}" data-model="\$(choice.value)" data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)" \${'data-oe="1"' if hasattr(BMbase.attr(choice.label), 'open') else ""}>\$(text)</option>
+\@endif
+]]${-1}></style>
+<style label="bmLeft" name="question.left"><![CDATA[
+\@if this.styles.ss.legendColWidth
+    <\$(tag) scope="row" class="cell nonempty legend row-legend row-legend-left \${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic \${"mobile-left-row-legend " if force else ""}\$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"row-legend-both-space " if ec.haveRightLegend and ec.haveLeftLegend and (not row.group or not row.index==0) else "border-collapse "} \$(row.styles.ss.rowClassNames)" style="width:\${this.styles.ss.legendColWidth}; min-width:\${this.styles.ss.legendColWidth}">
+        <div class="row-text">\$(text)<div class="\$(this.label)none-\$(row.index)-div"></div></div>
+    </\$(tag)>
+\@else
+    <\$(tag) scope="row" class="cell nonempty legend row-legend row-legend-left \${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic \${"mobile-left-row-legend " if force else ""}\$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"row-legend-both-space " if ec.haveRightLegend and ec.haveLeftLegend and (row.group or not row.index==0) else "border-collapse "} \$(row.styles.ss.rowClassNames)">
+        <div class="row-text">\$(text)<div class="\$(this.label)none-\$(row.index)-div"></div></div>
+    </\$(tag)>
+\@endif
+]]${-1}></style>
+<style label="bmFooter" name="el.select.footer"><![CDATA[
+</select>
+<div class="select-oe-div \$(this.label)oe-\$(row.index)-\$(col.index)-div"></div>
+]]${-1}></style>
+<style label="bmJS" name="question.after" wrap="ready"><![CDATA[
+const brands = document.querySelectorAll(".brand select");
+const models = document.querySelectorAll(".model select");
+const nones = document.querySelectorAll(".none-input");
+
+const hideModel = (brandSelect, brandIndex, modelSelect) => {
+    const brand = brandIndex !== null ? brandSelect.options[brandIndex] : null;
+    const brandCode = brand !== null ? brand.dataset.brand : null;
+    const modelOptions = modelSelect.options;
+    
+    Array.from(modelOptions).slice(1).forEach( (model) => {
+        if( model.dataset.brand == brandCode ){
+            model.classList.remove("hidden");
+        }else{
+            model.classList.add("hidden");
+        }
+    } )
+};
+
+const openHandler = (event, currSelect) => {
+    const selectedOption = currSelect.options[currSelect.selectedIndex];
+    const openClassName = selectedOption.dataset.open;
+    const openInput = document.querySelector(openClassName);
+    if( !openInput ) return;
+
+    const openFlag = selectedOption.dataset.oe;
+    if( !openFlag ){
+        openInput.disabled = true;
+        openInput.classList.add("input-disabled");
+        return;
+    }
+    openInput.disabled = false;
+    openInput.classList.remove("input-disabled");
+    if( event.type === "change" ){
+      openInput.focus();
+    }
+};
+
+const noneHandler = (noneChk, index)=>{
+  const brand = brands[index];
+  const model = models[index];
+  const items = [brand, model];
+
+  if( noneChk.checked ){
+    items.forEach( (item)=>{
+      let selectedIndex = item.selectedIndex;
+      let oeCheck = item.options[selectedIndex].dataset.oe;
+      
+      item.classList.add("input-disabled");
+      item.disabled = true;
+
+      if( oeCheck ){
+        let openInput = document.querySelector(item.dataset.open);
+        openInput.classList.add("input-disabled");
+        openInput.disabled = true;
+      }
+    })
+  }else{
+    items.forEach( (item)=>{
+      let selectedIndex = item.selectedIndex;
+      let oeCheck = item.options[selectedIndex].dataset.oe;
+
+      item.classList.remove("input-disabled");
+      item.disabled = false;
+
+      if( oeCheck ){
+        let openInput = document.querySelector(item.dataset.open);
+        openInput.classList.remove("input-disabled");
+        openInput.disabled = false;
+      }
+    })
+  }
+}
+
+brands.forEach( (item, index) => {
+    const modelSelect = models[index];
+    item.addEventListener("change", (event) => {
+        const brandSelected = item.selectedIndex;
+        if( modelSelect.selectedIndex ){
+          const openClassName = modelSelect.options[modelSelect.selectedIndex].dataset.open;
+          const openInput = document.querySelector(openClassName);
+          if( openInput ){
+            openInput.disabled = true;
+            openInput.classList.add("input-disabled");
+          }
+        }
+        modelSelect.selectedIndex = 0;
+        openHandler(event, item);
+        hideModel(item, item.selectedIndex, modelSelect);
+    });
+    modelSelect.addEventListener("change", (event)=>{
+      openHandler(event, modelSelect)
+    });
+    hideModel(item, item.selectedIndex, modelSelect);
+    openHandler(event, item);
+    openHandler(event, modelSelect);
+});
+
+nones.forEach( (none, index)=>{
+  const noneChk = none.querySelector("input[type=checkbox]");
+  none.addEventListener("click", ()=>{
+      noneHandler(noneChk, index);
+  });
+  noneHandler(noneChk, index);
+});
+]]${-1}></style>
+<style label="bmOpen" name="el.text"><![CDATA[
+<input type="text" name="\$(name)" id="\$(id)" class="\$(this.label)-\$(row.index)-\$(col.index) other-open \${"" if value else "input-disabled"}" value="\$(value)" size="\$(size)" \${"" if value else "disabled"} placeholder="\${this.styles.ss.postText or ""}"/>
+<script>
+document.querySelector(".\$(this.label)-\$(row.index)-\$(col.index)-div").appendChild(document.querySelector("input[name='\$(name)']"));
+</script>
+]]${-1}></style>
+<style label="bmNone" name="el.checkbox"><![CDATA[
+<div class="none \$(this.label)-\$(row.label)">
+  \${this.title} <div class="none-input"><input type="checkbox" name="\$(name)" id="\$(id)" value="1" \$(checked)/></div>
+</div>
+<script>
+document.querySelector(".\$(this.label)-\$(row.index)-div").appendChild(document.querySelector(".\$(this.label)-\$(row.label)"));
+</script>
+]]${-1}></style>
+<exec when="init">
+def brand_model_check(model_unique=True, use_open=False, open_cols=["brand", "model"], use_none=False, none_hard=True) :
+  oe_label = allQuestions["{}oe".format(this.label)] if use_open else None
+  none_label = allQuestions["{}none".format(this.label)] if use_none else None
+
+  # model unique
+  if model_unique :
+    models = [row.model.val for row in this.rows if row.model.any ]
+    if models :
+      for model in models :
+        if models.count(model) gt 1 :
+          error(this.lget("duplicate-column"), col=this.model)
+          break
+
+  for row in this.rows :
+    # invalid logic
+    if row.brand.any and row.model.any :
+      brand_code = this.choices[row.brand.val].value
+      model_code = this.choices[row.model.val].value
+      if not brand_code == model_code//100 :
+        error(this.lget("survey.has-errors"), row=row)
+
+    for col in this.cols :
+      # open check
+      if oe_label :
+        curr = row.attr(col.label)
+        if curr.any :
+          base_label = this.choices[curr.val].label
+          if col.label in open_cols :
+            if hasattr(BMbase.attr(base_label), 'open') :
+              open_base = oe_label.attr(row.label).attr(col.label)
+              if not open_base :
+                error(this.lget("extraInfo"), row=row, col=col)
+
+      # none check
+      if none_label :
+        if not getattr(none_label, row.label) :
+          if not getattr(row, col.label).any :
+            error(this.lget("noAnswerSelected"), row=row, col=col)
+
+  # none order check
+  if none_label :
+    for row in this.rows[:-1] :
+      next_idx = row.index + 1
+      if none_label.rows[row.index] and not none_label.rows[next_idx] :
+        error(res.chk_plz, row=row)
+        error(res.chk_plz, row=this.rows[next_idx])
+
+  # all none answer
+  if none_label and none_hard :
+    if len(none_label.rows) ge 2 :
+      if none_label.all :
+        for row in this.rows :
+          error(res.chk_plz, row=row)
+</exec>
+
+<radio 
+  label="BMbase"
+  cond="0"
+  optional="1"
+  where="execute,survey,report">
+  <title>(HIDDEN) Brand/Model logic base question</title>
+  <insert source="${1:brandList}"/>
+  <insert source="${2:modelList}"/>
+</radio>
+
+<suspend/>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>bm.setting</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>
