@@ -48,17 +48,14 @@ select{
 <style label="bmHeader" name="el.select.header"><![CDATA[
 <select name="\$(name)" id="\$(id)" class="input dropdown" \$(extra) data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)">
 ]]${-1}></style>
-<style label="bmDefault" name="el.select.default"><![CDATA[
-<option value="-1" \$(selected) data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)">@(select)</option>
-]]${-1}></style>
 <style label="brandSelect" cols="brand" name="el.select.element"><![CDATA[
 \@if 'br' in choice.label
-<option value="\$(value)" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}" data-brand="\$(choice.value)" data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)" \${'data-oe="1"' if hasattr(BMbase.attr(choice.label), 'open') else ""}>\$(text)</option>
+<option value="\$(value)" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}" data-brand="\$(choice.value)" \${'data-oe="1"' if hasattr(BMbase.attr(choice.label), 'open') else ""}>\$(text)</option>
 \@endif
 ]]${-1}></style>
 <style label="modelSelect" cols="model" name="el.select.element"><![CDATA[
 \@if 'md' in choice.label
-<option value="\$(value)" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""} hidden" data-brand="\${choice.value//100}" data-model="\$(choice.value)" data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)" \${'data-oe="1"' if hasattr(BMbase.attr(choice.label), 'open') else ""}>\$(text)</option>
+<option value="\$(value)" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""} hidden" data-brand="\${choice.value//100}" data-model="\$(choice.value)" \${'data-oe="1"' if hasattr(BMbase.attr(choice.label), 'open') else ""}>\$(text)</option>
 \@endif
 ]]${-1}></style>
 <style label="bmLeft" name="question.left"><![CDATA[
@@ -97,7 +94,7 @@ const hideModel = (brandSelect, brandIndex, modelSelect) => {
 
 const openHandler = (event, currSelect) => {
     const selectedOption = currSelect.options[currSelect.selectedIndex];
-    const openClassName = selectedOption.dataset.open;
+    const openClassName = currSelect.dataset.open;
     const openInput = document.querySelector(openClassName);
     if( !openInput ) return;
 
@@ -121,28 +118,28 @@ const noneHandler = (noneChk, index)=>{
 
   if( noneChk.checked ){
     items.forEach( (item)=>{
-      let selectedIndex = item.selectedIndex;
-      let oeCheck = item.options[selectedIndex].dataset.oe;
-      
+      const openInput = document.querySelector(item.dataset.open);
+      const selectedIndex = item.selectedIndex;
+      const oeCheck = item.options[selectedIndex].dataset.oe;
+
       item.classList.add("input-disabled");
       item.disabled = true;
 
       if( oeCheck ){
-        let openInput = document.querySelector(item.dataset.open);
         openInput.classList.add("input-disabled");
         openInput.disabled = true;
       }
     })
   }else{
     items.forEach( (item)=>{
-      let selectedIndex = item.selectedIndex;
-      let oeCheck = item.options[selectedIndex].dataset.oe;
+      const openInput = document.querySelector(item.dataset.open);
+      const selectedIndex = item.selectedIndex;
+      const oeCheck = item.options[selectedIndex].dataset.oe;
 
       item.classList.remove("input-disabled");
       item.disabled = false;
 
       if( oeCheck ){
-        let openInput = document.querySelector(item.dataset.open);
         openInput.classList.remove("input-disabled");
         openInput.disabled = false;
       }
@@ -155,7 +152,7 @@ brands.forEach( (item, index) => {
     item.addEventListener("change", (event) => {
         const brandSelected = item.selectedIndex;
         if( modelSelect.selectedIndex ){
-          const openClassName = modelSelect.options[modelSelect.selectedIndex].dataset.open;
+          const openClassName = modelSelect.dataset.open;
           const openInput = document.querySelector(openClassName);
           if( openInput ){
             openInput.disabled = true;

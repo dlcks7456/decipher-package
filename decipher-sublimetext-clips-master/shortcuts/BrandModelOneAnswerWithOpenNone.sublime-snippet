@@ -12,7 +12,6 @@ brand_model_check(use_open=True, use_none=True)
 
     <style copy="bmCss" name="page.head"/>
     <style copy="bmHeader" name="el.select.header"/>
-    <style copy="bmDefault" name="el.select.default"/>
     <style cols="brand" copy="brandSelect" name="el.select.element"/>
     <style cols="model" copy="modelSelect" name="el.select.element"/>
     <style copy="bmLeft" name="question.left"/>
