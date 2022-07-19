@@ -269,8 +269,8 @@ function han(d){
 
 <exec when="init">
 survey_path = gv.survey.path.split("/")[-1]
-# Addhoc = ADD / Tracking = TRC
-imgdr = "https://nielsenkor.cafe24.com/Decipher/ADD/{}/".format(survey_path)
+# Adhoc = AD / Tracking = TRC
+imgdr = "https://nielsenkor.cafe24.com/Decipher/AD/{}/".format(survey_path)
 
 from datetime import datetime
 import random
