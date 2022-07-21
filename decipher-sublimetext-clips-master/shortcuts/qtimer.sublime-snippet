@@ -11,6 +11,7 @@
 <h1 title="@(question)" class="question-text" id="question_text_\${this.label}">
   \${this.styles.html.showNumber and (str(number) + '. ') or ''}\$(title)
 </h1>
+<div class="timesec"></div>
 <!-- /.question-text -->
 ]]${-1}></style>
 <style label="timer_js" arg:timer="${1}" name="question.after" wrap="ready"><![CDATA[

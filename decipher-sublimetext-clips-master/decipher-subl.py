@@ -557,11 +557,7 @@ if list=="2":
   size="25"
   translateable="0"
   where="execute,survey,report">
-  <title><span class="b">TolunaEnc</span></title>
-  <exec>
-dats = datToDict("pssd.dat", "linenumber", 159)
-print(dats)
-  </exec>
+  <title>TolunaEnc</title>
 
 </text>
 
@@ -574,7 +570,7 @@ print(dats)
 <radio 
   label="RespStatus"
   where="execute,survey,report">
-  <title><span class="u">STATUS</span></title>
+  <title>STATUS</title>
   <exec>
 #incomplete
 status(True,'r2')
