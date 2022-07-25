@@ -85,10 +85,10 @@ const hideModel = (brandSelect, brandIndex, modelSelect) => {
     
     Array.from(modelOptions).slice(1).forEach( (model) => {
         if( model.dataset.brand == brandCode ){
-            model.classList.remove("hide-option");
+            model.classList.remove("hidden");
             model.disabled = false;
         }else{
-            model.classList.add("hide-option");
+            model.classList.add("hidden");
             model.disabled = true;
             modelSelect.appendChild(model);
         }
