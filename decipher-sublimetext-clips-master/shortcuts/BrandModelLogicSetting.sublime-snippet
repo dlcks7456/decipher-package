@@ -85,11 +85,14 @@ const hideModel = (brandSelect, brandIndex, modelSelect) => {
     
     Array.from(modelOptions).slice(1).forEach( (model) => {
         if( model.dataset.brand == brandCode ){
-            model.classList.remove("hidden");
+            model.classList.remove("hide-option");
+            model.disabled = false;
         }else{
-            model.classList.add("hidden");
+            model.classList.add("hide-option");
+            model.disabled = true;
+            modelSelect.appendChild(model);
         }
-    } )
+    })
 };
 
 const openHandler = (event, currSelect) => {
