@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+<logic label="report_send"
+    fieldreport:message="Today Response Summary"
+    fieldreport:recipients="sookbin.song@nielseniq.com,yoonri.kim@nielseniq.com${1}"
+    fieldreport:time="${2:09:00}"
+    fieldreport:split="${3}"
+    fieldreport:tabs="completion,terminate,quota"
+    uses="fieldreport.1">
+  <title>Share a Response Summary Snapshot</title>
+</logic>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>report</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[
+<logic label="sftp_send" 
+    upload:directory="${1:www/Decipher}" 
+    upload:fields="" 
+    upload:filename="${2:DATA}_%Y_%m_%d_%H_%M_%S.${3:csv}" 
+    upload:format="${3:csv}" 
+    upload:host="nielsenkor.cafe24.com" 
+    upload:password="Nielsen1" 
+    upload:protocol="sftp" 
+    upload:time="${4:09:00}" 
+    upload:username="nielsenkor" 
+    uses="upload.1">
+  <title>Transfer Data</title></logic>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>sftp</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>

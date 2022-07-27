@@ -1,0 +1,15 @@
+<snippet>
+    <content><![CDATA[
+<logic label="crosstab_send"
+    crosstabs:message="Today Crosstabs"
+    crosstabs:recipients="${1}"
+    crosstabs:saved="${2}"
+    crosstabs:time="${3:09:00}"
+    uses="crosstabs.1">
+  <title>Share a Crosstabs Export</title></logic>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>crosstabs</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>
