@@ -156,6 +156,7 @@ def newSurvey():
 body { word-break: keep-all; }
 .hidden{display: none !important;}
 .sq-cardsort-bucket-count{display: none !important;}
+.hangle{color:red;border:0;text-align:right;width:200px; }
 </style>
 ]]></style>
 <style name="respview.client.js"><![CDATA[
