@@ -461,7 +461,7 @@ class makeSyntaxCommand(sublime_plugin.TextCommand) :
                 mafreq = "!MAFREQ %s.\n"
                 dupchk = "!DUPCHK %s.\n"
                 temps = "TEMP.\n"
-                textchk = "LIST RECORD %s.\n"
+                textchk = "FREQ %s.\n"
 
                 qAttr = {}
                 defineDict = {}
