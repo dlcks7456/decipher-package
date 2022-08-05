@@ -119,8 +119,8 @@ def newSurvey():
     <title>Tillion</title>
     <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
     <completed>It seems you have already entered this survey.</completed>
-    <var name="sid" required="1"/>
     <var name="eid" unique="1"/>
+    <var name="sid" required="1"/>
     <exit cond="terminated" url="http://out.pmirnc.com/?sid=${sid}&amp;eid=${eid}&amp;st=S&amp;stdt=SO1"/>
     <exit cond="overquota" url="http://out.pmirnc.com/?sid=${sid}&amp;eid=${eid}&amp;st=Q&amp;stdt=QO"/>
     <exit cond="qualified" url="http://out.pmirnc.com/?sid=${sid}&amp;eid=${eid}&amp;st=C&amp;stdt=CO1"/>
