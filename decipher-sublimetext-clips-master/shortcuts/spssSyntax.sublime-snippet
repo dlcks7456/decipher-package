@@ -306,7 +306,7 @@ DEFINE !DUPchk (!POS = !CHAREND ('/') / !POS = !TOKENS(1))
       DO REPEAT RAWQ=!1.
         LOOP #I=#K TO #J.
           DO IF (RAWQ = #TEMPVEC(#I)).
-             COMP #TEMPVEC(#I)=$SYSMIS.
+             COMP #TEMPVEC(#I)=\$SYSMIS.
              COMP ERR='Codes should not be Duplicated →'.
           END IF.
         END LOOP.
