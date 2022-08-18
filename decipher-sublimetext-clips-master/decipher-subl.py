@@ -269,7 +269,7 @@ function han(d){
 <suspend/>
 
 <exec when="init">
-survey_path = gv.survey.path.split("/")[-1]
+survey_path = gv.survey.path.split("/")[-2] if gv.survey.path.split("/")[-1] == "temp-edit-live" else gv.survey.path.split("/")[-1]
 # Adhoc = AD / Tracking = TRC
 imgdr = "https://nielsenkor.cafe24.com/Decipher/AD/{}/".format(survey_path)
 
