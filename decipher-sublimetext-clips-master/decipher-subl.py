@@ -314,7 +314,7 @@ def samegrid():
   checkAnswer = [i.label for i in qid.rows if not i.val == None]
   if len(checkAnswer) gt 1 :
     if len(set(qid.val)-set([None])) == 1:
-      soft_Err("%s<br/>%s"%(res.samegrid, res.softerr))
+      soft_Err(True, "%s<br/>%s"%(res.samegrid, res.softerr))
     else :
       p.chk=1
   else :
