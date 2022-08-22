@@ -61,5 +61,12 @@
               "key": "selector", "operator": "equal", "operand":"text.xml"
             }
         ]
+    },
+    { 
+        "keys": ["ctrl+shift+l"], "command": "loop_label", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.xml"
+            }
+        ]
     }
 ]

@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+<image label="${1}" optional="0" sst="0" uses="imgupload.1">
+  <title>${2}</title>
+  <comment></comment>
+  ${3:<noanswer label="na">${4}</noanswer>}
+</image>
+
+<suspend/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>img.upload</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

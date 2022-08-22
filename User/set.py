@@ -1123,3 +1123,21 @@ class makeMaxdiffResCommand(sublime_plugin.TextCommand):
                 self.view.replace(edit,sel, printPage)
         except Exception as e:
             print (e)
+
+
+class loopLabelCommand(sublime_plugin.TextCommand):
+        def run (self, edit):
+            try:
+                sels = self.view.sel()[0]
+                textr = self.view.substr(sels)
+                set_text = ''
+                if textr == '' :
+                    set_text = '_[loopvar: label]'
+                else :
+                    textr = self.view.substr(sels)
+                    set_text = f'[loopvar: {textr}]'
+                self.view.replace(edit,sels, set_text)
+                
+            except Exception as e:
+                print (e) 
+
