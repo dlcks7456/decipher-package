@@ -593,17 +593,15 @@ status(True,'r2')
 <radio 
   label="Agree"
   randomize="0">
-  <title><b>개인정보 보호에 대한 정책</b><br /><br />
-본 설문에 참여해 주셔서 대단히 감사합니다. 귀하의 의견은 저희에게 매우 중요하며 귀하께서 응답하신 내용은 철저히 비밀이 보장됩니다.
-<br />시작하시려면 아래의 버튼을 클릭해 주십시오. 설문이 진행되는 동안에는 설문조사용 화면 아래에 있는 버튼만 사용해 주시고 귀하의 브라우저에 있는 버튼은 사용하지 말아 주십시오.
-<br />응답내용에 대한 비밀보장과 개인정보 보호에 대한 정책을 보기를 원하시면 <a href="https://platformsolutions.nielseniq.com/ourweb/privacy/KO/privacy.asp" target="_blank">여기를 클릭</a>해 주십시오.<br /><br />
+  <title>
+<strong>정보 기밀 유지에 관한 동의</strong><br/><br/>
 
-<p><b>정보 기밀 유지</b><br />응답자는 법규에 의거한 경우를 제외하고는 모든 온라인 조사와 관련된 정보 및 내용을 기밀로 유지하며, 제 삼자와 공유하지 않습니다.<br /><br />
+<strong>정보 기밀 유지</strong><br/>
+응답자는 법규에 의거한 경우를 제외하고는 모든 온라인 조사와 관련된 정보 및 내용을 기밀로 유지하며, 제 삼자와 공유하지 않습니다.<br/><br/>
 
-<b>지적 재산 및 저작권에 관한 공지</b><br />
-Copyright ⓒ 2019 Nielsen. All rights reserved. 본 조사의 저작권 및 제공자료는 Nielsen에 소유되어 있습니다. Nielsen의 동의 없이 본 조사에 관한 어떠한 내용도 사용, 노출, 재생, 복사, 배포, 수정, 제공, 재발행 또는 정정할 수 없습니다. 본 조사에 대한 접근을 통하여 귀하 또는 제 삼자에게 어떠한 지적 재산권도 양도되지 않습니다. 본 조사에 대한 모든 권한과, 법적 권리 및 이권은 Nielsen의 독자적인 재산입니다.</p>
+<strong>지적 재산 및 저작권에 관한 공지</strong><br/>
+Copyright © ${time.strftime('%Y')} NielsenIQ. All rights reserved. 본 조사의 저작권 및 제공자료는 NielsenIQ에 소유되어 있습니다. NielsenIQ의 동의 없이 본 조사에 관한 어떠한 내용도 사용, 노출, 재생, 복사, 배포, 수정, 제공, 재발행 또는 정정할 수 없습니다. 본 조사에 대한 접근을 통하여 귀하 또는 제 삼자에게 어떠한 지적 재산권도 양도되지 않습니다. 본 조사에 대한 모든 권한과, 법적 권리 및 이권은 NielsenIQ의 독자적인 재산입니다.<br/><br/>
 
-<br /><br />
 <div style="border-style: solid; border-width: 1px; padding: 1px 4px 1px 4px;"><i>아래를 클릭하여, 앞서 진술된 모든 약관에 동의하고, <b>또</b> 귀하께서 <b>18</b> 세 이상 <font style="color: red;">또는 부모나 보호자의 동의 하에 본 조사에 참여하신 18세 미만이라는 점 및 정보 기밀 유지에 동의 여부 표시를 해주시기 바랍니다. </font></i></div>
 </title>
   <row label="r1" value="1">예, 동의합니다</row>
