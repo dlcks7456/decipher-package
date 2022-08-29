@@ -1,0 +1,68 @@
+<snippet>
+	<content><![CDATA[
+<style arg:imgName="${1}" arg:detailsOpen="${2:open}" arg:showText="${3}" label="${4}"  name="survey.question"><![CDATA[
+<style>
+.blackdiv{ width: 80%; text-align: center; height: 100%; line-height: 32px; font-size: 20px; color: #fff!important; background-color: black!important; border-radius: 32px; height:100%;padding:5px; font-weight: bold; margin: 10px auto 10px auto;}
+.img-div{width:100%; text-align: center; margin-bottom: 10px;}
+.img-div img{width:100%;}
+.showcard{
+  font-weight: bold;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.showcard details {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: .5em .5em 0;
+    margin-bottom: 1em;
+}
+
+.showcard summary {
+    font-weight: bold;
+    border-radius: 10px;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.showcard summary:hover {
+  background-color: black;
+  color: white;  
+}
+
+.showcard details[open] {
+    padding: .5em;
+}
+
+.showcard details[open] summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: .5em;
+    background-color: black;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+.showcard details summary{
+  display: revert !important;
+}
+</style>
+<h1 title="@(question)" class="question-text" id="question_text_\${this.label}">
+  <div class="blackdiv">\$(showText)</div>
+	<div class="showcard">
+		<details \$(detailsOpen)>
+		  <summary>보기 카드</summary>
+		  <div class="img-div">
+		      <img src="\${imgdr}/\${LQ.selected.label}/\$(imgName)" class="popup"/>
+		  </div>
+		</details>
+	</div>
+  \${this.styles.html.showNumber and (str(number) + '. ') or ''}\$(title)
+</h1>
+<!-- /.question-text -->
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>img.details</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
