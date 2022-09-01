@@ -159,8 +159,8 @@ body { word-break: keep-all; }
 .hangle{color:red;border:0;text-align:right;width:200px; }
 
 
-.sq-cardrating-completion, .sq-cardrating-wrap, .sq-cardrating-fill {
-  max-width: 924px !important;
+.sq-cardrating-widget{
+  width: 924px !important; 
 }
 
 .sq-cardrating-content{
