@@ -158,6 +158,10 @@ body { word-break: keep-all; }
 .sq-cardsort-bucket-count{display: none !important;}
 .hangle{color:red;border:0;text-align:right;width:200px; }
 
+\@media (prefers-color-scheme: dark) {
+  .non-touch .fir-icon:hover .rounded .fir-base, .non-touch .fir-icon:hover .square .fir-base, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .rounded .fir-base, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .square .fir-base { fill: #878787; }
+  .fir-icon.selected .rounded .fir-selected, .fir-icon.selected .square .fir-selected { fill: #878787; }
+}
 
 .sq-cardrating-widget{
   width: 924px !important; 

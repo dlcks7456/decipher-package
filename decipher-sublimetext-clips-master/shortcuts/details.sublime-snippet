@@ -43,6 +43,12 @@
     color: white;
     border-radius: 10px 10px 0 0;
 }
+
+\@media (prefers-color-scheme: dark){
+  .showcard summary:hover{ background-color: #b1f7b6; }
+  .showcard details[open] summary { background-color: #b1f7b6; }
+}
+
 .showcard details summary{
   display: revert !important;
 }
