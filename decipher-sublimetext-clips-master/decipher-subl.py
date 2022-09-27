@@ -176,9 +176,22 @@ body { word-break: keep-all; }
  }
 }
 
+.sq-sliderpoints-container{
+  max-width: 900px;
+}
+
+.sq-sliderpoints-container{
+  margin-left: 0 !important;
+}
+
 .sq-cardrating-button{
   max-width: 85px !important;
 }
+
+.dq-imgupload{
+  max-width: 924px;
+}
+
 </style>
 ]]></style>
 <style name="respview.client.js"><![CDATA[
