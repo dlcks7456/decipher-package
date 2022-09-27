@@ -110,9 +110,9 @@ def newSurvey():
   <samplesource list="0">
     <title>Open Survey</title>
     <completed>It seems you have already entered this survey.</completed>
-    <exit cond="terminated"><span class="bold">본 조사에 참여해주셔서 감사합니다.</span><br /><br />본격적으로 조사를 시작하기 전에, 귀하가 본 조사에 적합한 응답 대상인지 알아보기 위해 몇 가지의 질문을 드렸습니다.<br /><br />죄송합니다. 귀하께서는 본 조사의 응답 대상이 아니십니다.<br /><br />차후에 다른 온라인 조사에 참여해주시면 감사하겠습니다.<br /><br />귀하의 소중한 의견은 더 나은 제품과 서비스를 개발하는데 좋은 정보가 될 것입니다.</exit>
-    <exit cond="qualified"><span class="bold">이로써 설문이 완료되었습니다. </span><br /><br /><span class="bold">귀한 시간 내주셔서 대단히 감사드립니다.</span></exit>
-    <exit cond="overquota"><span class="boldblue">본 조사에 참여해 주셔서 감사합니다. </span><br /><br />안타깝게도, 귀하께서 해당하시는 조사 대상 그룹의 조사는 이미 종료되었습니다.<br /><br />다음에 참여해 주시기 바랍니다.</exit>
+    <exit cond="terminated"><strong>본 조사에 참여해주셔서 감사합니다.</strong><br /><br />본격적으로 조사를 시작하기 전에, 귀하가 본 조사에 적합한 응답 대상인지 알아보기 위해 몇 가지의 질문을 드렸습니다.<br /><br />죄송합니다. 귀하께서는 본 조사의 응답 대상이 아니십니다.<br /><br />차후에 다른 온라인 조사에 참여해주시면 감사하겠습니다.<br /><br />귀하의 소중한 의견은 더 나은 제품과 서비스를 개발하는데 좋은 정보가 될 것입니다.</exit>
+    <exit cond="qualified"><strong>이로써 설문이 완료되었습니다. </strong><br /><br /><strong>귀한 시간 내주셔서 대단히 감사드립니다.</strong></exit>
+    <exit cond="overquota"><strong>본 조사에 참여해 주셔서 감사합니다.</strong><br /><br />안타깝게도, 귀하께서 해당하시는 조사 대상 그룹의 조사는 이미 종료되었습니다.<br /><br />다음에 참여해 주시기 바랍니다.</exit>
   </samplesource>
 
   <samplesource list="1">
@@ -142,9 +142,9 @@ def newSurvey():
     <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
     <completed>It seems you have already entered this survey.</completed>
     <var name="UID" unique="1"/>
-    <exit cond="terminated"><span class="bold">본 조사에 참여해주셔서 감사합니다.</span><br /><br />본격적으로 조사를 시작하기 전에, 귀하가 본 조사에 적합한 응답 대상인지 알아보기 위해 몇 가지의 질문을 드렸습니다.<br /><br />죄송합니다. 귀하께서는 본 조사의 응답 대상이 아니십니다.<br /><br />차후에 다른 온라인 조사에 참여해주시면 감사하겠습니다.<br /><br />귀하의 소중한 의견은 더 나은 제품과 서비스를 개발하는데 좋은 정보가 될 것입니다.</exit>
-    <exit cond="qualified"><span class="bold">이로써 설문이 완료되었습니다. </span><br /><br /><span class="bold">귀한 시간 내주셔서 대단히 감사드립니다.</span></exit>
-    <exit cond="overquota"><span class="boldblue">본 조사에 참여해 주셔서 감사합니다. </span><br /><br />안타깝게도, 귀하께서 해당하시는 조사 대상 그룹의 조사는 이미 종료되었습니다.<br /><br />다음에 참여해 주시기 바랍니다.</exit>
+    <exit cond="terminated"><strong>본 조사에 참여해주셔서 감사합니다.</strong><br /><br />본격적으로 조사를 시작하기 전에, 귀하가 본 조사에 적합한 응답 대상인지 알아보기 위해 몇 가지의 질문을 드렸습니다.<br /><br />죄송합니다. 귀하께서는 본 조사의 응답 대상이 아니십니다.<br /><br />차후에 다른 온라인 조사에 참여해주시면 감사하겠습니다.<br /><br />귀하의 소중한 의견은 더 나은 제품과 서비스를 개발하는데 좋은 정보가 될 것입니다.</exit>
+    <exit cond="qualified"><strong>이로써 설문이 완료되었습니다.</strong><br /><br /><strong>제출해 주셔서 감사합니다</strong></exit>
+    <exit cond="overquota"><strong>본 조사에 참여해 주셔서 감사합니다. </strong><br /><br />안타깝게도, 귀하께서 해당하시는 조사 대상 그룹의 조사는 이미 종료되었습니다.<br /><br />다음에 참여해 주시기 바랍니다.</exit>
   </samplesource>
 
 </samplesources>
