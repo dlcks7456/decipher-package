@@ -15,13 +15,6 @@
 	\$(text)
 ]]${-1}></style>
 <style name="question.top-legend"/>
-<style name="question.element"><![CDATA[
-	<span \$(headers) class="cell nonempty element \$(levels) \${"desktop" if this.grouping.cols else "mobile"} border-collapse \$(extraClasses) \${col.group.styles.ss.groupClassNames if col.group else (row.group.styles.ss.groupClassNames if row.group else "")} \$(col.styles.ss.colClassNames) \$(row.styles.ss.rowClassNames) \${"clickableCell" if isClickable else ""}"\$(extra)>
-	    \${v2_insertStyle('el.label.start')}
-	    \$(text)
-	    \${v2_insertStyle('el.label.end')}
-	</span>
-]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>flex.mode</tabTrigger>
