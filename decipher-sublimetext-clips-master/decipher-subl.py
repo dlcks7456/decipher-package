@@ -192,6 +192,10 @@ body { word-break: keep-all; }
   max-width: 924px;
 }
 
+.sq-accordion-row{
+  max-width: 924px !important;
+  font-size: 1.2rem;
+}
 </style>
 ]]></style>
 <style name="respview.client.js"><![CDATA[
