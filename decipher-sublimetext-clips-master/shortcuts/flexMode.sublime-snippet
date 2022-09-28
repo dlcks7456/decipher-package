@@ -1,0 +1,30 @@
+<snippet>
+	<content><![CDATA[
+<style name="question.left"><![CDATA[
+	<div style="display: flex; margin-bottom: 10px; align-content: center; align-items: center;">
+	  <span class="hidden">\$(text)</span>
+]]${-1}></style>
+<style name="question.right"><![CDATA[
+	</div>
+]]${-1}></style>
+<style name="question.element"><![CDATA[
+	<span class="hidden">
+	\${v2_insertStyle('el.label.start')}
+	\${v2_insertStyle('el.label.end')}
+	</span>
+	\$(text)
+]]${-1}></style>
+<style name="question.top-legend"/>
+<style name="question.element"><![CDATA[
+	<span \$(headers) class="cell nonempty element \$(levels) \${"desktop" if this.grouping.cols else "mobile"} border-collapse \$(extraClasses) \${col.group.styles.ss.groupClassNames if col.group else (row.group.styles.ss.groupClassNames if row.group else "")} \$(col.styles.ss.colClassNames) \$(row.styles.ss.rowClassNames) \${"clickableCell" if isClickable else ""}"\$(extra)>
+	    \${v2_insertStyle('el.label.start')}
+	    \$(text)
+	    \${v2_insertStyle('el.label.end')}
+	</span>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>flex.mode</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
