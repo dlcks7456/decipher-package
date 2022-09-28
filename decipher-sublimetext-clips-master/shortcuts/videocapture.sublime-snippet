@@ -6,6 +6,7 @@
  randomize="0"
  sst="0"
  uses="videocapture.2"
+ optional="0"
  videocapture:providenoanswer="0"
  width="50">
   <title>${2}</title>
