@@ -214,16 +214,16 @@ class makeRowsMatchValuesGroupCommand(sublime_plugin.TextCommand):
 
                             extra=""
                             otherArr1 = ["기타","other","others"]
-                            otherArr2 = ["구체적으로","자세히","specify"]
+                            otherArr2 = ["구체적","자세히","specify"]
 
-                            noneArr = ["없음","none"]
+                            noneArr = ["모름","없음","none"]
 
-                            #if [i for i in otherArr1 if i.lower() in content.lower()] and [i for i in otherArr2 if i.lower() in content.lower()] :
-                            #    content = content.replace("_", "")
-                            #    extra=' open=\"1\" openSize=\"'+openSize+'\" randomize=\"0\"'
-                            #elif [i for i in noneArr if i.lower() in content.lower()] :
-                            #    content = content.replace("_", "")
-                            #    extra=' exclusive=\"1\" randomize=\"0\"'
+                            if [i for i in otherArr1 if i.lower() in content.lower()] and [i for i in otherArr2 if i.lower() in content.lower()] :
+                               content = content.replace("_", "")
+                               extra=' open=\"1\" openSize=\"'+openSize+'\" randomize=\"0\"'
+                            elif [i for i in noneArr if i.lower() in content.lower()] :
+                               content = content.replace("_", "")
+                               extra=' exclusive=\"1\" randomize=\"0\"'
 
 
                             #COMPOSE ROW
