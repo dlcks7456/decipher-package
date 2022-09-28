@@ -1,0 +1,37 @@
+<snippet>
+	<content><![CDATA[
+<exec when="init">
+def set_ol(li_list=[], ol_type=1):
+  # ol type = 1(default), 'a', 'A', 'i', 'I'
+
+  if not ol_type in [1, 'a', 'A', 'i', 'I'] :
+    return "OL TYPE ERROR"
+
+  if not li_list :
+    return "LI UNDEFINED"
+
+  ol = "&lt;ol type=\"%s\"&gt;%s&lt;/ol&gt;"
+  li = "&lt;li&gt;%s&lt;/li&gt;"
+
+  lis = [li%(each) for each in li_list]
+
+  f_ol = ol%(str(ol_type), ''.join(lis))
+  return f_ol
+
+def set_ul(li_list=[]) :
+  ul = "&lt;ul&gt;%s&lt;/ul&gt;"
+  li = "&lt;li&gt;%s&lt;/li&gt;"
+
+  if not li_list :
+    return "LI UNDEFINED"
+
+  lis = [li%(each) for each in li_list]
+  f_ul = ul%(''.join(lis))
+  return f_ul
+</exec>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>html.list</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
