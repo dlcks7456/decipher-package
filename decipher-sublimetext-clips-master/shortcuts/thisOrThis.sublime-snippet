@@ -1,0 +1,34 @@
+<snippet>
+	<content><![CDATA[
+<style name="question.after" wrap="ready" label="this_or_that"><![CDATA[
+// this-or-that
+// base-this / base-that
+const thisOrThis = document.querySelectorAll('.this-or-that');
+const swichRow = (base) => {
+  const [baseName, baseDelimiter] = base.split('-');
+  const swichDelimiter = baseDelimiter === 'this' ? 'that' : baseDelimiter === 'that' ? 'this' : null;
+  const setClassName = baseName+'-'+swichDelimiter;
+  const currInput = document.querySelector('.'+base+' input[type=checkbox]');
+  const disableInput = document.querySelectorAll('.'+setClassName);
+  if( currInput.checked ){
+    disableInput.forEach( (item)=>{
+      const firIcon = item.querySelector('.fir-icon');
+      firIcon.classList.remove('selected');
+      const currInput = item.querySelector('input[type=checkbox]');
+      currInput.checked = false;
+    });
+  }
+}
+thisOrThis.forEach( (row) =>{
+  const [baseClass] = [...row.classList].filter( (item) =>  item.includes('base'));
+  row.addEventListener('click', ()=>{
+    swichRow(baseClass);
+  });
+});
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>thisorthat</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
