@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style name="question.after" wrap="ready" copy="hangleConverter"/>
+<style name="question.after" wrap="ready" arg:hanPostText="${1}" copy="hangleConverter"/>
 <style name="el.text" copy="hangleClass"/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

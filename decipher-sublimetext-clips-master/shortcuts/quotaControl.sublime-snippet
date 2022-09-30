@@ -1,0 +1,88 @@
+<snippet>
+	<content><![CDATA[
+def quota_control(quota_sheet, unfied_define_label="R" ,defines=[]) :
+    # exmaple
+    # quota_sheet : "/HQ15_Quotas"
+    # unfied_define_label = "HQ15R" | "Q1R" 
+    # defines : It's a list  | [1, 2, 3]
+    # unfied_define_label="", defines=["male", "female"]
+
+    try :
+        quotas = gv.survey.root.quota.getQuotaCells()
+
+        cells = {}
+        for define in defines :
+            quota_cell = "%s/%s%s"%(quota_sheet, unfied_define_label, define)
+            cells[define] = quota_cell
+
+        if cells :
+            print(cells)
+            # check quota cell limit or Overquota
+            checked_cells = {}
+            for define, cell in cells.items() :
+                current, limit, overquota = quotas[cell]
+
+                if limit == 0 :
+                    continue
+                elif current ge limit :
+                    continue
+                else :
+                    checked_cells[define] = {"cell" : cell, "current": current, "limit": limit, "overquota": overquota}
+
+            if checked_cells :
+                print(checked_cells)
+
+                keys = checked_cells.keys()
+                keys_len = len(keys)
+
+                if keys_len gt 1 :
+                    current_by_key = [(key, value["cell"], value["current"]) for key, value in checked_cells.items()]
+                    currents = [k[2] for k in current_by_key]
+
+                    min_current = min(currents)
+
+                    final_cells = [k for k in current_by_key if k[2] == min_current]
+
+                    print(final_cells)
+
+                    fc_len = len(final_cells)
+                    return_value = None
+
+                    if fc_len gt 1 :
+                        print("Random Assignment Among Insufficient Cells")
+                        random_cell = random.choice(final_cells)
+                        return_value = random_cell[0]
+
+                    else :
+                        print("Assign to Insufficient Cells")
+                        return_value = final_cells[0][0]
+
+                    if not return_value == None :
+                        print("Cell : %s / define : %s"%( checked_cells[return_value]["cell"], return_value ))
+                        return return_value
+                    else :
+                        print("return_value is identified")
+                        return None
+
+                else :
+                    return_value = keys[0]
+                    print("One cell is identified")
+                    print("Cell : %s / define : %s"%( checked_cells[return_value]["cell"], return_value ))
+                    return return_value
+
+            else :
+                print("!!! checked_cells is not verified !!!")
+                return None
+
+        else :
+            print("!!! cells is empty !!!")
+            return None
+    except :
+        print("!!! An error has occurred !!!")
+        return None
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>quota.control</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

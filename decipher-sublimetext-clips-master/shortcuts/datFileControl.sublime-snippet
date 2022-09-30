@@ -1,0 +1,26 @@
+<snippet>
+	<content><![CDATA[
+def dat(filename,baseid,basecode) :
+  datfile=File(filename,baseid)
+  if datfile:
+    data_dict=datfile.get(basecode)
+    return data_dict
+
+def datToDict(filename,baseid,basecode) :
+  dat_dict={}
+
+  try :
+    dats = dat(filename,baseid,basecode)
+    dat_dict[baseid] = basecode
+    if dats:
+      for n,v in dat(filename,baseid,basecode).items() :
+        dat_dict[n]=v
+      return dat_dict
+  except :
+    return None
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>datfile</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

@@ -10,13 +10,15 @@
   <col label="c1">1순위</col>
   <col label="c2">2순위</col>
   <col label="c3">3순위</col>
+  <col label="c4">4순위</col>
+  <col label="c5">5순위</col>
   ${3:<row label="r99" okUnique="1" randomize="0" ss:rowClassNames="exclusive" value="99">없음</row>}
 </radio>
 
 <suspend/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>rk3</tabTrigger>
+	<tabTrigger>rk5</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

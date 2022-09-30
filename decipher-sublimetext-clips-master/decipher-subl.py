@@ -105,6 +105,7 @@ def newSurvey():
 <res label="badhan_err">입력 확인 부탁 드립니다.</res>
 <res label="badspa">@,$,%,#,*,!,?</res>
 <res label="badspa_err">특수 문자는 입력하실 수 없습니다.</res>
+<res label="block_ie">Internet Explorer는 지원하지 않습니다.</res>
 
 <samplesources default="0">
   <samplesource list="0">
@@ -155,13 +156,14 @@ def newSurvey():
 <style>
 body { word-break: keep-all; }
 .hidden{display: none !important;}
-.sq-cardsort-bucket-count{display: none !important;}
-.hangle{color:red;border:0;text-align:right;width:200px; }
+.hangle-span{color:red;border:0;text-align:right;width:200px; }
 
 \@media (prefers-color-scheme: dark) {
   .non-touch .fir-icon:hover .rounded .fir-base, .non-touch .fir-icon:hover .square .fir-base, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .rounded .fir-base, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .square .fir-base { fill: #878787; }
   .fir-icon.selected .rounded .fir-selected, .fir-icon.selected .square .fir-selected { fill: #878787; }
 }
+
+.sq-cardsort-bucket-count{display: none !important;}
 
 .sq-cardrating-widget{
   width: 924px !important; 
@@ -199,95 +201,16 @@ body { word-break: keep-all; }
 </style>
 ]]></style>
 <style name="respview.client.js"><![CDATA[
+<script src="https://nielsenkor.cafe24.com/LIB/Decipher/checkIE.js"></script>
+<script src="https://nielsenkor.cafe24.com/LIB/Decipher/util.js"></script>
 <script>
-$ (document).ready(function(){
-  $ (".autosave-restart").hide();
-
-  $ (document).change(function(){
-    for(var i=1; i<=10; i++){
-      var base = '.rank'+i+'.exclusive';
-      var auto_cnt = i+1;
-      var auto = '.rank'+auto_cnt+'.exclusive';
-      if( $ (base).find('input[type=radio]').is(':checked') ){
-        $ (auto).find('input[type=radio]').prop('checked',true);
-        $ ('.rank'+i).find('.fir-icon.selected').attr('class','fir-icon');
-        $ (base).find('.fir-icon').attr('class','fir-icon selected');
-      }
-    }
-  });
-});
-
-function range(start, end) {
-  let array = [];
-  for (let i = start; i < end; ++i) {
-    array.push(i);
-  }
-  return array;
-}
-
-
-function viewKorean(num,dan){
-  string=num;
-  hn = new Array("영","일","이","삼","사","오","육","칠","팔","구");
-  hj = new Array("원","만","억","조","경","해","시","양","구","간","정","재","극","항하사","아승지","나유타","불가사의","무량대수");
-  ul = new Array("영천","영백","영십","영");
-  tm = new Array();
-  result = "";
-  string = string + dan;  // 금액 단위
-  if (string.charAt(0)=="-"){ result = "마이너스 "; string = string.substr(1,string.length-1); }
-  loop_size = Math.ceil(string.length/4);
-           string2 = "";
-  for (count=string.length; count >= 0; count--)
-      string2 += string.substring(count,count-1);
-           string = string2;
-  for (A=0;A<loop_size;A++)
-  {
-    sum = hj[A] + " ";
-    tm[A] = string.substr(A*4,4);
-    tm2 = "";
-    for (count=tm[A].length; count >= 0; count--)
-        tm2 += tm[A].substring(count,count-1);
-        tm[A] = tm2;
-        part_jari = tm[A].length;
-        for (D=0;D<10;D++){
-          for (B=0;B<10;B++) tm[A] = tm[A].replace(B,hn[B]);
-        }
-    if (part_jari == 4) tm[A] = tm[A].charAt(0)+"천"+tm[A].charAt(1)+"백"+tm[A].charAt(2)+"십"+tm[A].charAt(3);
-    else if (part_jari == 3) tm[A] = tm[A].charAt(0)+"백"+tm[A].charAt(1)+"십"+tm[A].charAt(2);
-    else if (part_jari == 2) tm[A] = tm[A].charAt(0)+"십"+tm[A].charAt(1);
-    else tm[A] = tm[A].charAt(0);
-    for (C=0;C<4;C++)
-    {
-     if (tm[A].match(ul[C])){ part_jari--; tm[A] = tm[A].replace(ul[C],""); }
-    }
-    if (part_jari != 0) tm[A] += sum;
-  }
-  for (loop_size;loop_size>-1;loop_size--) result += tm[loop_size];
-    result = result.replace("undefined","")
-    return result;
-}
-
-function han(d){
-  var arr=$ ('.hanchange');
-
-  for(var i=0; i<arr.length; i++){
-    var current_value = arr.eq(i).find('input[type=text]').val();
-    var dan=d; // 단위
-    
-    var han_num=viewKorean(current_value,dan);
-
-    arr.eq(i).find('.hangle').html(han_num);
-  }
-
-  $ ('.hanchange').find('input[type=text]').keyup(function () {
-        $ (this).val($ (this).val().replace(/[^0-9]/g,""));
-    var current_value=$ (this).val();
-    var dan=d; // 단위
-    
-    var han_num=viewKorean(current_value,dan);
-    $ ("span[name^='hangle_"+$ (this).attr('name')+"']").html(han_num);
-  });
-}
+window.addEventListener("DOMContentLoaded", function(){
+  blockIE();
+  gridRankSetting("gridRank", "exclusive");
+  
+  const restart = document.querySelector(".autosave-restart");
+  if( restart ){ restart.remove(); }
+})
 </script>
 ]]></style>
 <suspend/>
@@ -305,6 +228,19 @@ function han(d){
 </$(tag)>
 \@endif
 ]]></style>
+
+<suspend/>
+
+<style cond="1" name="survey.respview.footer.support"><![CDATA[
+Copyright &#9400; ${time.strftime('%Y')} Nielsen Consumer LLC. All Rights Reserved. <a href="@(PrivacyPolicyUrl)" target="_blank" rel="noopener">@(PrivacyPolicy)</a>.
+<div class="block-ie hidden">
+  <div>${res.block_ie}</div>
+  <div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:100px;">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+  </svg></div>
+</div>
+]]></style>
+
 <suspend/>
 
 <exec when="init">
@@ -318,25 +254,6 @@ import random
 def status(condt,label):
     if condt : 
       RespStatus.val=getattr(RespStatus,"{}".format(label)).index
-
-def dat(filename,baseid,basecode) :
-  datfile=File(filename,baseid)
-  if datfile:
-    data_dict=datfile.get(basecode)
-    return data_dict
-
-def datToDict(filename,baseid,basecode) :
-  dat_dict={}
-
-  try :
-    dats = dat(filename,baseid,basecode)
-    dat_dict[baseid] = basecode
-    if dats:
-      for n,v in dat(filename,baseid,basecode).items() :
-        dat_dict[n]=v
-      return dat_dict
-  except :
-    return None
 
 def soft_Err(cond, str):
   if cond :
@@ -396,7 +313,6 @@ def checkOpen():
     for k in range(0,len(set_list)):
       if this.rows[k].val=="":
         error(str_3)
-
 
 
 # TMO Error
@@ -477,97 +393,6 @@ def group_rows(question, grouped_rows ):
                 shuffle_order.insert( first_item_index, shuffle_order.pop(index) )
 
     question.rows.order = shuffle_order
-
-def disabled_labels(question, condition, labels=[]) :
-  if condition :
-    for label in labels :
-      question.attr(label).disabled = True
-  else :
-    for label in labels :
-      question.attr(label).disabled = False
-      
-
-
-def quota_control(quota_sheet, unfied_define_label="R" ,defines=[]) :
-    # exmaple
-    # quota_sheet : "/HQ15_Quotas"
-    # unfied_define_label = "HQ15R" | "Q1R" 
-    # defines : It's a list  | [1, 2, 3]
-    # unfied_define_label="", defines=["male", "female"]
-
-    try :
-        quotas = gv.survey.root.quota.getQuotaCells()
-
-        cells = {}
-        for define in defines :
-            quota_cell = "%s/%s%s"%(quota_sheet, unfied_define_label, define)
-            cells[define] = quota_cell
-
-        if cells :
-            print(cells)
-            # check quota cell limit or Overquota
-            checked_cells = {}
-            for define, cell in cells.items() :
-                current, limit, overquota = quotas[cell]
-
-                if limit == 0 :
-                    continue
-                elif current ge limit :
-                    continue
-                else :
-                    checked_cells[define] = {"cell" : cell, "current": current, "limit": limit, "overquota": overquota}
-
-            if checked_cells :
-                print(checked_cells)
-
-                keys = checked_cells.keys()
-                keys_len = len(keys)
-
-                if keys_len gt 1 :
-                    current_by_key = [(key, value["cell"], value["current"]) for key, value in checked_cells.items()]
-                    currents = [k[2] for k in current_by_key]
-
-                    min_current = min(currents)
-
-                    final_cells = [k for k in current_by_key if k[2] == min_current]
-
-                    print(final_cells)
-
-                    fc_len = len(final_cells)
-                    return_value = None
-
-                    if fc_len gt 1 :
-                        print("Random Assignment Among Insufficient Cells")
-                        random_cell = random.choice(final_cells)
-                        return_value = random_cell[0]
-
-                    else :
-                        print("Assign to Insufficient Cells")
-                        return_value = final_cells[0][0]
-
-                    if not return_value == None :
-                        print("Cell : %s / define : %s"%( checked_cells[return_value]["cell"], return_value ))
-                        return return_value
-                    else :
-                        print("return_value is identified")
-                        return None
-
-                else :
-                    return_value = keys[0]
-                    print("One cell is identified")
-                    print("Cell : %s / define : %s"%( checked_cells[return_value]["cell"], return_value ))
-                    return return_value
-
-            else :
-                print("!!! checked_cells is not verified !!!")
-                return None
-
-        else :
-            print("!!! cells is empty !!!")
-            return None
-    except :
-        print("!!! An error has occurred !!!")
-        return None
 </exec>
 
 <suspend/>
@@ -576,11 +401,9 @@ def quota_control(quota_sheet, unfied_define_label="R" ,defines=[]) :
 p.chk = 1
 </exec>
 
+
 <suspend/>
 
-<style cond="1" name="survey.respview.footer.support"><![CDATA[
-Copyright &#9400; ${time.strftime('%Y')} Nielsen Consumer LLC. All Rights Reserved. <a href="@(PrivacyPolicyUrl)" target="_blank" rel="noopener">@(PrivacyPolicy)</a>.
-]]></style>
 <exec sst="0">
 if list=="2":
 
