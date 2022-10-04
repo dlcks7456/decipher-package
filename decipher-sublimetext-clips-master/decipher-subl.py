@@ -201,8 +201,8 @@ body { word-break: keep-all; }
 </style>
 ]]></style>
 <style name="respview.client.js"><![CDATA[
-<script src="https://nielsenkor.cafe24.com/LIB/Decipher/checkIE.js"></script>
-<script src="https://nielsenkor.cafe24.com/LIB/Decipher/util.js"></script>
+<script src="[rel checkIE.js]"></script>
+<script src="[rel util.js]"></script>
 <script>
 window.addEventListener("DOMContentLoaded", function(){
   blockIE();
