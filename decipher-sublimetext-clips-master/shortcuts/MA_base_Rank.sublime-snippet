@@ -21,11 +21,12 @@ $5
   rowCond="$2a[row]"
   colCond="col.index lt $2a.count"
   shuffle="rows"
-  shuffleBy="$2a">
+  shuffleBy="$2a"
+  ss:questionClassNames="gridRank">
   <title>$7 \${rankCnt($2a,3)}</title>
-  <col label="c1" ss:colClassNames="rank1">1순위</col>
-  <col label="c2" ss:colClassNames="rank2">2순위</col>
-  <col label="c3" ss:colClassNames="rank3">3순위</col>
+  <col label="c1">1순위</col>
+  <col label="c2">2순위</col>
+  <col label="c3">3순위</col>
   <insert source="$1"/>
   ${4:<row label="r98" value="98" randomize="0">\${$2a.r98.open\}</row>}
 </radio>
