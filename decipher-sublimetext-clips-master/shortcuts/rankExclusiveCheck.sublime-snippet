@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+def rank_exclusive_chk(okUnique=[]) :
+  if okUnique :
+    this_cols = [each for each in this.cols]
+    this_cols.reverse()
+    for idx, each_col in enumerate(this_cols[:-1]) :
+      nxt_col = this_cols[idx+1]
+      for u in okUnique :
+        if not getattr(each_col, u) and getattr(nxt_col, u) :
+          error(res.chk_plz, col=each_col)
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>rk.chk</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
