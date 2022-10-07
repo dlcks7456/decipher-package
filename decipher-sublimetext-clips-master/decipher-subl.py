@@ -153,9 +153,9 @@ def newSurvey():
 <suspend/>
 
 <style name="respview.client.css"><![CDATA[
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="[rel util.css]"/>
 <style>
-body { word-break: keep-all; }
-.hidden{display: none !important;}
 .hangle-span{color:red;border:0;text-align:right;width:200px; }
 
 \@media (prefers-color-scheme: dark) {
@@ -1774,23 +1774,28 @@ class makeFloatCommand(sublime_plugin.TextCommand):
 class makePipeCommand(sublime_plugin.TextCommand):
     def run (self,edit):
         try:
+            # sels = self.view.sel()
+            # input = ''
+            # #docType =  returnContext(self)
+            # for sel in sels:
+            #     printPage = ''
+            #     input = self.view.substr(sel)
+            #      # get rid of blank lines
+            #     while "\n\n" in input:
+            #         input = input.replace("\n\n", "\n")
 
-            sels = self.view.sel()
-            input = ''
-            #docType =  returnContext(self)
-            for sel in sels:
-                printPage = ''
-                input = self.view.substr(sel)
-                 # get rid of blank lines
-                while "\n\n" in input:
-                    input = input.replace("\n\n", "\n")
+            #     output = input
 
-                output = input
+            #     # compose our new pipe tag
+            #     printPage = "<pipe\n  label=\"\"\n  capture=\"\">\n  %s\n</pipe>\n" % (output)
 
-                # compose our new pipe tag
-                printPage = "<pipe\n  label=\"\"\n  capture=\"\">\n  %s\n</pipe>\n" % (output)
+            #     self.view.replace(edit,sel, printPage)
+            sels = self.view.sel()[0]
+            textr = self.view.substr(sels)
+            set_text = '[pipe: %s]'%(textr)
 
-                self.view.replace(edit,sel, printPage)
+            self.view.replace(edit,sels, set_text)
+
         except Exception as e:
             print ('make pipe failed')
             print (e)
