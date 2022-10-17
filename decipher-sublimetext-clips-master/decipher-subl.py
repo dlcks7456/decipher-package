@@ -2062,7 +2062,7 @@ class makeColsCommand(sublime_plugin.TextCommand):
                 for x in input:
                     if ("other" in input[count].strip().lower() and "specify" in input[count].strip().lower()) or ("기타" in input[count].strip().lower() and "구체적" in input[count].strip().lower()):
                         input[count] = input[count].strip().replace("_", "")
-                        extra=' open=\"1\" openSize=\"10\" randomize=\"0\"'
+                        extra=' open=\"1\" openSize=\"25\" randomize=\"0\"'
                         printPage += "  <col label=\"c%s\"%s>%s</col>\n" % (str(count+1), extra, input[count].strip())
                         count += 1
                     else:
@@ -2112,7 +2112,7 @@ class makeColsMatchLabelCommand(sublime_plugin.TextCommand):
 
                      if ("other" in content.lower() and "specify" in content.lower()) or ("기타" in content.lower() and "구체적" in content.lower()):
                        content = content.replace("_", "")
-                       extra=' open=\"1\" openSize=\"10\" randomize=\"0\"'
+                       extra=' open=\"1\" openSize=\"25\" randomize=\"0\"'
 
                      #COMPOSE ROW
                      if ordinal[0].isalpha() and (len(parts) == 2):
@@ -2163,7 +2163,7 @@ class makeColsMatchValueCommand(sublime_plugin.TextCommand):
 
                      if ("other" in content.lower() and "specify" in content.lower()) or ("기타" in content.lower() and "구체적" in content.lower()):
                        content = content.replace("_", "")
-                       extra=' open=\"1\" openSize=\"10\" randomize=\"0\"'
+                       extra=' open=\"1\" openSize=\"25\" randomize=\"0\"'
 
                      #COMPOSE COLUMN
                      printPage += "  <col label=\"c%s\" value=\"%s\"%s>%s</col>\n" % (ordinal,ordinal, extra, content)
