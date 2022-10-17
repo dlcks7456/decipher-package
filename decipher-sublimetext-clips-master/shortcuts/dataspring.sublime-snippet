@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+  <samplesource list="4">
+    <title>dataspring</title>
+    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+    <completed>It seems you have already entered this survey.</completed>
+    <var name="duid" unique="1"/>
+    <var name="dkey" required="1"/>
+    <exit cond="terminated" url="https://d8aspring.post-survey.com/ans/back/?key=\${dkey}&amp;status=scrout&amp;uid=\${duid}"/>
+    <exit cond="overquota" url="https://d8aspring.post-survey.com/ans/back/?key=\${dkey}&amp;status=quotafull&amp;uid=\${duid}"/>
+    <exit cond="qualified" url="https://d8aspring.post-survey.com/ans/back/?key=\${dkey}&amp;status=comp&amp;uid=\${duid}"/>
+  </samplesource>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dataspring</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

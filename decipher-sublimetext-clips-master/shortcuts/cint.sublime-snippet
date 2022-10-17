@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+  <samplesource list="3">
+    <title>Cint</title>
+    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+    <completed>It seems you have already entered this survey.</completed>
+    <var name="GUID" unique="1"/>
+    <exit cond="qualified" url="https://s.cint.com/Survey/Complete?ProjectToken=${1}&amp;GUID=\${GUID}"/>
+    <exit cond="terminated" url="https://s.cint.com/Survey/EarlyScreenOut?ProjectToken=${2}&amp;GUID=\${GUID}"/>
+    <exit cond="overquota" url="https://s.cint.com/Survey/QuotaFull?ProjectToken=${3}&amp;GUID=\${GUID}"/>
+  </samplesource>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>cint</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
