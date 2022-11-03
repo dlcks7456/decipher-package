@@ -2216,7 +2216,7 @@ class makeCasesCommand(sublime_plugin.TextCommand):
                 for x in input:
                     printPage += "  <case label=\"r%s\" cond=\"\">%s</case>\n" % (str(count+1), input[count].strip())
                     count += 1
-                printPage += "  <case label=\"r%s\" cond=\"1\">UNDEFINED</case>" % (str(count+1))
+                printPage += "  <case label=\"%s\" cond=\"1\">UNDEFINED</case>" % ("null")
                 printPage = "<pipe\n  label=\"\"\n  capture=\"\">\n" + printPage + "\n</pipe>"
             self.view.replace(edit,sel, printPage)
         except Exception as e:
