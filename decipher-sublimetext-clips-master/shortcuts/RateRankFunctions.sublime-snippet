@@ -1,0 +1,69 @@
+<snippet>
+  <content><![CDATA[
+<exec when="init">
+### rate rank scripts
+def rate_rank(base, stop_count, reverse=True) :
+    labels = []
+    col_labels = [col.label for col in base.cols]
+    if reverse :
+      col_labels.reverse()
+    for col in col_labels :
+        for row in base.rows :
+          if row.any :
+            if base.cols[row.val].label == base.attr(col).label :
+              labels.append(row.label)
+
+        if len(labels) ge stop_count :
+            break
+
+    return labels
+
+
+def sort_to_grid(base_qid, hidden_qid) :
+  for hCol in hidden_qid.cols :
+    for bRow in base_qid.rows :
+      if getattr(bRow, hCol.label) :
+        hCol.val = bRow.index
+        break
+
+def rate_top_auto(base, auto_qid) :
+    rate_chk = rate_rank(base, 1)
+    if len(rate_chk) == 1 :
+        auto_qid.c1.val = auto_qid.attr(rate_chk[0]).index
+        return True
+    else :
+        return False
+
+</exec>
+
+<res label="rate_top_error">이전 문항에서 가장 높은 점수로 응답하셨습니다. 응답 확인 부탁드립니다.</res>
+<res label="rate_low_error">이전 문항에서 가장 낮은 점수로 응답하셨습니다. 응답 확인 부탁드립니다.</res>
+<res label="rate_show_score_text">%s <strong>(%s점)</strong></res>
+
+<exec when="init">
+def rate_top_check(base) :
+    top_labels = rate_rank(base, 1)
+    if not this.rows[this.c1.val].label in top_labels :
+        for row in top_labels :
+            error(res.rate_top_error, row=this.attr(row))
+
+def rate_low_check(base) :
+    low_labels = rate_rank(base, 1, False)
+    answer_chk = [base.cols[row.val].value for row in base.rows if row.any]
+    answer_chk = set(answer_chk)
+    if len(answer_chk) gt 1:
+      if this.rows[this.c1.val].label in low_labels :
+        for row in low_labels :
+          error(res.rate_low_error, row=this.attr(row))
+
+def rate_show_score(curr, base) :
+  for row in curr.rows :
+    if base.attr(row.label).any :
+      row.text = res.rate_show_score_text%(base.attr(row.label).text, base.cols[base.attr(row.label).val].value)
+</exec>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>rate.rank.def</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

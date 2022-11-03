@@ -1,0 +1,69 @@
+<snippet>
+  <content><![CDATA[
+<define label="rank_col_3">
+  <row label="c1">1순위</row>
+  <row label="c2">2순위</row>
+  <row label="c3">3순위</row>
+</define>
+
+<define label="${1}">
+${2}
+</define>
+
+
+<radio
+  label="${3}"
+  shuffle="rows"
+  uses="cardrating.1">
+  <title></title>
+  <comment></comment>
+  <col label="c1" value="1">(1)</col>
+  <col label="c2" value="2">(2)</col>
+  <col label="c3" value="3">(3)</col>
+  <col label="c4" value="4">(4)</col>
+  <col label="c5" value="5">(5)</col>
+  <col label="c6" value="6">(6)</col>
+  <col label="c7" value="7">(7)</col>
+  <insert source="${1}" />
+</radio>
+
+<suspend/>
+
+<select 
+  label="${4}"
+  minRanks="3"
+  optional="1"
+  shuffle="rows"
+  shuffleBy="${3}"
+  rowCond="row.label in rate_rank(${3}, 3)"
+  unique="none,cols"
+  uses="ranksort.4">
+  <title></title>
+  <insert source="rank_col_3" as="choices"/>
+  <insert source="${1}" />
+</select>
+
+<suspend/>
+
+<radio
+  label="H${4}"
+  unique="1"
+  shuffle="rows"
+  shuffleBy="${3}"
+  grouping="cols"
+  where="execute">
+  <title>(HIDDEN) </title>
+  <comment></comment>
+  <exec>
+sort_to_grid(${3}x1, H${3}x1)
+  </exec>
+  <insert source="rank_col_3" as="cols"/>
+  <insert source="${1}" />
+</radio>
+<suspend/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>rate.sort.rank</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
