@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-def disabled_labels(question, condition, labels=[]) :
+def disabled_labels(question, condition, *labels) :
   if condition :
     for label in labels :
       question.attr(label).disabled = True

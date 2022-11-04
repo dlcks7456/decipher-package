@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+<style arg:detailsOpen="open" name="survey.question"><![CDATA[
+<h1 title="@(question)" class="question-text" id="question_text_\${this.label}">
+	<div class="showcard">
+		<details \$(detailsOpen)>
+		  <summary></summary>
+		  <div></div>
+		</details>
+	</div>
+  \${this.styles.html.showNumber and (str(number) + '. ') or ''}\$(title)
+</h1>
+<!-- /.question-text -->
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>detail</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
