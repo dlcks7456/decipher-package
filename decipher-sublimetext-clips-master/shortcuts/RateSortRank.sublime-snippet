@@ -1,11 +1,5 @@
 <snippet>
   <content><![CDATA[
-<define label="rank_col_3">
-  <row label="c1">1순위</row>
-  <row label="c2">2순위</row>
-  <row label="c3">3순위</row>
-</define>
-
 <define label="${1}">
 ${2}
 </define>
@@ -39,7 +33,9 @@ ${2}
   unique="none,cols"
   uses="ranksort.4">
   <title></title>
-  <insert source="rank_col_3" as="choices"/>
+  <choice label="c1">1순위</choice>
+  <choice label="c2">2순위</choice>
+  <choice label="c3">3순위</choice>
   <insert source="${1}" />
 </select>
 
@@ -57,7 +53,9 @@ ${2}
   <exec>
 sort_to_grid(${4}, ${5})
   </exec>
-  <insert source="rank_col_3" as="cols"/>
+  <col label="c1">1순위</col>
+  <col label="c2">2순위</col>
+  <col label="c3">3순위</col>
   <insert source="${1}" />
 </radio>
 <suspend/>
