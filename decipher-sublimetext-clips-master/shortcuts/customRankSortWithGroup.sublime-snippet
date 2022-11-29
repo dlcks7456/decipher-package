@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+<style label="grid_to_sort_group" name="question.after"><![CDATA[
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel" src="[rel GridRankSort.js]"></script>
+  <script type="text/babel">
+  SettingGridRankSort(\${jsexport()}, \${[v.val for v in \$(this.label).cols if not v.val == None]}, \${[[r.index, r.group.label, r.group.text] for r in \$(this.label).rows]});
+  </script>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>custom.rank.group</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

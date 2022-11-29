@@ -1,9 +1,9 @@
 <snippet>
 	<content><![CDATA[
-<br/><br/>
+<style copy="grid_to_sort_group" name="question.after"/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>br</tabTrigger>
+	<tabTrigger>custom.rank.group.copy</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.python</scope> -->
+	<scope>text.xml</scope>
 </snippet>
