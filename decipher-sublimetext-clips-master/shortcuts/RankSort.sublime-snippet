@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+<select 
+  label="${1}"
+  minRanks="${2:3}"
+  optional="1"
+  shuffle="rows"
+  unique="none,cols"
+  uses="ranksort.4">
+  <title>${3}</title>
+  <choice label="ch1">1순위</choice>
+  <choice label="ch2">2순위</choice>
+  <choice label="ch3">3순위</choice>
+  ${4}
+</select>
+
+<suspend/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ranksort</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
