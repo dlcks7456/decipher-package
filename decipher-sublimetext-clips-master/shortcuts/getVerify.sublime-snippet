@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+import re
+[verify] = re.findall('\(([^)]+)', ${1}.o.verify)
+minv, maxv = map(lambda x : int(x), verify.split(","))
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>get.verify</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
