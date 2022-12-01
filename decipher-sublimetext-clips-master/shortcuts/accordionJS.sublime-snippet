@@ -1,0 +1,51 @@
+<snippet>
+  <content><![CDATA[
+/** accordian show **/
+if( !document.querySelector(".survey-error") ){
+  const accordions = document.querySelectorAll(".sq-accordion-row");
+  if( accordions.length>0 ){
+    accordions[0].querySelectorAll(".sq-accordion-answers").forEach((acco)=>{
+      acco.querySelectorAll('div').forEach((item)=>{
+        item.classList.remove('hide');
+      })
+    })
+  }
+}
+
+<div class="acco-err-rows" data-rows="%s"></div>
+
+/** accordian show row err **/
+const accoErr = document.querySelector(".acco-err-rows");
+if( accoErr ){
+  const dataSet = accoErr.dataset.rows.split(",");
+  const sqAccordionRow = document.querySelectorAll(".sq-accordion-row");
+  sqAccordionRow.forEach((row)=>{
+    if(dataSet.includes(String(row.dataset.row))){
+      row.classList.add("hasError");
+      row.classList.remove("collapsed");
+      const answers = row.querySelectorAll(".sq-accordion-answers div");
+      answers.forEach((answer)=>{
+        answer.classList.remove("hide");
+      })
+    }
+  });
+}
+
+def samegrid(show_rows=[]):
+  qid = allQuestions[this.label]
+  checkAnswer = [i.label for i in qid.rows if not i.val == None]
+  show_rows = [str(i) for i in show_rows]
+  data_rows = ','.join(show_rows)
+  if len(checkAnswer) gt 1 :
+    if len(set(qid.val)-set([None])) == 1:
+      soft_Err(True, "%s&lt;br /&gt;%s"%(res.samegrid%(data_rows), res.softerr))
+    else :
+      p.chk=1
+  else :
+    p.chk=1
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>acco.js</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

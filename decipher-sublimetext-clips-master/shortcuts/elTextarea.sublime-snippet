@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+<style name='el.textarea'> <![CDATA[
+\@if row.styles.ss.preText or this.styles.ss.preText
+    \${row.styles.ss.preText or this.styles.ss.preText or ""}&nbsp;
+\@endif
+<textarea name="\$(name)" id="\$(id)" rows="\$(height)" cols="\$(width)" wrap="virtual" class="input textarea" \$(extra)>\$(value)</textarea>
+\@if row.styles.ss.postText or this.styles.ss.postText
+    &nbsp;\${row.styles.ss.postText or this.styles.ss.postText or ""}
+\@endif
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>el.textarea</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

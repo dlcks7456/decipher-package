@@ -1,0 +1,23 @@
+<snippet>
+	<content><![CDATA[
+<style name='el.select.header'> <![CDATA[
+<select name="\$(name)" id="\$(id)" class="input dropdown" \$(extra)>
+]]${-1}></style>
+
+<style name='el.select.default'> <![CDATA[
+<option value="-1" \$(selected)>@(select)</option>
+]]${-1}></style>
+
+<style name='el.select.element'> <![CDATA[
+<option value="\$(value)" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}">\$(text)</option>
+]]${-1}></style>
+
+<style name='el.select.footer'> <![CDATA[
+</select>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>el.select</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

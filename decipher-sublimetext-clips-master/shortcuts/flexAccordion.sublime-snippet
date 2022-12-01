@@ -1,0 +1,30 @@
+<snippet>
+  <content><![CDATA[
+.sq-accordion-answers{
+  margin-left: 0px !important;
+}
+
+.sq-accordion-answers{
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.sq-accordion-cell{
+  width: 100%;
+  text-align: center;
+  margin-bottom: auto;
+  padding-left: 10px !important;
+}
+
+\@media all and (max-width: 750px){
+  .sq-accordion-cell{
+    font-size: 0.9rem;
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>flex.acco</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,27 @@
+<snippet>
+	<content><![CDATA[
+<style name='question.top-legend'> <![CDATA[
+\@if ec.simpleList
+    \$(legends)
+\@else
+\@if this.styles.ss.colLegendHeight
+    <\$(tag) class="row row-col-legends row-col-legends-top \${"mobile-top-row-legend " if mobileOnly else ""}\${"GtTenColumns " if ec.colCount > 10 else ""}colCount-\$(colCount)" style="height:\${this.styles.ss.colLegendHeight};">
+\@else
+    <\$(tag) class="row row-col-legends row-col-legends-top \${"mobile-top-row-legend " if mobileOnly else ""}\${"GtTenColumns " if ec.colCount > 10 else ""}colCount-\$(colCount)">
+\@endif
+    \$(left)
+    \$(legends)
+    \$(right)
+</\$(tag)>
+\@if not simple
+</tbody>
+<tbody>
+\@endif
+\@endif
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>question.top.legend</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

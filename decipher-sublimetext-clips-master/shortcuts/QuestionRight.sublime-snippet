@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+<style name='question.right'> <![CDATA[
+\@if this.styles.ss.legendColWidth
+    <\$(tag) scope="row" class="cell nonempty legend row-legend row-legend-right \${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic \$(levels) \${"desktop" if this.grouping.cols else "mobile"} border-collapse \$(row.styles.ss.rowClassNames)" style="width:\${this.styles.ss.legendColWidth}; min-width:\${this.styles.ss.legendColWidth}">
+        \$(text)
+    </\$(tag)>
+\@else
+    <\$(tag) scope="row" class="cell nonempty legend row-legend row-legend-right \${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic \$(levels) \${"desktop" if this.grouping.cols else "mobile"} border-collapse \$(row.styles.ss.rowClassNames)">
+        \$(text)
+    </\$(tag)>
+\@endif
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>question.right</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
