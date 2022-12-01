@@ -2323,3 +2323,51 @@ class makeCommentCommand(sublime_plugin.TextCommand):
             print (e)
 
 
+class makeColsWithGroupCommand(sublime_plugin.TextCommand):
+    def run (self,edit):
+        try:
+
+            sels = self.view.sel()
+            input = ''
+            #docType =  returnContext(self)
+            #print self.view.settings()
+            for sel in sels:
+                printPage = ''
+                input = self.view.substr(sel)
+                input = re.sub("\t+", " ", input)
+                #CLEAN UP SPACES
+                input = re.sub("\n +\n", "\n\n", input)
+                #CLEAN UP THE EXTRA LINE BREAKS
+                input = re.sub("\n{2,}", "\n", input)
+                input = fixUniCode(input)
+                input = input.strip().split("\n")
+
+                printPage += "  <group label=\"g1\"></group>\n"
+
+                for line in input:
+                     line = line.strip()
+                     #SPLIT ON WHITESPACE -- REMOVE LEADING AND TRAILING WS
+                     parts = re.split(r"\s",line,1)
+
+                     #GET RID OF EXTRA SPACES
+                     ordinal= parts[0].strip()
+                     ordinal= ordinal.rstrip('.')
+                     ordinal= ordinal.rstrip(')')
+
+                     #GET RID OF EXTRA SPACES
+                     content = parts[1].strip()
+
+                     extra=""
+
+                     if ("other" in content.lower() and "specify" in content.lower()) or ("기타" in content.lower() and "구체적" in content.lower()):
+                       content = content.replace("_", "")
+                       extra=' open=\"1\" openSize=\"25\" randomize=\"0\"'
+
+                     #COMPOSE COLUMN
+                     printPage += "  <col label=\"c%s\" groups=\"g1\" value=\"%s\"%s>%s</col>\n" % (ordinal,ordinal, extra, content)
+
+                self.view.replace(edit,sel, printPage)
+        except Exception as e:
+            print (e)
+
+

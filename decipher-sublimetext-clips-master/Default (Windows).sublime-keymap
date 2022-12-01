@@ -159,6 +159,13 @@
             }
         ]
     },
+    { 
+        "keys": ["ctrl+shift+8"], "command": "make_cols_with_group", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.xml"
+            }
+        ]
+    },
     {
         "keys": ["shift+alt+b"],
         "command": "insert_snippet",
