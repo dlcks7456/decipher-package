@@ -47,11 +47,14 @@ window.addEventListener("DOMContentLoaded", function(){
   if(document.querySelector('.width-only')){
       const only_width = () => {
         const widthOnly = document.querySelector('.width-only');
+        const btns = document.querySelector('.survey-buttons');
         if( window.orientation !== undefined ){
           if(window.orientation == -90 || window.orientation == 90) {
             widthOnly.classList.add('hidden');
+            btns.classList.add('hidden');
           } else {
             widthOnly.classList.remove('hidden');
+            btns.classList.remove('hidden');
           }
         }
       }
