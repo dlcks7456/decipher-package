@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+const ${1} = document.querySelector("${2}");
+
+const observer = new MutationObserver(${3});
+const config = { 
+    childList: true,
+    characterData: true,
+    subtree: true
+};
+observer.observe(${1}, config);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>observer</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
