@@ -188,14 +188,7 @@ nones.forEach( (none, index)=>{
 document.querySelector(".\$(this.label)-\$(row.index)-\$(col.index)-div").appendChild(document.querySelector("input[name='\$(name)']"));
 </script>
 ]]${-1}></style>
-<style label="bmNone" name="el.checkbox"><![CDATA[
-<div class="none \$(this.label)-\$(row.label)">
-  \${this.title} <div class="none-input"><input type="checkbox" name="\$(name)" id="\$(id)" value="1" \$(checked)/></div>
-</div>
-<script>
-document.querySelector(".\$(this.label)-\$(row.index)-div").appendChild(document.querySelector(".\$(this.label)-\$(row.label)"));
-</script>
-]]${-1}></style>
+
 <exec when="init">
 def brand_model_check(model_unique=True, use_open=False, open_cols=["brand", "model"], use_none=False, none_hard=True) :
   oe_label = allQuestions["{}oe".format(this.label)] if use_open else None

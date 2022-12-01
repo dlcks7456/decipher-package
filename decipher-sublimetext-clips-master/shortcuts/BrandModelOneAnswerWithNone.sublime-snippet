@@ -27,7 +27,14 @@ brand_model_check(use_none=True)
    onLoad="copy('${1}', rows=True)"
    ss:questionClassNames="hidden">
     <title>${6:없음}</title>
-    <style copy="bmNone" name="el.checkbox"/>
+    <style label="bmNone" name="el.checkbox"><![CDATA[
+        <div class="none \$(this.label)-\$(row.label)">
+          \${${1}none.title} <div class="none-input"><input type="checkbox" name="\$(name)" id="\$(id)" value="1" \$(checked)/></div>
+        </div>
+        <script>
+        document.querySelector(".\$(this.label)-\$(row.index)-div").appendChild(document.querySelector(".\$(this.label)-\$(row.label)"));
+        </script>
+    ]]${-1}></style>
   </checkbox>
 
   <suspend/>
