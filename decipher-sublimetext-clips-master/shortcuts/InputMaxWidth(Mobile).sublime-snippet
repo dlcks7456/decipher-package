@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+ss:questionClassNames="input-max-width"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mo.input</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

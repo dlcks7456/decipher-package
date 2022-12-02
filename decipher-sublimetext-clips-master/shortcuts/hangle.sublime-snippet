@@ -6,10 +6,12 @@ han('${1}', '\$(hanPostText)');
 ]]${-1}></style>
 <style name="el.text" label="hangleClass"><![CDATA[
 <div class="hanchange">
-  <div>
-    \${row.styles.ss.preText if not row.styles.ss.preText == None else ''}
-    <input type="text" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra)/>
-    \${row.styles.ss.postText if not row.styles.ss.postText == None else ''}
+  <div class="han-input-div">
+    <div>\${row.styles.ss.preText if not row.styles.ss.preText == None else ''}</div>
+    <div>
+      <input type="text" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra)/>
+      \${row.styles.ss.postText if not row.styles.ss.postText == None else ''}
+    </div>
   </div>
   <div>
     <span class="hangle-span"></span>

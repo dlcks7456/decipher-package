@@ -2342,7 +2342,13 @@ class makeColsWithGroupCommand(sublime_plugin.TextCommand):
                 input = fixUniCode(input)
                 input = input.strip().split("\n")
 
-                printPage += "  <group label=\"g1\"></group>\n"
+                group_check = re.split(r"\s", input[0], 1)[0]
+                group_text = ""
+                if not group_check.isdigit() :
+                  group_text = input[0]
+                  input = input[1:]
+
+                printPage += "  <group label=\"g1\">%s</group>\n"%(group_text)
 
                 for line in input:
                      line = line.strip()
