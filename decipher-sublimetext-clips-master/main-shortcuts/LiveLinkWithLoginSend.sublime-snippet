@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+[LOGIN LINK]
+${1}
+
+[USER LINK]
+${2}
+: 링크 상에 UID를 변경하여 개별 링크로 사용 가능합니다. (UID는 중복하여 사용 불가)
+: 로그인 링크에서 입력한 ID로 USER LINK에 접속되는 방식입니다.
+ex) UID = 4909 (로그인 링크에서 4909를 입력해도 동일한 링크로 이동)
+${3:https://pacific.surveys.nielseniq.com/survey/selfserve/548/XXX?list=9&UID=4909}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>live.login</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.plain</scope>
+</snippet>

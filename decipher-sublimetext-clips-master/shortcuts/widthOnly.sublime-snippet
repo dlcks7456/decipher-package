@@ -51,10 +51,10 @@ window.addEventListener("DOMContentLoaded", function(){
         if( window.orientation !== undefined ){
           if(window.orientation == -90 || window.orientation == 90) {
             widthOnly.classList.add('hidden');
-            btns.classList.add('hidden');
+            btns.classList.remove('hidden');
           } else {
             widthOnly.classList.remove('hidden');
-            btns.classList.remove('hidden');
+            btns.classList.add('hidden');
           }
         }
       }
