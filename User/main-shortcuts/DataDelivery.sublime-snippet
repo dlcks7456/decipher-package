@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+본 프로젝트 데이터 이관드립니다.
+첨부드리는 파일 확인 부탁드립니다.
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>data.final</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.plain</scope>
+</snippet>
