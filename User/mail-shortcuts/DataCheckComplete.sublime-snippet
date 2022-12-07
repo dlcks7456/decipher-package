@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 본 조사 데이터 체크 완료했습니다.
-${풀런칭 부탁드립니다.}
+${1:풀런칭 부탁드립니다.}
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>live.chk</tabTrigger>
