@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+본 프로젝트 신트럴 상에 STATUS가 Coimmissioned 상태가 아닙니다.
+신트럴 커미션이 되어야 프로그래밍 착수가 가능하오니
+커미션 후 WBS#와 프로젝트 세부일정(Timeline) 업데이트 후 회신 부탁드립니다.
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>status</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.plain</scope>
+</snippet>
