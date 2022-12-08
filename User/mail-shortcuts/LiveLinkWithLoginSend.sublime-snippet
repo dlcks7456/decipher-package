@@ -1,5 +1,6 @@
 <snippet>
 	<content><![CDATA[
+본 프로젝트 로그인 링크 전달드립니다.
 [LOGIN LINK]
 ${1}
 
@@ -9,6 +10,8 @@ ${2}
 : 로그인 링크에서 입력한 ID로 USER LINK에 접속되는 방식입니다.
 ex) UID = 4909 (로그인 링크에서 4909를 입력해도 동일한 링크로 이동)
 ${3:https://pacific.surveys.nielseniq.com/survey/selfserve/548/XXX?list=9&UID=4909}
+
+확인 부탁드립니다.
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>live.login</tabTrigger>
