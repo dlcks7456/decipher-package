@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+<res label="slideshow_force_text">모든 슬라이드를 확인해주세요.</res>
+
+<style name="survey.question" label="slideshow_title"><![CDATA[
+<div class='slideshow-div'></div>
+<h1 title="@(question)" class="question-text" id="question_text_\${this.label}">\${this.styles.html.showNumber and (str(number) + '. ') or ''}\$(title)</h1>
+<!-- /.question-text -->
+]]${-1}></style>
+<style name="question.after" wrap="ready" label="slideshow_image"><![CDATA[
+slideShowSetting({
+    mode : 'image',
+    slides: [${1}],
+    imagePath: '\${imgdr}',
+    imageClassName: 'slideshow-image',
+    force: true,
+    forceText: '\${res.slideshow_force_text}',
+})
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>slideshow.image</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+.sq-atm1d-tiled .sq-atm1d-button{
+  min-width: 158px;
+  min-height: 123px;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>atm.min</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
