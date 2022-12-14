@@ -1,5 +1,7 @@
 <snippet>
 	<content><![CDATA[
+<res label="detail_text">보기 카드 <span style="font-size: 1.1rem; font-weight: normal;">(클릭하면 보이거나 숨겨집니다)</span></res>
+
 <style arg:imgName="${1}" arg:detailsOpen="${2:open}" arg:showText="${3}" label="${4}"  name="survey.question"><![CDATA[
 <style>
 .blackdiv{ width: 80%; text-align: center; height: 100%; line-height: 32px; font-size: 20px; color: #fff!important; background-color: black!important; border-radius: 32px; height:100%;padding:5px; font-weight: bold; margin: 10px auto 10px auto;}
@@ -57,7 +59,7 @@
   <div class="blackdiv">\$(showText)</div>
 	<div class="showcard">
 		<details \$(detailsOpen)>
-		  <summary>보기 카드</summary>
+		  <summary>\${res.detail_text}</summary>
 		  <div class="img-div">
 		      <img src="\${imgdr}/\${LQ.selected.label}/\$(imgName)" class="popup"/>
 		  </div>

@@ -1,11 +1,13 @@
 <snippet>
 	<content><![CDATA[
+<res label="detail_text">보기 카드 <span style="font-size: 1.1rem; font-weight: normal;">(클릭하면 보이거나 숨겨집니다)</span></res>
+
 <style arg:detailsOpen="open" name="survey.question"><![CDATA[
 <h1 title="@(question)" class="question-text" id="question_text_\${this.label}">
 	<div class="showcard">
 		<details \$(detailsOpen)>
 		  <summary></summary>
-		  <div></div>
+		  <div>\${rse.detail_text}</div>
 		</details>
 	</div>
   \${this.styles.html.showNumber and (str(number) + '. ') or ''}\$(title)
