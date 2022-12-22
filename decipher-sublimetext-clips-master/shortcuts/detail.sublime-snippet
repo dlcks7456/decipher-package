@@ -3,6 +3,49 @@
 <res label="detail_text">보기 카드 <span style="font-size: 1.1rem; font-weight: normal;">(클릭하면 보이거나 숨겨집니다)</span></res>
 
 <style arg:detailsOpen="open" name="survey.question"><![CDATA[
+<style>
+.showcard details {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: .5em .5em 0;
+    margin-bottom: 1em;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.showcard summary {
+    font-weight: bold;
+    border-radius: 10px;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.showcard summary:hover {
+  background-color: black;
+  color: white;  
+}
+
+.showcard details[open] {
+    padding: .5em;
+}
+
+.showcard details[open] summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: .5em;
+    background-color: black;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+\@media (prefers-color-scheme: dark){
+  .showcard summary:hover{ background-color: #b1f7b6; }
+  .showcard details[open] summary { background-color: #b1f7b6; }
+}
+
+.showcard details summary{
+  display: revert !important;
+}
+</style>
 <h1 title="@(question)" class="question-text" id="question_text_\${this.label}">
 	<div class="showcard">
 		<details \$(detailsOpen)>
