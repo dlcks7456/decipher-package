@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+<res label="sys_check-error-atLeast-sing-column">이 열에서 \$(count)개 이상의 상자를 선택하십시오(\$(actual)개 선택).</res>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tiled.err</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
