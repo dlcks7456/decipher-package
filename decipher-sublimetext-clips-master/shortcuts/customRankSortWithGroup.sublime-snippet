@@ -8,7 +8,7 @@
 <script type="text/babel">
 const group_info = [
 \@for eachRow in this.rows
-[${eachRow.index}, '${eachRow.group.label}', '${eachRow.group.text}'],
+[\${eachRow.index}, '\${eachRow.group.label}', '\${eachRow.group.text}'],
 \@end
 ];
 SettingGridRankSort(\${jsexport()}, \{[v.val for v in \$(this.label).cols if not v.val == None]}, group_info);
