@@ -1,5 +1,6 @@
 <snippet>
 	<content><![CDATA[
+<style label="grid_to_sort_group" name="question.after"><![CDATA[
 <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
