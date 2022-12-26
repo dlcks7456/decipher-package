@@ -11,7 +11,7 @@ const group_info = [
 [${eachRow.index}, '${eachRow.group.label}', '${eachRow.group.text}'],
 \@end
 ];
-SettingGridRankSort(${jsexport()}, ${[v.val for v in $(this.label).cols if not v.val == None]}, group_info);
+SettingGridRankSort(\${jsexport()}, \{[v.val for v in \$(this.label).cols if not v.val == None]}, group_info);
 </script>
 ]]${-1}></style>
 ]]></content>
