@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-uses="atm1d.10"
+uses="atm1d.11"
 atm1d:viewMode="Tiled"
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
