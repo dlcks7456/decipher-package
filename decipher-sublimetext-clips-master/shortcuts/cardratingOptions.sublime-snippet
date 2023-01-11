@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+${0:<res label="cardrating_msg">'계속' 버튼을 눌러 다음 질문에 응답해주세요.</res>}
+
+uses="cardrating.1"
+cardrating:themename="vstack"
+cardrating:completion="\${res.cardrating_msg}"
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>rate.card.opt</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

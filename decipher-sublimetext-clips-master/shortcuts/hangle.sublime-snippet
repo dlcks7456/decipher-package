@@ -13,7 +13,7 @@ han('${1}', '\$(hanPostText)');
       \${row.styles.ss.postText if not row.styles.ss.postText == None else ''}
     </div>
   </div>
-  <div>
+  <div style="height:20px;">
     <span class="hangle-span"></span>
   </div>
 </div>
