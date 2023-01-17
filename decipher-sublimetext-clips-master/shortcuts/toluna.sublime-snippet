@@ -14,7 +14,8 @@
 <exec sst="0">
 if list=="2":
 
- TolunaEncKey = (int(int(GID) + 3) % 4001) * 17
+ # TolunaEncKey = (int(int(GID) + 3) % 4001) * 17
+ TolunaEncKey = (int(GID)+3) % 5743
  HQTolunaEnc.val = TolunaEncKey
  #setExtra("TolunaEnc",str(TolunaEncKey))
 </exec>
