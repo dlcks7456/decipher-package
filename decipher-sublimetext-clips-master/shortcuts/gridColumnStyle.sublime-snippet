@@ -1,0 +1,42 @@
+<snippet>
+	<content><![CDATA[
+.grid-3-cols .answers{
+  display: grid !important;
+  width: 100% !important;
+  grid-template-columns: 33% 33% 33%;
+  grid-column-gap : 5px;
+  grid-row-gap: 5px;
+  max-width: 924px;
+  align-items: start;
+}
+
+.grid-2-cols .answers{
+  display: grid !important;
+  grid-template-columns: 50% 50%;
+  grid-column-gap : 5px;
+  grid-row-gap: 5px;
+  width: 100% !important;
+  max-width: 924px;
+  align-items: start;
+}
+
+\@media all and (max-width: 800px){
+ .grid-3-cols .answers{
+    grid-template-columns: 50% 50%;
+ }
+ .grid-2-cols .answers{
+    grid-template-columns: 100%;
+  }
+}
+
+\@media all and (max-width: 500px){
+ .grid-3-cols .answers{
+    grid-template-columns: 100%;
+ }
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>cols.css</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
