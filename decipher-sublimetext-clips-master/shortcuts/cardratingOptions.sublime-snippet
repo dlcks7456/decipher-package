@@ -4,6 +4,7 @@ ${0:<res label="cardrating_msg">'계속' 버튼을 눌러 다음 질문에 응�
 
 uses="cardrating.1"
 cardrating:themename="vstack"
+cardrating:animation="fast"
 cardrating:completion="\${res.cardrating_msg}"
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
