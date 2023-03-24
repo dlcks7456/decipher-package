@@ -1,0 +1,27 @@
+<snippet>
+	<content><![CDATA[
+<style name="question.after" wrap="ready" label="cardsort_other_focus"><![CDATA[
+const buckets = document.querySelectorAll(".sq-cardsort-bucket");
+const nextButton = document.querySelector(".sq-cardsort-next");
+
+const otherHandler = (event)=>{
+ const inputCheck = event.target.querySelector('input[type=text]');
+
+ if( inputCheck === null || inputCheck === undefined ){
+    nextButton.click();
+    return;
+ }else{
+    inputCheck.focus();
+ }
+}
+
+buckets.forEach((bucket)=>{
+  bucket.addEventListener('click', otherHandler);
+});
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>card.other</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
