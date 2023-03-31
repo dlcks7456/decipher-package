@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+<res label="cardsort_next">다음 &gt;&gt;</res>
+<res label="cardsort_prev">&lt;&lt; 이전</res>
+<res label="cardsort_completion">'계속' 버튼을 눌러 다음 질문에 응답해주세요.</res>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>cardsort.res</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
