@@ -1,0 +1,29 @@
+<snippet>
+	<content><![CDATA[
+<style name="page.head"><![CDATA[
+<style>
+.grid-list-mode .row-elements{
+  border : 1px solid #ccc;
+  padding : 10px;
+  border-radius : 10px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.grid-list-mode .row-legend-left{
+  font-weight : bold;
+  border-bottom : 1px solid #ccc;
+  padding-bottom : 10px;
+}
+.grid-list-mode .row-legend-right{
+  font-weight : bold;
+  border-top : 1px solid #ccc;
+  padding-top : 10px;
+  margin-bottom: 10px;
+}
+</style>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>grid.list</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
