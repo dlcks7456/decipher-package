@@ -1118,7 +1118,7 @@ class makeMaxdiffResCommand(sublime_plugin.TextCommand):
                 for line in line_split :
                     attr_code = line[0]
                     attr_text = ' '.join(line[1:])
-                    printPage += f'<res label="MD_mditem{attr_code}">{attr_text}</res>\n'
+                    printPage += f'<res label="MD_item{attr_code}">{attr_text}</res>\n'
                 
                 self.view.replace(edit,sel, printPage)
         except Exception as e:
