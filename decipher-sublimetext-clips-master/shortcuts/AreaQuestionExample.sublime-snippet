@@ -1,0 +1,337 @@
+<snippet>
+	<content><![CDATA[
+<select
+  label="${1}"
+  optional="0">
+  <title>귀하의 현재 <strong><u>거주지</u></strong>는 어디입니까?</title>
+  <validate>
+do = this.choices[this.r1.val].value
+gu = this.choices[this.r2.val].value // 100
+
+if not do == gu :
+  error(res.chk_plz, row=this.r2)
+  </validate>
+<style name="page.head"><![CDATA[
+<style>
+.select-disabled{
+    opacity: 50%;
+    pointer-events: none;
+}
+</style>
+]]${-1}></style>
+<style name='el.select.element' rows="r1"> <![CDATA[
+\@if 'do' in choice.label
+<option value="\$(value)" \$(selected) data-do="\${choice.value}" class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}">\$(text)</option>
+\@endif
+]]${-1}></style>
+<style name='el.select.element' rows="r2"> <![CDATA[
+\@if 'gu' in choice.label
+<option value="\$(value)" data-do="\${choice.value//100}" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}">\$(text)</option>
+\@endif
+]]${-1}></style>
+<style name="question.after" wrap="ready"><![CDATA[
+const baseSelect = document.querySelector('.base-select');
+const base = baseSelect.querySelector('select');
+let baseSelected = base.selectedIndex;
+let baseCode = base.options[baseSelected].dataset.do;
+
+const mutateSelect = document.querySelector('.mutate-select');
+const mutate = mutateSelect.querySelector('select');
+
+const selectHandle = ()=>{
+  baseCode = base.options[baseSelected].dataset.do;
+  
+  if( baseCode === undefined || baseCode === null ){
+    return;
+  }
+
+  [...mutate.options].forEach((item, index)=>{
+    if( index === 0 ) return;
+    item.disabled = true;
+    item.style.display = 'none';
+
+    const itemData = item.dataset.do;
+    if( itemData === baseCode ){
+      item.disabled = false;
+      item.style.display = '';
+    }else{
+      mutate.appendChild(item);
+    }
+  });
+}
+
+const selectOnChange = ()=>{
+  baseSelected = base.selectedIndex;
+  mutate.selectedIndex = 0;
+  if( baseSelected == 0 ){
+    mutate.classList.add('select-disabled');
+    return;
+  }else{
+    mutate.classList.remove('select-disabled');
+  }
+  selectHandle();
+}
+
+// default 
+if( mutate.selectedIndex != 0 ){
+  selectHandle();
+}else{
+  mutate.classList.add('select-disabled');
+}
+
+baseSelect.onchange = selectOnChange;
+]]${-1}></style>
+  <row label="r1" value="1" ss:rowClassNames="base-select">도/시</row>
+  <row label="r2" value="2" ss:rowClassNames="mutate-select animate__animated">군/구</row>
+  <choice label="do1" value="1">서울특별시</choice>
+  <choice label="do2" value="2">부산광역시</choice>
+  <choice label="do3" value="3">대구광역시</choice>
+  <choice label="do4" value="4">인천광역시</choice>
+  <choice label="do5" value="5">광주광역시</choice>
+  <choice label="do6" value="6">대전광역시</choice>
+  <choice label="do7" value="7">울산광역시</choice>
+  <choice label="do8" value="8">경기도</choice>
+  <choice label="do9" value="9">강원도</choice>
+  <choice label="do10" value="10">충청북도</choice>
+  <choice label="do11" value="11">충청남도</choice>
+  <choice label="do12" value="12">전라북도</choice>
+  <choice label="do13" value="13">전라남도</choice>
+  <choice label="do14" value="14">경상북도</choice>
+  <choice label="do15" value="15">경상남도</choice>
+  <choice label="do16" value="16">제주특별자치도</choice>
+  <choice label="gu101" value="101">종로구</choice>
+  <choice label="gu102" value="102">중구</choice>
+  <choice label="gu103" value="103">용산구</choice>
+  <choice label="gu104" value="104">성동구</choice>
+  <choice label="gu105" value="105">광진구</choice>
+  <choice label="gu106" value="106">동대문구</choice>
+  <choice label="gu107" value="107">중랑구</choice>
+  <choice label="gu108" value="108">성북구</choice>
+  <choice label="gu109" value="109">강북구</choice>
+  <choice label="gu110" value="110">도봉구</choice>
+  <choice label="gu111" value="111">노원구</choice>
+  <choice label="gu112" value="112">은평구</choice>
+  <choice label="gu113" value="113">서대문구</choice>
+  <choice label="gu114" value="114">마포구</choice>
+  <choice label="gu115" value="115">양천구</choice>
+  <choice label="gu116" value="116">강서구</choice>
+  <choice label="gu117" value="117">구로구</choice>
+  <choice label="gu118" value="118">금천구</choice>
+  <choice label="gu119" value="119">영등포구</choice>
+  <choice label="gu120" value="120">동작구</choice>
+  <choice label="gu121" value="121">관악구</choice>
+  <choice label="gu122" value="122">서초구</choice>
+  <choice label="gu123" value="123">강남구</choice>
+  <choice label="gu124" value="124">송파구</choice>
+  <choice label="gu125" value="125">강동구</choice>
+  <choice label="gu201" value="201">중구</choice>
+  <choice label="gu202" value="202">서구</choice>
+  <choice label="gu203" value="203">동구</choice>
+  <choice label="gu204" value="204">영도구</choice>
+  <choice label="gu205" value="205">부산진구</choice>
+  <choice label="gu206" value="206">동래구</choice>
+  <choice label="gu207" value="207">남구</choice>
+  <choice label="gu208" value="208">북구</choice>
+  <choice label="gu209" value="209">해운대구</choice>
+  <choice label="gu210" value="210">사하구</choice>
+  <choice label="gu211" value="211">금정구</choice>
+  <choice label="gu212" value="212">강서구</choice>
+  <choice label="gu213" value="213">연제구</choice>
+  <choice label="gu214" value="214">수영구</choice>
+  <choice label="gu215" value="215">사상구</choice>
+  <choice label="gu216" value="216">기장군</choice>
+  <choice label="gu301" value="301">중구</choice>
+  <choice label="gu302" value="302">동구</choice>
+  <choice label="gu303" value="303">서구</choice>
+  <choice label="gu304" value="304">남구</choice>
+  <choice label="gu305" value="305">북구</choice>
+  <choice label="gu306" value="306">수성구</choice>
+  <choice label="gu307" value="307">달서구</choice>
+  <choice label="gu308" value="308">달성군</choice>
+  <choice label="gu401" value="401">중구</choice>
+  <choice label="gu402" value="402">동구</choice>
+  <choice label="gu403" value="403">미추홀구</choice>
+  <choice label="gu404" value="404">연수구</choice>
+  <choice label="gu405" value="405">남동구</choice>
+  <choice label="gu406" value="406">부평구</choice>
+  <choice label="gu407" value="407">계양구</choice>
+  <choice label="gu408" value="408">서구</choice>
+  <choice label="gu409" value="409">강화군</choice>
+  <choice label="gu410" value="410">옹진군</choice>
+  <choice label="gu501" value="501">동구</choice>
+  <choice label="gu502" value="502">서구</choice>
+  <choice label="gu503" value="503">남구</choice>
+  <choice label="gu504" value="504">북구</choice>
+  <choice label="gu505" value="505">광산구</choice>
+  <choice label="gu601" value="601">동구</choice>
+  <choice label="gu602" value="602">중구</choice>
+  <choice label="gu603" value="603">서구</choice>
+  <choice label="gu604" value="604">유성구</choice>
+  <choice label="gu605" value="605">대덕구</choice>
+  <choice label="gu701" value="701">중구</choice>
+  <choice label="gu702" value="702">남구</choice>
+  <choice label="gu703" value="703">동구</choice>
+  <choice label="gu704" value="704">북구</choice>
+  <choice label="gu705" value="705">울주군</choice>
+  <choice label="gu801" value="801">수원시</choice>
+  <choice label="gu802" value="802">성남시</choice>
+  <choice label="gu803" value="803">의정부시</choice>
+  <choice label="gu804" value="804">안양시</choice>
+  <choice label="gu805" value="805">부천시</choice>
+  <choice label="gu806" value="806">광명시</choice>
+  <choice label="gu807" value="807">평택시</choice>
+  <choice label="gu808" value="808">동두천시</choice>
+  <choice label="gu809" value="809">안산시</choice>
+  <choice label="gu810" value="810">고양시</choice>
+  <choice label="gu811" value="811">과천시</choice>
+  <choice label="gu812" value="812">구리시</choice>
+  <choice label="gu813" value="813">남양주시</choice>
+  <choice label="gu814" value="814">오산시</choice>
+  <choice label="gu815" value="815">시흥시</choice>
+  <choice label="gu816" value="816">군포시</choice>
+  <choice label="gu817" value="817">의왕시</choice>
+  <choice label="gu818" value="818">하남시</choice>
+  <choice label="gu819" value="819">용인시</choice>
+  <choice label="gu820" value="820">파주시</choice>
+  <choice label="gu821" value="821">이천시</choice>
+  <choice label="gu822" value="822">안성시</choice>
+  <choice label="gu823" value="823">김포시</choice>
+  <choice label="gu824" value="824">화성시</choice>
+  <choice label="gu825" value="825">광주시</choice>
+  <choice label="gu826" value="826">양주시</choice>
+  <choice label="gu827" value="827">포천시</choice>
+  <choice label="gu828" value="828">여주시</choice>
+  <choice label="gu829" value="829">연천군</choice>
+  <choice label="gu830" value="830">가평군</choice>
+  <choice label="gu831" value="831">양평군</choice>
+  <choice label="gu901" value="901">춘천시</choice>
+  <choice label="gu902" value="902">원주시</choice>
+  <choice label="gu903" value="903">강릉시</choice>
+  <choice label="gu904" value="904">동해시</choice>
+  <choice label="gu905" value="905">태백시</choice>
+  <choice label="gu906" value="906">속초시</choice>
+  <choice label="gu907" value="907">삼척시</choice>
+  <choice label="gu908" value="908">홍천군</choice>
+  <choice label="gu909" value="909">횡성군</choice>
+  <choice label="gu910" value="910">영월군</choice>
+  <choice label="gu911" value="911">평창군</choice>
+  <choice label="gu912" value="912">정선군</choice>
+  <choice label="gu913" value="913">철원군</choice>
+  <choice label="gu914" value="914">화천군</choice>
+  <choice label="gu915" value="915">양구군</choice>
+  <choice label="gu916" value="916">인제군</choice>
+  <choice label="gu917" value="917">고성군</choice>
+  <choice label="gu918" value="918">양양군</choice>
+  <choice label="gu1001" value="1001">청주시</choice>
+  <choice label="gu1002" value="1002">충주시</choice>
+  <choice label="gu1003" value="1003">제천시</choice>
+  <choice label="gu1004" value="1004">보은군</choice>
+  <choice label="gu1005" value="1005">옥천군</choice>
+  <choice label="gu1006" value="1006">영동군</choice>
+  <choice label="gu1007" value="1007">증평군</choice>
+  <choice label="gu1008" value="1008">진천군</choice>
+  <choice label="gu1009" value="1009">괴산군</choice>
+  <choice label="gu1010" value="1010">음성군</choice>
+  <choice label="gu1011" value="1011">단양군</choice>
+  <choice label="gu1101" value="1101">천안시</choice>
+  <choice label="gu1102" value="1102">공주시</choice>
+  <choice label="gu1103" value="1103">보령시</choice>
+  <choice label="gu1104" value="1104">아산시</choice>
+  <choice label="gu1105" value="1105">서산시</choice>
+  <choice label="gu1106" value="1106">논산시</choice>
+  <choice label="gu1107" value="1107">계룡시</choice>
+  <choice label="gu1108" value="1108">당진시</choice>
+  <choice label="gu1109" value="1109">금산군</choice>
+  <choice label="gu1110" value="1110">부여군</choice>
+  <choice label="gu1111" value="1111">서천군</choice>
+  <choice label="gu1112" value="1112">청양군</choice>
+  <choice label="gu1113" value="1113">홍성군</choice>
+  <choice label="gu1114" value="1114">예산군</choice>
+  <choice label="gu1115" value="1115">태안군</choice>
+  <choice label="gu1201" value="1201">전주시</choice>
+  <choice label="gu1202" value="1202">군산시</choice>
+  <choice label="gu1203" value="1203">익산시</choice>
+  <choice label="gu1204" value="1204">정읍시</choice>
+  <choice label="gu1205" value="1205">남원시</choice>
+  <choice label="gu1206" value="1206">김제시</choice>
+  <choice label="gu1207" value="1207">완주군</choice>
+  <choice label="gu1208" value="1208">진안군</choice>
+  <choice label="gu1209" value="1209">무주군</choice>
+  <choice label="gu1210" value="1210">장수군</choice>
+  <choice label="gu1211" value="1211">임실군</choice>
+  <choice label="gu1212" value="1212">순창군</choice>
+  <choice label="gu1213" value="1213">고창군</choice>
+  <choice label="gu1214" value="1214">부안군</choice>
+  <choice label="gu1301" value="1301">목포시</choice>
+  <choice label="gu1302" value="1302">여수시</choice>
+  <choice label="gu1303" value="1303">순천시</choice>
+  <choice label="gu1304" value="1304">나주시</choice>
+  <choice label="gu1305" value="1305">광양시</choice>
+  <choice label="gu1306" value="1306">담양군</choice>
+  <choice label="gu1307" value="1307">곡성군</choice>
+  <choice label="gu1308" value="1308">구례군</choice>
+  <choice label="gu1309" value="1309">고흥군</choice>
+  <choice label="gu1310" value="1310">보성군</choice>
+  <choice label="gu1311" value="1311">화순군</choice>
+  <choice label="gu1312" value="1312">장흥군</choice>
+  <choice label="gu1313" value="1313">강진군</choice>
+  <choice label="gu1314" value="1314">해남군</choice>
+  <choice label="gu1315" value="1315">영암군</choice>
+  <choice label="gu1316" value="1316">무안군</choice>
+  <choice label="gu1317" value="1317">함평군</choice>
+  <choice label="gu1318" value="1318">영광군</choice>
+  <choice label="gu1319" value="1319">장성군</choice>
+  <choice label="gu1320" value="1320">완도군</choice>
+  <choice label="gu1321" value="1321">진도군</choice>
+  <choice label="gu1322" value="1322">신안군</choice>
+  <choice label="gu1401" value="1401">포항시</choice>
+  <choice label="gu1402" value="1402">경주시</choice>
+  <choice label="gu1403" value="1403">김천시</choice>
+  <choice label="gu1404" value="1404">안동시</choice>
+  <choice label="gu1405" value="1405">구미시</choice>
+  <choice label="gu1406" value="1406">영주시</choice>
+  <choice label="gu1407" value="1407">영천시</choice>
+  <choice label="gu1408" value="1408">상주시</choice>
+  <choice label="gu1409" value="1409">문경시</choice>
+  <choice label="gu1410" value="1410">경산시</choice>
+  <choice label="gu1411" value="1411">군위군</choice>
+  <choice label="gu1412" value="1412">의성군</choice>
+  <choice label="gu1413" value="1413">청송군</choice>
+  <choice label="gu1414" value="1414">영양군</choice>
+  <choice label="gu1415" value="1415">영덕군</choice>
+  <choice label="gu1416" value="1416">청도군</choice>
+  <choice label="gu1417" value="1417">고령군</choice>
+  <choice label="gu1418" value="1418">성주군</choice>
+  <choice label="gu1419" value="1419">칠곡군</choice>
+  <choice label="gu1420" value="1420">예천군</choice>
+  <choice label="gu1421" value="1421">봉화군</choice>
+  <choice label="gu1422" value="1422">울진군</choice>
+  <choice label="gu1423" value="1423">울릉군</choice>
+  <choice label="gu1501" value="1501">창원시</choice>
+  <choice label="gu1502" value="1502">진주시</choice>
+  <choice label="gu1503" value="1503">통영시</choice>
+  <choice label="gu1504" value="1504">사천시</choice>
+  <choice label="gu1505" value="1505">김해시</choice>
+  <choice label="gu1506" value="1506">밀양시</choice>
+  <choice label="gu1507" value="1507">거제시</choice>
+  <choice label="gu1508" value="1508">양산시</choice>
+  <choice label="gu1509" value="1509">의령군</choice>
+  <choice label="gu1510" value="1510">함안군</choice>
+  <choice label="gu1511" value="1511">창녕군</choice>
+  <choice label="gu1512" value="1512">고성군</choice>
+  <choice label="gu1513" value="1513">남해군</choice>
+  <choice label="gu1514" value="1514">하동군</choice>
+  <choice label="gu1515" value="1515">산청군</choice>
+  <choice label="gu1516" value="1516">함양군</choice>
+  <choice label="gu1517" value="1517">거창군</choice>
+  <choice label="gu1518" value="1518">합천군</choice>
+  <choice label="gu1601" value="1601">제주시</choice>
+  <choice label="gu1602" value="1602">서귀포시</choice>
+</select>
+<suspend/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>area</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
