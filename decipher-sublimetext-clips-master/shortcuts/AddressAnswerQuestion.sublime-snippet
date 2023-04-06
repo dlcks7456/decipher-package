@@ -1,0 +1,83 @@
+<snippet>
+	<content><![CDATA[
+<text 
+	label="${1}"
+	size="40">
+	<title>${2}</title>
+<style name="page.head"><![CDATA[
+<style>
+.address_title{
+  font-size: 1.4rem;
+  display: flex;
+  align-items: flex-end;
+  max-width: max-content;
+  gap: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#postcodify input[type=button]{
+  color: white;
+  width: 100%;
+  margin: 0 auto;
+  background-color: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#postcodify input[type=text]{
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+\@media all and (min-width: 750px){
+  #postcodify{
+    max-width: 240px;
+  }
+}
+</style>
+]]${-1}></style>
+    <style name="survey.question.instructions"><![CDATA[
+<h2 title="@(instructions)" class="instruction-text">\$(comment)
+<div class="address_title">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:25px; margin:0 auto;">
+    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+  </svg>
+  <div>검색 버튼을 통해 주소를 검색해주세요.</div>
+</div>
+</h2>
+<div id="postcodify">
+</div>
+<!-- /.instruction-text -->
+]]${-1}></style>
+    <style name="question.after"><![CDATA[
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script>
+\$ ("#postcodify").append('<input type="button" id="postcodify_search_button" value="검색"/><br><br>');
+
+for( var i=0; i<\$ (".element").length; i++ ){
+  \$ ("#postcodify").append(\$ (".element").eq(i));
+}
+\$ (".postcode input").attr('readonly',true);
+\$ (".address input").attr('readonly',true);
+\$ (".postcode input").addClass('postcodify_postcode5');
+\$ (".address input").addClass('postcodify_address');
+\$ (".details input").addClass('postcodify_details');
+
+\$ (function() { \$ ("#postcodify_search_button").postcodifyPopUp(); });
+
+</script>
+]]${-1}></style>
+    <row label="r1" ss:rowClassNames="postcode" value="1">우편번호</row>
+    <row label="r2" ss:rowClassNames="address" value="2">주소</row>
+    <row label="r3" ss:rowClassNames="details" value="3">상세주소</row>
+  </text>
+
+  <suspend/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>address</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

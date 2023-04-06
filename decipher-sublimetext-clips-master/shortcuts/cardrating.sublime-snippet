@@ -2,6 +2,7 @@
 	<content><![CDATA[
 uses="cardrating.1"
 cardrating:animation="fast"
+cardrating:completion="${res.cardrating_msg}"
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>rate.card</tabTrigger>
