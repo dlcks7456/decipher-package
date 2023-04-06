@@ -16,7 +16,6 @@ if this.any :
   if len(chk_value) lt 10 :
     error('<b>핸드폰 번호</b> 확인 부탁드립니다.')
       </validate>
-
 <style name="el.text"><![CDATA[
 <div style="display: flex; flex-direction: row;">
   <div>
@@ -25,9 +24,19 @@ if this.any :
     </svg>
   </div>
   <div>
-  <input style="border-radius: 10px;box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);" type="number" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra) placeholder="\${row.styles.ss.preText or this.styles.ss.preText or ''}"/>
+  <input style="border-radius: 10px;box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);" type="text" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra) placeholder="${row.styles.ss.preText or this.styles.ss.preText or ''}"/>
   </div>
 </div>
+]]${-1}></style>
+    <style name="question.after" wrap="ready"><![CDATA[
+const onlyNumber = (event) => {
+    const cursor = event.target.selectionStart;
+    event.target.value = event.target.value.replace(/[^0-9]/g, '');
+};
+
+const phoneNumberInput = document.querySelector('.phone-number input');
+
+phoneNumberInput.addEventListener('input', onlyNumber);
 ]]${-1}></style>
 </text>
 
