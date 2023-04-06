@@ -6,6 +6,7 @@ uses="cardrating.1"
 cardrating:themename="vstack"
 cardrating:animation="fast"
 cardrating:completion="\${res.cardrating_msg}"
+cardrating:lrg_maxwidth="100px"
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>rate.card.opt</tabTrigger>

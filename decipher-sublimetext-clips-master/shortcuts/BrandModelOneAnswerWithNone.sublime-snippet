@@ -39,6 +39,20 @@ brand_model_check(use_none=True)
 
   <suspend/>
 
+<text 
+    label="P${1}"
+    onLoad="copy('${1}', rows=True)"
+    size="40"
+    where="execute,survey,report">
+    <title>(HIDDEN) ${1} PIPE</title>
+    <exec>
+set_pipe_value(${1}, P${1})
+    </exec>
+
+</text>
+
+<suspend/>
+
 </block>
 <suspend/>
 ]]></content>

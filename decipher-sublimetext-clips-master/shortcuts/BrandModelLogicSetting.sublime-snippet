@@ -243,6 +243,23 @@ def brand_model_check(model_unique=True, use_open=False, open_cols=["brand", "mo
       if none_label.all :
         for row in this.rows :
           error(res.chk_plz, row=row)
+
+def set_pipe_value(base_qid, set_qid) :
+  for eachRow in base_qid.rows :
+    set_text = []
+    if eachRow.brand.any and eachRow.model.any :
+      brand_label = base_qid.choices[eachRow.brand.val].label
+      model_label = base_qid.choices[eachRow.model.val].label
+    
+      for answer_label, col_name in [(brand_label, 'brand'), (model_label, 'model')] :
+        if hasattr(BMbase.attr(answer_label), 'open') :
+          base_qid_oe = allQuestions['%soe'%(base_qid.label)]
+          set_text.append(getattr(base_qid_oe.attr(eachRow.label), col_name).unsafe_val)
+        else :
+          set_text.append(base_qid.choices[getattr(eachRow, col_name).val].text)
+
+    if set_text :
+      set_qid.attr(eachRow.label).val = ' '.join(set_text)
 </exec>
 
 <radio 
