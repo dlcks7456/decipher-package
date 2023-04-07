@@ -1,16 +1,54 @@
 <snippet>
     <content><![CDATA[
-<style label="bmCss" name="page.head"><![CDATA[
+<note>bmJS는 최초 선언 문항에 옮겨넣을 것</note>
+<style label="bmJS" name="question.after"><![CDATA[
 <style>
-select{
-  max-width:200px !important;
+.select-disabled{
+    opacity: 50%;
+    pointer-events: none;
 }
+.grid-list-mode .row-elements{
+  max-width : 380px;
+}
+
+.row-elements+.row-elements, .row-elements+.row-group{
+  margin-top : 0 !important;
+}
+
+.grid-list-mode tbody:nth-child(2){
+  display: flex;
+  gap: 10px;
+}
+\@media all and (max-width: 800px){
+  .grid-list-mode tbody:nth-child(2){
+    flex-direction: column;
+  }
+}
+
+.cell-text{
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.fir-select{
+  width : 100%;
+}
+
+.dropdown{
+  min-width: 100% !important;
+}
+
+.indent-1 {
+  padding-right: 1.167em;
+}
+
 .select-oe-div{
   margin-top: 5px;
 }
+
 .other-open{
   border-radius: 5px;
-  max-width:200px !important;
+  width : 100% !important;
 }
 .input-disabled {
   pointer-events: none;
@@ -42,11 +80,137 @@ select{
 .none-input .fir-hidden{
   left: auto !important;
 }
-  </style>
+</style>
+<script>
+window.addEventListener("DOMContentLoaded", function(){
+  const brands = document.querySelectorAll(".brand select");
+  const models = document.querySelectorAll(".model select");
+  const modelOptions = [...models].map((item)=>{
+    return [...item.options].map((option) => option.cloneNode(true));
+  });
+  
+  const nones = document.querySelectorAll(".none-input");
+
+  const hideModel = (brandSelect, brandIndex, modelSelect, backUpModel) => {
+
+      const brand = brandIndex !== null ? brandSelect.options[brandIndex] : null;
+      const brandCode = brand !== null ? brand.dataset.brand : null;
+      
+      modelSelect.selectedIndex = 0;
+      
+      [...modelSelect.options].slice(1).forEach( (model, index) => {
+          model.parentNode.removeChild(model);
+      });
+
+      [...backUpModel].slice(1).forEach((model)=>{
+        if( model.dataset.brand == brandCode ){
+          modelSelect.appendChild(model);
+        }
+      });
+      if( brandSelect.selectedIndex === 0 ){
+        modelSelect.classList.add('select-disabled');
+      }else{
+        modelSelect.classList.remove('select-disabled');
+      }
+  };
+
+  const openHandler = (event, currSelect) => {
+      const selectedOption = currSelect.options[currSelect.selectedIndex];
+      const openClassName = currSelect.dataset.open;
+      const openInput = document.querySelector(openClassName);
+      if( !openInput ) return;
+
+      const openFlag = selectedOption.dataset.oe;
+      if( !openFlag ){
+          openInput.disabled = true;
+          openInput.classList.add("input-disabled");
+          return;
+      }
+      openInput.disabled = false;
+      openInput.classList.remove("input-disabled");
+      if( event.type === "change" ){
+        openInput.focus();
+      }
+  };
+
+  const noneHandler = (noneChk, index)=>{
+    const brand = brands[index];
+    const model = models[index];
+    const items = [brand, model];
+
+    if( noneChk.checked ){
+      items.forEach( (item)=>{
+        const openInput = document.querySelector(item.dataset.open);
+        const selectedIndex = item.selectedIndex;
+        const oeCheck = item.options[selectedIndex].dataset.oe;
+
+        item.classList.add("input-disabled");
+        item.disabled = true;
+
+        if( oeCheck ){
+          openInput.classList.add("input-disabled");
+          openInput.disabled = true;
+        }
+      })
+    }else{
+      items.forEach( (item)=>{
+        const openInput = document.querySelector(item.dataset.open);
+        const selectedIndex = item.selectedIndex;
+        const oeCheck = item.options[selectedIndex].dataset.oe;
+
+        item.classList.remove("input-disabled");
+        item.disabled = false;
+
+        if( oeCheck ){
+          openInput.classList.remove("input-disabled");
+          openInput.disabled = false;
+        }
+      })
+    }
+  }
+
+  brands.forEach( (item, index) => {
+      const modelSelect = models[index];
+      const backUpModel = modelOptions[index];
+      item.addEventListener("change", (event) => {
+          const brandSelected = item.selectedIndex;
+          if( modelSelect.selectedIndex ){
+            const openClassName = modelSelect.dataset.open;
+            const openInput = document.querySelector(openClassName);
+            if( openInput ){
+              openInput.disabled = true;
+              openInput.classList.add("input-disabled");
+            }
+          }
+          modelSelect.selectedIndex = 0;
+          openHandler(event, item);
+          hideModel(item, item.selectedIndex, modelSelect, backUpModel);
+      });
+      modelSelect.addEventListener("change", (event)=>{
+        openHandler(event, modelSelect)
+      });
+      hideModel(item, item.selectedIndex, modelSelect, backUpModel);
+      openHandler(event, item);
+      openHandler(event, modelSelect);
+  });
+
+  nones.forEach( (none, index)=>{
+    const noneChk = none.querySelector("input[type=checkbox]");
+    none.addEventListener("click", ()=>{
+        noneHandler(noneChk, index);
+    });
+    noneHandler(noneChk, index);
+  });
+});
+</script>
 ]]${-1}></style>
 
 <style label="bmHeader" name="el.select.header"><![CDATA[
+\@if col.label == 'model'
+<select name="\$(name)" id="\$(id)" class="input dropdown \${'' if \$(this.label).attr(row.label).attr(col.label).any else 'select-disabled'}" \$(extra) data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)">
+\@else
 <select name="\$(name)" id="\$(id)" class="input dropdown" \$(extra) data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)">
+\@endif
 ]]${-1}></style>
 <style label="brandSelect" cols="brand" name="el.select.element"><![CDATA[
 \@if 'br' in choice.label
@@ -55,7 +219,7 @@ select{
 ]]${-1}></style>
 <style label="modelSelect" cols="model" name="el.select.element"><![CDATA[
 \@if 'md' in choice.label
-<option value="\$(value)" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""} hidden" data-brand="\${choice.value//100}" data-model="\$(choice.value)" \${'data-oe="1"' if hasattr(BMbase.attr(choice.label), 'open') else ""}>\$(text)</option>
+<option value="\$(value)" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}" data-brand="\${choice.value//100}" data-model="\$(choice.value)" \${'data-oe="1"' if hasattr(BMbase.attr(choice.label), 'open') else ""}>\$(text)</option>
 \@endif
 ]]${-1}></style>
 <style label="bmLeft" name="question.left"><![CDATA[
@@ -72,115 +236,6 @@ select{
 <style label="bmFooter" name="el.select.footer"><![CDATA[
 </select>
 <div class="select-oe-div \$(this.label)oe-\$(row.index)-\$(col.index)-div"></div>
-]]${-1}></style>
-<style label="bmJS" name="question.after" wrap="ready"><![CDATA[
-const brands = document.querySelectorAll(".brand select");
-const models = document.querySelectorAll(".model select");
-const nones = document.querySelectorAll(".none-input");
-
-const hideModel = (brandSelect, brandIndex, modelSelect) => {
-    const brand = brandIndex !== null ? brandSelect.options[brandIndex] : null;
-    const brandCode = brand !== null ? brand.dataset.brand : null;
-    const modelOptions = modelSelect.options;
-    
-    Array.from(modelOptions).slice(1).forEach( (model) => {
-        if( model.dataset.brand == brandCode ){
-            model.classList.remove("hidden");
-            model.disabled = false;
-        }else{
-            model.classList.add("hidden");
-            model.disabled = true;
-            modelSelect.appendChild(model);
-        }
-    })
-};
-
-const openHandler = (event, currSelect) => {
-    const selectedOption = currSelect.options[currSelect.selectedIndex];
-    const openClassName = currSelect.dataset.open;
-    const openInput = document.querySelector(openClassName);
-    if( !openInput ) return;
-
-    const openFlag = selectedOption.dataset.oe;
-    if( !openFlag ){
-        openInput.disabled = true;
-        openInput.classList.add("input-disabled");
-        return;
-    }
-    openInput.disabled = false;
-    openInput.classList.remove("input-disabled");
-    if( event.type === "change" ){
-      openInput.focus();
-    }
-};
-
-const noneHandler = (noneChk, index)=>{
-  const brand = brands[index];
-  const model = models[index];
-  const items = [brand, model];
-
-  if( noneChk.checked ){
-    items.forEach( (item)=>{
-      const openInput = document.querySelector(item.dataset.open);
-      const selectedIndex = item.selectedIndex;
-      const oeCheck = item.options[selectedIndex].dataset.oe;
-
-      item.classList.add("input-disabled");
-      item.disabled = true;
-
-      if( oeCheck ){
-        openInput.classList.add("input-disabled");
-        openInput.disabled = true;
-      }
-    })
-  }else{
-    items.forEach( (item)=>{
-      const openInput = document.querySelector(item.dataset.open);
-      const selectedIndex = item.selectedIndex;
-      const oeCheck = item.options[selectedIndex].dataset.oe;
-
-      item.classList.remove("input-disabled");
-      item.disabled = false;
-
-      if( oeCheck ){
-        openInput.classList.remove("input-disabled");
-        openInput.disabled = false;
-      }
-    })
-  }
-}
-
-brands.forEach( (item, index) => {
-    const modelSelect = models[index];
-    item.addEventListener("change", (event) => {
-        const brandSelected = item.selectedIndex;
-        if( modelSelect.selectedIndex ){
-          const openClassName = modelSelect.dataset.open;
-          const openInput = document.querySelector(openClassName);
-          if( openInput ){
-            openInput.disabled = true;
-            openInput.classList.add("input-disabled");
-          }
-        }
-        modelSelect.selectedIndex = 0;
-        openHandler(event, item);
-        hideModel(item, item.selectedIndex, modelSelect);
-    });
-    modelSelect.addEventListener("change", (event)=>{
-      openHandler(event, modelSelect)
-    });
-    hideModel(item, item.selectedIndex, modelSelect);
-    openHandler(event, item);
-    openHandler(event, modelSelect);
-});
-
-nones.forEach( (none, index)=>{
-  const noneChk = none.querySelector("input[type=checkbox]");
-  none.addEventListener("click", ()=>{
-      noneHandler(noneChk, index);
-  });
-  noneHandler(noneChk, index);
-});
 ]]${-1}></style>
 <style label="bmOpen" name="el.text"><![CDATA[
 <input type="text" name="\$(name)" id="\$(id)" class="\$(this.label)-\$(row.index)-\$(col.index) other-open \${"" if value else "input-disabled"}" value="\$(value)" size="\$(size)" \${"" if value else "disabled"} placeholder="\${this.styles.ss.postText or ""}"/>

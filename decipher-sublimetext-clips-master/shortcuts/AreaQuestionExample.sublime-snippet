@@ -1,9 +1,8 @@
 <snippet>
 	<content><![CDATA[
-<select
-  label="${1}"
-  optional="0">
-  <title>귀하의 현재 <strong><u>거주지</u></strong>는 어디입니까?</title>
+<select 
+  label="${1}">
+  <title>${2}</title>
   <validate>
 do = this.choices[this.r1.val].value
 gu = this.choices[this.r2.val].value // 100
@@ -11,25 +10,36 @@ gu = this.choices[this.r2.val].value // 100
 if not do == gu :
   error(res.chk_plz, row=this.r2)
   </validate>
+
 <style name="page.head"><![CDATA[
 <style>
 .select-disabled{
     opacity: 50%;
     pointer-events: none;
 }
+.dropdown{
+  transition: opacity 0.5s;
+}
 </style>
 ]]${-1}></style>
-<style name='el.select.element' rows="r1"> <![CDATA[
+<style name='el.select.header'> <![CDATA[
+\@if row.label == 'r2'
+<select name="\$(name)" id="\$(id)" class="input dropdown \${'' if \$(this.label).attr(row.label).any else 'select-disabled'}" \$(extra)>
+\@else
+<select name="\$(name)" id="\$(id)" class="input dropdown" \$(extra)>
+\@endif
+]]${-1}></style>
+      <style name="el.select.element" rows="r1"><![CDATA[
 \@if 'do' in choice.label
 <option value="\$(value)" \$(selected) data-do="\${choice.value}" class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}">\$(text)</option>
 \@endif
 ]]${-1}></style>
-<style name='el.select.element' rows="r2"> <![CDATA[
+      <style name="el.select.element" rows="r2"><![CDATA[
 \@if 'gu' in choice.label
 <option value="\$(value)" data-do="\${choice.value//100}" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}">\$(text)</option>
 \@endif
 ]]${-1}></style>
-<style name="question.after" wrap="ready"><![CDATA[
+      <style name="question.after" wrap="ready"><![CDATA[
 const baseSelect = document.querySelector('.base-select');
 const base = baseSelect.querySelector('select');
 let baseSelected = base.selectedIndex;
@@ -37,6 +47,9 @@ let baseCode = base.options[baseSelected].dataset.do;
 
 const mutateSelect = document.querySelector('.mutate-select');
 const mutate = mutateSelect.querySelector('select');
+const backUpMutate = [...mutate.options].slice(1).map((item)=>{
+  return item.cloneNode(true);
+})
 
 const selectHandle = ()=>{
   baseCode = base.options[baseSelected].dataset.do;
@@ -47,16 +60,13 @@ const selectHandle = ()=>{
 
   [...mutate.options].forEach((item, index)=>{
     if( index === 0 ) return;
-    item.disabled = true;
-    item.style.display = 'none';
+    item.parentNode.removeChild(item);
 
-    const itemData = item.dataset.do;
-    if( itemData === baseCode ){
-      item.disabled = false;
-      item.style.display = '';
-    }else{
-      mutate.appendChild(item);
-    }
+    [...backUpMutate].forEach((backupItem)=>{
+      if( backupItem.dataset.do === baseCode ){
+        mutate.appendChild(backupItem);
+      }
+    });
   });
 }
 
@@ -73,16 +83,17 @@ const selectOnChange = ()=>{
 }
 
 // default 
-if( mutate.selectedIndex != 0 ){
+if( base.selectedIndex != 0 ){
   selectHandle();
+  mutate.classList.remove('select-disabled');
 }else{
   mutate.classList.add('select-disabled');
 }
 
 baseSelect.onchange = selectOnChange;
 ]]${-1}></style>
-  <row label="r1" value="1" ss:rowClassNames="base-select">도/시</row>
-  <row label="r2" value="2" ss:rowClassNames="mutate-select animate__animated">군/구</row>
+  <row label="r1" ss:rowClassNames="base-select" value="1">도</row>
+  <row label="r2" ss:rowClassNames="mutate-select" value="2">시/군/구</row>
   <choice label="do1" value="1">서울특별시</choice>
   <choice label="do2" value="2">부산광역시</choice>
   <choice label="do3" value="3">대구광역시</choice>
@@ -328,6 +339,7 @@ baseSelect.onchange = selectOnChange;
   <choice label="gu1601" value="1601">제주시</choice>
   <choice label="gu1602" value="1602">서귀포시</choice>
 </select>
+
 <suspend/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
