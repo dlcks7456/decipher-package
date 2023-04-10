@@ -1,27 +1,23 @@
 <snippet>
 	<content><![CDATA[
-<style label="grid_to_sort_group" name="question.after" arg:colCnt="1"><![CDATA[
+<style name="question.after" arg:colCnt="1"><![CDATA[
 <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel" src="[rel GridRankSort.js]"></script>
 <script type="text/babel">
-const group_info = [
-\@for eachRow in this.rows
-[\${eachRow.index}, '\${eachRow.group.label}', '\${eachRow.group.text}'],
-\@end
-];
 SettingGridRankSort({
 	json: \${jsexport()}, 
 	defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None]}, 
-	groups: group_info, 
-	colCnt : \$(colCnt)
+	colCnt: \$(colCnt),
+	noneIndex : \${\$(this.label).r99.index},
+	ableNone : 2
 });
 </script>
 ]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>custom.rank.group</tabTrigger>
+	<tabTrigger>custom.rank.none</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

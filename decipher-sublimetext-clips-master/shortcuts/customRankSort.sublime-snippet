@@ -6,7 +6,11 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel" src="[rel GridRankSort.js]"></script>
 <script type="text/babel">
-SettingGridRankSort({json: \${jsexport()}, defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None]}, colCnt: \$(colCnt)});
+SettingGridRankSort({
+	json: \${jsexport()}, 
+	defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None]}, 
+	colCnt: \$(colCnt)
+});
 </script>
 ]]${-1}></style>
 ]]></content>
