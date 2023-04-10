@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style label="grid_to_sort_group" name="question.after"><![CDATA[
+<style label="grid_to_sort_group" name="question.after" arg:colCnt="1"><![CDATA[
 <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -11,7 +11,7 @@ const group_info = [
 [\${eachRow.index}, '\${eachRow.group.label}', '\${eachRow.group.text}'],
 \@end
 ];
-SettingGridRankSort(\${jsexport()}, \${[v.val for v in \$(this.label).cols if not v.val == None]}, group_info);
+SettingGridRankSort({json: \${jsexport()}, defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None]}, groups: group_info, colCnt : \$(colCnt)});
 </script>
 ]]${-1}></style>
 ]]></content>
