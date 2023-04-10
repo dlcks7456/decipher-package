@@ -92,8 +92,8 @@ if( base.selectedIndex != 0 ){
 
 baseSelect.onchange = selectOnChange;
 ]]${-1}></style>
-  <row label="r1" ss:rowClassNames="base-select" value="1">도</row>
-  <row label="r2" ss:rowClassNames="mutate-select" value="2">시/군/구</row>
+  <row label="r1" ss:rowClassNames="base-select" value="1">도/시</row>
+  <row label="r2" ss:rowClassNames="mutate-select" value="2">군/구</row>
   <choice label="do1" value="1">서울특별시</choice>
   <choice label="do2" value="2">부산광역시</choice>
   <choice label="do3" value="3">대구광역시</choice>
