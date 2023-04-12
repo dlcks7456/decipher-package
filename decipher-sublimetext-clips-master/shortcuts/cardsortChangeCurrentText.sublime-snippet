@@ -1,0 +1,42 @@
+<snippet>
+	<content><![CDATA[
+<style label="cardsort_current_card" name="question.after" wrap="ready"><![CDATA[
+/* <span class="cardsort-show-text"> enter this tag in the title </span> */
+const setTextSpan = document.querySelector('.cardsort-show-text');
+
+const showText = ()=>{
+  console.log(1);
+  const cards = document.querySelectorAll('.sq-cardsort-card');
+  const progress = document.querySelector('.sq-cardsort-progress').innerText.split('/');
+  const currentCard = progress[0];
+  if( currentCard === '-' ){
+    return;
+  }
+
+  const currentCardIndex = parseInt(currentCard)-1;
+  const currentText = cards[currentCardIndex].querySelector('p').innerText;
+  setTextSpan.innerText = currentText.trim();
+}
+
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(mutation => {
+    if (mutation.type === "attributes" && mutation.attributeName === "style") {
+      showText();
+    }
+  });
+});
+
+const config = {
+  attributes: true,
+  attributeFilter: ["style"],
+  subtree: true
+};
+
+observer.observe(document.querySelector('.label_\$(this.label)'), config);
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>cardsort.show.text</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
