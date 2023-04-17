@@ -62,6 +62,11 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
 
             }
         }
+        if( !answers.includes(row.index) ){
+            if( !isNoanswer ){
+                setIsSelected(false);
+            }
+        }
     }, [answers]);
 
     const [errRows, setErrRows] = React.useState(errors.map((err)=>{
@@ -325,7 +330,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     align-content: center;
     align-items: center;
     min-height: 50px;
-    max-height : 120px;
+    // max-height : 120px;
 }
 
 .rank-text {
@@ -351,86 +356,190 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     width : 100%;
     max-width : 900px;
 }
+
+.show-answers {
+    position : fixed;
+    top : 0;
+    left : 0;
+    background-color : #fbfbfb;
+    font-size : 1rem;
+    min-height : 120px;
+    padding : 5px;
+    display: flex;
+    flex-direction : column;
+    gap : 8px;
+    overflow : hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    z-index : 999;
+    transform : translateY(-100px);
+    opacity : 0;
+    animation : showAnswersAnimation 1s forwards;
+    width : 100%;
+    margin-bottom : 20px;
+    padding-top: 20px;
+}
+
+// @media (min-width: 750px) {
+//     .show-answers{
+//         display : none;
+//     }
+// }
+
+@keyframes showAnswersAnimation {
+    0% {
+        transform : translateY(-100px);
+        opacity : 0;
+    }
+    100% {
+        transform : translateY(0px);
+        opacity : 1;
+    }
+}
+
+.show-answers .answers-text{
+    display : flex;
+    gap: 8px;
+    animation : answersTextFadeIn 1s forwards;
+    align-items: center;
+    cursor: pointer;
+}
+
+@keyframes answersTextFadeIn {
+    0% {
+        opacity : 0;
+    }
+    100% {
+        opacity : 1;
+    }
+}
+
+.answers-text .answer-x{
+    width : 30px;
+    height : 30px;
+    transition : color 0.4s;
+}
+
+.answers-text:hover{
+    color : #e7046f;
+}
+
+.answers-text .answer-rank-text{
+    font-weight: bold;
+    pointer-events: none;
+    transition : color 0.4s;
+}
+
+.answers-text .answer-row-text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width : 80%;
+    pointer-events: none;
+    transition : color 0.4s;
+}
 `}
         </style>
-        <div className="custom-rank-sort">
-            {setGroupRows.length > 0 ? (
-                setGroupRows.map((group, groupIndex)=>{
-                  return (
-                        <div key={groupIndex}
-                            className="animate__animated animate__fadeIn rank-group">
-                            <div className="rank-group-title">{group[2]}</div>
-                            <div className="rank-group-div">
-                            {rows.filter((row)=> group[0].includes(row.index) && row.index !== noneIndex).map((row, index)=>{
-                                return (
-                                    <RankBtn 
-                                        key={row.index} 
-                                        idx={index}
-                                        row={row} 
-                                        answers={rankAnswers} 
-                                        setAnswers={setRankAnswers} 
-                                        answerComplete={answerCompleted}
-                                        noAnswer={noAnswer}
-                                        setAnswerComple={setAnswerCompleted}
-                                        errors={errors}/>
-                                    )
-                            })}
-                            </div>
+            {rankAnswers.length > 0 ? (
+                <div className="show-answers">
+                    {rankAnswers.map((answer, index)=>{
+                        const filtRowsAnswer = rows.filter(row=> row.index === answer);
+                        const getOnlyText = document.createElement('div');
+                        getOnlyText.innerHTML = filtRowsAnswer[0].text;
+                        const onlyText = getOnlyText.innerText;
+                        return (
+                        <div className="answers-text" key={index}
+                            onClick={()=>{
+                                const removeAnswr = rankAnswers.filter((item)=> item !== answer);
+                                setRankAnswers(removeAnswr);
+                            }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="answer-x">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div className="answer-rank-text">{cols[index].text}</div>
+                            <div className="answer-row-text">{onlyText}</div>
                         </div>
-                  )  
-                })
-            ) : (
-                rows.filter((row)=> row.index !== noneIndex).map((row, index)=>{
+                        )
+                    })}
+                </div>
+            ) : null}
+            <div className="custom-rank-sort">
+                {setGroupRows.length > 0 ? (
+                    setGroupRows.map((group, groupIndex)=>{
+                    return (
+                            <div key={groupIndex}
+                                className="animate__animated animate__fadeIn rank-group">
+                                <div className="rank-group-title">{group[2]}</div>
+                                <div className="rank-group-div">
+                                {rows.filter((row)=> group[0].includes(row.index) && row.index !== noneIndex).map((row, index)=>{
+                                    return (
+                                        <RankBtn 
+                                            key={row.index} 
+                                            idx={index}
+                                            row={row} 
+                                            answers={rankAnswers} 
+                                            setAnswers={setRankAnswers} 
+                                            answerComplete={answerCompleted}
+                                            noAnswer={noAnswer}
+                                            setAnswerComple={setAnswerCompleted}
+                                            errors={errors}/>
+                                        )
+                                })}
+                                </div>
+                            </div>
+                    )  
+                    })
+                ) : (
+                    rows.filter((row)=> row.index !== noneIndex).map((row, index)=>{
+                        return (
+                            <RankBtn 
+                                key={row.index} 
+                                idx={index}
+                                row={row} 
+                                answers={rankAnswers} 
+                                setAnswers={setRankAnswers} 
+                                answerComplete={answerCompleted}
+                                noAnswer={noAnswer}
+                                setAnswerComple={setAnswerCompleted}
+                                errors={errors}/>
+                            )
+                    })
+                )}
+            </div>
+            <div className="rank-noanswers">
+                { showNone ? (
+                    rows.filter((row)=> row.index === noneIndex).map((row, index)=>{
+                        return (
+                            <RankBtn 
+                                key={row.index} 
+                                idx={index}
+                                row={row} 
+                                answers={rankAnswers} 
+                                setAnswers={setRankAnswers} 
+                                answerComplete={answerCompleted}
+                                noAnswer={noAnswer}
+                                setAnswerComple={setAnswerCompleted}
+                                errors={errors}/>
+                            )
+                    })
+                ) : null }
+                {noanswers.map((noanswer, index)=>{
                     return (
                         <RankBtn 
-                            key={row.index} 
+                            key={index} 
                             idx={index}
-                            row={row} 
+                            row={noanswer}
+                            groups={setGroupRows}
                             answers={rankAnswers} 
                             setAnswers={setRankAnswers} 
                             answerComplete={answerCompleted}
-                            noAnswer={noAnswer}
                             setAnswerComple={setAnswerCompleted}
+                            noAnswerFnc={noAnswerSelect}
+                            isNoanswer={true}
                             errors={errors}/>
                         )
-                })
-            )}
-        </div>
-        <div className="rank-noanswers">
-            { showNone ? (
-                rows.filter((row)=> row.index === noneIndex).map((row, index)=>{
-                    return (
-                        <RankBtn 
-                            key={row.index} 
-                            idx={index}
-                            row={row} 
-                            answers={rankAnswers} 
-                            setAnswers={setRankAnswers} 
-                            answerComplete={answerCompleted}
-                            noAnswer={noAnswer}
-                            setAnswerComple={setAnswerCompleted}
-                            errors={errors}/>
-                        )
-                })
-            ) : null }
-            {noanswers.map((noanswer, index)=>{
-                return (
-                    <RankBtn 
-                        key={index} 
-                        idx={index}
-                        row={noanswer}
-                        groups={setGroupRows}
-                        answers={rankAnswers} 
-                        setAnswers={setRankAnswers} 
-                        answerComplete={answerCompleted}
-                        setAnswerComple={setAnswerCompleted}
-                        noAnswerFnc={noAnswerSelect}
-                        isNoanswer={true}
-                        errors={errors}/>
-                    )
-            })}
-            <HiddenInputs uid={`ans${uid}`} qid={label} cols={cols} answers={rankAnswers} noAnswers={noanswers} noAnswerCheck={noAnswer}/>
-        </div>
+                })}
+                <HiddenInputs uid={`ans${uid}`} qid={label} cols={cols} answers={rankAnswers} noAnswers={noanswers} noAnswerCheck={noAnswer}/>
+            </div>
         </>
     )
 }
