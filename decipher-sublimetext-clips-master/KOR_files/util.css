@@ -12,10 +12,19 @@
 .hidden{display: none !important;}
 
 .comment-box{
-  width: 100%;
-  max-width: 924px;
-  padding: 10px;
-  border: 1px solid #ccc;
+  border : 1px solid #ccc;
+  border-radius: 10px;
+  width : 100%;
+  max-width : 924px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  border-radius: 5px;
+  padding : 10px;
+  margin-top : 30px;
+  margin-bottom : 30px;
 }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+

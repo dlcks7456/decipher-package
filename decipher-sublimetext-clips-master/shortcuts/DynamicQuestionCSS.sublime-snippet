@@ -1,0 +1,53 @@
+<snippet>
+  <content><![CDATA[
+.sq-cardsort-bucket-count{display: none !important;}
+
+.sq-cardrating-widget{
+  width: 924px !important; 
+}
+
+.sq-cardrating-content{
+  font-size: 1.2rem !important;
+}
+
+.sq-cardrating-bar[data-active], .sq-cardrating-bar{
+  background-color: black !important;
+}
+
+\@media all and (min-width: 750px){
+ .sq-cardrating-content{
+  font-size: 1.4rem !important;
+ }
+}
+
+.sq-sliderpoints-container{
+  max-width: 900px;
+}
+
+.sq-sliderpoints-container{
+  margin-left: 0 !important;
+}
+
+.dq-imgupload{
+  max-width: 924px;
+}
+
+.sq-accordion-row{
+  max-width: 924px !important;
+  font-size: 1.2rem;
+}
+
+.sq-cardsort{
+  margin: 0 !important;
+  max-width: 924px;
+}
+
+[data-viewsize=small] [data-viewmode=horizontal] .sq-cardrating-button{
+  max-height: 50px;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dq.css</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

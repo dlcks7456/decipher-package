@@ -1,5 +1,6 @@
 import sublime, sublime_plugin, re, operator
 from itertools import product
+import html
 
 def returnContext(self):
     returnString = self.view.find('surveyType=(.*)',0)
@@ -1137,6 +1138,18 @@ class loopLabelCommand(sublime_plugin.TextCommand):
                     textr = self.view.substr(sels)
                     set_text = f'[loopvar: {textr}]'
                 self.view.replace(edit,sels, set_text)
+                
+            except Exception as e:
+                print (e) 
+
+
+class entityCommand(sublime_plugin.TextCommand):
+        def run (self, edit):
+            try:
+                sels = self.view.sel()[0]
+                textr = self.view.substr(sels)
+                textr = html.escape(textr)
+                self.view.replace(edit,sels, textr)
                 
             except Exception as e:
                 print (e) 

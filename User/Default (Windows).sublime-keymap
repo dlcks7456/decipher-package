@@ -68,5 +68,12 @@
               "key": "selector", "operator": "equal", "operand":"text.xml"
             }
         ]
+    },
+    { 
+        "keys": ["ctrl+shift+e"], "command": "entity", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.xml"
+            }
+        ]
     }
 ]
