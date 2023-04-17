@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style name="question.after" arg:colCnt="1"><![CDATA[
+<style name="question.after" arg:colCnt="1" arg:ableNone="2"><![CDATA[
 <style>
 .grid-table-mode, .grid-list-mode{
 	display: none !important;
@@ -16,7 +16,7 @@ SettingGridRankSort({
 	defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None]}, 
 	colCnt: \$(colCnt),
 	noneIndex : \${\$(this.label).r99.index},
-	ableNone : 2
+	ableNone : \$(ableNone)
 });
 </script>
 ]]${-1}></style>
