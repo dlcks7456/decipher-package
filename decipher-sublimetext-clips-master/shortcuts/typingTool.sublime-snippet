@@ -1,0 +1,79 @@
+<snippet>
+  <content><![CDATA[
+<exec when="init">
+def algorithmSetup(fname, fDelimiter="\t"):
+    try:
+        f = open("%s/%s" % (gv.survey.path, fname))
+        algObj = [ line.strip("\r\n").split(fDelimiter) for line in f.readlines() ]
+
+        algorithmObj = {}
+
+        #Number of Segments
+        algorithmObj['segments'] = len(algObj[0])
+
+        #Create segment:[coefficient + constant]
+        for s in range(algorithmObj['segments']):
+            algorithmObj[s+1] = [float(row[s]) for row in algObj[1:]]
+
+        return algorithmObj
+    except IOError:
+        algorithmObj = {}
+    return algorithmObj
+
+def algorithmCalculation(resp_answers, segment_coeff):
+    return sum(i*j for i,j in zip(resp_answers, segment_coeff)) + segment_coeff[-1]
+
+def algorithmRaw(answers, algorithmObj):
+    computation = [ algorithmCalculation(answers, algorithmObj[c]) for c in range(1, algorithmObj['segments'] + 1) ]
+    return computation
+
+def algorithmCompute(answers, algorithmObj):
+    computation = [ algorithmCalculation(answers, algorithmObj[c]) for c in range(1, algorithmObj['segments'] + 1) ]
+    maxValue = max(computation)
+    return computation.index(maxValue) + 1
+
+
+myalg = algorithmSetup("${1:algorithm}.dat")
+</exec>
+
+<suspend/>
+
+<exec>
+p.resp_answers = [row.map(c1=1, c2=2, c3=3, c4=4, c5=5) for row in ${2:[QID]}.rows]
+print "Participant Answers: %s" % p.resp_answers
+
+#Populate the Raw Calculations
+for i,x in enumerate(algorithmRaw(p.resp_answers, myalg)):
+    ${2:[QID]}_RAW.rows[i].val = str(x)
+
+#Populate the Segment Assigned
+${2:[QID]}_SEG.val = algorithmCompute(p.resp_answers, myalg) - 1
+</exec>
+
+<define label="${2:[QID]}_seg_list">
+${3}
+</define>
+
+<text 
+label="${2:[QID]}_RAW"
+size="40"
+where="execute,survey,report">
+  <title>(HIDDEN) Typing Tool RAW</title>
+  <insert source="${2:[QID]}_seg_list"/>
+</text>
+
+<radio 
+label="${2:[QID]}_SEG"
+optional="1"
+where="execute,survey,report">
+  <title>(HIDDEN) Typing Tool SEG</title>
+  <insert source="${2:[QID]}_seg_list"/>
+</radio>
+
+<suspend/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>typing.tool</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

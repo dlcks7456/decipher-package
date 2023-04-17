@@ -1,0 +1,141 @@
+<snippet>
+  <content><![CDATA[
+<style name="respview.client.css"><![CDATA[
+<link rel="shortcut icon" href="/survey/selfserve/NIQ.svg" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="[rel util.css]"/>
+<style>
+\@keyframes initPage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#primary{
+    animation: initPage 0.3s ease-in-out forwards;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hangle-span{color:#e7046f;border:0;text-align:right;width:200px; }
+.han-input-div{display: flex; gap: 10px;}
+
+\@media all and (max-width: 750px){
+  .han-input-div{
+      display: block;
+      gap: 0px;
+  }
+}
+.non-touch .fir-icon:hover .rounded .fir-selected, .non-touch .fir-icon:hover .square .fir-selected, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .rounded .fir-selected, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .square .fir-selected { fill: black !important; }
+
+.sq-cardsort-bucket-count{display: none !important;}
+
+.sq-cardrating-widget{
+  width: 924px !important; 
+}
+
+.sq-cardrating-content{
+  font-size: 1.2rem !important;
+}
+
+.sq-cardrating-bar[data-active], .sq-cardrating-bar{
+  background-color: black !important;
+}
+
+\@media all and (min-width: 750px){
+ .sq-cardrating-content{
+  font-size: 1.4rem !important;
+ }
+}
+
+.sq-sliderpoints-container{
+  max-width: 900px;
+}
+
+.sq-sliderpoints-container{
+  margin-left: 0 !important;
+}
+
+/*
+.sq-cardrating-button{
+  max-width: 85px !important;
+}
+*/
+
+.dq-imgupload{
+  max-width: 924px;
+}
+
+.sq-accordion-row{
+  max-width: 924px !important;
+  font-size: 1.2rem;
+}
+
+.sq-cardsort{
+  margin: 0 !important;
+  max-width: 924px;
+}
+
+.input-max-width input[type=number]{
+  max-width: 80px !important;
+  min-width: 70px !important;
+}
+
+[data-viewsize=small] [data-viewmode=horizontal] .sq-cardrating-button{
+  max-height: 50px;
+}
+
+.gridRank .grid{
+    display: none !important;
+}
+
+.comment-box{
+  border : 1px solid #ccc;
+  border-radius: 10px;
+  width : 100%;
+  max-width : 924px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  padding : 10px;
+  margin-top : 30px;
+  margin-bottom : 30px;
+}
+
+.grid-list-mode .row-elements{
+  border : 1px solid #ccc;
+  padding : 10px;
+  border-radius : 10px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.grid-list-mode .row-legend-left{
+  font-weight : bold;
+  border-bottom : 1px solid #ccc;
+  padding-bottom : 10px;
+}
+.grid-list-mode .row-legend-right{
+  font-weight : bold;
+  border-top : 1px solid #ccc;
+  padding-top : 10px;
+  margin-bottom: 10px;
+}
+
+.grid-list-mode .mobile-group-legend{
+  font-weight : bold;
+  border-bottom : 1px solid #ccc;
+  padding-bottom : 10px;
+  margin-bottom : 10px;
+}
+</style>
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>client.css</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

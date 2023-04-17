@@ -1,0 +1,21 @@
+* { word-break: keep-all; }
+*:lang(ja) {
+  word-break: break-all;
+}
+*:lang(zh-Hans) {
+  word-break: break-all;
+}
+*:lang(zh-Hant-TW) {
+  word-break: break-all;
+}
+
+.hidden{display: none !important;}
+
+.comment-box{
+  width: 100%;
+  max-width: 924px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: 5px;
+}

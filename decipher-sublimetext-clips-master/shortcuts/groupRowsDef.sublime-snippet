@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+def group_rows(question, grouped_rows ):
+    first_item_index = None
+
+    shuffle_order = [row.index for row in question.rows.order]
+
+    for index, row in enumerate( shuffle_order ):
+        if question.rows[row].label in grouped_rows:
+            if first_item_index == None:
+                first_item_index = index
+            else:
+                # As we continue iterating through the shuffle order
+                # each time we reach a row that is in the set of
+                # rows to be grouped together, increment our index
+                # value and move this row into the new position
+                first_item_index += 1
+                shuffle_order.insert( first_item_index, shuffle_order.pop(index) )
+
+    question.rows.order = shuffle_order
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>group.rows</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
