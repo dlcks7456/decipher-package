@@ -1,24 +1,17 @@
 <snippet>
 	<content><![CDATA[
-<style name="question.after" arg:colCnt="1" arg:ableNone="2"><![CDATA[
-<style>
-.grid-table-mode, .grid-list-mode{
-	display: none !important;
-}
-</style>
-<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script type="text/babel" src="[rel GridRankSort.js]"></script>
+<style name="question.after" arg:colCnt="1" arg:ableNone="2" arg:showAnswers="true"><![CDATA[
 <script type="text/babel">
 SettingGridRankSort({
 	json: \${jsexport()}, 
 	defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None]}, 
 	colCnt: \$(colCnt),
 	noneIndex : \${\$(this.label).r99.index},
-	ableNone : \$(ableNone)
+	ableNone : \$(ableNone),
+	showAnswers : \$(showAnswers)
 });
 </script>
+<style>.grid-table-mode, .grid-list-mode{display: none !important;}</style>
 ]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

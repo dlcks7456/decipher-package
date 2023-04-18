@@ -184,7 +184,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
 }
 
 
-const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex, ableNone})=>{
+const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex, ableNone, showAnswers})=>{
     const {label, uid, cols, rows, noanswers, errors} = json;
     let orderGroups = [];
     let setGroupRows = [];
@@ -216,7 +216,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     const [rankAnswers, setRankAnswers] = React.useState(defaultValue);
     const [answerCompleted, setAnswerCompleted] = React.useState(false);
     const [noAnswer, setNoAnswer] = React.useState(false);
-
+    const [answerList, setAnswerList] = React.useState([]);
     // None handler
     const [showNone, setShowNone] = React.useState(false);
 
@@ -240,10 +240,27 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
 
         if( rankAnswers.includes(noneIndex) ){
             const dupCheck = [...new Set(rankAnswers)];
-            console.log(dupCheck);
+        
             if( dupCheck.length <= (ableNone-1)){
                 setShowNone(false);
                 setRankAnswers([]);
+            }else{
+                let noneStart = ableNone-1;
+                for(i=0; i<cols.length; i++){
+                    if( rankAnswers[i] !== noneIndex ){
+                        continue
+                    }
+                    if( rankAnswers[i] === noneIndex ){
+                        noneStart = i;
+                        break
+                    }
+                }
+                let prevAnswer = rankAnswers;
+                for(var i=noneStart; i<cols.length; i++){
+                    prevAnswer[i] = noneIndex;
+                }
+                setRankAnswers(prevAnswer);
+                setAnswerCompleted(true);
             }
         }
 
@@ -252,6 +269,8 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
         }else{
             setAnswerCompleted(false);
         }
+
+        setAnswerList(rankAnswers);
     }, [rankAnswers]);
 
     const noAnswerSelect = (flag)=>{
@@ -439,9 +458,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
 }
 `}
         </style>
-            {rankAnswers.length > 0 ? (
+            {showAnswers && answerList.length > 0 ? (
                 <div className="show-answers">
-                    {rankAnswers.map((answer, index)=>{
+                    {answerList.map((answer, index)=>{
                         const filtRowsAnswer = rows.filter(row=> row.index === answer);
                         const getOnlyText = document.createElement('div');
                         getOnlyText.innerHTML = filtRowsAnswer[0].text;
@@ -544,7 +563,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     )
 }
 
-const SettingGridRankSort = ({json, defaultValue, groups=[], colCnt=1, noneIndex=null, ableNone=1})=>{
+const SettingGridRankSort = ({json, defaultValue, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true})=>{
     const root = document.querySelector('.answers');
-    ReactDOM.render(<GridRankSort json={json} defaultValue={defaultValue} gridColumnCount={colCnt} groups={groups} noneIndex={noneIndex} ableNone={ableNone}/>, root);
+    ReactDOM.render(
+        <GridRankSort json={json} defaultValue={defaultValue} gridColumnCount={colCnt} groups={groups} noneIndex={noneIndex} ableNone={ableNone} showAnswers={showAnswers}/>, root
+    );
 }

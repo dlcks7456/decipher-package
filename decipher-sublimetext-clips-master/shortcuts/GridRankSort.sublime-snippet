@@ -1,9 +1,9 @@
 <snippet>
 	<content><![CDATA[
-<style copy="grid_to_sort" name="question.after" arg:colCnt="1" arg:showAnswers="true"/>
+<script type="text/babel" src="[rel gridsort.js]"></script>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>custom.rank.copy</tabTrigger>
+	<tabTrigger>custom.rank.set</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>
