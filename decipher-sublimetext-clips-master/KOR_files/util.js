@@ -133,17 +133,17 @@ function setAnimation(selector, animate, duration){
 }
 
 // radio, checkbox hover animation
-(function(){
+function setFirAnimation(){
   window.addEventListener('load', function(){
     for(i = 0; i < document.getElementsByClassName('fir-selected').length; i++){
       document.getElementsByClassName('fir-base')[i].style.transitionDuration = '0.15s';
       document.getElementsByClassName('fir-selected')[i].style.transitionDuration = '0.15s';
     }
   })
-})();
+}
 
 // text hover bold
-(function(){
+function setHoverTextBold(){
   function fnBoldStyle(){
     for(k = 0; k < document.querySelectorAll('style').length; k++){
       if (document.querySelectorAll('style')[k].getAttribute('media') == null){
@@ -163,7 +163,7 @@ function setAnimation(selector, animate, duration){
       })
     }
   })
-})();
+}
 
 // Slideshow setting
 function slideShowSetting({
