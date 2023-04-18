@@ -1149,6 +1149,8 @@ class entityCommand(sublime_plugin.TextCommand):
                 sels = self.view.sel()[0]
                 textr = self.view.substr(sels)
                 textr = html.escape(textr)
+                textr = textr.replace('[', '〔')
+                textr = textr.replace(']', '〕')
                 self.view.replace(edit,sels, textr)
                 
             except Exception as e:
