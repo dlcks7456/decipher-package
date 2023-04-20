@@ -96,10 +96,6 @@ imgdr = "https://nielsenkor.cafe24.com/Decipher/AD/{}".format(survey_path)
 from datetime import datetime
 import random
 
-def status(condt,label):
-    if condt : 
-      RespStatus.val=getattr(RespStatus,"{}".format(label)).index
-
 def soft_Err(cond, str, high_rows=[], high_cols=[]):
   if cond :
     if p.chk==0 :
@@ -240,27 +236,6 @@ p.chk = 1
 
 <suspend/>
 
-<radio 
-  label="RespStatus"
-  where="execute,survey,report">
-  <title>STATUS</title>
-  <exec>
-#incomplete
-status(True,'r2')
-  </exec>
-
-  <row label="r1" value="1">complete</row>
-  <row label="r2" value="2">incomplete</row>
-  <row label="AgreeC" value="3">Agree-Close</row>
-  <row label="Scr_Video" value="4">Scr_Video</row>
-  <row label="Scr_Audio" value="5">Scr_Audio</row>
-  <row label="r96" value="96">Removed - Over Quota/ Sample</row>
-  <row label="r97" value="97">Removed - QC</row>
-  <row label="r98" value="98">Unsubscribed</row>
-  <row label="r99" value="99">Failed Data Trapping Test</row>
-</radio>
-
-<suspend/>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>client.all</tabTrigger>

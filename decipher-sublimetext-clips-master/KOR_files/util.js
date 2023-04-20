@@ -784,3 +784,130 @@ function fnLengthCheck(_label, _num){
   fnInputCheck();
   document.getElementById('btn_continue').addEventListener('mouseover', fnInputCheck);
 }
+
+
+
+// BM Question JS
+function bmQuestionHanler(questionClassName){
+  const setQuestion = document.querySelector(questionClassName);
+  if( setQuestion === undefined || setQuestion === null ) return;
+  
+  const brands = document.querySelectorAll(".brand select");
+  const models = document.querySelectorAll(".model select");
+  const modelOptions = [...models].map((item)=>{
+    return [...item.options].map((option) => option.cloneNode(true));
+  });
+  
+  const nones = document.querySelectorAll(".none-input");
+
+  const hideModel = (brandSelect, brandIndex, modelSelect, backUpModel) => {
+
+      const brand = brandIndex !== null ? brandSelect.options[brandIndex] : null;
+      const brandCode = brand !== null ? brand.dataset.brand : null;
+      
+      modelSelect.selectedIndex = 0;
+      
+      [...modelSelect.options].slice(1).forEach( (model, index) => {
+          model.parentNode.removeChild(model);
+      });
+
+      [...backUpModel].slice(1).forEach((model)=>{
+        if( model.dataset.brand == brandCode ){
+          modelSelect.appendChild(model);
+        }
+      });
+      if( brandSelect.selectedIndex === 0 ){
+        modelSelect.classList.add('select-disabled');
+      }else{
+        modelSelect.classList.remove('select-disabled');
+      }
+  };
+
+  const openHandler = (event, currSelect) => {
+      const selectedOption = currSelect.options[currSelect.selectedIndex];
+      const openClassName = currSelect.dataset.open;
+      const openInput = document.querySelector(openClassName);
+      if( !openInput ) return;
+
+      const openFlag = selectedOption.dataset.oe;
+      if( !openFlag ){
+          openInput.disabled = true;
+          openInput.classList.add("input-disabled");
+          return;
+      }
+      openInput.disabled = false;
+      openInput.classList.remove("input-disabled");
+      if( event.type === "change" ){
+        openInput.focus();
+      }
+  };
+
+  const noneHandler = (noneChk, index)=>{
+    const brand = brands[index];
+    const model = models[index];
+    const items = [brand, model];
+
+    if( noneChk.checked ){
+      items.forEach( (item)=>{
+        const openInput = document.querySelector(item.dataset.open);
+        const selectedIndex = item.selectedIndex;
+        const oeCheck = item.options[selectedIndex].dataset.oe;
+
+        item.classList.add("input-disabled");
+        item.disabled = true;
+
+        if( oeCheck ){
+          openInput.classList.add("input-disabled");
+          openInput.disabled = true;
+        }
+      })
+    }else{
+      items.forEach( (item)=>{
+        const openInput = document.querySelector(item.dataset.open);
+        const selectedIndex = item.selectedIndex;
+        const oeCheck = item.options[selectedIndex].dataset.oe;
+
+        item.classList.remove("input-disabled");
+        item.disabled = false;
+
+        if( oeCheck ){
+          openInput.classList.remove("input-disabled");
+          openInput.disabled = false;
+        }
+      })
+    }
+  }
+
+  brands.forEach( (item, index) => {
+      const modelSelect = models[index];
+      const backUpModel = modelOptions[index];
+      item.addEventListener("change", (event) => {
+          const brandSelected = item.selectedIndex;
+          if( modelSelect.selectedIndex ){
+            const openClassName = modelSelect.dataset.open;
+            const openInput = document.querySelector(openClassName);
+            if( openInput ){
+              openInput.disabled = true;
+              openInput.classList.add("input-disabled");
+            }
+          }
+          modelSelect.selectedIndex = 0;
+          openHandler(event, item);
+          hideModel(item, item.selectedIndex, modelSelect, backUpModel);
+      });
+      modelSelect.addEventListener("change", (event)=>{
+        openHandler(event, modelSelect)
+      });
+      hideModel(item, item.selectedIndex, modelSelect, backUpModel);
+      openHandler(event, item);
+      openHandler(event, modelSelect);
+  });
+
+  nones.forEach( (none, index)=>{
+    const noneChk = none.querySelector("input[type=checkbox]");
+    none.addEventListener("click", ()=>{
+        noneHandler(noneChk, index);
+    });
+    noneHandler(noneChk, index);
+  });
+}

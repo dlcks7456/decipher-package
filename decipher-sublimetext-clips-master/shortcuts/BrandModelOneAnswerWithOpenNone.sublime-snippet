@@ -4,6 +4,7 @@
 
   <select 
    label="${1}"
+   ss:questionClassNames="bm-question"
    optional="1">
     <title>${2}</title>
     <validate>
@@ -14,7 +15,6 @@ brand_model_check(use_open=True, use_none=True)
     <style cols="model" copy="modelSelect" name="el.select.element"/>
     <style copy="bmLeft" name="question.left"/>
     <style copy="bmFooter" name="el.select.footer"/>
-    <style copy="bmJS" name="question.after" wrap="ready"/>
     <col label="brand" ss:colClassNames="brand">${3}</col>
     <col label="model" ss:colClassNames="model">${4}</col>
     <row label="r1">${5}</row>

@@ -1,209 +1,6 @@
 <snippet>
     <content><![CDATA[
-<note>bmJS는 최초 선언 문항에 옮겨넣을 것</note>
-<style label="bmJS" name="question.after"><![CDATA[
-<style>
-.select-disabled{
-    opacity: 50%;
-    pointer-events: none;
-}
-.grid-list-mode .row-elements{
-  max-width : 380px;
-}
-
-.row-elements+.row-elements, .row-elements+.row-group{
-  margin-top : 0 !important;
-}
-
-.grid-list-mode tbody:nth-child(2){
-  display: flex;
-  gap: 10px;
-}
-\@media all and (max-width: 800px){
-  .grid-list-mode tbody:nth-child(2){
-    flex-direction: column;
-  }
-}
-
-.cell-text{
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.fir-select{
-  width : 100%;
-}
-
-.dropdown{
-  min-width: 100% !important;
-}
-
-.indent-1 {
-  padding-right: 1.167em;
-}
-
-.select-oe-div{
-  margin-top: 5px;
-}
-
-.other-open{
-  border-radius: 5px;
-  width : 100% !important;
-}
-.input-disabled {
-  pointer-events: none;
-  background-color: #e3e2e2 !important;
-}
-.row-text{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: bold;
-}
-\@media all and (max-width: 675px){
- .row-text{
-    align-items: flex-start;
-  }
-}
-.none {
-  display: flex;
-  flex-direction: row;
-  font-size: 1.1rem;
-  font-weight: normal;
-}
-.none-input{
-  margin-left: 5px;
-}
-.none-input .fir-icon{
-  display: none !important;
-}
-.none-input .fir-hidden{
-  left: auto !important;
-}
-</style>
-<script>
-window.addEventListener("DOMContentLoaded", function(){
-  const brands = document.querySelectorAll(".brand select");
-  const models = document.querySelectorAll(".model select");
-  const modelOptions = [...models].map((item)=>{
-    return [...item.options].map((option) => option.cloneNode(true));
-  });
-  
-  const nones = document.querySelectorAll(".none-input");
-
-  const hideModel = (brandSelect, brandIndex, modelSelect, backUpModel) => {
-
-      const brand = brandIndex !== null ? brandSelect.options[brandIndex] : null;
-      const brandCode = brand !== null ? brand.dataset.brand : null;
-      
-      modelSelect.selectedIndex = 0;
-      
-      [...modelSelect.options].slice(1).forEach( (model, index) => {
-          model.parentNode.removeChild(model);
-      });
-
-      [...backUpModel].slice(1).forEach((model)=>{
-        if( model.dataset.brand == brandCode ){
-          modelSelect.appendChild(model);
-        }
-      });
-      if( brandSelect.selectedIndex === 0 ){
-        modelSelect.classList.add('select-disabled');
-      }else{
-        modelSelect.classList.remove('select-disabled');
-      }
-  };
-
-  const openHandler = (event, currSelect) => {
-      const selectedOption = currSelect.options[currSelect.selectedIndex];
-      const openClassName = currSelect.dataset.open;
-      const openInput = document.querySelector(openClassName);
-      if( !openInput ) return;
-
-      const openFlag = selectedOption.dataset.oe;
-      if( !openFlag ){
-          openInput.disabled = true;
-          openInput.classList.add("input-disabled");
-          return;
-      }
-      openInput.disabled = false;
-      openInput.classList.remove("input-disabled");
-      if( event.type === "change" ){
-        openInput.focus();
-      }
-  };
-
-  const noneHandler = (noneChk, index)=>{
-    const brand = brands[index];
-    const model = models[index];
-    const items = [brand, model];
-
-    if( noneChk.checked ){
-      items.forEach( (item)=>{
-        const openInput = document.querySelector(item.dataset.open);
-        const selectedIndex = item.selectedIndex;
-        const oeCheck = item.options[selectedIndex].dataset.oe;
-
-        item.classList.add("input-disabled");
-        item.disabled = true;
-
-        if( oeCheck ){
-          openInput.classList.add("input-disabled");
-          openInput.disabled = true;
-        }
-      })
-    }else{
-      items.forEach( (item)=>{
-        const openInput = document.querySelector(item.dataset.open);
-        const selectedIndex = item.selectedIndex;
-        const oeCheck = item.options[selectedIndex].dataset.oe;
-
-        item.classList.remove("input-disabled");
-        item.disabled = false;
-
-        if( oeCheck ){
-          openInput.classList.remove("input-disabled");
-          openInput.disabled = false;
-        }
-      })
-    }
-  }
-
-  brands.forEach( (item, index) => {
-      const modelSelect = models[index];
-      const backUpModel = modelOptions[index];
-      item.addEventListener("change", (event) => {
-          const brandSelected = item.selectedIndex;
-          if( modelSelect.selectedIndex ){
-            const openClassName = modelSelect.dataset.open;
-            const openInput = document.querySelector(openClassName);
-            if( openInput ){
-              openInput.disabled = true;
-              openInput.classList.add("input-disabled");
-            }
-          }
-          modelSelect.selectedIndex = 0;
-          openHandler(event, item);
-          hideModel(item, item.selectedIndex, modelSelect, backUpModel);
-      });
-      modelSelect.addEventListener("change", (event)=>{
-        openHandler(event, modelSelect)
-      });
-      hideModel(item, item.selectedIndex, modelSelect, backUpModel);
-      openHandler(event, item);
-      openHandler(event, modelSelect);
-  });
-
-  nones.forEach( (none, index)=>{
-    const noneChk = none.querySelector("input[type=checkbox]");
-    none.addEventListener("click", ()=>{
-        noneHandler(noneChk, index);
-    });
-    noneHandler(noneChk, index);
-  });
-});
-</script>
-]]${-1}></style>
+${1:bmQuestionHanler('.bm-question'); // enter in the respview.client.js}
 
 <style label="bmHeader" name="el.select.header"><![CDATA[
 \@if col.label == 'model'
@@ -300,21 +97,37 @@ def brand_model_check(model_unique=True, use_open=False, open_cols=["brand", "mo
           error(res.chk_plz, row=row)
 
 def set_pipe_value(base_qid, set_qid) :
-  for eachRow in base_qid.rows :
-    set_text = []
-    if eachRow.brand.any and eachRow.model.any :
-      brand_label = base_qid.choices[eachRow.brand.val].label
-      model_label = base_qid.choices[eachRow.model.val].label
-    
-      for answer_label, col_name in [(brand_label, 'brand'), (model_label, 'model')] :
-        if hasattr(BMbase.attr(answer_label), 'open') :
-          base_qid_oe = allQuestions['%soe'%(base_qid.label)]
-          set_text.append(getattr(base_qid_oe.attr(eachRow.label), col_name).unsafe_val)
-        else :
-          set_text.append(base_qid.choices[getattr(eachRow, col_name).val].text)
+  if base_qid.rows :
+    for eachRow in base_qid.rows :
+      set_text = []
+      if eachRow.brand.any and eachRow.model.any :
+        brand_label = base_qid.choices[eachRow.brand.val].label
+        model_label = base_qid.choices[eachRow.model.val].label
+      
+        for answer_label, col_name in [(brand_label, 'brand'), (model_label, 'model')] :
+          if hasattr(BMbase.attr(answer_label), 'open') :
+            base_qid_oe = allQuestions['%soe'%(base_qid.label)]
+            set_text.append(getattr(base_qid_oe.attr(eachRow.label), col_name).unsafe_val)
+          else :
+            set_text.append(base_qid.choices[getattr(eachRow, col_name).val].text)
 
-    if set_text :
-      set_qid.attr(eachRow.label).val = ' '.join(set_text)
+      if set_text :
+        set_qid.attr(eachRow.label).val = ' '.join(set_text)
+  else :
+      set_text = []
+      if base_qid.brand.any and base_qid.model.any :
+        brand_label = base_qid.choices[base_qid.brand.val].label
+        model_label = base_qid.choices[base_qid.model.val].label
+      
+        for answer_label, col_name in [(brand_label, 'brand'), (model_label, 'model')] :
+          if hasattr(BMbase.attr(answer_label), 'open') :
+            base_qid_oe = allQuestions['%soe'%(base_qid.label)]
+            set_text.append(getattr(base_qid_oe.attr(base_qid.label), col_name).unsafe_val)
+          else :
+            set_text.append(base_qid.choices[getattr(base_qid, col_name).val].text)
+
+      if set_text :
+        set_qid.val = ' '.join(set_text)
 </exec>
 
 <radio 
@@ -323,8 +136,8 @@ def set_pipe_value(base_qid, set_qid) :
   optional="1"
   where="execute,survey,report">
   <title>(HIDDEN) Brand/Model logic base question</title>
-  <insert source="${1:brandList}"/>
-  <insert source="${2:modelList}"/>
+  <insert source="brandList"/>
+  <insert source="modelList"/>
 </radio>
 
 <suspend/>

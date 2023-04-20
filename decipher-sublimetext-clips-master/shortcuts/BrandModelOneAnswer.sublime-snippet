@@ -1,7 +1,8 @@
 <snippet>
     <content><![CDATA[
 <select 
-    label="${1}">
+    label="${1}"
+    ss:questionClassNames="bm-question">
     <title>${2}</title>
     <validate>
 brand_model_check()
@@ -9,7 +10,6 @@ brand_model_check()
     <style copy="bmHeader" name="el.select.header"/>
     <style cols="brand" copy="brandSelect" name="el.select.element"/>
     <style cols="model" copy="modelSelect" name="el.select.element"/>
-    <style copy="bmJS" name="question.after" wrap="ready"/>
     <col label="brand" ss:colClassNames="brand">${3}</col>
     <col label="model" ss:colClassNames="model">${4}</col>
     <insert as="choices" source="${5:brandList}"/>
@@ -21,7 +21,6 @@ brand_model_check()
 
 <text 
     label="P${1}"
-    onLoad="copy('${1}', rows=True)"
     size="40"
     where="execute,survey,report">
     <title>(HIDDEN) ${1} PIPE</title>
