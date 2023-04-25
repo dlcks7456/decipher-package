@@ -349,7 +349,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     flex-direction: row;
     align-items: center;
     min-height: 50px;
-    margin-left: 5px;
 }
 
 .rank-text {
@@ -373,7 +372,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
 .rank-noanswers{
     margin-top : 20px;
     width : 100%;
-    max-width : 900px;
 }
 
 .show-answers {
