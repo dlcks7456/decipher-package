@@ -316,7 +316,8 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
 .rank-group-title {
     padding-left : 3.5rem;
     margin-bottom : 10px;
-    font-size : 1.2rem;
+    font-size : 1.4rem;
+    font-weight: bold;
 }
 
 .rank-group-div {
