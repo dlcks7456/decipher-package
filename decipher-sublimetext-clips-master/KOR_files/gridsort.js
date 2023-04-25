@@ -373,7 +373,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
 .rank-noanswers{
     margin-top : 20px;
     width : 100%;
-    max-width : 915px;
+    max-width : 900px;
 }
 
 .show-answers {
