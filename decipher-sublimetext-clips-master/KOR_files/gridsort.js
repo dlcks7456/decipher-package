@@ -350,7 +350,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     align-content: center;
     align-items: center;
     min-height: 50px;
-    // max-height : 120px;
 }
 
 .rank-text {
@@ -398,12 +397,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     margin-bottom : 20px;
     padding-top: 20px;
 }
-
-// @media (min-width: 750px) {
-//     .show-answers{
-//         display : none;
-//     }
-// }
 
 @keyframes showAnswersAnimation {
     0% {
