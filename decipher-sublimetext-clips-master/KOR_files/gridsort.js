@@ -347,9 +347,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
 .rank-row-btn {
     display: flex;
     flex-direction: row;
-    align-content: center;
     align-items: center;
     min-height: 50px;
+    margin-left: 5px;
 }
 
 .rank-text {
