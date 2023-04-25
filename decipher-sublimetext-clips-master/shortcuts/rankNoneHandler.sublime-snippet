@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+<res label="rank_none_err">You can't respond with None.</res>
+
+def rank_none_answer_chk(none_label='r99', labels=['c1']) :
+  for eachCol in labels :
+    if getattr(this.attr(eachCol), none_label) :
+      error(res.rank_none_err, col=this.attr(eachCol), row=this.attr(none_label))
+
+  for idx, eachCol in enumerate(this.cols) :
+    if idx == 0 : continue
+    before_col = this.cols[idx-1]
+    if not getattr(eachCol, none_label) and getattr(before_col, none_label) :
+      error(res.chk_plz, col=eachCol)
+      error(res.chk_plz, col=before_col, row=this.attr(none_label))
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>rank.none.handler</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

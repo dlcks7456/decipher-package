@@ -6,6 +6,8 @@
   <themevar name="dq-button-bg-color-selected">#00a346</themevar>
   <themevar name="dq-button-text-color">black</themevar>
   <themevar name="dq-button-text-color-hover">black</themevar></themevars>
+
+.non-touch .fir-icon:hover .rounded .fir-selected, .non-touch .fir-icon:hover .square .fir-selected, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .rounded .fir-selected, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .square .fir-selected { fill: black !important; }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>themevars</tabTrigger>

@@ -380,7 +380,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     left : 0;
     background-color : #fbfbfb;
     font-size : 1rem;
-    min-height : 120px;
+    min-height : 140px;
     padding : 5px;
     display: flex;
     flex-direction : column;

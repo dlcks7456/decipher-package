@@ -1,0 +1,52 @@
+<snippet>
+    <content><![CDATA[
+<style name="question.after" wrap="ready"><![CDATA[
+const monthHanler = (yearSelector, monthSeletor)=>{
+  const yearValue = yearSelector.value;
+  const monthValue = monthSeletor.value;
+  const currentYear = new Date().getFullYear();
+  const opts = monthSeletor.querySelectorAll('option');
+
+  let maxMonth = 12;
+
+  if( yearValue == currentYear ){
+    maxMonth = new Date().getMonth() + 1;
+  }
+
+  const months = [...Array(maxMonth).keys()].map(i => i + 1);
+
+  [...opts].forEach((opt,index)=>{
+    if( index === 0 ) return;
+    opt.parentNode.removeChild(opt);
+  });
+
+  months.forEach((mon)=>{
+    const optElement = document.createElement('option');
+    optElement.value = mon;
+    optElement.text = mon;
+
+    if( mon === parseInt(monthValue) ){
+      console.log(monthValue);
+      optElement.setAttribute('selected', 'selected');
+    }
+
+    monthSeletor.appendChild(optElement);
+  });
+}
+
+const yearSelector = document.querySelectorAll('.year-selector');
+const monthSeletor = document.querySelectorAll('.month-selector');
+
+[...yearSelector].forEach((item,index)=>{
+  monthHanler(item, monthSeletor[index]);
+  item.addEventListener('change', ()=>{
+    monthHanler(item, monthSeletor[index]);
+  });
+});
+]]${-1}></style>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>month.handler</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>
