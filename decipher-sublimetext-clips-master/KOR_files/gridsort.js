@@ -384,7 +384,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     left : 0;
     background-color : #fbfbfb;
     font-size : 1rem;
-    min-height : 140px;
+    min-height : 115px;
     padding : 5px;
     display: flex;
     flex-direction : column;
@@ -397,7 +397,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     animation : showAnswersAnimation 1s forwards;
     width : 100%;
     margin-bottom : 20px;
-    padding-top: 20px;
 }
 
 @keyframes showAnswersAnimation {
