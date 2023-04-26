@@ -107,7 +107,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
         <div 
             className={`rank-row-btn rank-row-${row.label} animate__animated animate__fadeIn`}>
             <div style={{
-                width: '40px',
+                width: '40px'
             }}>
                 { isSelected && !isNoanswer ? (
                     <ShowRank 
@@ -294,16 +294,18 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
         <>
         <style jsx="true">{`
 .custom-rank-sort {
-    display : grid;
-    grid-template-columns : ${gridColCnt.join(' ')};
-    grid-row-gap : 10px;
-    grid-column-gap : 10px;
     width : 100%;
     max-width : 900px;
 }
 
+.custom-rank-rows{
+    display : grid;
+    grid-template-columns : ${gridColCnt.join(' ')};
+    grid-row-gap : 10px;
+}
+
 @media all and (max-width: 950px){
-    .custom-rank-sort {
+    .custom-rank-rows {
         grid-template-columns: ${gridColCnt.length >= 3 ? "50% 50%" : "100%"};
     }
 }
@@ -331,7 +333,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
 .show-rank-cnt {
     width: 30px;
     height: 30px;
-    color: black;
     display: flex;
     align-items: center;
     background: #0a52ed;
@@ -339,6 +340,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     border-radius: 100%;
     font-size: 1.3rem;
     color: #fff;
+    margin-left: 3px;
 }
 
 .show-rank-cnt div{
@@ -476,6 +478,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
                 </div>
             ) : null}
             <div className="custom-rank-sort">
+                <div className="custom-rank-rows">
                 {setGroupRows.length > 0 ? (
                     setGroupRows.map((group, groupIndex)=>{
                     return (
@@ -517,42 +520,43 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
                             )
                     })
                 )}
-            </div>
-            <div className="rank-noanswers">
-                { showNone ? (
-                    rows.filter((row)=> row.index === noneIndex).map((row, index)=>{
+                </div>
+                <div className="rank-noanswers">
+                    { showNone ? (
+                        rows.filter((row)=> row.index === noneIndex).map((row, index)=>{
+                            return (
+                                <RankBtn 
+                                    key={row.index} 
+                                    idx={index}
+                                    row={row} 
+                                    answers={rankAnswers} 
+                                    setAnswers={setRankAnswers} 
+                                    answerComplete={answerCompleted}
+                                    noAnswer={noAnswer}
+                                    setAnswerComple={setAnswerCompleted}
+                                    errors={errors}/>
+                                )
+                        })
+                    ) : null }
+                    {noanswers.map((noanswer, index)=>{
                         return (
                             <RankBtn 
-                                key={row.index} 
+                                key={index} 
                                 idx={index}
-                                row={row} 
+                                row={noanswer}
+                                groups={setGroupRows}
                                 answers={rankAnswers} 
                                 setAnswers={setRankAnswers} 
                                 answerComplete={answerCompleted}
-                                noAnswer={noAnswer}
                                 setAnswerComple={setAnswerCompleted}
+                                noAnswerFnc={noAnswerSelect}
+                                isNoanswer={true}
                                 errors={errors}/>
                             )
-                    })
-                ) : null }
-                {noanswers.map((noanswer, index)=>{
-                    return (
-                        <RankBtn 
-                            key={index} 
-                            idx={index}
-                            row={noanswer}
-                            groups={setGroupRows}
-                            answers={rankAnswers} 
-                            setAnswers={setRankAnswers} 
-                            answerComplete={answerCompleted}
-                            setAnswerComple={setAnswerCompleted}
-                            noAnswerFnc={noAnswerSelect}
-                            isNoanswer={true}
-                            errors={errors}/>
-                        )
-                })}
-                <HiddenInputs uid={`ans${uid}`} qid={label} cols={cols} answers={rankAnswers} noAnswers={noanswers} noAnswerCheck={noAnswer}/>
+                    })}
+                </div>
             </div>
+            <HiddenInputs uid={`ans${uid}`} qid={label} cols={cols} answers={rankAnswers} noAnswers={noanswers} noAnswerCheck={noAnswer}/>
         </>
     )
 }
