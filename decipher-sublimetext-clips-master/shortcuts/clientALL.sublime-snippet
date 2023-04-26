@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 <style name="respview.client.css"><![CDATA[
-<link rel="shortcut icon" href="/survey/selfserve/NIQ.svg" type="image/x-icon">
+<link rel="shortcut icon" href="/survey/selfserve/NIQ_Favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="[rel util.css]"/>
 <style>

@@ -96,7 +96,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
                 if( row.open === 1 ){
                     oeRef.current.focus();
                     oeRef.current.style.pointerEvents = '';
-                    oeRef.current.style.border = '2px solid #e7046f';
+                    oeRef.current.style.border = '2px solid #aa213f';
                 }
             }
         }
@@ -118,8 +118,9 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
             <div
                 className={`rank-text rank-text-${row.label}`}
                 style={{
-                        border: errRows.includes(idx) || errCols.length >= 1 ? '2px solid #e7046f' : '1px solid #ccc',
-                        background : styleFlag() ? '#00A346' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#ededed',
+                        border: errRows.includes(idx) || errCols.length >= 1 ? '2px solid #aa213f' : '1px solid #ccc',
+                        background : styleFlag() ? '#0a52ed' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7',
+                        color : styleFlag() ? '#fff' : '#242424',
                         pointerEvents : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : '',
                         marginTop : isNoanswer ? '15px' : '0',
                     }}
@@ -333,10 +334,11 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     color: black;
     display: flex;
     align-items: center;
-    background: #00A346;
+    background: #0a52ed;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     border-radius: 100%;
     font-size: 1.3rem;
+    color: #fff;
 }
 
 .show-rank-cnt div{
@@ -431,7 +433,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
 }
 
 .answers-text:hover{
-    color : #e7046f;
+    color : #aa213f;
 }
 
 .answers-text .answer-rank-text{

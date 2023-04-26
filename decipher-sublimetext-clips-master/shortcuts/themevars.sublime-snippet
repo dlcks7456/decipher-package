@@ -1,13 +1,13 @@
 <snippet>
   <content><![CDATA[
 <themevars>
-  <themevar name="dq-button-bg-color">#ededed</themevar>
-  <themevar name="dq-button-bg-color-hover">#00a346</themevar>
-  <themevar name="dq-button-bg-color-selected">#00a346</themevar>
-  <themevar name="dq-button-text-color">black</themevar>
-  <themevar name="dq-button-text-color-hover">black</themevar></themevars>
-
-.non-touch .fir-icon:hover .rounded .fir-selected, .non-touch .fir-icon:hover .square .fir-selected, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .rounded .fir-selected, .non-touch .grid-table-mode .clickableCell:hover .fir-icon .square .fir-selected { fill: black !important; }
+  <themevar name="dq-button-bg-color">#d6e3ff</themevar>
+  <themevar name="dq-button-bg-color-hover">#0a52ed</themevar>
+  <themevar name="dq-button-bg-color-selected">#0a52ed</themevar>
+  <themevar name="dq-button-text-color">#343434</themevar>
+  <themevar name="dq-button-text-color-hover">#fff</themevar>
+  <themevar name="dq-button-text-color-selected">#fff</themevar>
+</themevars>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>themevars</tabTrigger>

@@ -71,7 +71,7 @@ class makeStrongCommand(sublime_plugin.TextCommand):
             try:
                 sels = self.view.sel()[0]
                 textr = self.view.substr(sels)
-                set_text = '<strong>{}</strong>'.format(textr)
+                set_text = '<b>{}</b>'.format(textr)
                 self.view.replace(edit,sels, set_text)
                 
             except Exception as e:
@@ -82,7 +82,7 @@ class makeStrongUnderlineCommand(sublime_plugin.TextCommand):
             try:
                 sels = self.view.sel()[0]
                 textr = self.view.substr(sels)
-                set_text = '<strong><u>{}</u></strong>'.format(textr)
+                set_text = '<span class=\"f-highlight\">{}</span>'.format(textr)
                 self.view.replace(edit,sels, set_text)
                 
             except Exception as e:

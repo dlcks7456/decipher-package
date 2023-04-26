@@ -225,8 +225,10 @@ function slideShowSetting({
         }
     }
 
-    const activeColor = '#00A346';
-    const defaultColor = '#ededed';
+    const activeColor = '#0a52ed';
+    const defaultFontColor = '#343333';
+    const activeFontColor = '#fff';
+    const defaultColor = '#f7f7f7';
     const dotColor = '#b7b4b4';
 
     const slideshowDiv = document.querySelector(setSlideshowQuery);
@@ -379,7 +381,7 @@ function slideShowSetting({
     forceTextDiv.innerHTML = forceText;
     forceTextDiv.style.width = '100%';
     forceTextDiv.style.marginTop = '20px';
-    forceTextDiv.style.color = '#e7046f';
+    forceTextDiv.style.color = '#aa213f';
     forceTextDiv.style.textAlign = 'center';
     forceTextDiv.style.display = 'none';
     forceTextDiv.style.fontSize = '1.2rem';
@@ -454,6 +456,7 @@ function slideShowSetting({
             return
         }
         arrow.style.backgroundColor = activeColor;
+        arrow.style.color = activeFontColor;
     }
 
     const btnMouseLeave = (e)=>{
@@ -462,6 +465,7 @@ function slideShowSetting({
             return
         }
         arrow.style.backgroundColor = defaultColor;
+        arrow.style.color = defaultFontColor;
     }
 
     /* force control */
