@@ -21,6 +21,11 @@
 .hangle-span{color:#e7046f;border:0;text-align:right;width:200px; }
 .han-input-div{display: flex; gap: 10px;}
 
+.f-highlight {
+  color : #0a52ed;
+  font-weight : bold;
+}
+
 \@media all and (max-width: 750px){
   .han-input-div{
       display: block;
