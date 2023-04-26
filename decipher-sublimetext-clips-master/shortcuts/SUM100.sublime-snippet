@@ -9,6 +9,16 @@
    uses="autosum.5"
    verify="range(0,100)">
     <title>$2 </title>
+<style name="page.head"><![CDATA[
+<style>
+.grid-table-mode{
+  max-width: 415px !important;
+}
+.grid.grid-table-mode .row-legend{
+  text-align: center !important;
+}
+</style>
+]]${-1}></style>
 $3
   </number>
 
