@@ -96,7 +96,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
                 if( row.open === 1 ){
                     oeRef.current.focus();
                     oeRef.current.style.pointerEvents = '';
-                    oeRef.current.style.border = '2px solid #aa213f';
+                    oeRef.current.style.border = '2px solid #e7046f';
                 }
             }
         }
@@ -118,7 +118,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
             <div
                 className={`rank-text rank-text-${row.label}`}
                 style={{
-                        border: errRows.includes(idx) || errCols.length >= 1 ? '2px solid #aa213f' : '1px solid #ccc',
+                        border: errRows.includes(idx) || errCols.length >= 1 ? '2px solid #e7046f' : '1px solid #ccc',
                         background : styleFlag() ? '#0a52ed' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7',
                         color : styleFlag() ? '#fff' : '#242424',
                         pointerEvents : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : '',
@@ -434,7 +434,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
 }
 
 .answers-text:hover{
-    color : #aa213f;
+    color : #e7046f;
 }
 
 .answers-text .answer-rank-text{

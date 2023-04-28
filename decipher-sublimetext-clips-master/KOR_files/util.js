@@ -381,7 +381,7 @@ function slideShowSetting({
     forceTextDiv.innerHTML = forceText;
     forceTextDiv.style.width = '100%';
     forceTextDiv.style.marginTop = '20px';
-    forceTextDiv.style.color = '#aa213f';
+    forceTextDiv.style.color = '#e7046f';
     forceTextDiv.style.textAlign = 'center';
     forceTextDiv.style.display = 'none';
     forceTextDiv.style.fontSize = '1.2rem';
