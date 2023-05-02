@@ -2,7 +2,7 @@
 	<content><![CDATA[
 <style name='survey.question' arg:showText="${1}"> <![CDATA[
 <style>
-.emphasis-text{ width: 80%; text-align: center; height: 100%; line-height: 32px; font-size: 20px; color: #fff!important; background-color: #0a52ed!important; border-radius: 32px; height:100%;padding:5px; font-weight: bold; margin: 10px auto 10px auto;box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);}
+.emphasis-text{ width: 80%; text-align: center; height: 100%; line-height: 32px; font-size: 20px; color: #fff!important; background-color: #2d6df6!important; border-radius: 32px; height:100%;padding:5px; font-weight: bold; margin: 10px auto 10px auto;box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);}
 </style>
 <h1 title="@(question)" class="question-text" id="question_text_\${this.label}">
 	<div class="emphasis-text">\$(showText)</div>

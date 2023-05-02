@@ -21,7 +21,7 @@
 }
 
 .showcard summary:hover {
-  background-color: black;
+  background-color: #2d6df6;
   color: white;  
 }
 
@@ -32,7 +32,7 @@
 .showcard details[open] summary {
     border-bottom: 1px solid #aaa;
     margin-bottom: .5em;
-    background-color: black;
+    background-color: #2d6df6;
     color: white;
     border-radius: 10px 10px 0 0;
 }
