@@ -185,7 +185,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
 }
 
 
-const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex, ableNone, showAnswers})=>{
+const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[], noneIndex, ableNone, showAnswers})=>{
     const {label, uid, cols, rows, noanswers, errors} = json;
     let orderGroups = [];
     let setGroupRows = [];
@@ -478,7 +478,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
             ) : null}
             <div className="custom-rank-sort">
                 <div className="custom-rank-rows">
-                {setGroupRows.length > 0 ? (
+                {setGroupRows.length > 0 && showGrpups ? (
                     setGroupRows.map((group, groupIndex)=>{
                     return (
                             <div key={groupIndex}
@@ -560,9 +560,17 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     )
 }
 
-const SettingGridRankSort = ({json, defaultValue, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true})=>{
+const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true})=>{
     const root = document.querySelector('.answers');
     ReactDOM.render(
-        <GridRankSort json={json} defaultValue={defaultValue} gridColumnCount={colCnt} groups={groups} noneIndex={noneIndex} ableNone={ableNone} showAnswers={showAnswers}/>, root
+        <GridRankSort
+            json={json}
+            defaultValue={defaultValue}
+            gridColumnCount={colCnt}
+            showGrpups={showGrpups}
+            groups={groups}
+            noneIndex={noneIndex}
+            ableNone={ableNone}
+            showAnswers={showAnswers}/>, root
     );
 }
