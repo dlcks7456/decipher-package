@@ -119,7 +119,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
                 className={`rank-text rank-text-${row.label}`}
                 style={{
                         border: errRows.includes(idx) || errCols.length >= 1 ? '2px solid #e7046f' : '1px solid #ccc',
-                        background : styleFlag() ? '#0a52ed' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7',
+                        background : styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7',
                         color : styleFlag() ? '#fff' : '#242424',
                         pointerEvents : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : '',
                         marginTop : isNoanswer ? '15px' : '0',
@@ -335,7 +335,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, groups=[], noneIndex
     height: 30px;
     display: flex;
     align-items: center;
-    background: #0a52ed;
+    background: #2d6df6;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     border-radius: 100%;
     font-size: 1.3rem;

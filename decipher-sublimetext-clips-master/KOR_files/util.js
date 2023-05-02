@@ -225,7 +225,7 @@ function slideShowSetting({
         }
     }
 
-    const activeColor = '#0a52ed';
+    const activeColor = '#2d6df6';
     const defaultFontColor = '#343333';
     const activeFontColor = '#fff';
     const defaultColor = '#f7f7f7';
