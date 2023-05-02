@@ -22,7 +22,7 @@
 .han-input-div{display: flex; gap: 10px;}
 
 .f-highlight {
-  color : #0a52ed;
+  color : #2d6df6;
   font-weight : bold;
 }
 
