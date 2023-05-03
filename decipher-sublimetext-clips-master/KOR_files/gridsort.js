@@ -298,7 +298,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     max-width : 900px;
 }
 
-.custom-rank-rows{
+.custom-rank-rows {
     display : grid;
     grid-template-columns : ${gridColCnt.join(' ')};
     grid-row-gap : 10px;
@@ -311,9 +311,13 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
 }
 
 @media all and (max-width: 500px){
-    .custom-rank-sort {
+    .custom-rank-rows {
         grid-template-columns: 100%;
     }
+}
+
+.rank-group{
+    margin-bottom : 20px;
 }
 
 .rank-group-title {
@@ -477,33 +481,33 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                 </div>
             ) : null}
             <div className="custom-rank-sort">
-                <div className="custom-rank-rows">
                 {setGroupRows.length > 0 && showGrpups ? (
                     setGroupRows.map((group, groupIndex)=>{
-                    return (
-                            <div key={groupIndex}
-                                className="animate__animated animate__fadeIn rank-group">
-                                <div className="rank-group-title">{group[2]}</div>
-                                <div className="rank-group-div">
-                                {rows.filter((row)=> group[0].includes(row.index) && row.index !== noneIndex).map((row, index)=>{
-                                    return (
-                                        <RankBtn 
-                                            key={row.index} 
-                                            idx={index}
-                                            row={row} 
-                                            answers={rankAnswers} 
-                                            setAnswers={setRankAnswers} 
-                                            answerComplete={answerCompleted}
-                                            noAnswer={noAnswer}
-                                            setAnswerComple={setAnswerCompleted}
-                                            errors={errors}/>
-                                        )
-                                })}
+                        return (
+                                <div key={groupIndex}
+                                    className="animate__animated animate__fadeIn rank-group">
+                                    <div className="rank-group-title">{group[2]}</div>
+                                    <div className="custom-rank-rows">
+                                    {rows.filter((row)=> group[0].includes(row.index) && row.index !== noneIndex).map((row, index)=>{
+                                        return (
+                                            <RankBtn 
+                                                key={row.index} 
+                                                idx={index}
+                                                row={row} 
+                                                answers={rankAnswers} 
+                                                setAnswers={setRankAnswers} 
+                                                answerComplete={answerCompleted}
+                                                noAnswer={noAnswer}
+                                                setAnswerComple={setAnswerCompleted}
+                                                errors={errors}/>
+                                            )
+                                    })}
+                                    </div>
                                 </div>
-                            </div>
-                    )  
-                    })
+                        )})
                 ) : (
+                    <div className="custom-rank-rows">
+                    {
                     rows.filter((row)=> row.index !== noneIndex).map((row, index)=>{
                         return (
                             <RankBtn 
@@ -517,9 +521,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                                 setAnswerComple={setAnswerCompleted}
                                 errors={errors}/>
                             )
-                    })
+                    })}
+                    </div>
                 )}
-                </div>
                 <div className="rank-noanswers">
                     { showNone ? (
                         rows.filter((row)=> row.index === noneIndex).map((row, index)=>{
