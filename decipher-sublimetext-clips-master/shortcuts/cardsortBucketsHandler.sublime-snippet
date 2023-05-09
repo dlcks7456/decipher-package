@@ -21,7 +21,7 @@ buckets.forEach((bucket)=>{
 ]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>card.other</tabTrigger>
+	<tabTrigger>cardsort.other</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

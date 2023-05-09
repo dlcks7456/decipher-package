@@ -1,11 +1,11 @@
 <snippet>
 	<content><![CDATA[
-cardsort:animationDuration="200"
-cardsort:dragAndDrop="0"
-uses="cardsort.6"
+cardsort:buttonNextHTML="\${res.cardsort_next}"
+cardsort:buttonPreviousHTML="\${res.cardsort_prev}"
+cardsort:completionHTML="\${res.cardsort_completion}"
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>cardsort</tabTrigger>
+	<tabTrigger>cardsort.html</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

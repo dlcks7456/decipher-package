@@ -1,11 +1,10 @@
 <snippet>
 	<content><![CDATA[
-cardsort:animationDuration="200"
-cardsort:dragAndDrop="0"
-uses="cardsort.6"
+<style copy="clean_group" name="question.group"/>
+<style copy="clean_group_depth2" name='question.group-2'/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>cardsort</tabTrigger>
+	<tabTrigger>simple.clean.group.copy</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>
