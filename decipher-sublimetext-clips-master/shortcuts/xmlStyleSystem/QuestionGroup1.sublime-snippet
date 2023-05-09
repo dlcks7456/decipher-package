@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+<style name='question.group'> <![CDATA[
+<\$(tagRow) class="row row-group row-group-1 rowGroup group1">
+    <\$(tagCell) scope="rowgroup" colspan="\$(span)" id="\$(this.label)_\$(group.label)" class="cell nonempty legend row-legend row-legend-left row-legend-group \$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"row-legend-group-space" if row.index!=0 and ec.haveRightLegend and ec.haveLeftLegend else "border-collapse"} \$(group.styles.ss.groupClassNames)">
+        \$(text)
+    </\$(tagCell)>
+</\$(tagRow)>
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>question.group.1</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+<style name='survey.header'> <![CDATA[
+<div class="page-header"></div>
+<!-- /.page-header -->
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>survey.head</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

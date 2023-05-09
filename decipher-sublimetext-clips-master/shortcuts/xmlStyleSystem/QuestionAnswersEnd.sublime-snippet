@@ -9,11 +9,10 @@
 \@endif
 <!-- /.grid -->
 </div>
-<!-- /.answers -->]]${-1}>
-</style>
+<!-- /.answers -->]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>question.answers.end</tabTrigger>
+	<tabTrigger>question.answer.end</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

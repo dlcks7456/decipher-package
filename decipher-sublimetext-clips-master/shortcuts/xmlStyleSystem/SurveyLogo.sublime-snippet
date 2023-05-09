@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+<style name='survey.logo'> <![CDATA[
+\@if gv.inSurvey() and gv.survey.root.styles.ss.logoFile
+    <div class="logo logo-\$(gv.survey.root.styles.ss.logoPosition)">
+        <img src="/survey/\$(gv.survey.root.styles.ss.logoFile)" class="logo-image" alt="Logo" />
+    </div>
+    <!-- /.logo -->
+\@endif
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>survey.logo</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

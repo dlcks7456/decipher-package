@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+<style cond="1" name="survey.respview.footer.support"><![CDATA[
+Copyright Ⓒ \${time.strftime('%Y')} <span class="blue-n" jstcache="0"></span>NielsenIQ Consumer LLC. All Rights Reserved. <a href="@(PrivacyPolicyUrl)" target="_blank" rel="noopener" jstcache="0">@(PrivacyPolicy)</a>.&nbsp;|&nbsp;<a href="mailto: NielsenIQDecipherSupport@nielseniq.com;NielsenDecipherSupport@nielseniq.com" target="_blank" jstcache="0"><i class="fa fa-icon-envelope-o" aria-hidden="true" jstcache="0"></i></a>
+<!-- IE BLOCK -->
+<div class="block-ie hidden" jstcache="0">
+  <div jstcache="0">\${res.block_ie}</div>
+  <div jstcache="0">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:100px;" jstcache="0">    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" jstcache="0"></path></svg>
+  </div>
+</div>
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>survey.footer.support</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

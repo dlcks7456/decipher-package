@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+<style name='el.image'> <![CDATA[
+\@if data
+\@if this.displayInline
+<img align='center' src='/survey/\${gv.survey.path}/\$(localFilename|q)'>
+\@endif
+<input type="hidden" name="old-\$(name)" value="\$(data)">
+<br/><br/>
+\@endif
+<input type="file" name="\$(name)" size="\$(size)">
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>el.image</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+<style name='button.continue'> <![CDATA[
+<input type="submit" name="continue" id="btn_continue" class="button continue" value="@(continue) &raquo;" onClick="var i = document.createElement('input');i.setAttribute('type', 'hidden');i.setAttribute('value', '1');i.setAttribute('name', '__has_javascript');document.forms.primary.appendChild(i);"/>
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>xml.next.btn</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+<style name='question.group-column'> <![CDATA[
+<\$(tag) class="row row-col-legends row-col-legends-top colGroup">
+    \$(left)
+    \$(elements)
+    \$(right)
+</\$(tag)>
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>question.group.col</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

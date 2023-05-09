@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+<style name='question.header'> <![CDATA[
+<div id="question_\${this.label}" class="question \${'disabledElement ' if why and gv.debug.qa else ''}\${this.getName().lower()} label_\${this.label} \$(this.styles.ss.questionClassNames) \$(hasError)"\${' role="radiogroup" aria-labelledby="' + (this.label + '_' + ec.enabledCols[0].label if ec.haveColLegend else 'question_text_' + this.label) + '"' if ec.simpleList else ''}>
+\${v2_insertStyle('survey.question')}
+\$(error)
+\${v2_insertStyle('survey.question.instructions')}
+\${v2_insertStyle('survey.question.answers.start')}
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>question.start</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

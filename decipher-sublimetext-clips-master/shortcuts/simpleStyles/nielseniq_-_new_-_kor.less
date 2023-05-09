@@ -75,8 +75,11 @@
 @color-5: rgb(43, 189, 185);
 @color-6: rgb(1, 157, 218);
 @color-7: #00ff00;
+
 @custom-color: #2d6df6;
 @custom-text-color: white;
+@custom-sub-color: #b7ceff;
+@custom-max-width : 924px;
 
 @border-color:                contrast(#060A45, darken(#060A45, 20%), lighten(#060A45, 15%)); // See the README for explanation on what contrast() mixin does.
 @question-background:         transparent;
@@ -252,8 +255,8 @@
 @dq-button-text-color-hover:      #343434;
 @dq-button-text-color-selected:   #343434;
 @dq-button-bg-color:              #fff;
-@dq-button-bg-color-hover:        #b7ceff;
-@dq-button-bg-color-selected:     #b7ceff;
+@dq-button-bg-color-hover:        @custom-sub-color;
+@dq-button-bg-color-selected:     @custom-sub-color;
 @dq-button-border-color:          #000000;
 @dq-button-border-color-hover:    #000000;
 @dq-button-border-color-selected: #000000;
@@ -1135,7 +1138,7 @@ form#primary, .exit-message {
     font-size: 18px;
     text-align: center;
     color: #000 !important;
-	border-color: #000000 !important;	
+	  border-color: #000000 !important;	
     cursor: pointer;
     transition-property: background-color, border-color, color, opacity;
     transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
@@ -1157,12 +1160,12 @@ form#primary, .exit-message {
 	  border-color: #000000 !important;
 	
 	&[data-hovered] {
-    background-color: #b7ceff !important;
+    background-color: @custom-sub-color !important;
     
   }
 
   &[data-selected] {
-    background-color: #b7ceff !important;
+    background-color: @custom-sub-color !important;
   }
 }
 
@@ -1226,7 +1229,7 @@ body {
 
 .sq-cardsort-buckets .sq-cardsort-bucket.sq-cardsort-state-hovered,
 .sq-cardsort-buckets .sq-cardsort-bucket.sq-cardsort-state-selected {
-	background-color: #b7ceff !important;
+	background-color: @custom-sub-color !important;
 }
 
 .selected-row .sq-accordion-header {
@@ -1281,7 +1284,7 @@ body {
 /* Cardsort custom */
 .sq-cardsort {
   margin: 0 !important;
-  max-width: 924px;
+  max-width: @custom-max-width;
 }
 
 .cardsort-rating .sq-cardsort-desktop .sq-cardsort-buckets {
@@ -1304,7 +1307,7 @@ body {
 }
 
 .sq-accordion-row {
-  max-width: 924px !important;
+  max-width: @custom-max-width !important;
   font-size: 1.2rem;
 }
 
@@ -1321,7 +1324,7 @@ body {
 }
 
 .sq-cardrating-widget {
-  max-width: 924px !important; 
+  max-width: @custom-max-width !important; 
 }
 
 .atm1d .answers label {
@@ -1385,7 +1388,7 @@ select {
   grid-template-columns: 33% 33% 33%;
   grid-column-gap : 5px;
   grid-row-gap: 5px;
-  max-width: 924px;
+  max-width: @custom-max-width;
   align-items: center;
 }
 
@@ -1395,7 +1398,7 @@ select {
   grid-column-gap : 5px;
   grid-row-gap: 5px;
   width: 100% !important;
-  max-width: 924px;
+  max-width: @custom-max-width;
   align-items: center;
 }
 
@@ -1441,7 +1444,7 @@ select {
   border : 1px solid #ccc;
   border-radius: 10px;
   width : 100%;
-  max-width : 924px;
+  max-width : @custom-max-width;
   box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
   padding : 10px;
   margin-top : 30px;
@@ -1728,4 +1731,52 @@ input[type="number"]::-webkit-inner-spin-button {
   font-weight: bold;
   margin: 10px auto 10px auto;
   box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+}
+
+/* CH accordion */
+.ch-accordion {
+  width: 100%;
+  max-width: @custom-max-width;
+}
+
+.ch-accordion-item {
+  background-color: @custom-sub-color;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+}
+
+.ch-accordion-button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background-color: inherit;
+  outline: none;
+  border: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  gap: 10px;
+}
+
+.ch-accordion-button:hover {
+  background-color: @custom-color;
+  color : @custom-text-color;
+}
+
+.ch-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.ch-accordion-arrow{
+  width: 20px;
+  display: flex;
+  align-items: center;
+  transform: rotate(0deg);
+  transition: transform 0.5s;
 }

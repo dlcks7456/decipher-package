@@ -3,8 +3,7 @@
 <style name='question.footer'> <![CDATA[
 \${v2_insertStyle('survey.question.answers.end')}
 </div>
-<!-- /.question -->]]${-1}>
-</style>
+<!-- /.question -->]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>question.footer</tabTrigger>
