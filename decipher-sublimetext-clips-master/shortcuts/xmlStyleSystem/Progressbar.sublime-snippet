@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+<style name='survey.completion'> <![CDATA[
+\@if not gv.survey.root.styles.ss.hideProgressBar
+    <div role="progressbar" aria-valuenow="\$(percent)" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-\${"top" if gv.survey.root.progressOnTop else "bottom"}" title="@(progress-bar) - \$(percent)% @(complete)">
+      <div class="progress-box-outer" aria-hidden="true"><span class="progress-box-completed" style="width: \$(percent)%;"></span></div>
+      <div class="progress-text" aria-hidden="true">\$(percent)%</div>
+    </div>
+    <!-- /.progress-bar -->
+\@endif
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>progressbar</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

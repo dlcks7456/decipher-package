@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+<style name='question.na.row'> <![CDATA[
+\@if ec.simpleList
+\$(naElement)
+\@else
+<\$(tagRow) class="row row-elements row-no-answer \$(rowStyle)">
+\$(left)
+<\$(tagCell) colspan="\$(colCount)" \$(headers) class="cell nonempty element cell-no-answer \${"desktop" if this.grouping.cols else "mobile"} border-collapse \$(extraClasses) \$(col.styles.ss.colClassNames) \$(row.styles.ss.rowClassNames) clickableCell" \$(extra)>
+    \$(naElement)
+</\$(tagCell)>
+\$(right)
+</\$(tagRow)>
+\@endif
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>question.na.row</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

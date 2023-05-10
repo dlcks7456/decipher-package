@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+<style name='button.goback'> <![CDATA[
+<input type="button" id="btn_goback" class="button back" onClick="Survey.postControl('back2')" value="&laquo; @(back)" />
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>xml.back.btn</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

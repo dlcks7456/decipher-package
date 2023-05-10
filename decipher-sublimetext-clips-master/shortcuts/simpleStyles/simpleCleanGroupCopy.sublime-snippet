@@ -1,9 +1,10 @@
 <snippet>
 	<content><![CDATA[
-<div style="text-align: center;">${SELECTION}</div>
+<style copy="clean_group" name="question.group"/>
+<style copy="clean_group_depth2" name='question.group-2'/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<!-- <tabTrigger>hello</tabTrigger> -->
+	<tabTrigger>simple.clean.group.copy</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.python</scope> -->
+	<scope>text.xml</scope>
 </snippet>

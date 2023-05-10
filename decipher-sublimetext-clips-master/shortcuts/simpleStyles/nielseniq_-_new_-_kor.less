@@ -76,6 +76,10 @@
 @color-6: rgb(1, 157, 218);
 @color-7: #00ff00;
 
+@custom-color: #2d6df6;
+@custom-text-color: white;
+@custom-sub-color: #b7ceff;
+@custom-max-width : 924px;
 
 @border-color:                contrast(#060A45, darken(#060A45, 20%), lighten(#060A45, 15%)); // See the README for explanation on what contrast() mixin does.
 @question-background:         transparent;
@@ -127,7 +131,8 @@
 // Breakpoint
 @breakpoint:  768px; // Set the breakpoint here, then use "@media @desktop {}" for desktop styles in your theme.
 @desktop:     ~"(min-width: @{breakpoint})";
-@mobile:     ~"(max-width: @{breakpoint})";
+@medium:      ~"(max-width: 1000px)";
+@mobile:      ~"(max-width: @{breakpoint})";
 
 // Base font sizes
 @desktop-font-size: 0.7em;
@@ -250,8 +255,8 @@
 @dq-button-text-color-hover:      #343434;
 @dq-button-text-color-selected:   #343434;
 @dq-button-bg-color:              #fff;
-@dq-button-bg-color-hover:        #b7ceff;
-@dq-button-bg-color-selected:     #b7ceff;
+@dq-button-bg-color-hover:        @custom-sub-color;
+@dq-button-bg-color-selected:     @custom-sub-color;
 @dq-button-border-color:          #000000;
 @dq-button-border-color-hover:    #000000;
 @dq-button-border-color-selected: #000000;
@@ -1063,9 +1068,7 @@ form#primary, .exit-message {
 }
 
 
-
 // Change Dropdown text
-
 .input .dropdown{
   font-size: 1.3rem;
   font-family: "Open Sans",sans-serif;
@@ -1135,7 +1138,7 @@ form#primary, .exit-message {
     font-size: 18px;
     text-align: center;
     color: #000 !important;
-	border-color: #000000 !important;	
+	  border-color: #000000 !important;	
     cursor: pointer;
     transition-property: background-color, border-color, color, opacity;
     transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
@@ -1154,15 +1157,15 @@ form#primary, .exit-message {
 .sq-cardrating-button {
    background-color: #ffffff !important;
     color: #000 !important;
-	border-color: #000000 !important;
+	  border-color: #000000 !important;
 	
 	&[data-hovered] {
-    background-color: #b7ceff !important;
+    background-color: @custom-sub-color !important;
     
   }
 
   &[data-selected] {
-    background-color: #b7ceff !important;
+    background-color: @custom-sub-color !important;
   }
 }
 
@@ -1198,6 +1201,14 @@ form#primary, .exit-message {
 }
 
 // Added for NIQ theme April'23
+.fir-icon.selected .square circle.fir-selected {
+  fill: #fff;
+  r: 3.5;
+}
+
+body {
+    line-height: 1.5 !important;
+}
 
 .sq-slidernumber .ui-slider .ui-slider-handle {
 	background-color: #2D6DF6 !important;
@@ -1218,7 +1229,7 @@ form#primary, .exit-message {
 
 .sq-cardsort-buckets .sq-cardsort-bucket.sq-cardsort-state-hovered,
 .sq-cardsort-buckets .sq-cardsort-bucket.sq-cardsort-state-selected {
-	background-color: #b7ceff !important;
+	background-color: @custom-sub-color !important;
 }
 
 .selected-row .sq-accordion-header {
@@ -1269,9 +1280,11 @@ form#primary, .exit-message {
     color: #000000 !important;
 }
 
+
+/* Cardsort custom */
 .sq-cardsort {
   margin: 0 !important;
-  max-width: 924px;
+  max-width: @custom-max-width;
 }
 
 .cardsort-rating .sq-cardsort-desktop .sq-cardsort-buckets {
@@ -1287,6 +1300,52 @@ form#primary, .exit-message {
 .cardsort-rating .sq-cardsort-mobile .sq-cardsort-bucket {
     text-align : left;
     padding-left : 10px;
+}
+
+.sq-accordion {
+  cursor: pointer;
+}
+
+.sq-accordion-row {
+  max-width: @custom-max-width !important;
+  font-size: 1.2rem;
+}
+
+.sq-sliderpoints-container {
+  max-width: 900px;
+}
+
+.sq-sliderpoints-container {
+  margin-left: 0 !important;
+}
+
+.sq-cardrating-bar[data-active], .sq-cardrating-bar {
+  background-color: #2d6df6 !important;
+}
+
+.sq-cardrating-widget {
+  max-width: @custom-max-width !important; 
+}
+
+.atm1d .answers label {
+  transition: background-color 0.4s;
+  outline-color : #2d6df6 !important;
+}
+
+.sq-cardrating-button {
+  transition: background-color 0.4s;
+}
+
+.sq-cardsort-bucket{
+  transition: background-color 0.4s;
+}
+
+input[type=number]:focus {
+  border : 2px solid #2d6df6;
+}
+
+select {
+  outline-color: #2d6df6;
 }
 
 @media @mobile {
@@ -1317,58 +1376,407 @@ form#primary, .exit-message {
   .cardsort-rating .sq-cardsort-desktop .sq-cardsort-bucket-item {
     margin-left: 0;
   }
+
+ .sq-cardrating-content {
+    font-size: 1.4rem !important;
+ }
 }
 
-.sq-accordion {
+.grid-3-cols .answers{
+  display: grid !important;
+  width: 100% !important;
+  grid-template-columns: 33% 33% 33%;
+  grid-column-gap : 5px;
+  grid-row-gap: 5px;
+  max-width: @custom-max-width;
+  align-items: center;
+}
+
+.grid-2-cols .answers{
+  display: grid !important;
+  grid-template-columns: 50% 50%;
+  grid-column-gap : 5px;
+  grid-row-gap: 5px;
+  width: 100% !important;
+  max-width: @custom-max-width;
+  align-items: center;
+}
+
+@media @medium {
+ .grid-3-cols .answers{
+    grid-template-columns: 50% 50%;
+ }
+}
+
+@media @mobile {
+  .grid-3-cols .answers{
+    grid-template-columns: 100%;
+  }
+
+  .grid-2-cols .answers{
+    grid-template-columns: 100%;
+  }
+}
+
+@boxShadowColor: rgba(0, 0, 0, 0.1);
+
+* {
+  word-break: keep-all;
+}
+
+*:lang(ja) {
+  word-break: break-all;
+}
+
+*:lang(zh-Hans) {
+  word-break: break-all;
+}
+
+*:lang(zh-Hant-TW) {
+  word-break: break-all;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.comment-box {
+  border : 1px solid #ccc;
+  border-radius: 10px;
+  width : 100%;
+  max-width : @custom-max-width;
+  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+  padding : 10px;
+  margin-top : 30px;
+  margin-bottom : 30px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.grid-list-mode .row-elements {
+  border : 1px solid #ccc;
+  padding : 10px;
+  border-radius : 10px;
+  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+}
+
+
+/* Grid question mobile css */
+.grid-list-mode .row-legend-left {
+  font-weight : bold;
+  border-bottom : 1px solid #ccc;
+  padding-bottom : 10px;
+}
+.grid-list-mode .row-legend-right {
+  font-weight : bold;
+  border-top : 1px solid #ccc;
+  padding-top : 10px;
+  margin-bottom: 10px;
+}
+
+.grid-list-mode .mobile-group-legend {
+  font-weight : bold;
+  border-bottom : 1px solid #ccc;
+  padding-bottom : 10px;
+  margin-bottom : 10px;
+}
+
+
+/* BM Question  */
+.bm-question .select-disabled {
+    opacity: 50%;
+    pointer-events: none;
+}
+
+.bm-question .grid-list-mode .row-elements {
+  max-width : 380px;
+}
+
+.bm-question .row-elements+.row-elements, .bm-question .row-elements+.row-group {
+  margin-top : 0 !important;
+}
+
+.bm-question .grid-list-mode tbody:nth-child(2) {
+  display: flex;
+  gap: 10px;
+}
+
+@media @mobile {
+  .bm-question .grid-list-mode tbody:nth-child(2) {
+    flex-direction: column;
+  }
+}
+
+.bm-question .cell-text {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.bm-question .fir-select {
+  width : 100%;
+}
+
+.bm-question .dropdown {
+  min-width: 100% !important;
+}
+
+.bm-question .indent-1 {
+  padding-right: 1.167em;
+}
+
+.bm-question .select-oe-div{
+  margin-top: 5px;
+}
+
+.bm-question .other-open {
+  border-radius: 5px;
+  width : 100% !important;
+}
+
+.bm-question .input-disabled {
+  pointer-events: none;
+  background-color: #e3e2e2 !important;
+}
+.bm-question .row-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+
+.bm-question .none {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.3rem;
+  font-weight: normal;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.bm-question .none-input .fir-hidden {
+  position: relative !important;
+  left: 0 !important;
+}
+
+.bm-question .none input[type='checkbox'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   cursor: pointer;
+  outline: none;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  &:checked {
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: @custom-color;
+      border: 1px solid @custom-color;
+      border-radius: 4px;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 3px;
+      width: 6px;
+      height: 12px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
 }
 
-.sq-accordion-row {
-  max-width: 924px !important;
+.bm-question .none-input {
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
-.sq-sliderpoints-container {
-  max-width: 900px;
+.bm-question .none-input .fir-icon {
+  display: none !important;
 }
 
-.sq-sliderpoints-container {
-  margin-left: 0 !important;
+.bm-question .grid-list-mode .row-elements {
+  border : 1px solid #ccc;
+  padding : 10px;
+  border-radius : 10px;
+  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
 }
 
-.sq-cardrating-bar[data-active], .sq-cardrating-bar {
-  background-color: #2d6df6 !important;
+.bm-question .grid-list-mode .row-legend-left {
+  font-weight : bold;
+  border-bottom : 1px solid #ccc;
+  padding-bottom : 10px;
+}
+.bm-question .grid-list-mode .row-legend-right {
+  font-weight : bold;
+  border-top : 1px solid #ccc;
+  padding-top : 10px;
+  margin-bottom: 10px;
 }
 
-.sq-cardrating-widget {
-  max-width: 924px !important; 
+.bm-question .grid-list-mode .mobile-group-legend {
+  font-weight : bold;
+  border-bottom : 1px solid #ccc;
+  padding-bottom : 10px;
+  margin-bottom : 10px;
 }
 
-.fir-icon.selected .square circle.fir-selected {
-  fill: #fff;
-  r: 3.5;
+
+/* Hangle converter */
+.hangle-span {
+  color: @error-color;
+  border:0;
+  text-align:right;
+  width:200px; 
+}
+.han-input-div{
+  display: flex; gap: 10px;
 }
 
-body {
-    line-height: 1.5 !important;
+@media @mobile {
+  .han-input-div {
+      display: block;
+      gap: 0px;
+  }
 }
 
-.atm1d .answers label {
-  transition: background-color 0.4s;
-  outline-color : #2d6df6 !important;
+
+/* Initpage animation */
+@keyframes initPage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.sq-cardrating-button {
-  transition: background-color 0.4s;
+#primary {
+    animation: initPage 0.3s ease-in-out forwards;
 }
 
-.sq-cardsort-bucket{
-  transition: background-color 0.4s;
+
+/* clean group */
+.clean-group {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  text-align: left;
+  font-size: 1.5rem;
+  padding-left: 20px;
 }
 
-input[type=number]:focus {
-  border : 2px solid #2d6df6;
+.clean-group-depth2 {
+  font-size : 1.6rem;
+  margin : 50px 10px 5px 10px;
+  width : 100%;
+  text-align : center;
+  padding : 5px;
+  border-radius : 10px;
+  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+  font-weight : bold;
+  background-color : @custom-color;
+  color: @custom-text-color;
 }
 
-select {
-  outline-color: #2d6df6;
+.clean-group-depth2 .group-separator {
+  display: none;
+}
+
+@media @mobile {
+  .clean-group {
+    max-width: 100%;
+    text-align: center;
+    padding-left: 0px;
+  }
+  .clean-group-depth2 {
+    max-width : 100%;
+    margin : 50px auto -10px auto;
+  }
+}
+
+
+/* Highlight text */
+.emphasis-text {
+  width: 80%;
+  text-align: center; 
+  height: 100%; 
+  line-height: 32px; 
+  font-size: 20px; 
+  color: @custom-text-color;
+  background-color: @custom-color;
+  border-radius: 32px; 
+  height:100%;
+  padding:5px;
+  font-weight: bold;
+  margin: 10px auto 10px auto;
+  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+}
+
+/* CH accordion */
+.ch-accordion {
+  width: 100%;
+  max-width: @custom-max-width;
+}
+
+.ch-accordion-item {
+  background-color: @custom-sub-color;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+}
+
+.ch-accordion-button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background-color: inherit;
+  outline: none;
+  border: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  gap: 10px;
+}
+
+.ch-accordion-button:hover {
+  background-color: @custom-color;
+  color : @custom-text-color;
+}
+
+.ch-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.ch-accordion-arrow{
+  width: 20px;
+  display: flex;
+  align-items: center;
+  transform: rotate(0deg);
+  transition: transform 0.5s;
 }

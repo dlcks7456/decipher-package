@@ -1,0 +1,77 @@
+<snippet>
+  <content><![CDATA[
+<style label="ch_accordion" arg:accoOpen1="open" name="question.header"><![CDATA[
+<div class="ch-accordion">
+  <div class="ch-accordion-item \$(accoOpen1)">
+    <div class="ch-accordion-button">
+      <div class="ch-accordion-arrow"></div>
+      <div>${1}</div>
+    </div>
+    <div class="ch-accordion-content">
+      <div style="padding: 10px;">
+        ${2}
+      </div>
+    </div>
+  </div>
+</div>
+<div id="question_\${this.label}" class="question \${'disabledElement ' if why and gv.debug.qa else ''}\${this.getName().lower()} label_\${this.label} \$(this.styles.ss.questionClassNames) \$(hasError)"\${' role="radiogroup" aria-labelledby="' + (this.label + '_' + ec.enabledCols[0].label if ec.haveColLegend else 'question_text_' + this.label) + '"' if ec.simpleList else ''}>
+\${v2_insertStyle('survey.question')}
+\$(error)
+\${v2_insertStyle('survey.question.instructions')}
+\${v2_insertStyle('survey.question.answers.start')}
+]]${-1}></style>
+<style label="ch_accordion_js" name="question.after" wrap="ready"><![CDATA[
+const accordionButtons = document.querySelectorAll('.ch-accordion-button');
+
+accordionButtons.forEach((button)=>{
+  const arrow = button.querySelector('.ch-accordion-arrow');
+  
+  arrow.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>`;
+
+  const parentItem = button.parentElement;
+  if( parentItem.classList.contains('open') ){
+    openAccordion(parentItem);
+    arrow.style.transform = 'rotate(90deg)';
+  }
+
+  button.addEventListener('click', function () {
+    const accordionContent = this.nextElementSibling.querySelector('.ch-accordion-content');
+    const accordionItem = this.parentElement;
+    const openItem = document.querySelector('.ch-accordion-item.open');
+
+    if (openItem && openItem !== accordionItem) {
+      closeAccordion(openItem);
+    }
+
+    if (accordionItem.classList.contains('open')) {
+      closeAccordion(accordionItem);
+    } else {
+      openAccordion(accordionItem);
+    }
+  });
+});
+
+function openAccordion(accordionItem){
+  const content = accordionItem.querySelector('.ch-accordion-content');
+  accordionItem.classList.add('open');
+  content.style.maxHeight = '100%';
+
+  const arrow = accordionItem.querySelector('.ch-accordion-arrow');
+  arrow.style.transform = 'rotate(90deg)';
+}
+
+function closeAccordion(accordionItem){
+  const content = accordionItem.querySelector('.ch-accordion-content');
+  accordionItem.classList.remove('open');
+  content.style.maxHeight = null;
+
+  const arrow = accordionItem.querySelector('.ch-accordion-arrow');
+  arrow.style.transform = 'rotate(0deg)';
+}
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ch.acco</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+<style name='button.finish'> <![CDATA[
+<input type="submit" name="finish" id="btn_finish" class="button finish" value="@(finish)"  onClick="var i = document.createElement('input');i.setAttribute('type', 'hidden');i.setAttribute('value', '1');i.setAttribute('name', '__has_javascript');document.forms.primary.appendChild(i);"/>
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>xml.finish</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

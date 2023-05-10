@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+<style name='question.top-legend-item'> <![CDATA[
+\@if ec.simpleList
+    <div id="\$(this.label)_\$(col.label)" class="legend col-legend col-legend-top col-legend-basic \$(levels) \${"col-legend-space" if this.grouping.cols and (col.group or col.index!=0) and ec.haveLeftLegend and ec.haveRightLegend else "border-collapse"} \$(col.styles.ss.colClassNames) \${col.group.styles.ss.groupClassNames if col.group else ""} \$(colError)">
+        \$(text)
+    </div>
+\@else
+\@if this.styles.ss.colWidth
+    <\$(tag) scope="col" id="\$(this.label)_\$(col.label)" class="cell nonempty legend col-legend col-legend-top col-legend-basic \$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"col-legend-space" if this.grouping.cols and (col.group or col.index!=0) and ec.haveLeftLegend and ec.haveRightLegend else "border-collapse"} \$(col.styles.ss.colClassNames) \${col.group.styles.ss.groupClassNames if col.group else ""} \$(colError)" style="width:\${this.styles.ss.colWidth}; min-width:\${this.styles.ss.colWidth}">
+        \$(text)
+    </\$(tag)>
+\@else
+    <\$(tag) scope="col" id="\$(this.label)_\$(col.label)" class="cell nonempty legend col-legend col-legend-top col-legend-basic \$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"col-legend-space" if this.grouping.cols and (col.group or col.index!=0) and ec.haveLeftLegend and ec.haveRightLegend else "border-collapse"} \$(col.styles.ss.colClassNames) \${col.group.styles.ss.groupClassNames if col.group else ""} \$(colError)">
+        \$(text)
+    </\$(tag)>
+\@endif
+\@endif
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>question.top.legend.item</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

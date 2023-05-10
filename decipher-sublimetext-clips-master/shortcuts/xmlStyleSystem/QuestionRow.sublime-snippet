@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+<style name='question.row'> <![CDATA[
+\@if ec.simpleList
+\$(elements)
+\@else
+\@if this.styles.ss.rowHeight
+    <\$(tag) class="row row-elements \$(style) colCount-\$(colCount)" style="height:\${this.styles.ss.rowHeight};">
+\@else
+    <\$(tag) class="row row-elements \$(style) colCount-\$(colCount)">
+\@endif
+\$(left)
+\$(elements)
+\$(right)
+</\$(tag)>
+\@endif
+]]${-1}></style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>question.row</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
