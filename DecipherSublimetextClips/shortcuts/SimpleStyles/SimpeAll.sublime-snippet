@@ -1,0 +1,220 @@
+<snippet>
+  <content><![CDATA[
+<style name="respview.client.css"><![CDATA[
+<link rel="shortcut icon" href="/survey/selfserve/NIQ_Favicon.ico" type="image/x-icon">
+<style>
+.f-highlight {
+  color : #2d6df6;
+  font-weight : bold;
+}
+
+.input-max-width input[type=number]{
+  max-width: 80px !important;
+  min-width: 70px !important;
+}
+</style>
+]]${-1}></style>
+
+<style name="respview.client.js"><![CDATA[
+<script type="text/javascript" src="/survey/lib/local/nielsenisq/v10/timeme.min.js"></script>
+<script type="text/javascript" src="/survey/lib/local/nielsenisq/v10/loi.js"></script>
+<script src="[rel checkIE.js]"></script>
+<script src="[rel mouse.js]"></script>
+<script src="[rel util.js]"></script>
+<script src="[rel animation.js]"></script>
+<script src="[rel uses.js]"></script>
+<script>
+window.addEventListener("DOMContentLoaded", function(){
+  /** IE Browser block **/  
+  blockIE();
+
+  /** Restart remove **/
+  const restart = document.querySelector(".autosave-restart");
+  if( restart ){ restart.remove(); }
+
+  if (!document.querySelector('.controlbarContainer')){
+    document.oncontextmenu = function(){ return false; }  /** mouse right click **/
+    document.onselectstart = function(){ return false; }  /** mouse text drag block **/
+    document.ondragstart = function(){ return false; }    /** mouse image drag block **/
+  }
+
+  /** print screen key block **/
+  document.addEventListener('keyup', function(e){
+      if (e.key == 'PrintScreen') {
+          navigator.clipboard.writeText('');
+      }
+  });
+  document.addEventListener('keydown', function(e){
+      if (e.ctrlKey && e.key == 'p') {
+          e.cancelBubble = true;
+          e.preventDefault();
+          e.stopImmediatePropagation();
+      }
+  });
+  
+  /** accordian show **/
+  accordionFirstRowShow();
+  accordionErrorHighLight();
+});
+</script>
+]]${-1}></style>
+<suspend/>
+
+<style cond="1" name="survey.respview.footer.support"><![CDATA[
+Copyright Ⓒ \${time.strftime('%Y')} <span class="blue-n" jstcache="0"></span>NielsenIQ Consumer LLC. All Rights Reserved. <a href="@(PrivacyPolicyUrl)" target="_blank" rel="noopener" jstcache="0">@(PrivacyPolicy)</a>.&nbsp;|&nbsp;<a href="mailto: NielsenIQDecipherSupport@nielseniq.com;NielsenDecipherSupport@nielseniq.com" target="_blank" jstcache="0"><i class="fa fa-icon-envelope-o" aria-hidden="true" jstcache="0"></i></a><div class="block-ie hidden" jstcache="0">  <div jstcache="0">\${res.block_ie}</div>  <div jstcache="0"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:100px;" jstcache="0">    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" jstcache="0"></path>  </svg></div></div>
+]]${-1}></style>
+
+<exec when="init">
+survey_path = gv.survey.path.split("/")[-2] if gv.survey.path.split("/")[-1] in ["temp-edit-live", "temp-view"] else gv.survey.path.split("/")[-1]
+# Adhoc = AD / Tracking = TRC
+imgdr = "https://nielsenkor.cafe24.com/Decipher/AD/{}".format(survey_path)
+
+from datetime import datetime
+import random
+
+def soft_Err(cond, str, high_rows=[], high_cols=[]):
+  if cond :
+    if p.chk==0 :
+      p.chk=1
+    else :
+      p.chk=0
+      if high_rows :
+        for each in high_rows :
+          error(str, row=each)
+
+      elif high_cols :
+        for each in high_cols :
+          error(str, col=each)
+      else :
+        error(str)
+  else :
+    p.chk=1
+
+def samegrid():
+  qid = allQuestions[this.label]
+  checkAnswer = [i.label for i in qid.rows if not i.val == None]
+  if len(checkAnswer) gt 1 :
+    if len(set(qid.val)-set([None])) == 1:
+      soft_Err(True, "%s&lt;br /&gt;%s"%(res.samegrid, res.softerr))
+    else :
+      p.chk=1
+  else :
+    p.chk=1
+
+def rankCnt(multiBase,maxRank):
+  cnt = maxRank
+  if not multiBase.count ge maxRank :
+    cnt = multiBase.count
+  return cnt
+
+
+# dupchk open list
+def checkOpen():
+  str_1=res.err2010
+  str_2=res.err2011
+  str_3=res.err2012
+
+  set_list=[]
+  
+  vals=[i.val for i in this.rows if not i.val == None]
+  for s in vals:
+    if s != "" :
+      flag=True
+      set_list.append(s.upper())
+
+
+  if not set_list :
+    error(str_1)
+  else :
+    for j in range(0,len(set_list)-1):
+        preval=this.rows[j].val
+        st=j+1
+        for i in range(st,len(set_list)):
+            postval=this.rows[i].val
+            if preval != "" and postval != "" :
+              if preval==postval:
+                  error(str_2)
+
+    for k in range(0,len(set_list)):
+      if this.rows[k].val=="":
+        error(str_3)
+
+
+# TMO Error
+def checkDuplicates(Qid) :
+  # before Q
+  Arr=[]
+  
+  # Curret Q
+  Brr=[]
+  
+  # Label Array
+  Crr=[]
+  
+  vls=allQuestions[Qid].values
+
+  for i in vls:
+    if not i == None :
+      Arr.append(i.upper())
+      Crr.append(i)
+
+  for j in this.values:
+    if not j == None :
+      Brr.append(j.upper())
+
+
+  if len(Arr) gt 0 and len(Brr) gt 0:
+    if (Brr[0]!=""):
+      for i in range(0,len(Brr)):
+        preText=Brr[i]
+        for j in range(0,len(Arr)):
+          currentText=Arr[j]
+          if preText!="" and currentText!="":
+            if preText==currentText:
+              errstr=Crr[j]+'-'+res.err2050
+              error(errstr)
+              break
+
+
+def badtext() :
+  tt=[i.replace(" ","") for i in this.values if not i==None]
+  badhan=(res.badhan)
+  badhan=badhan.split(',')
+
+  badspa=(res.badspa)
+  badspa=badspa.split(',')
+
+
+  for i in range(0,len(tt)) :
+    current_v=tt[i]
+    current_len=len(current_v)
+    for j in range(0,int(current_len),3) :
+      fn=j
+      ln=int(j)+3
+      if current_v[fn:ln] in badhan :
+        if decLang == 'korean' :
+          error(res.badhan_err)
+
+
+  for i in range(0,len(tt)) :
+    current_v=tt[i]
+    current_len=len(current_v)
+    for j in range(0,int(current_len),1) :
+      if current_v[j] in badspa :
+        error(res.badspa_err)
+</exec>
+
+<suspend/>
+
+<exec when="verified">
+p.chk = 1
+</exec>
+
+<suspend/>
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>sp.all</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+def scrSoft(cond,errmsg=res.softerr) :
+  if True :
+    if cond :
+        if p.chk==0 :
+          p.chk=1
+        else :
+          p.chk=0
+          error(errmsg)
+    else :
+      p.chk=1
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>scr.soft</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
