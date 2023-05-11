@@ -6,6 +6,7 @@ cardsort:dragAndDrop="0"
 cardsort:wrapBuckets="0"
 ss:questionClassNames="cardsort-rating"
 uses="cardsort.6"
+type="rating"
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>cardsort.rate</tabTrigger>

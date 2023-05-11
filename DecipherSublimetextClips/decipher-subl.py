@@ -1486,9 +1486,9 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                         comment = "<comment></comment>\n"
 
                     if "<comment>" not in input:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\">\n  <title>%s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, title.strip(), comment, output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"\n  uses=\"atmtable.6\">\n  <title>%s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, title.strip(), comment, output)
                     else:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\">\n  <title>%s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, title.strip(), output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"\n  uses=\"atmtable.6\">\n  <title>%s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, title.strip(), output)
 
 
                 self.view.replace(edit,sel, printPage)
