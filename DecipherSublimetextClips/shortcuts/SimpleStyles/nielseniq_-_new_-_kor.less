@@ -1879,3 +1879,35 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 }
 
+
+// Toggle Group css
+.ch-group-toggle {
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+
+  &:hover .ch-group-name {
+    background-color: @custom-sub-color;
+  }
+
+  .ch-group-name {
+    padding: 10px;
+    font-size: 1.3rem;
+    transition: background-color 0.4s;
+    cursor: pointer;
+
+    &.ch-group-selected {
+      background-color: @custom-color;
+      color: @custom-text-color;
+    }
+  }
+
+  .ch-group-rows {
+    overflow: hidden;
+    transition: max-height 0.5s;
+  }
+}
+
+

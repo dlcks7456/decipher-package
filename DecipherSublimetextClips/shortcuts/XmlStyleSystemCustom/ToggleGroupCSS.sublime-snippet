@@ -1,0 +1,37 @@
+<snippet>
+	<content><![CDATA[
+.ch-group-toggle {
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.ch-group-toggle .ch-group-name {
+  padding: 10px;
+  font-size: 1.3rem;
+  transition: background-color 0.4s;
+  cursor: pointer;
+}
+
+.ch-group-toggle .ch-group-rows {
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.ch-group-toggle:hover .ch-group-name {
+  background-color: #b7ceff;
+}
+
+
+.ch-group-toggle .ch-group-name.ch-group-selected {
+  background-color: #2d6df6;
+  color: white;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tog.group.css</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

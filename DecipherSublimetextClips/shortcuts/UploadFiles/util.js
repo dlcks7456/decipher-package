@@ -915,3 +915,34 @@ function bmQuestionHanler(questionClassName){
     noneHandler(noneChk, index);
   });
 }
+
+
+// Group Toggle setting
+function groupToggleSetting(){
+    const groupToggle = document.querySelectorAll('.ch-group-toggle');
+
+    [...groupToggle].forEach((group)=>{
+        const groupRowCell = group.querySelector('.ch-group-rows');
+        const groupName = group.querySelector('.ch-group-name');
+        const domMaxHeight = groupRowCell.offsetHeight;
+
+        const maxHeightHandler = ()=>{
+          if( groupRowCell.style.maxHeight == '0px' ){
+            groupRowCell.style.maxHeight = domMaxHeight + 'px';
+            groupName.classList.add('ch-group-selected');
+          }else{
+            groupRowCell.style.maxHeight = '0px';
+            groupName.classList.remove('ch-group-selected');
+          }
+        }
+        maxHeightHandler();
+        const selectedCheck = [...groupRowCell.querySelectorAll('.selected')];
+        if( selectedCheck.length >=1 ){
+          groupRowCell.style.maxHeight = domMaxHeight + 'px';
+          groupName.classList.add('ch-group-selected');
+        }
+
+        groupName.addEventListener('click', maxHeightHandler);
+    });
+}
+
