@@ -21,6 +21,13 @@
         ]
     },
     { 
+        "keys": ["ctrl+shift+u"], "command": "make_underline_color", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.xml"
+            }
+        ]
+    },
+    { 
         "keys": ["ctrl+shift+v"], "command": "make_video", "context": [
             {
               "key": "selector", "operator": "equal", "operand":"text.xml"

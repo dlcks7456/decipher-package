@@ -97,6 +97,17 @@ class makeStrongColorCommand(sublime_plugin.TextCommand):
                 self.view.replace(edit,sels, set_text)
                 
             except Exception as e:
+                print (e)
+
+class makeUnderlineColorCommand(sublime_plugin.TextCommand):
+        def run (self, edit):
+            try:
+                sels = self.view.sel()[0]
+                textr = self.view.substr(sels)
+                set_text = '<span class=\"f-highlight\"><u>{}</u></span>'.format(textr)
+                self.view.replace(edit,sels, set_text)
+                
+            except Exception as e:
                 print (e) 
 
 
