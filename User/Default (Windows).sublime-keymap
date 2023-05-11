@@ -7,7 +7,14 @@
         ]
     },
     { 
-        "keys": ["ctrl+shift+b"], "command": "make_strong_underline", "context": [
+        "keys": ["ctrl+shift+b"], "command": "make_strong_color", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.xml"
+            }
+        ]
+    },
+    { 
+        "keys": ["ctrl+u"], "command": "make_underline", "context": [
             {
               "key": "selector", "operator": "equal", "operand":"text.xml"
             }

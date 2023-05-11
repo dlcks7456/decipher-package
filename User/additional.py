@@ -77,7 +77,18 @@ class makeStrongCommand(sublime_plugin.TextCommand):
             except Exception as e:
                 print (e) 
 
-class makeStrongUnderlineCommand(sublime_plugin.TextCommand):
+class makeUnderlineCommand(sublime_plugin.TextCommand):
+        def run (self, edit):
+            try:
+                sels = self.view.sel()[0]
+                textr = self.view.substr(sels)
+                set_text = '<u>{}</u>'.format(textr)
+                self.view.replace(edit,sels, set_text)
+                
+            except Exception as e:
+                print (e) 
+
+class makeStrongColorCommand(sublime_plugin.TextCommand):
         def run (self, edit):
             try:
                 sels = self.view.sel()[0]
