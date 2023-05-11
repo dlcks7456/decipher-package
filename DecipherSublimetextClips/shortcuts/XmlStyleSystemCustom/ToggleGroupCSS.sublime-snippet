@@ -11,7 +11,7 @@
 .ch-group-toggle .ch-group-name {
   padding: 10px;
   font-size: 1.3rem;
-  transition: background-color 0.4s;
+  transition: background-color 0.5s;
   cursor: pointer;
 }
 
@@ -21,13 +21,21 @@
 }
 
 .ch-group-toggle:hover .ch-group-name {
-  background-color: #b7ceff;
+  background-color: #2d6df6;
+  color: white;
 }
-
 
 .ch-group-toggle .ch-group-name.ch-group-selected {
   background-color: #2d6df6;
   color: white;
+}
+
+.ch-group-toggle .element{
+  transition: background-color 0.5s;
+}
+
+.ch-group-toggle .element:hover{
+  background-color: #b7ceff;
 }
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
