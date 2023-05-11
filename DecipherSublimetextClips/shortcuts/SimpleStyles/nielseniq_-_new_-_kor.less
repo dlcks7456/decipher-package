@@ -78,7 +78,9 @@
 
 @custom-color: #2d6df6;
 @custom-text-color: white;
+@custom-text-color-comp: black;
 @custom-sub-color: #b7ceff;
+@custom-even-color: #f1f1f1;
 @custom-max-width : 924px;
 
 @border-color:                contrast(#060A45, darken(#060A45, 20%), lighten(#060A45, 15%)); // See the README for explanation on what contrast() mixin does.
@@ -1834,7 +1836,7 @@ input[type="number"]::-webkit-inner-spin-button {
     }
     .even {
       .row-legend {
-        background-color: #f1f1f1;
+        background-color: @custom-even-color;
       }
     }
   }
@@ -1898,10 +1900,13 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 1.3rem;
     transition: background-color 0.5s;
     cursor: pointer;
+    font-weight: bold;
+    background-color: @custom-even-color;
+    color: @custom-text-color-comp;
 
     &.ch-group-selected {
-      background-color: @custom-color;
-      color: @custom-text-color;
+      background-color: @custom-color !important;
+      color: @custom-text-color !important;
     }
   }
 
@@ -1915,6 +1920,28 @@ input[type="number"]::-webkit-inner-spin-button {
 
     &:hover {
       background-color: @custom-sub-color;
+    }
+  }
+}
+
+@media @mobile{
+  .ch-group-toggle {
+    .ch-group-name {
+      text-align: center;
+    }
+
+    &:hover .ch-group-name {
+      background-color: @custom-even-color;
+      color: @custom-text-color-comp;
+    }
+
+    .element {
+      padding: 5px;
+      font-size: 1.1rem;
+    }
+
+    input[type=text], input[type=number]{
+      width: 80%;
     }
   }
 }
