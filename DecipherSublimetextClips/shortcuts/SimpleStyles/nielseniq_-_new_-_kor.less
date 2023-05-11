@@ -1889,13 +1889,14 @@ input[type="number"]::-webkit-inner-spin-button {
   overflow: hidden;
 
   &:hover .ch-group-name {
-    background-color: @custom-sub-color;
+    background-color: @custom-color;
+    color: @custom-text-color;
   }
 
   .ch-group-name {
     padding: 10px;
     font-size: 1.3rem;
-    transition: background-color 0.4s;
+    transition: background-color 0.5s;
     cursor: pointer;
 
     &.ch-group-selected {
@@ -1908,6 +1909,12 @@ input[type="number"]::-webkit-inner-spin-button {
     overflow: hidden;
     transition: max-height 0.5s;
   }
+
+  .element {
+    transition: background-color 0.5s;
+
+    &:hover {
+      background-color: @custom-sub-color;
+    }
+  }
 }
-
-
