@@ -944,5 +944,21 @@ function groupToggleSetting(){
 
         groupName.addEventListener('click', maxHeightHandler);
     });
+
+    const groupSelected = ()=>{
+      const groupToggle = document.querySelectorAll('.ch-group-toggle');
+      [...groupToggle].forEach((group)=>{
+        const groupRowCell = group.querySelector('.ch-group-rows');
+        const groupName = group.querySelector('.ch-group-name');
+        const selectedCheck = [...groupRowCell.querySelectorAll('input:checked')];
+        if( selectedCheck.length >=1 ){
+          groupName.classList.add('ch-group-selected');
+        }else{
+          groupName.classList.remove('ch-group-selected');
+        }
+      });
+    }
+    groupSelected();
+    document.querySelector('.answers').addEventListener('click', groupSelected);
 }
 
