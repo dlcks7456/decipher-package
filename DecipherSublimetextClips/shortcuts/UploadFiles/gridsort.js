@@ -364,7 +364,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     height: 100%;
     max-width: 920px;
     margin : 2px 0 2px 0;
-    text-align: center;
     padding: 15px;
     font-size: 1.3rem;
     cursor: pointer;
@@ -372,7 +371,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     border-radius: 10px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     display : flex;
-    align-items : center;
     justify-content : center;
     flex-direction : column;
 }
