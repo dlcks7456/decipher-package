@@ -289,13 +289,12 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     const colPercent = 100/gridColumnCount;
     const [gridColCnt, setGridColCnt] = React.useState(new Array(gridColumnCount).fill(`${colPercent}%`));
 
-
     return (
         <>
         <style jsx="true">{`
 .custom-rank-sort {
     width : 100%;
-    max-width : 900px;
+    max-width : ${gridColCnt.length >= 3 ? "924px" : "500px"};
 }
 
 .custom-rank-rows {

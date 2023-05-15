@@ -3,7 +3,7 @@
 .sq-cardsort-bucket-count{display: none !important;}
 
 .sq-cardrating-widget{
-  width: 924px !important; 
+  max-width: 924px !important; 
 }
 
 .sq-cardrating-content{
