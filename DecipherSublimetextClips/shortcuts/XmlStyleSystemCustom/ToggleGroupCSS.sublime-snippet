@@ -24,8 +24,7 @@
 }
 
 .ch-group-toggle:hover .ch-group-name {
-  background-color: #2d6df6;
-  color: white;
+  background-color: #b7ceff;
 }
 
 .ch-group-toggle .ch-group-rows {
@@ -38,7 +37,7 @@
 }
 
 .ch-group-toggle .element:hover {
-  background-color: #b7ceff;
+  background-color: rgba(183, 206, 255, 0.5);
 }
 
 \@media (max-width: 768px) {

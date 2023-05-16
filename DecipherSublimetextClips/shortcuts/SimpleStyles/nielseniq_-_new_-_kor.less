@@ -1895,8 +1895,7 @@ input[type="number"]::-webkit-inner-spin-button {
   overflow: hidden;
 
   &:hover .ch-group-name {
-    background-color: @custom-color;
-    color: @custom-text-color;
+    background-color: @custom-sub-color;
   }
 
   .ch-group-name {
@@ -1923,7 +1922,7 @@ input[type="number"]::-webkit-inner-spin-button {
     transition: background-color 0.5s;
 
     &:hover {
-      background-color: @custom-sub-color;
+      background-color: fade(@custom-sub-color, 50%);
     }
   }
 }
