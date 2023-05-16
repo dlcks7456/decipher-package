@@ -605,10 +605,19 @@ function fnLengthCheck(_label, _num){
       if (changeTextArea.getAttribute('disabled') !== null){
         numCheckLength = 0;
       }
+      let numConvertPer = Math.floor(numCalcLength / numCheckLength * 100);
+
+      let numLowRed = 230;
+      let numLowGreen = 21;
+      let numLowBlue = 33;
+
+      let numHighRed = 45;
+      let numHighGreen = 109;
+      let numHighBlue = 246;
 
       if(numCalcLength >= numCheckLength){
-        changeAreaGageOutLine.style.borderColor = 'rgb(0, 255, 0)';
-        changeAreaGageInnerLine.style.backgroundColor = 'rgb(0, 255, 0)';
+        changeAreaGageOutLine.style.borderColor = 'rgb(' + numHighRed + ', ' + numHighGreen + ', ' + numHighBlue + ')';
+        changeAreaGageInnerLine.style.backgroundColor = 'rgb(' + numHighRed + ', ' + numHighGreen + ', ' + numHighBlue + ')';
         changeAreaGageInnerLine.style.width = '100%';
         changeAreaGageInnerLine.style.borderRadius = '4px';
         changeAreaWrap.classList.add('checkPass');
@@ -616,28 +625,27 @@ function fnLengthCheck(_label, _num){
         changeFailView.style.opacity = '0';
       }
       else{
-        let numCalcRed;
-        let numCalcGreen;
-        let numConvertPer = Math.floor(numCalcLength / numCheckLength * 100);
+        let numCalcRed = (numLowRed - numHighRed) * ((100 - numConvertPer) / 100) + numHighRed;
+        let numCalcGreen = (numLowGreen - numHighGreen) * ((100 - numConvertPer) / 100) + numHighGreen;
+        let numCalcBlue = (numLowBlue - numHighBlue) * ((100 - numConvertPer) / 100) + numHighBlue;
+        if (numConvertPer <= 50){
+          numLowGreen = 21;
+          numHighGreen = 255;
+          numCalcGreen = (numLowGreen - numHighGreen) * ((100 - (numConvertPer * 2)) / 100) + numHighGreen;
+        }
+        else {
+          numLowGreen = 255;
+          numHighGreen = 109;
+          numCalcGreen = (numLowGreen - numHighGreen) * ((100 - numConvertPer) / 100 * 2) + numHighGreen;
+        }
         changeAreaGageInnerLine.style.width = numConvertPer + '%';
         changeAreaGageInnerLine.style.borderTopRightRadius = Math.round(4 * (numConvertPer / 100)) + 'px';
         changeAreaGageInnerLine.style.borderBottomRightRadius = Math.round(4 * (numConvertPer / 100)) + 'px';
         changePassView.style.opacity = '0';
         changeFailView.style.opacity = '1';
-  
         changeAreaWrap.classList.remove('checkPass');
-        if (numConvertPer <= 50){
-          numCalcRed = 255;
-          numCalcGreen = String(Math.floor(255 * (numConvertPer / 100 * 2)));
-          changeAreaGageOutLine.style.borderColor = 'rgb(' + numCalcRed + ', ' + numCalcGreen + ', 0)';
-          changeAreaGageInnerLine.style.backgroundColor = 'rgb(' + numCalcRed + ', ' + numCalcGreen + ', 0)';
-        }
-        else{
-          numCalcRed = String(255 - Math.floor(255 * ((numConvertPer - 50) / 100 * 2)));
-          numCalcGreen = 255;
-          changeAreaGageOutLine.style.borderColor = 'rgb(' + numCalcRed + ', ' + numCalcGreen + ', 0)';
-          changeAreaGageInnerLine.style.backgroundColor = 'rgb(' + numCalcRed + ', ' + numCalcGreen + ', 0)';
-        }
+        changeAreaGageOutLine.style.borderColor = 'rgb(' + numCalcRed + ', ' + numCalcGreen + ', ' + numCalcBlue + ')';
+        changeAreaGageInnerLine.style.backgroundColor = 'rgb(' + numCalcRed + ', ' + numCalcGreen + ', ' + numCalcBlue + ')';  
       }
     }
     fnPassCheck();
@@ -674,14 +682,14 @@ function fnLengthCheck(_label, _num){
     objAreaGageOutLine.style.width = 'calc(100% - 20px)';
     objAreaGageOutLine.style.height = '14px';
     
-    objAreaGageOutLine.style.border = 'solid 2px rgb(255, 0, 0)';
+    objAreaGageOutLine.style.border = 'solid 2px rgb(230, 21, 33)';
     objAreaGageOutLine.style.borderRadius = '10px';
     objAreaGageOutLine.style.transitionDuration = '0.15s';
   
     objAreaGageInnerLine.classList.add('areaGageInnerLine');
     objAreaGageInnerLine.style.width = '0%';
     objAreaGageInnerLine.style.height = '100%';
-    objAreaGageInnerLine.style.backgroundColor = 'rgb(255, 0, 0)';
+    objAreaGageInnerLine.style.backgroundColor = 'rgb(230, 21, 33)';
     objAreaGageInnerLine.style.borderTopLeftRadius = '4px';
     objAreaGageInnerLine.style.borderBottomLeftRadius = '4px';
     objAreaGageInnerLine.style.borderTopRightRadius = '0px';
@@ -696,7 +704,7 @@ function fnLengthCheck(_label, _num){
     objMarkPassArea.style.width = '14px';
     objMarkPassArea.style.height = '14px';
     objMarkPassArea.style.transform = 'translateZ(0px)';
-    objMarkPassArea.style.border = 'solid 2px rgb(0, 220, 0)';
+    objMarkPassArea.style.border = 'solid 2px rgb(45, 109, 246)';
     objMarkPassArea.style.borderRadius = '100%';
     objMarkPassArea.style.opacity = '0';
     objMarkPassArea.style.overflow = 'hidden';
@@ -712,8 +720,8 @@ function fnLengthCheck(_label, _num){
     objMarkPassView.style.borderBottomWidth = '2px';
     objMarkPassView.style.borderLeftStyle = 'solid';
     objMarkPassView.style.borderBottomStyle = 'solid';
-    objMarkPassView.style.borderLeftColor = 'rgb(0, 220, 0)';
-    objMarkPassView.style.borderBottomColor = 'rgb(0, 220, 0)';
+    objMarkPassView.style.borderLeftColor = 'rgb(45, 109, 246)';
+    objMarkPassView.style.borderBottomColor = 'rgb(45, 109, 246)';
     objMarkPassView.style.transform = 'rotate(-45deg)';
   
     objMarkFailArea.classList.add('areaFailView')
@@ -724,7 +732,7 @@ function fnLengthCheck(_label, _num){
     objMarkFailArea.style.width = '14px';
     objMarkFailArea.style.height = '14px';
     objMarkFailArea.style.transform = 'translateZ(0px)';
-    objMarkFailArea.style.border = 'solid 2px rgb(220, 0, 0)';
+    objMarkFailArea.style.border = 'solid 2px rgb(230, 21, 33)';
     objMarkFailArea.style.borderRadius = '100%';
     objMarkFailArea.style.opacity = '1';
     objMarkFailArea.style.overflow = 'hidden';
@@ -743,7 +751,7 @@ function fnLengthCheck(_label, _num){
     objMarkFailLeftRect.style.left = '50%';
     objMarkFailLeftRect.style.top = '50%';
     objMarkFailLeftRect.style.transform = 'translate(-50%, -50%)';
-    objMarkFailLeftRect.style.backgroundColor = 'rgb(220, 0, 0)';
+    objMarkFailLeftRect.style.backgroundColor = 'rgb(230, 21, 33)';
   
     objMarkFailRightView.style.position = 'absolute';
     objMarkFailRightView.style.display = 'block';
@@ -758,7 +766,7 @@ function fnLengthCheck(_label, _num){
     objMarkFailRightRect.style.left = '50%';
     objMarkFailRightRect.style.top = '50%';
     objMarkFailRightRect.style.transform = 'translate(-50%, -50%)';
-    objMarkFailRightRect.style.backgroundColor = 'rgb(220, 0, 0)';
+    objMarkFailRightRect.style.backgroundColor = 'rgb(230, 21, 33)';
   
     objSection.classList.add('wrapSection');
     objSection.style.position = 'relative';
