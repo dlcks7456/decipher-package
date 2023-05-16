@@ -82,6 +82,11 @@
 @custom-sub-color: #b7ceff;
 @custom-even-color: #f1f1f1;
 @custom-max-width : 924px;
+@boxShadowColor: rgba(0, 0, 0, 0.1);
+.box-shadow-style() {
+  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+}
+
 
 @border-color:                contrast(#060A45, darken(#060A45, 20%), lighten(#060A45, 15%)); // See the README for explanation on what contrast() mixin does.
 @question-background:         transparent;
@@ -1161,7 +1166,7 @@ form#primary, .exit-message {
   background-color: #ffffff !important;
   color: #000 !important;
 	border-color: #000000 !important;
-	box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+	.box-shadow-style();
 
 	&[data-hovered] {
     background-color: @custom-sub-color !important;
@@ -1229,7 +1234,7 @@ body {
     color: #000 !important;
     font-family: aktiv-grotesk,sans-serif;
     font-size: 1rem;
-    box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+    .box-shadow-style();
 }
 
 .sq-cardsort-buckets .sq-cardsort-bucket.sq-cardsort-state-hovered,
@@ -1440,8 +1445,6 @@ select {
   }
 }
 
-@boxShadowColor: rgba(0, 0, 0, 0.1);
-
 * {
   word-break: keep-all;
 }
@@ -1467,7 +1470,7 @@ select {
   border-radius: 10px;
   width : 100%;
   max-width : @custom-max-width;
-  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+  .box-shadow-style();
   padding : 10px;
   margin-top : 30px;
   margin-bottom : 30px;
@@ -1487,7 +1490,7 @@ input[type="number"]::-webkit-inner-spin-button {
         border: 1px solid #ccc;
         padding: 10px;
         border-radius: 10px;
-        box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+        .box-shadow-style();
     }
 
     .row-legend-left {
@@ -1533,7 +1536,7 @@ input[type="number"]::-webkit-inner-spin-button {
             border: 1px solid #ccc;
             padding: 10px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+            .box-shadow-style();
         }
 
         .row-legend-left {
@@ -1728,7 +1731,7 @@ input[type="number"]::-webkit-inner-spin-button {
   text-align : center;
   padding : 5px;
   border-radius : 10px;
-  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+  .box-shadow-style();
   font-weight : bold;
   background-color : @custom-color;
   color: @custom-text-color;
@@ -1765,7 +1768,7 @@ input[type="number"]::-webkit-inner-spin-button {
   padding:5px;
   font-weight: bold;
   margin: 10px auto 10px auto;
-  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+  .box-shadow-style();
 }
 
 /* CH accordion */
@@ -1779,7 +1782,7 @@ input[type="number"]::-webkit-inner-spin-button {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-bottom: 10px;
-  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+  .box-shadow-style();
 
   .ch-accordion-button {
     display: block;
@@ -1820,7 +1823,7 @@ input[type="number"]::-webkit-inner-spin-button {
 /* atmtable css */
 .sq-atmtable {
   .colGroup {
-    box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+    .box-shadow-style();
 
     .col-legend {
       background-color: @custom-sub-color;
@@ -1841,14 +1844,14 @@ input[type="number"]::-webkit-inner-spin-button {
     }
   }
   .row-legend {
-    box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+    .box-shadow-style();
     min-width: 300px !important;
   }
-  .row-col-legends-top.colCount-7 {
+  .row-col-legends.row-col-legends-top:not(.colGroup) {
     display: none;
   }
   .sq-atmtable-btn {
-    box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+    .box-shadow-style();
     font-size: 1.2rem;
   }
 }
@@ -1885,7 +1888,7 @@ input[type="number"]::-webkit-inner-spin-button {
 // Toggle Group css
 .ch-group-toggle {
   border: 1px solid #ccc;
-  box-shadow: 0 4px 6px -1px @boxShadowColor, 0 2px 4px -2px @boxShadowColor;
+  .box-shadow-style();
   border-radius: 10px;
   margin-bottom: 10px;
   overflow: hidden;

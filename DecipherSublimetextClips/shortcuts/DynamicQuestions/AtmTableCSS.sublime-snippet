@@ -6,7 +6,6 @@
 
 .sq-atmtable .colGroup .col-legend {
   background-color: #b7ceff;
-  border: none;
 }
 
 .sq-atmtable .grid-table-mode .odd {
@@ -26,7 +25,7 @@
   min-width: 300px !important;
 }
 
-.sq-atmtable .row-col-legends-top.colCount-7 {
+.sq-atmtable .row-col-legends.row-col-legends-top:not(.colGroup) {
   display: none;
 }
 
@@ -35,34 +34,22 @@
   font-size: 1.2rem;
 }
 
-.sq-atmtable-btn-selected {
-  background-color: #b7ceff !important;
-}
-
-.sq-atmtable-btn-hover {
-    background-color: #b7ceff !important;
-}
-
 \@media (max-width: 800px) {
   .sq-atmtable .colCount-7 .col-legend {
     display: none;
   }
-
   .sq-atmtable .row-elements {
     display: flex !important;
     flex-direction: column;
   }
-
   .sq-atmtable .row-elements .cell {
     margin-bottom: 5px;
     text-align: left;
     padding: 10px;
   }
-
   .sq-atmtable .cell {
     width: 100% !important;
   }
-
   .sq-atmtable .row-legend {
     margin-top: 20px;
     text-align: center;
