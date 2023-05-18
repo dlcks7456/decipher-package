@@ -6,7 +6,7 @@
   optional="1"
   shuffle="rows"
   unique="none,cols"
-  uses="ranksort.4">
+  uses="ranksort.5">
   <title>${3}</title>
   <choice label="ch1">1순위</choice>
   <choice label="ch2">2순위</choice>
