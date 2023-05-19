@@ -924,42 +924,61 @@ function bmQuestionHanler(questionClassName){
   });
 }
 
-
 // Group Toggle setting
 function groupToggleSetting(){
     const groupToggle = document.querySelectorAll('.ch-group-toggle');
 
-    groupToggle.forEach((group)=>{
-        const groupRowCell = group.querySelector('.ch-group-rows');
-        const groupName = group.querySelector('.ch-group-name');
+    const maxHeightHandler = (groupRowCell, groupName) => {
+        const originalMaxHeight = groupRowCell.style.maxHeight;
+        groupRowCell.style.maxHeight = 'none';
         const domMaxHeight = groupRowCell.offsetHeight;
+        groupRowCell.style.maxHeight = originalMaxHeight;
 
-        const maxHeightHandler = ()=>{
-          if( groupRowCell.style.maxHeight == '0px' ){
-            groupRowCell.style.maxHeight = `${domMaxHeight}px`;
-            groupName.classList.add('ch-group-selected');
-          }else{
-            groupRowCell.style.maxHeight = '0px';
-            groupName.classList.remove('ch-group-selected');
-          }
-        }
-        maxHeightHandler();
-        groupName.addEventListener('click', maxHeightHandler);
-    });
+        window.requestAnimationFrame(() => {
+            if (groupRowCell.style.maxHeight === '0px') {
+                groupRowCell.style.maxHeight = `${domMaxHeight}px`;
+                groupName.classList.add('ch-open');
+            } else {
+                groupRowCell.style.maxHeight = '0px';
+                groupName.classList.remove('ch-open');
+            }
+        });
+    };
 
-    const groupSelected = ()=>{
-      const groupToggle = document.querySelectorAll('.ch-group-toggle');
-      groupToggle.forEach((group)=>{
-        const groupRowCell = group.querySelector('.ch-group-rows');
-        const groupName = group.querySelector('.ch-group-name');
-        const selectedCheck = groupRowCell.querySelectorAll('input:checked');
-        if( selectedCheck.length >=1 ){
-          groupName.classList.add('ch-group-selected');
-        }else{
-          groupName.classList.remove('ch-group-selected');
-        }
-      });
-    }
+    const groupSelected = () => {
+        const groupToggle = document.querySelectorAll('.ch-group-toggle');
+        groupToggle.forEach((group) => {
+            const groupRowCell = group.querySelector('.ch-group-rows');
+            const groupName = group.querySelector('.ch-group-name');
+            const selectedCheck = groupRowCell.querySelectorAll('input:checked');
+            if(selectedCheck.length >= 1){
+                groupName.classList.add('ch-group-selected');
+            } else {
+                groupName.classList.remove('ch-group-selected');
+            }
+        });
+    };
+
     groupSelected();
     document.querySelector('.answers').addEventListener('click', groupSelected);
+
+    groupToggle.forEach((group) => {
+        const groupRowCell = group.querySelector('.ch-group-rows');
+        const groupName = group.querySelector('.ch-group-name');
+
+        const clickHandler = () => maxHeightHandler(groupRowCell, groupName);
+        clickHandler();
+
+        groupName.addEventListener('click', clickHandler);
+
+        window.addEventListener('resize', () => {
+            groupName.removeEventListener('click', clickHandler);
+            if (groupName.classList.contains('ch-open')) {
+                groupRowCell.style.maxHeight = 'none';
+                const domMaxHeight = groupRowCell.offsetHeight;
+                groupRowCell.style.maxHeight = `${domMaxHeight}px`;
+            }
+            groupName.addEventListener('click', clickHandler);
+        });
+    });
 }
