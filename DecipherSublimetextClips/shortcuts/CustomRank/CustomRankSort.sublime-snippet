@@ -1,9 +1,35 @@
 <snippet>
 	<content><![CDATA[
-ss:questionClassNames="rank-text-center"
+<style label="custom_rank" arg:colCnt="${1:1}" arg:ableNone="${2:2}" arg:noneLabel="${3:r99}" arg:showAnswers="true" arg:showGrpups="false" name="question.after"><![CDATA[
+<style>.grid-table-mode, .grid-list-mode{display: none !important;}</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel" src="[rel gridsort.js]"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<script type="text/babel">
+const group_info = [
+\@for eachRow in this.rows
+\@if eachRow.group
+[\${eachRow.index}, '\${eachRow.group.label}', '\${eachRow.group.text}'],
+\@endif
+\@end
+];
+SettingGridRankSort({
+  json: \${jsexport()}, 
+  defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None]}, 
+  colCnt: \$(colCnt),
+  showGrpups : \$(showGrpups),
+  groups: group_info, 
+  ableNone : \$(ableNone),
+  showAnswers : \$(showAnswers),
+  noneIndex : \${\$(this.label).\$(noneLabel).index if hasattr(\$(this.label), '\$(noneLabel)') else 'null'},
+});
+</script>
+]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>.custom.rank.center</tabTrigger>
+	<tabTrigger>custom.rank</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

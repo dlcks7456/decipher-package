@@ -1,0 +1,53 @@
+<snippet>
+  <content><![CDATA[
+.cardsort-rating .sq-cardsort-desktop .sq-cardsort-buckets {
+  display: flex;
+  justify-content: center;
+}
+
+.cardsort-rating .sq-cardsort-mobile .sq-cardsort-bucket {
+  text-align: left;
+  padding-left: 10px;
+}
+
+\@media (max-width: 768px) {
+  .cardsort-rating .sq-cardsort-desktop .sq-cardsort-cards {
+    margin-top: 30px;
+    width: 100% !important;
+  }
+
+  .cardsort-rating .sq-cardsort-desktop .sq-cardsort-card-item {
+    width: auto !important;
+  }
+
+  .cardsort-rating .sq-cardsort-desktop .sq-cardsort-card {
+    width: 100% !important;
+  }
+
+  .cardsort-rating .sq-cardsort-desktop .sq-cardsort-buckets {
+    flex-direction: column;
+  }
+
+  .cardsort-rating .sq-cardsort-desktop .sq-cardsort-bucket {
+    width: 100% !important;
+    max-width: none;
+    max-height: 50px;
+    display: flex !important;
+    align-items: center;
+    text-align: left;
+  }
+
+  .cardsort-rating .sq-cardsort-desktop .sq-cardsort-bucket-item {
+    margin-left: 0;
+  }
+
+  .cardsort-rating .sq-cardsort-desktop .sq-cardrating-content {
+    font-size: 1.4rem !important;
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>cardsort.rate.css</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
