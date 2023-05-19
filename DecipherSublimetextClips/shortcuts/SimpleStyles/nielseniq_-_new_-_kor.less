@@ -1860,11 +1860,6 @@ input[type="number"]::-webkit-inner-spin-button {
 
 @media @custom-break-point {
   .sq-atmtable {
-    .colCount-7 {
-      .col-legend {
-        display: none;
-      }
-    }
     .row-elements {
       display: flex !important;
       flex-direction: column;
@@ -1875,12 +1870,18 @@ input[type="number"]::-webkit-inner-spin-button {
         padding: 10px;
       }
     }
+    
     .cell {
       width: 100% !important;
     }
+    
     .row-legend {
       margin-top: 20px;
       text-align: center;
+    }
+
+    .sq-atmtable-btn {
+      font-size: 1rem !important;
     }
   }
 }
