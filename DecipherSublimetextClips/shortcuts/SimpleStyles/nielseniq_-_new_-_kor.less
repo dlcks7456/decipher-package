@@ -1907,10 +1907,26 @@ input[type="number"]::-webkit-inner-spin-button {
     font-weight: bold;
     background-color: @custom-even-color;
     color: @custom-text-color-comp;
+    position: relative;
 
     &.ch-group-selected {
       background-color: @custom-color !important;
       color: @custom-text-color !important;
+    }
+
+    .ch-group-text {
+      width : 90%;
+    }
+
+    .ch-group-arrow {
+      position: absolute;
+      width: 20px;
+      top: 30%;
+      right: 10px;
+      
+      svg {
+        transition: transform 0.5s;
+      }
     }
   }
 
@@ -1926,14 +1942,16 @@ input[type="number"]::-webkit-inner-spin-button {
       background-color: fade(@custom-sub-color, 50%);
     }
   }
+
+  .ch-open {
+    .ch-group-arrow svg {
+      transform: rotate(90deg);
+    }
+  }
 }
 
 @media @mobile{
   .ch-group-toggle {
-    .ch-group-name {
-      text-align: center;
-    }
-
     .element {
       padding: 5px;
       font-size: 1.1rem;

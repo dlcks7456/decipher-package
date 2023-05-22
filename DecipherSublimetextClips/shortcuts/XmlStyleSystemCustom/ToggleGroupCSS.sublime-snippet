@@ -8,6 +8,10 @@
   overflow: hidden;
 }
 
+.ch-group-toggle:hover .ch-group-name {
+  background-color: #b7ceff;
+}
+
 .ch-group-toggle .ch-group-name {
   padding: 10px;
   font-size: 1.3rem;
@@ -16,15 +20,27 @@
   font-weight: bold;
   background-color: #f1f1f1;
   color: black;
+  position: relative;
 }
 
 .ch-group-toggle .ch-group-name.ch-group-selected {
-  background-color: #2d6df6 !important;
-  color: white !important;
+  background-color: #2d6df6;
+  color: white;
 }
 
-.ch-group-toggle:hover .ch-group-name {
-  background-color: #b7ceff;
+.ch-group-toggle .ch-group-name .ch-group-text {
+  width : 90%;
+}
+
+.ch-group-toggle .ch-group-name .ch-group-arrow {
+  position: absolute;
+  width: 20px;
+  top: 30%;
+  right: 10px;
+}
+
+.ch-group-toggle .ch-group-name .ch-group-arrow svg {
+  transition: transform 0.5s;
 }
 
 .ch-group-toggle .ch-group-rows {
@@ -40,23 +56,18 @@
   background-color: rgba(183, 206, 255, 0.5);
 }
 
+.ch-open .ch-group-arrow svg {
+  transform: rotate(90deg);
+}
+
 \@media (max-width: 768px) {
-  .ch-group-toggle .ch-group-name {
-    text-align: center;
-  }
-
-  .ch-group-toggle:hover .ch-group-name {
-    background-color: #f1f1f1;
-    color: black;
-  }
-
   .ch-group-toggle .element {
     padding: 5px;
     font-size: 1.1rem;
   }
 
-  .ch-group-toggle input[type=text],
-  .ch-group-toggle input[type=number] {
+  .ch-group-toggle input[type=text], 
+  .ch-group-toggle input[type=number]{
     width: 80%;
   }
 }
