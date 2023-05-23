@@ -1,0 +1,59 @@
+<snippet>
+	<content><![CDATA[
+.ch-showcard {
+  font-weight: bold;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.ch-showcard details {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: .5em .5em 0;
+    margin-bottom: 1em;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.ch-showcard summary {
+    font-weight: bold;
+    border-radius: 10px;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.ch-showcard summary:hover {
+  background-color: #2d6df6;
+  color: white;  
+}
+
+.ch-showcard details[open] {
+    padding: .5em;
+}
+
+.ch-showcard details[open] summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: .5em;
+    background-color: #2d6df6;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.ch-showcard details summary{
+  display: revert !important;
+}
+
+.ch-showcard .img-div {
+  width:100%; 
+  text-align: center; 
+  margin-bottom: 10px;
+}
+.ch-showcard .img-div img {
+  width:100%;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>detail.css</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

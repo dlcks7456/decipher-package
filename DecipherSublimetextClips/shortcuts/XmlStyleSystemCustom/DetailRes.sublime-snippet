@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+<res label="detail_text">보기 카드 <span style="font-size: 1.1rem; font-weight: normal;">(클릭하면 보이거나 숨겨집니다)</span></res>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>detail.res</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

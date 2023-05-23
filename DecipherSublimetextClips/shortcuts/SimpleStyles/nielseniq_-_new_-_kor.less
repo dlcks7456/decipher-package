@@ -1180,12 +1180,12 @@ form#primary, .exit-message {
 }
 
 .sq-cardrating-prev,.sq-cardrating-next {
-    color: #2d6df6 !important;
+    color: @custom-color !important;
     z-index: 25;
 }
 
 .sq-cardrating-prev[data-hovered],.sq-cardrating-next[data-hovered] {
-    color: #2d6df6 !important;
+    color: @custom-color !important;
 }
 
 .sq-sliderpoints .sliderpoints-legenditem.sliderpoints-hover,
@@ -1244,7 +1244,7 @@ body {
 }
 
 .selected-row .sq-accordion-header {
-	background: #2d6df6 !important;
+	background: @custom-color !important;
   color: #fff !important;
 }
 
@@ -1337,7 +1337,7 @@ body {
 
 .sq-cardrating-bar {
   &[data-active], & {
-    background-color: #2d6df6 !important;
+    background-color: @custom-color !important;
   }
 }
 
@@ -1349,7 +1349,7 @@ body {
   .answers {
     label {
       transition: background-color 0.4s;
-      outline-color: #2d6df6 !important;
+      outline-color: @custom-color !important;
     }
   }
 }
@@ -1363,11 +1363,11 @@ body {
 }
 
 input[type=number]:focus {
-  border: 2px solid #2d6df6;
+  border: 2px solid @custom-color;
 }
 
 select {
-  outline-color: #2d6df6;
+  outline-color: @custom-color;
 }
 
 @media @mobile {
@@ -1962,3 +1962,57 @@ input[type="number"]::-webkit-inner-spin-button {
     }
   }
 }
+
+
+/* Detail Tag*/
+.ch-showcard {
+  font-weight: bold;
+  margin-bottom: 15px;
+  cursor: pointer;
+
+  details {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: .5em .5em 0;
+    margin-bottom: 1em;
+    .box-shadow-style();
+
+    &[open] {
+      padding: .5em;
+
+      summary {
+        border-bottom: 1px solid #aaa;
+        margin-bottom: .5em;
+        background-color: @custom-color;
+        color: @custom-text-color;
+        border-radius: 10px 10px 0 0;
+      }
+    }
+
+    summary {
+      font-weight: bold;
+      border-radius: 10px;
+      margin: -.5em -.5em 0;
+      padding: .5em;
+      transition: color 0.5s, background-color 0.5s;
+      display: revert !important;
+
+      &:hover {
+        background-color: @custom-color;
+        color: @custom-text-color;
+      }
+    }
+  }
+
+  .img-div {
+    width:100%; 
+    text-align: center; 
+    margin-bottom: 10px;
+
+    img {
+      width:100%;
+    }
+  }
+}
+
+
