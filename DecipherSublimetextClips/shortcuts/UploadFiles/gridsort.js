@@ -34,7 +34,7 @@ const ShowRank = ({rankNum})=>{
     return (
             <div 
                 className={`rank-number rank-${rankNum} animate__animated animate__bounceIn show-rank-cnt`}>
-                    <div>{rankNum}</div>
+                    {rankNum}
             </div>
     )
 }
@@ -106,9 +106,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
         <>
         <div 
             className={`rank-row-btn rank-row-${row.label} animate__animated animate__fadeIn`}>
-            <div style={{
-                width: '40px'
-            }}>
+            <div className="show-rank-div">
                 { isSelected && !isNoanswer ? (
                     <ShowRank 
                         rankNum={answers.includes(row.index) ? answers.indexOf(row.index) + 1 : answers.length + 1}/>
@@ -333,15 +331,22 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     height : 100%;
 }
 
+.show-rank-div{
+    width: 40px;
+    display: flex;
+    justify-content: center;
+}
+
 .show-rank-cnt {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     display: flex;
     align-items: center;
+    justify-content: center;
     background: #2d6df6;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     border-radius: 100%;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #fff;
     margin-left: 3px;
 }
@@ -355,7 +360,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     display: flex;
     flex-direction: row;
     align-items: center;
-    min-height: 50px;
+    min-height: 40px;
 }
 
 .rank-text {
@@ -363,8 +368,8 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     height: 100%;
     max-width: 920px;
     margin : 2px 0 2px 0;
-    padding: 15px;
-    font-size: 1.3rem;
+    padding: 7px;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: background 0.3s, color 0.3s, width 5s;
     border-radius: 10px;
