@@ -301,17 +301,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     grid-row-gap : 10px;
 }
 
-@media all and (max-width: 950px){
-    .custom-rank-rows {
-        grid-template-columns: ${gridColCnt.length >= 3 ? "50% 50%" : "100%"};
-    }
-}
-
-@media all and (max-width: 500px){
-    .custom-rank-rows {
-        grid-template-columns: 100%;
-    }
-}
 
 .rank-group{
     margin-bottom : 20px;
@@ -386,9 +375,29 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
 
 .rank-noanswers {
     width : 100%;
-    max-width: 350px;
+    max-width: ${gridColCnt[0]};
     margin: 20px auto;
     text-align: center;
+}
+
+@media all and (max-width: 950px){
+    .custom-rank-rows {
+        grid-template-columns: ${gridColCnt.length >= 3 ? "50% 50%" : "100%"};
+    }
+
+    .rank-noanswers {
+        max-width: ${gridColCnt.length >= 3 ? "50%" : "100%"};
+    }
+}
+
+@media all and (max-width: 500px){
+    .custom-rank-rows {
+        grid-template-columns: 100%;
+    }
+
+    .rank-noanswers {
+        max-width: 100%;
+    }
 }
 
 .rank-noanswers .rank-number{
