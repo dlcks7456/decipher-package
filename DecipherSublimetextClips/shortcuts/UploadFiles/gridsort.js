@@ -384,9 +384,15 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     text-align: center;
 }
 
-.rank-noanswers{
-    margin-top : 20px;
+.rank-noanswers {
     width : 100%;
+    max-width: 350px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.rank-noanswers .rank-number{
+    display: none !important;
 }
 
 .show-answers {
