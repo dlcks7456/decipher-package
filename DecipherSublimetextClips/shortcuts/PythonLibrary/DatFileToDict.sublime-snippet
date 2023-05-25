@@ -1,0 +1,39 @@
+<snippet>
+	<content><![CDATA[
+def dat_to_dict(file_name, unique_col_name) :
+  try :
+    f = open("%s/%s"%(gv.survey.path, file_name))
+    lines = f.readlines()
+    col_name = [each.strip() for each in lines[0].strip('\r\n').split('\t')]
+
+    if not unique_col_name in col_name :
+      raise ValueError('unique_col_name is not in col_name')
+
+    if not len(col_name) == len(set(col_name)) :
+      raise ValueError('There are duplicate variables in dat file')
+
+    set_list = [{col_name[idx]: d if not d == '' else None for idx, d in enumerate(each.strip('\r\n').split('\t')) } for each in lines[1:]]
+
+    set_dict = {}
+    for each in set_list :
+      copy_each = each.copy()
+      key_id = copy_each[unique_col_name]
+      del copy_each[unique_col_name]
+
+      if key_id in set_dict :
+        raise ValueError('There are duplicate values in unique ID')
+        break
+
+      set_dict[key_id] = copy_each
+
+    return set_dict
+
+  except ValueError as e:
+    print('ERROR : %s'%(str(e)))
+    return {}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dat.dict</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

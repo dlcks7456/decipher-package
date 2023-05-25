@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+def soft_Err(cond, str, high_rows=[], high_cols=[]):
+  if cond :
+    if p.chk==0 :
+      p.chk=1
+    else :
+      p.chk=0
+      if high_rows :
+        for each in high_rows :
+          error(str, row=each)
+
+      elif high_cols :
+        for each in high_cols :
+          error(str, col=each)
+      else :
+        error(str)
+  else :
+    p.chk=1
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>soft.err</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

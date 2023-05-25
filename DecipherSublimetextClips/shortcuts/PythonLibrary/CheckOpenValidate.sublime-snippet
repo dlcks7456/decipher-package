@@ -1,0 +1,37 @@
+<snippet>
+	<content><![CDATA[
+def checkOpen():
+  str_1=res.err2010
+  str_2=res.err2011
+  str_3=res.err2012
+
+  set_list=[]
+  
+  vals=[i.val for i in this.rows if not i.val == None]
+  for s in vals:
+    if s != "" :
+      flag=True
+      set_list.append(s.upper())
+
+
+  if not set_list :
+    error(str_1)
+  else :
+    for j in range(0,len(set_list)-1):
+        preval=this.rows[j].val
+        st=j+1
+        for i in range(st,len(set_list)):
+            postval=this.rows[i].val
+            if preval != "" and postval != "" :
+              if preval==postval:
+                  error(str_2)
+
+    for k in range(0,len(set_list)):
+      if this.rows[k].val=="":
+        error(str_3)
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>checkopen</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

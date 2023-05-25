@@ -1,0 +1,41 @@
+<snippet>
+	<content><![CDATA[
+def checkDuplicates(Qid) :
+  # before Q
+  Arr=[]
+  
+  # Curret Q
+  Brr=[]
+  
+  # Label Array
+  Crr=[]
+  
+  vls=allQuestions[Qid].values
+
+  for i in vls:
+    if not i == None :
+      Arr.append(i.upper())
+      Crr.append(i)
+
+  for j in this.values:
+    if not j == None :
+      Brr.append(j.upper())
+
+
+  if len(Arr) gt 0 and len(Brr) gt 0:
+    if (Brr[0]!=""):
+      for i in range(0,len(Brr)):
+        preText=Brr[i]
+        for j in range(0,len(Arr)):
+          currentText=Arr[j]
+          if preText!="" and currentText!="":
+            if preText==currentText:
+              errstr=Crr[j]+'-'+res.err2050
+              error(errstr)
+              break
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>checkdupe</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

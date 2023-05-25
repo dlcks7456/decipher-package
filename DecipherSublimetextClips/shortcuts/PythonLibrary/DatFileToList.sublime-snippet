@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+def dat_to_list(file_name) :
+  try :
+    f = open("%s/%s"%(gv.survey.path, file_name))
+    lines = f.readlines()
+    col_name = [each.strip() for each in lines[0].strip('\r\n').split('\t')]
+    set_list = [{col_name[idx]: d if not d == '' else None for idx, d in enumerate(each.strip('\r\n').split('\t')) } for each in lines[1:]]
+
+    return set_list
+  except IOError:
+    return []
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dat.list</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

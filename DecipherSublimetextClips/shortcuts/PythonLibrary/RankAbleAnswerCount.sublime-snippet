@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+def rankCnt(multiBase, maxRank):
+  cnt = maxRank
+  if not multiBase.count ge maxRank :
+    cnt = multiBase.count
+  return cnt
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>rank.cnt</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

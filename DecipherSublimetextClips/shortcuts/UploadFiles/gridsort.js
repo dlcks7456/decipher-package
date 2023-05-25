@@ -586,6 +586,30 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     )
 }
 
+const LoadingComp = () =>{
+    return (
+        <>
+            <style jsx>{
+`
+@keyframes loadingSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+`
+            }</style>
+            <div style={{
+                margin: '0 auto',
+                width: '30px',
+                height: '30px',
+                border: '5px solid #2d6df6',
+                borderTop: '5px solid white',
+                borderRadius: '50%',
+                animation: 'loadingSpin 2s linear infinite'
+            }}></div>
+        </>
+    )
+}
+
 const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true})=>{
     const root = document.querySelector('.answers');
     ReactDOM.render(
