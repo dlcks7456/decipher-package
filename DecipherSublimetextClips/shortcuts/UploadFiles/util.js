@@ -566,12 +566,14 @@ function fnLengthCheck(_label, _num){
       strBeforeText = strBeforeText.slice(1);
     }
     _obj.value = strBeforeText;
-    strAfterText = strBeforeText.replace(/\n/g, '');
-    if (strAfterText.charAt(strAfterText.length - 1) === ' '){
-      return strAfterText.length - 1;
-    }
-    else{
-      return strAfterText.length;
+    if (_obj.tagName === 'TEXTAREA'){
+      strAfterText = strBeforeText.replace(/\n/g, '');
+      if (strAfterText.charAt(strAfterText.length - 1) === ' '){
+        return strAfterText.length - 1;
+      }
+      else{
+        return strAfterText.length;
+      }
     }
   }
   
@@ -584,11 +586,15 @@ function fnLengthCheck(_label, _num){
     while (strMainText.charAt(strMainText.length - 1) === '\n' || strMainText.charAt(strMainText.length - 1) === ' '){
       strMainText = strMainText.slice(0, strMainText.length - 1);
     }
-    if (!isNaN(strMainText)){
-      strMainText = '';
+    if (_obj.tagName === 'TEXTAREA'){
+      if (!isNaN(strMainText)){
+        strMainText = '';
+      }
     }
     _obj.value = strMainText;
-    fnInputCheck();
+    if (_obj.tagName === 'TEXTAREA'){
+      fnInputCheck();
+    }
   }
   
   const fnInputCheck = () => {
@@ -661,140 +667,158 @@ function fnLengthCheck(_label, _num){
     numPassCount === document.querySelectorAll('#primary .areaCheck').length ? fnNextActivate(true) : fnNextActivate(false);
   }
 
-  for(i = 0; i < document.querySelectorAll(`#question_${_label} textarea`).length; i++){
-    let objTextArea = document.querySelectorAll(`#question_${_label} textarea`)[i];
-    let objAreaWrap = document.createElement('span');
-    let objSection = document.createElement('div');
-    let objAreaGageOutLine = document.createElement('div');
-    let objAreaGageInnerLine = document.createElement('div');
-    let objMarkPassArea = document.createElement('span');
-    let objMarkFailArea = document.createElement('span');
-    let objMarkPassView = document.createElement('div');
-    let objMarkFailLeftView = document.createElement('div');
-    let objMarkFailRightView = document.createElement('div');
-    let objMarkFailLeftRect = document.createElement('div');
-    let objMarkFailRightRect = document.createElement('div');
+  let numTextAreaCount = document.querySelectorAll(`#question_${_label} textarea`).length;
+  let numInputTextCount = document.querySelectorAll(`#question_${_label} input[type=text]`).length;
 
-    objAreaWrap.classList.add('areaCheck');
-    objAreaWrap.style.display = 'inline-block';
+  if (numTextAreaCount > 0){
+    for(i = 0; i < numTextAreaCount; i++){
+      let objTextArea = document.querySelectorAll(`#question_${_label} textarea`)[i];
+      let objAreaWrap = document.createElement('span');
+      let objSection = document.createElement('div');
+      let objAreaGageOutLine = document.createElement('div');
+      let objAreaGageInnerLine = document.createElement('div');
+      let objMarkPassArea = document.createElement('span');
+      let objMarkFailArea = document.createElement('span');
+      let objMarkPassView = document.createElement('div');
+      let objMarkFailLeftView = document.createElement('div');
+      let objMarkFailRightView = document.createElement('div');
+      let objMarkFailLeftRect = document.createElement('div');
+      let objMarkFailRightRect = document.createElement('div');
+  
+      objAreaWrap.classList.add('areaCheck');
+      objAreaWrap.style.display = 'inline-block';
+      
+      objAreaGageOutLine.classList.add('areaGageOutLine');
+      objAreaGageOutLine.style.width = 'calc(100% - 20px)';
+      objAreaGageOutLine.style.height = '14px';
+      
+      objAreaGageOutLine.style.border = 'solid 2px rgb(230, 21, 33)';
+      objAreaGageOutLine.style.borderRadius = '10px';
+      objAreaGageOutLine.style.transitionDuration = '0.15s';
     
-    objAreaGageOutLine.classList.add('areaGageOutLine');
-    objAreaGageOutLine.style.width = 'calc(100% - 20px)';
-    objAreaGageOutLine.style.height = '14px';
+      objAreaGageInnerLine.classList.add('areaGageInnerLine');
+      objAreaGageInnerLine.style.width = '0%';
+      objAreaGageInnerLine.style.height = '100%';
+      objAreaGageInnerLine.style.backgroundColor = 'rgb(230, 21, 33)';
+      objAreaGageInnerLine.style.borderTopLeftRadius = '4px';
+      objAreaGageInnerLine.style.borderBottomLeftRadius = '4px';
+      objAreaGageInnerLine.style.borderTopRightRadius = '0px';
+      objAreaGageInnerLine.style.borderBottomRightRadius = '0px';
+      objAreaGageInnerLine.style.transitionDuration = '0.15s';
     
-    objAreaGageOutLine.style.border = 'solid 2px rgb(230, 21, 33)';
-    objAreaGageOutLine.style.borderRadius = '10px';
-    objAreaGageOutLine.style.transitionDuration = '0.15s';
+      objMarkPassArea.classList.add('areaPassView')
+      objMarkPassArea.style.position = 'absolute';
+      objMarkPassArea.style.display = 'block';
+      objMarkPassArea.style.right = '0px';
+      objMarkPassArea.style.top = '0px';
+      objMarkPassArea.style.width = '14px';
+      objMarkPassArea.style.height = '14px';
+      objMarkPassArea.style.transform = 'translateZ(0px)';
+      objMarkPassArea.style.border = 'solid 2px rgb(45, 109, 246)';
+      objMarkPassArea.style.borderRadius = '100%';
+      objMarkPassArea.style.opacity = '0';
+      objMarkPassArea.style.overflow = 'hidden';
+      objMarkPassArea.style.transitionDuration = '0.2s';
+    
+      objMarkPassView.style.position = 'absolute';
+      objMarkPassView.style.display = 'block';
+      objMarkPassView.style.width = '8px';
+      objMarkPassView.style.height = '4px';
+      objMarkPassView.style.left = '1px';
+      objMarkPassView.style.top = '2px';
+      objMarkPassView.style.borderLeftWidth = '2px';
+      objMarkPassView.style.borderBottomWidth = '2px';
+      objMarkPassView.style.borderLeftStyle = 'solid';
+      objMarkPassView.style.borderBottomStyle = 'solid';
+      objMarkPassView.style.borderLeftColor = 'rgb(45, 109, 246)';
+      objMarkPassView.style.borderBottomColor = 'rgb(45, 109, 246)';
+      objMarkPassView.style.transform = 'rotate(-45deg)';
+    
+      objMarkFailArea.classList.add('areaFailView')
+      objMarkFailArea.style.position = 'absolute';
+      objMarkFailArea.style.display = 'block';
+      objMarkFailArea.style.right = '0px';
+      objMarkFailArea.style.top = '0px';
+      objMarkFailArea.style.width = '14px';
+      objMarkFailArea.style.height = '14px';
+      objMarkFailArea.style.transform = 'translateZ(0px)';
+      objMarkFailArea.style.border = 'solid 2px rgb(230, 21, 33)';
+      objMarkFailArea.style.borderRadius = '100%';
+      objMarkFailArea.style.opacity = '1';
+      objMarkFailArea.style.overflow = 'hidden';
+      objMarkFailArea.style.transitionDuration = '0.2s';
+    
+      objMarkFailLeftView.style.position = 'absolute';
+      objMarkFailLeftView.style.display = 'block';
+      objMarkFailLeftView.style.width = '100%';
+      objMarkFailLeftView.style.height = '100%';
+      objMarkFailLeftView.style.transform = 'rotate(-45deg)';
   
-    objAreaGageInnerLine.classList.add('areaGageInnerLine');
-    objAreaGageInnerLine.style.width = '0%';
-    objAreaGageInnerLine.style.height = '100%';
-    objAreaGageInnerLine.style.backgroundColor = 'rgb(230, 21, 33)';
-    objAreaGageInnerLine.style.borderTopLeftRadius = '4px';
-    objAreaGageInnerLine.style.borderBottomLeftRadius = '4px';
-    objAreaGageInnerLine.style.borderTopRightRadius = '0px';
-    objAreaGageInnerLine.style.borderBottomRightRadius = '0px';
-    objAreaGageInnerLine.style.transitionDuration = '0.15s';
+      objMarkFailLeftRect.style.position = 'absolute';
+      objMarkFailLeftRect.style.display = 'block';
+      objMarkFailLeftRect.style.width = '2px';
+      objMarkFailLeftRect.style.height = 'calc(100% - 2px)';
+      objMarkFailLeftRect.style.left = '50%';
+      objMarkFailLeftRect.style.top = '50%';
+      objMarkFailLeftRect.style.transform = 'translate(-50%, -50%)';
+      objMarkFailLeftRect.style.backgroundColor = 'rgb(230, 21, 33)';
+    
+      objMarkFailRightView.style.position = 'absolute';
+      objMarkFailRightView.style.display = 'block';
+      objMarkFailRightView.style.width = '100%';
+      objMarkFailRightView.style.height = '100%';
+      objMarkFailRightView.style.transform = 'rotate(45deg)';
   
-    objMarkPassArea.classList.add('areaPassView')
-    objMarkPassArea.style.position = 'absolute';
-    objMarkPassArea.style.display = 'block';
-    objMarkPassArea.style.right = '0px';
-    objMarkPassArea.style.top = '0px';
-    objMarkPassArea.style.width = '14px';
-    objMarkPassArea.style.height = '14px';
-    objMarkPassArea.style.transform = 'translateZ(0px)';
-    objMarkPassArea.style.border = 'solid 2px rgb(45, 109, 246)';
-    objMarkPassArea.style.borderRadius = '100%';
-    objMarkPassArea.style.opacity = '0';
-    objMarkPassArea.style.overflow = 'hidden';
-    objMarkPassArea.style.transitionDuration = '0.2s';
-  
-    objMarkPassView.style.position = 'absolute';
-    objMarkPassView.style.display = 'block';
-    objMarkPassView.style.width = '8px';
-    objMarkPassView.style.height = '4px';
-    objMarkPassView.style.left = '1px';
-    objMarkPassView.style.top = '2px';
-    objMarkPassView.style.borderLeftWidth = '2px';
-    objMarkPassView.style.borderBottomWidth = '2px';
-    objMarkPassView.style.borderLeftStyle = 'solid';
-    objMarkPassView.style.borderBottomStyle = 'solid';
-    objMarkPassView.style.borderLeftColor = 'rgb(45, 109, 246)';
-    objMarkPassView.style.borderBottomColor = 'rgb(45, 109, 246)';
-    objMarkPassView.style.transform = 'rotate(-45deg)';
-  
-    objMarkFailArea.classList.add('areaFailView')
-    objMarkFailArea.style.position = 'absolute';
-    objMarkFailArea.style.display = 'block';
-    objMarkFailArea.style.right = '0px';
-    objMarkFailArea.style.top = '0px';
-    objMarkFailArea.style.width = '14px';
-    objMarkFailArea.style.height = '14px';
-    objMarkFailArea.style.transform = 'translateZ(0px)';
-    objMarkFailArea.style.border = 'solid 2px rgb(230, 21, 33)';
-    objMarkFailArea.style.borderRadius = '100%';
-    objMarkFailArea.style.opacity = '1';
-    objMarkFailArea.style.overflow = 'hidden';
-    objMarkFailArea.style.transitionDuration = '0.2s';
-  
-    objMarkFailLeftView.style.position = 'absolute';
-    objMarkFailLeftView.style.display = 'block';
-    objMarkFailLeftView.style.width = '100%';
-    objMarkFailLeftView.style.height = '100%';
-    objMarkFailLeftView.style.transform = 'rotate(-45deg)';
-
-    objMarkFailLeftRect.style.position = 'absolute';
-    objMarkFailLeftRect.style.display = 'block';
-    objMarkFailLeftRect.style.width = '2px';
-    objMarkFailLeftRect.style.height = 'calc(100% - 2px)';
-    objMarkFailLeftRect.style.left = '50%';
-    objMarkFailLeftRect.style.top = '50%';
-    objMarkFailLeftRect.style.transform = 'translate(-50%, -50%)';
-    objMarkFailLeftRect.style.backgroundColor = 'rgb(230, 21, 33)';
-  
-    objMarkFailRightView.style.position = 'absolute';
-    objMarkFailRightView.style.display = 'block';
-    objMarkFailRightView.style.width = '100%';
-    objMarkFailRightView.style.height = '100%';
-    objMarkFailRightView.style.transform = 'rotate(45deg)';
-
-    objMarkFailRightRect.style.position = 'absolute';
-    objMarkFailRightRect.style.display = 'block';
-    objMarkFailRightRect.style.width = '2px';
-    objMarkFailRightRect.style.height = 'calc(100% - 2px)';
-    objMarkFailRightRect.style.left = '50%';
-    objMarkFailRightRect.style.top = '50%';
-    objMarkFailRightRect.style.transform = 'translate(-50%, -50%)';
-    objMarkFailRightRect.style.backgroundColor = 'rgb(230, 21, 33)';
-  
-    objSection.classList.add('wrapSection');
-    objSection.style.position = 'relative';
-    objSection.style.marginTop = '5px';
-    _num > 0 ? objSection.style.display = 'block' : objSection.style.display = 'none';
-  
-    objTextArea.after(objAreaWrap);
-    objAreaWrap.append(document.querySelectorAll(`#question_${_label} textarea`)[i]);
-    objAreaGageOutLine.append(objAreaGageInnerLine);
-    objMarkFailLeftView.append(objMarkFailLeftRect);
-    objMarkFailRightView.append(objMarkFailRightRect);
-    objMarkPassArea.append(objMarkPassView);
-    objMarkFailArea.append(objMarkFailLeftView);
-    objMarkFailArea.append(objMarkFailRightView);
-    objSection.append(objAreaGageOutLine);
-    objSection.append(objMarkPassArea);
-    objSection.append(objMarkFailArea);
-    objAreaWrap.append(objSection);
-  
-    jQuery(objTextArea).on("propertychange change keyup paste input focus", fnInputCheck);
-  
-    objTextArea.addEventListener('blur', () => {
-      fnInputCheck();
-      fnFilltering(objTextArea);
-    });
+      objMarkFailRightRect.style.position = 'absolute';
+      objMarkFailRightRect.style.display = 'block';
+      objMarkFailRightRect.style.width = '2px';
+      objMarkFailRightRect.style.height = 'calc(100% - 2px)';
+      objMarkFailRightRect.style.left = '50%';
+      objMarkFailRightRect.style.top = '50%';
+      objMarkFailRightRect.style.transform = 'translate(-50%, -50%)';
+      objMarkFailRightRect.style.backgroundColor = 'rgb(230, 21, 33)';
+    
+      objSection.classList.add('wrapSection');
+      objSection.style.position = 'relative';
+      objSection.style.marginTop = '5px';
+      _num > 0 ? objSection.style.display = 'block' : objSection.style.display = 'none';
+    
+      objTextArea.after(objAreaWrap);
+      objAreaWrap.append(document.querySelectorAll(`#question_${_label} textarea`)[i]);
+      objAreaGageOutLine.append(objAreaGageInnerLine);
+      objMarkFailLeftView.append(objMarkFailLeftRect);
+      objMarkFailRightView.append(objMarkFailRightRect);
+      objMarkPassArea.append(objMarkPassView);
+      objMarkFailArea.append(objMarkFailLeftView);
+      objMarkFailArea.append(objMarkFailRightView);
+      objSection.append(objAreaGageOutLine);
+      objSection.append(objMarkPassArea);
+      objSection.append(objMarkFailArea);
+      objAreaWrap.append(objSection);
+    
+      jQuery(objTextArea).on("propertychange change keyup paste input focus", fnInputCheck);
+    
+      objTextArea.addEventListener('blur', () => {
+        fnInputCheck();
+        fnFilltering(objTextArea);
+      });
+    }
+    fnInputCheck();
+    document.getElementById('btn_continue').addEventListener('mouseover', fnInputCheck);
   }
-  fnInputCheck();
-  document.getElementById('btn_continue').addEventListener('mouseover', fnInputCheck);
+  if (numInputTextCount > 0){
+    for (k = 0; k < numInputTextCount; k++){
+      if (document.querySelectorAll(`#question_${_label} input[type=text]`)[k].getAttribute('name') !== null && document.querySelectorAll(`#question_${_label} input[type=text]`)[k].getAttribute('name').indexOf('ans') !== -1){
+        let objInputText = document.querySelectorAll(`#question_${_label} input[type=text]`)[k];
+        jQuery(objInputText).on("propertychange change keyup paste input focus", () => {
+          fnBadText(objInputText);
+        });
+        objInputText.addEventListener('blur', () => {
+          fnFilltering(objInputText);
+        });
+      }
+    }
+  }
 }
 
 
