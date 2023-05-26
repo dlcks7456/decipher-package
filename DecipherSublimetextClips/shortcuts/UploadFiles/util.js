@@ -1081,6 +1081,8 @@ function groupToggleSetting(){
         const groupRowCell = group.querySelector('.ch-group-rows');
         const groupName = group.querySelector('.ch-group-name');
 
+        groupName.style.cursor = 'pointer';
+
         const arrowDiv = document.createElement('div');
         arrowDiv.classList.add('ch-group-arrow');
         arrowDiv.innerHTML = toggleArrow;
