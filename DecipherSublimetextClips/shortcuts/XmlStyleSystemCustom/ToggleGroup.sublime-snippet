@@ -24,9 +24,9 @@
 </\$(tag)>
 \@endif
 \@if this.shuffle
-\${'</div></div>' if row.label == [each.label for each in \$(this.label).rows.order if each.group.label == row.group.label][-1] else ''}
+\${'</div></div>' if row.label == [each.label for each in [r for r in \$(this.label).rows.order if r.displayed] if each.group.label == row.group.label][-1] else ''}
 \@else
-\${'</div></div>' if row.label == [each.label for each in \$(this.label).rows if each.group.label == row.group.label][-1] else ''}
+\${'</div></div>' if row.label == [each.label for each in [r for r in \$(this.label).rows if r.displayed] if each.group.label == row.group.label][-1] else ''}
 \@endif
 ]]${-1}></style>
 ]]></content>
