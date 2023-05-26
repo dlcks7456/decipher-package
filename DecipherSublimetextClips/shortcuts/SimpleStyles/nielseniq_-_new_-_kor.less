@@ -863,6 +863,7 @@ textarea {
   }
 }
 
+
 /* ============================================ ( Exit Page ) =============================================== */
 // Page Container
 .exit-message {}
@@ -2038,3 +2039,11 @@ input[type="number"]::-webkit-inner-spin-button {
 .ch-refer-content {
   font-size: 1.1rem;
 }
+
+
+/* disabled */
+input[type="number"]:disabled,
+input[type="text"]:disabled {
+    .safeFadeout(@custom-even-color, 20%);
+}
+
