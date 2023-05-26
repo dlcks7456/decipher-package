@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[
+<style name='survey.question.instructions' label="comment_callout" arg:calloutHeader="${1}"><![CDATA[
+<h2 title="@(instructions)" class="instruction-text">
+<div class="ch-callout">\$(calloutHeader)</div>
+<div class="ch-refer">
+  <div class="ch-refer-content">\$(comment)</div>
+</div>
+<!-- /.instruction-text -->
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>callout</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
