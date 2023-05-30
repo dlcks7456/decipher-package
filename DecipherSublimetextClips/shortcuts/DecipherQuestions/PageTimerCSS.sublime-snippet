@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+.timesec {
+  position: fixed; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  font-size: 1.8rem; 
+  font-weight: bold; 
+  bottom: 13%; 
+  right: 5%; 
+  width: 50px; 
+  height: 50px; 
+  padding: 5px; 
+  background-color: #0a52ed; 
+  color: #fff; 
+  border-radius: 100%; 
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>timer.css</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
