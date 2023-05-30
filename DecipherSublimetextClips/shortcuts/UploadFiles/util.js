@@ -617,6 +617,10 @@ function fnLengthCheck(_label, _num){
       let numLowGreen = 21;
       let numLowBlue = 33;
 
+      let numMiddleRed = 153;
+      let numMiddleGreen = 112;
+      let numMiddleBlue = 181;
+
       let numHighRed = 45;
       let numHighGreen = 109;
       let numHighBlue = 246;
@@ -635,14 +639,14 @@ function fnLengthCheck(_label, _num){
         let numCalcGreen = (numLowGreen - numHighGreen) * ((100 - numConvertPer) / 100) + numHighGreen;
         let numCalcBlue = (numLowBlue - numHighBlue) * ((100 - numConvertPer) / 100) + numHighBlue;
         if (numConvertPer <= 50){
-          numLowGreen = 21;
-          numHighGreen = 255;
-          numCalcGreen = (numLowGreen - numHighGreen) * ((100 - (numConvertPer * 2)) / 100) + numHighGreen;
+          numCalcRed = (numLowRed - numMiddleRed) * ((100 - (numConvertPer * 2)) / 100) + numMiddleRed;
+          numCalcGreen = (numLowGreen - numMiddleGreen) * ((100 - (numConvertPer * 2)) / 100) + numMiddleGreen;
+          numCalcBlue = (numLowBlue - numMiddleBlue) * ((100 - (numConvertPer * 2)) / 100) + numMiddleBlue;
         }
         else {
-          numLowGreen = 255;
-          numHighGreen = 109;
-          numCalcGreen = (numLowGreen - numHighGreen) * ((100 - numConvertPer) / 100 * 2) + numHighGreen;
+          numCalcRed = (numMiddleRed - numHighRed) * ((100 - numConvertPer) / 100 * 2) + numHighRed;
+          numCalcGreen = (numMiddleGreen - numHighGreen) * ((100 - numConvertPer) / 100 * 2) + numHighGreen;
+          numCalcBlue = (numMiddleBlue - numHighBlue) * ((100 - numConvertPer) / 100 * 2) + numHighBlue;
         }
         changeAreaGageInnerLine.style.width = numConvertPer + '%';
         changeAreaGageInnerLine.style.borderTopRightRadius = Math.round(4 * (numConvertPer / 100)) + 'px';
