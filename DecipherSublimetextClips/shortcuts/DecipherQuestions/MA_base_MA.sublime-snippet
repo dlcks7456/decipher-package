@@ -22,7 +22,7 @@ ${5}
   atleast="1">
   <title>${7} </title>
   <insert source="${1}"/>
-  ${4:<row label="r98" value="98" randomize="0">\${$2a.r98.open\}</row>}
+  ${4:<row label="r98" value="98" open="1" openSize="25" randomize="0">\${$2a.r98.open\}</row>}
 </checkbox>
 <suspend/>
 ]]></content>
