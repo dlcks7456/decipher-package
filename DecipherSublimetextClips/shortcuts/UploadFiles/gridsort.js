@@ -39,7 +39,7 @@ const ShowRank = ({rankNum})=>{
     )
 }
 
-const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple, isNoanswer=false, noAnswer=false, noAnswerFnc=null, errors})=>{
+const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple, isNone=false, showNone=null, isNoanswer=false, noAnswer=false, noAnswerFnc=null, errors})=>{
     const [isHover, setIsHover] = React.useState(false);
     const [isSelected, setIsSelected] = React.useState(answers.includes(row.index) ? true : false);
     const styleFlag = ()=>{
@@ -102,6 +102,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
         }
     }, [setrrRowLegends])
 
+
     return (
         <>
         <div 
@@ -112,14 +113,14 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
                         rankNum={answers.includes(row.index) ? answers.indexOf(row.index) + 1 : answers.length + 1}/>
                 ) :null}
             </div>
-            
+            {/* cursor : isNone ? (showNone ? (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'no-drop' : 'pointer' : 'no-drop') : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'no-drop' : 'pointer', */}
             <div
                 className={`rank-text rank-text-${row.label}`}
                 style={{
                         border: errRows.includes(idx) || errCols.length >= 1 ? '2px solid #e7046f' : '1px solid #ccc',
-                        background : styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7',
-                        color : styleFlag() ? '#fff' : '#242424',
-                        pointerEvents : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : '',
+                        background : isNone ? (showNone ? (styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7') : '#918d8d')  : (styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7'),
+                        color : isNone ? (showNone ? (styleFlag() ? '#fff' : '#242424') : '#242424')  : (styleFlag() ? '#fff' : '#242424'),
+                        pointerEvents : isNone ? (showNone ? ((!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : '') : 'none')  : ((!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : ''),
                         marginTop : isNoanswer ? '15px' : '0',
                     }}
                 onMouseOver={()=>{
@@ -359,13 +360,13 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     margin : 2px 0 2px 0;
     padding: 7px;
     font-size: 1.2rem;
-    cursor: pointer;
     transition: background 0.3s, color 0.3s, width 5s;
     border-radius: 10px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     display : flex;
     justify-content : center;
     flex-direction : column;
+    cursor: pointer;
 }
 
 .rank-text-center .rank-text {
@@ -547,22 +548,22 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                     </div>
                 )}
                 <div className="rank-noanswers">
-                    { showNone ? (
-                        rows.filter((row)=> row.index === noneIndex).map((row, index)=>{
-                            return (
-                                <RankBtn 
-                                    key={row.index} 
-                                    idx={index}
-                                    row={row} 
-                                    answers={rankAnswers} 
-                                    setAnswers={setRankAnswers} 
-                                    answerComplete={answerCompleted}
-                                    noAnswer={noAnswer}
-                                    setAnswerComple={setAnswerCompleted}
-                                    errors={errors}/>
-                                )
-                        })
-                    ) : null }
+                    {rows.filter((row)=> row.index === noneIndex).map((row, index)=>{
+                        return (
+                            <RankBtn 
+                                key={row.index} 
+                                idx={index}
+                                row={row} 
+                                answers={rankAnswers} 
+                                setAnswers={setRankAnswers} 
+                                answerComplete={answerCompleted}
+                                noAnswer={noAnswer}
+                                isNone={true}
+                                showNone={showNone}
+                                setAnswerComple={setAnswerCompleted}
+                                errors={errors}/>
+                            )
+                    })}
                     {noanswers.map((noanswer, index)=>{
                         return (
                             <RankBtn 
