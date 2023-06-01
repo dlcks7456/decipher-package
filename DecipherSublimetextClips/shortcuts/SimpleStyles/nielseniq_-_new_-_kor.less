@@ -1985,7 +1985,6 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Detail Tag*/
 .ch-showcard {
-  font-weight: bold;
   margin-bottom: 15px;
   cursor: pointer;
 
@@ -2111,5 +2110,22 @@ input[type="text"]:disabled {
   color: @custom-text-color; 
   border-radius: 100%; 
   .box-shadow-style();
+}
+
+
+/* Loading */
+@keyframes infSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.custom-loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid @custom-color;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    animation: infSpin 2s linear infinite;
 }
 

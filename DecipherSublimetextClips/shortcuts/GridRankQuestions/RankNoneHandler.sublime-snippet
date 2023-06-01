@@ -10,7 +10,7 @@ def rank_none_answer_chk(none_label='r99', labels=['c1']) :
   for idx, eachCol in enumerate(this.cols) :
     if idx == 0 : continue
     before_col = this.cols[idx-1]
-    if not getattr(eachCol, none_label) and getattr(before_col, none_label) :
+    if eachCol.any and not getattr(eachCol, none_label) and getattr(before_col, none_label) :
       error(res.chk_plz, col=eachCol)
       error(res.chk_plz, col=before_col, row=this.attr(none_label))
 ]]></content>

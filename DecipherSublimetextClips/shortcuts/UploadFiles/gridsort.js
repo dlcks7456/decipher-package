@@ -611,7 +611,7 @@ const LoadingComp = () =>{
     )
 }
 
-const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true})=>{
+const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, loadingQuery='.custom-loader'})=>{
     const root = document.querySelector('.answers');
     ReactDOM.render(
         <GridRankSort
@@ -624,4 +624,5 @@ const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], c
             ableNone={ableNone}
             showAnswers={showAnswers}/>, root
     );
+    document.querySelector(loadingQuery).remove();
 }
