@@ -293,7 +293,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
         <style jsx="true">{`
 .custom-rank-sort {
     width : 100%;
-    max-width : ${gridColCnt.length >= 3 ? "924px" : "500px"};
+    max-width : ${gridColCnt.length >= 2 ? "924px" : "500px"};
 }
 
 .custom-rank-rows {
