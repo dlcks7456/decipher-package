@@ -1372,7 +1372,6 @@ select {
 }
 
 .sq-cardsort-completion-item {
-  display: table-row !important;
   font-size: 1.2rem !important;
 }
 
@@ -2188,6 +2187,13 @@ input[type="text"]:disabled {
     }
   }
 
+  &.show-column {
+    .custom-card {
+      flex-direction: column;
+    }
+  }
+  
+
   .question {
     margin-bottom: 0 !important;
   }
@@ -2210,4 +2216,10 @@ input[type="text"]:disabled {
 }
 
 
-
+/* Heat click */
+.sq-hcadvanced {
+  .sq-hcadvanced-button {
+    background-color: @custom-color !important;
+    color: @custom-text-color !important;
+  }
+}

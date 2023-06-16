@@ -1,0 +1,60 @@
+<snippet>
+	<content><![CDATA[
+<block label="${1}_block">
+  <checkbox 
+    label="${1}_title"
+    ss:questionClassNames="custom-card-loop"
+    sst="0">
+    <title>${2}</title>
+    <style name="question.after"><![CDATA[
+<div class="custom-card-loop show-column">
+    <div class="custom-card">
+]]${-1}></style>
+    <row label="DUMMY" ss:rowClassNames="hidden"/>
+  </checkbox>
+
+  <loop label="${1}_loop" suspend="0" vars="var1">
+    <block label="${1}_loop_block">
+      <radio 
+        label="${1}r[loopvar: label]">
+        <title>[loopvar: var1]</title>
+        ${3}
+      </radio>
+    </block>
+
+    <looprow label="1">
+      <loopvar name="var1"></loopvar>
+    </looprow>
+
+    <looprow label="2">
+      <loopvar name="var1"></loopvar>
+    </looprow>
+
+  </loop>
+
+  <checkbox 
+    label="${1}_after"
+    ss:questionClassNames="hidden"
+    sst="0">
+    <title>(HIDDEN)</title>
+    <style name="question.header"><![CDATA[
+  </div>
+</div>
+<div id="question_\${this.label}" class="question \${'disabledElement ' if why and gv.debug.qa else ''}\${this.getName().lower()} label_\${this.label} \$(this.styles.ss.questionClassNames) \$(hasError)"\${' role="radiogroup" aria-labelledby="' + (this.label + '_' + ec.enabledCols[0].label if ec.haveColLegend else 'question_text_' + this.label) + '"' if ec.simpleList else ''}>
+\${v2_insertStyle('survey.question')}
+\$(error)
+\${v2_insertStyle('survey.question.instructions')}
+\${v2_insertStyle('survey.question.answers.start')}
+]]${-1}></style>
+    <row label="DUMMY" ss:rowClassNames="hidden"/>
+  </checkbox>
+</block>
+
+<note>${1}_block END</note>
+<suspend/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>custom.card.loop</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

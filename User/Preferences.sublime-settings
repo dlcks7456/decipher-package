@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
 	"font_size": 9,
+=======
+	"font_size": 11,
+>>>>>>> c7875c4cd41ec2bebef9885b8ffa085e47d5f56e
 	/*"font_size": 10,*/
 	"ignored_packages":
 	[
