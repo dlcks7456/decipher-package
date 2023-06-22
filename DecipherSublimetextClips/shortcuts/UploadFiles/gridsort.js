@@ -287,26 +287,47 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     // Grid columns count
     const colPercent = 100/gridColumnCount;
     const [gridColCnt, setGridColCnt] = React.useState(new Array(gridColumnCount).fill(`${colPercent}%`));
-
+    
+    const [timeOutId, setTimeOutId] = React.useState(null);
     const moveAnswer = (index, direction)=>{
+        if( timeOutId !== null ){
+            clearTimeout(timeOutId);
+        }
         const curruntAnswer = [...rankAnswers];
+        let changeIndex = index;
         if(direction === 'up') {
             if(index === 0) {
                 return;
             }
             const temp = curruntAnswer[index];
-            curruntAnswer[index] = curruntAnswer[index - 1];
-            curruntAnswer[index - 1] = temp;
+            changeIndex = index - 1;
+            curruntAnswer[index] = curruntAnswer[changeIndex];
+            curruntAnswer[changeIndex] = temp;
         } else if(direction === 'down') {
             if(index === curruntAnswer.length - 1) {
                 return;
             }
             const temp = curruntAnswer[index];
-            curruntAnswer[index] = curruntAnswer[index + 1];
-            curruntAnswer[index + 1] = temp;
+            changeIndex = index + 1;
+            curruntAnswer[index] = curruntAnswer[changeIndex];
+            curruntAnswer[changeIndex] = temp;
         }
         
         setRankAnswers(curruntAnswer);
+        const answersText = document.querySelectorAll('.show-answers .answer-row-text');
+        const rankText = document.querySelectorAll('.show-answers .answer-rank-text');
+        
+        [answersText, rankText].forEach((item)=>{
+            item[index].classList.add('changed-rank');
+            item[changeIndex].classList.add('changed-rank');
+        });
+
+        setTimeOutId(setTimeout(()=>{
+            const changedRanks = document.querySelectorAll('.changed-rank');
+            changedRanks.forEach((item)=>{
+                item.classList.remove('changed-rank');
+            });
+        }, 1000));
     }
     
 
@@ -575,6 +596,10 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
 
 .rk-down:hover {
     animation: downAnimation 1s infinite;
+}
+
+.changed-rank {
+    color: #2d6df6;
 }
 `}
         </style>

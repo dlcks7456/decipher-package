@@ -1155,7 +1155,7 @@ class loopLabelCommand(sublime_plugin.TextCommand):
                 textr = self.view.substr(sels)
                 set_text = ''
                 if textr == '' :
-                    set_text = '_[loopvar: label]'
+                    set_text = 'L[loopvar: label]'
                 else :
                     textr = self.view.substr(sels)
                     set_text = f'[loopvar: {textr}]'
