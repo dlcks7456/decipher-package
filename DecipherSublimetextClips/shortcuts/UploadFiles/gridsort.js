@@ -288,6 +288,29 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     const colPercent = 100/gridColumnCount;
     const [gridColCnt, setGridColCnt] = React.useState(new Array(gridColumnCount).fill(`${colPercent}%`));
 
+    const moveAnswer = (index, direction)=>{
+        const curruntAnswer = [...rankAnswers];
+        if(direction === 'up') {
+            if(index === 0) {
+                return;
+            }
+            const temp = curruntAnswer[index];
+            curruntAnswer[index] = curruntAnswer[index - 1];
+            curruntAnswer[index - 1] = temp;
+        } else if(direction === 'down') {
+            if(index === curruntAnswer.length - 1) {
+                return;
+            }
+            const temp = curruntAnswer[index];
+            curruntAnswer[index] = curruntAnswer[index + 1];
+            curruntAnswer[index + 1] = temp;
+        }
+        
+        setRankAnswers(curruntAnswer);
+    }
+    
+
+
     return (
         <>
         <style jsx="true">{`
@@ -454,9 +477,15 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     }
 }
 
-.answers-text .answer-x{
-    width : 30px;
-    height : 30px;
+.rk-answer-icon {
+    width : 20px;
+    height : 20px;
+    transition : color 0.4s;
+}
+
+.rk-answer-x {
+    width : 25px;
+    height : 25px;
     transition : color 0.4s;
 }
 
@@ -468,6 +497,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     font-weight: bold;
     pointer-events: none;
     transition : color 0.4s;
+    min-width: 45px;
 }
 
 .answers-text .answer-row-text{
@@ -477,6 +507,74 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     width : 80%;
     pointer-events: none;
     transition : color 0.4s;
+}
+
+.show-ans-rk-row {
+    display: grid;
+    grid-template-columns: 70px 80%;
+    gap: 10px;
+}
+
+.rk-hd-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation : answersTextFadeIn 1s forwards;
+    transition : color 0.01s;
+}
+
+.rk-hd-btn:hover {
+    color : #2d6df6;
+}
+
+.ans-hd-grid {
+    display: grid;
+    grid-template-columns: 35px 35px;
+}
+
+.ans-hd-block {
+    display: block;
+}
+
+.rk-up {
+    transition : transform 0.5s;
+}
+
+.rk-down {
+    transition : transform 0.5s;
+}
+
+@keyframes upAnimation {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes downAnimation {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.rk-up:hover {
+    animation: upAnimation 1s infinite;
+}
+
+.rk-down:hover {
+    animation: downAnimation 1s infinite;
 }
 `}
         </style>
@@ -488,16 +586,34 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                         getOnlyText.innerHTML = filtRowsAnswer[0].text;
                         const onlyText = getOnlyText.innerText;
                         return (
-                        <div className="answers-text" key={index}
-                            onClick={()=>{
-                                const removeAnswr = rankAnswers.filter((item)=> item !== answer);
-                                setRankAnswers(removeAnswr);
-                            }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="answer-x">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <div className="answer-rank-text">{cols[index].text}</div>
-                            <div className="answer-row-text">{onlyText}</div>
+                        <div className="show-ans-rk-row">
+                            <div className={[0, answerList.length - 1].includes(index) ? "ans-hd-block" : "ans-hd-grid"}>
+                                { index !== 0 ? (
+                                    <div className="rk-hd-btn rk-up" onClick={()=>{moveAnswer(index, 'up')}}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="rk-answer-icon">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                                        </svg>
+                                    </div>
+                                ) : null }
+                                { index !== answerList.length - 1 ? (
+                                    <div className="rk-hd-btn rk-down" onClick={()=>{moveAnswer(index, 'down')}}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="rk-answer-icon">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </div>
+                                ) : null }
+                            </div>
+                            <div className="answers-text" key={index}
+                                onClick={()=>{
+                                    const removeAnswr = rankAnswers.filter((item)=> item !== answer);
+                                    setRankAnswers(removeAnswr);
+                                }}>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="rk-answer-x">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <div className="answer-rank-text">{cols[index].text}</div>
+                                <div className="answer-row-text">{onlyText}</div>
+                            </div>
                         </div>
                         )
                     })}
