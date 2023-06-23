@@ -43,13 +43,22 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
     const [isHover, setIsHover] = React.useState(false);
     const [isSelected, setIsSelected] = React.useState(answers.includes(row.index) ? true : false);
     const styleFlag = ()=>{
-        if( isHover ||  isSelected){
-            return true
+        if( !isNoanswer ){
+            if( isHover || answers.includes(row.index) ){
+                return true
+            }else{
+                return false
+            }
         }else{
-            return false
+            if( isHover || isSelected ){
+                return true
+            }else{
+                return false
+            }
         }
     }
     const oeRef = React.useRef();
+
     React.useEffect(()=>{
         if( answers.length === 0 ){
             if( noAnswer ){
@@ -108,7 +117,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
         <div 
             className={`rank-row-btn rank-row-${row.label} animate__animated animate__fadeIn`}>
             <div className="show-rank-div">
-                { isSelected && !isNoanswer ? (
+                { answers.includes(row.index) && !isNoanswer ? (
                     <ShowRank 
                         rankNum={answers.includes(row.index) ? answers.indexOf(row.index) + 1 : answers.length + 1}/>
                 ) :null}
@@ -240,7 +249,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
 
         if( rankAnswers.includes(noneIndex) ){
             const dupCheck = [...new Set(rankAnswers)];
-        
+            
             if( dupCheck.length <= (ableNone-1)){
                 setShowNone(false);
                 setRankAnswers([]);
@@ -262,6 +271,18 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                 setRankAnswers(prevAnswer);
                 setAnswerCompleted(true);
             }
+        }
+
+        if( rankAnswers.length > 0 ){
+            rankAnswers.forEach((ans, index)=>{
+                if( index < ableNone-1){
+                    if( ans == noneIndex ){
+                        setShowNone(false);
+                        setRankAnswers([]);
+                        return
+                    }
+                }
+            });
         }
 
         if( rankAnswers.length == cols.length ){
