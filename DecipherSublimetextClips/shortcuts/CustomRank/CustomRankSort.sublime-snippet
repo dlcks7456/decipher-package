@@ -20,7 +20,7 @@ SettingGridRankSort({
   ableNone : \$(ableNone),
   showAnswers : \$(showAnswers),
   noneIndex : \${\$(this.label).\$(noneLabel).index if hasattr(\$(this.label), '\$(noneLabel)') else 'null'},
-  ableSort: $(ableSort),
+  ableSort: \$(ableSort),
   loadingQuery : '.custom-loader'
 });
 </script>
