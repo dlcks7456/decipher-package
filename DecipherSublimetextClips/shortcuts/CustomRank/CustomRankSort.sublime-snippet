@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style label="custom_rank" arg:colCnt="${1:1}" arg:ableNone="${2:2}" arg:noneLabel="${3:r99}" arg:showAnswers="true" arg:showGrpups="false" name="question.after"><![CDATA[
+<style label="custom_rank" arg:colCnt="${1:1}" arg:ableNone="${2:2}" arg:noneLabel="${3:r99}" arg:showAnswers="true" arg:ableSort="true" arg:showGrpups="false" name="question.after"><![CDATA[
 <style>.grid-table-mode, .grid-list-mode{display: none !important;}</style>
 <div class="custom-loader"></div>
 <script type="text/babel">
@@ -20,6 +20,7 @@ SettingGridRankSort({
   ableNone : \$(ableNone),
   showAnswers : \$(showAnswers),
   noneIndex : \${\$(this.label).\$(noneLabel).index if hasattr(\$(this.label), '\$(noneLabel)') else 'null'},
+  ableSort: $(ableSort),
   loadingQuery : '.custom-loader'
 });
 </script>

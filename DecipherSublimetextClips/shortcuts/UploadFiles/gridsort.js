@@ -193,7 +193,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
 }
 
 
-const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[], noneIndex, ableNone, showAnswers})=>{
+const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[], noneIndex, ableNone, ableSort, showAnswers})=>{
     const {label, uid, cols, rows, noanswers, errors} = json;
     let orderGroups = [];
     let setGroupRows = [];
@@ -553,7 +553,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
 
 .show-ans-rk-row {
     display: grid;
-    grid-template-columns: 70px 80%;
+    grid-template-columns: ${ableSort ? '70px 80%' : '100%'};
     gap: 10px;
 }
 
@@ -633,22 +633,24 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                         const onlyText = getOnlyText.innerText;
                         return (
                         <div className="show-ans-rk-row">
-                            <div className={[0, answerList.length - 1].includes(index) ? "ans-hd-block" : "ans-hd-grid"}>
-                                { index !== 0 ? (
-                                    <div className="rk-hd-btn rk-up" onClick={()=>{moveAnswer(index, 'up')}}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="rk-answer-icon">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-                                        </svg>
-                                    </div>
-                                ) : null }
-                                { index !== answerList.length - 1 ? (
-                                    <div className="rk-hd-btn rk-down" onClick={()=>{moveAnswer(index, 'down')}}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="rk-answer-icon">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
-                                        </svg>
-                                    </div>
-                                ) : null }
-                            </div>
+                            {ableSort ? (
+                                <div className={[0, answerList.length - 1].includes(index) ? "ans-hd-block" : "ans-hd-grid"}>
+                                    { index !== 0 ? (
+                                        <div className="rk-hd-btn rk-up" onClick={()=>{moveAnswer(index, 'up')}}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="rk-answer-icon">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                                            </svg>
+                                        </div>
+                                    ) : null }
+                                    { index !== answerList.length - 1 ? (
+                                        <div className="rk-hd-btn rk-down" onClick={()=>{moveAnswer(index, 'down')}}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="rk-answer-icon">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
+                                            </svg>
+                                        </div>
+                                    ) : null }
+                                </div>
+                            ) : null}
                             <div className="answers-text" key={index}
                                 onClick={()=>{
                                     const removeAnswr = rankAnswers.filter((item)=> item !== answer);
@@ -773,7 +775,7 @@ const LoadingComp = () =>{
     )
 }
 
-const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, loadingQuery='.custom-loader'})=>{
+const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader'})=>{
     const root = document.querySelector('.answers');
     ReactDOM.render(
         <GridRankSort
@@ -784,6 +786,7 @@ const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], c
             groups={groups}
             noneIndex={noneIndex}
             ableNone={ableNone}
+            ableSort={ableSort}
             showAnswers={showAnswers}/>, root
     );
     document.querySelector(loadingQuery).remove();
