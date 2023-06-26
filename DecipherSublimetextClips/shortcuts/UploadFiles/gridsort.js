@@ -33,7 +33,7 @@ const HiddenInputs = ({qid, uid, cols, answers, noAnswers, noAnswerCheck})=>{
 const ShowRank = ({rankNum})=>{
     return (
             <div 
-                className={`rank-number rank-${rankNum} animate__animated animate__bounceIn show-rank-cnt`}>
+                className={`rank-number answer-rank-${rankNum} animate__animated animate__bounceIn show-rank-cnt`}>
                     {rankNum}
             </div>
     )
@@ -625,14 +625,14 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
 `}
         </style>
             {showAnswers && answerList.length > 0 ? (
-                <div className="show-answers">
+                <div className="show-answers answer-rank-">
                     {answerList.map((answer, index)=>{
                         const filtRowsAnswer = rows.filter(row=> row.index === answer);
                         const getOnlyText = document.createElement('div');
                         getOnlyText.innerHTML = filtRowsAnswer[0].text;
                         const onlyText = getOnlyText.innerText;
                         return (
-                        <div className="show-ans-rk-row">
+                        <div className={`show-ans-rk-row answer-rank-${index+1}`}>
                             {ableSort ? (
                                 <div className={[0, answerList.length - 1].includes(index) ? "ans-hd-block" : "ans-hd-grid"}>
                                     { index !== 0 ? (
