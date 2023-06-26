@@ -124,7 +124,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
             </div>
             {/* cursor : isNone ? (showNone ? (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'no-drop' : 'pointer' : 'no-drop') : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'no-drop' : 'pointer', */}
             <div
-                className={`rank-text rank-text-${row.label}`}
+                className={`rank-text rank-text-${row.label} ${answers.includes(row.index) ? `answer-rank-${answers.indexOf(row.index) + 1}` : ''}`}
                 style={{
                         border: errRows.includes(idx) || errCols.length >= 1 ? '2px solid #e7046f' : '1px solid #ccc',
                         background : isNone ? (showNone ? (styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7') : '#918d8d')  : (styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7'),
