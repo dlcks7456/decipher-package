@@ -1,8 +1,8 @@
 <snippet>
 	<content><![CDATA[
-<res label="sys_check-error-atLeast-sing-row">응답 확인 부탁드립니다.</res>
-<res label="sys_check-error-atMost-plur-row">응답 확인 부탁드립니다.</res>
-<res label="sys_noAnswerSelected">응답 확인 부탁드립니다.</res>
+<res label="sys_check-error-atLeast-sing-row">답변을 선택하세요.</res>
+<res label="sys_check-error-atMost-plur-row">답변을 선택하세요.</res>
+<res label="sys_noAnswerSelected">답변을 선택하세요.</res>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>cardsort.err</tabTrigger>
