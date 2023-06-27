@@ -1,0 +1,37 @@
+<snippet>
+	<content><![CDATA[
+<float 
+  label="${1:[AUTO_QID]}_pos"
+  optional="1"
+  size="3"
+  sst="0"
+  where="execute">
+    <title>Position data</title>
+    <virtual>
+set_virtual_pos(${2:[BASE_QID]}, 0, ${1:[AUTO_QID]}_pos)
+    </virtual>
+    <row label="X">X</row>
+    <row label="Y">Y</row>
+</float>
+
+<suspend/>
+
+<textarea
+  label="${1:[AUTO_QID]}_reason"
+  optional="1"
+  sst="0"
+  where="execute">
+    <title>Reason</title>
+    <comment></comment>
+    <virtual>
+set_virtual_reason(${2:[BASE_QID]}, 0, ${1:[AUTO_QID]}_reason)
+    </virtual>
+</textarea>
+
+<suspend/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>heatmap.auto.qus</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

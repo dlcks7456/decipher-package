@@ -1,0 +1,28 @@
+<snippet>
+	<content><![CDATA[
+<exec when="virtualInit">
+def set_virtual_pos(qid, rating, auto_id) :
+    try :
+        if not qid.val == None :
+            vals = eval(qid.unsafe_val)
+            pos = [each['position'] for each in vals if each['rating']==rating][0]
+            auto_id.X.val = pos['x']
+            auto_id.Y.val = pos['y']
+    except :
+        print('error')
+
+def set_virtual_reason(qid, rating, auto_id) :
+    try :
+        if not qid.val == None :
+            vals = eval(qid.unsafe_val)
+            expl = [each['explanation'] for each in vals if each['rating']==rating][0]
+            auto_qid.val = expl
+    except :
+        print('error')
+</exec>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>heatmap.auto.def</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
