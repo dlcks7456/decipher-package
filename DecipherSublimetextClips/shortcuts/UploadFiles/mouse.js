@@ -324,25 +324,24 @@ z-index : 20;\
       });
       // 터치가 가능한 플랫폼일 경우 터치이벤트 추가
       if (strMobilePlatform){
-        objTouchImg.addEventListener('touchstart', function(event){
-          event.preventDefault();
-          objZoomImage.setAttribute('src', this.getAttribute('src'));
-          fnZoom(this, objZoomWrap, objZoomImage, event, true);
-        });
+        // objTouchImg.addEventListener('touchstart', function(event){
+        //   objZoomImage.setAttribute('src', this.getAttribute('src'));
+        //   fnZoom(this, objZoomWrap, objZoomImage, event, true);
+        // });
         objTouchImg.addEventListener('touchmove', function(event){
           event.preventDefault();
           fnZoom(this, objZoomWrap, objZoomImage, event, true);
         });
-        objTouchImg.addEventListener('touchend', function(){
-          objZoomWrap.style.display = 'none';
-          objRedDot.style.display = 'none';
-          objZoomWrap.style.animation = '';
-        });
-        objTouchImg.addEventListener('touchcancel', function(){
-          objZoomWrap.style.display = 'none';
-          objRedDot.style.display = 'none';
-          objZoomWrap.style.animation = '';
-        });
+        // objTouchImg.addEventListener('touchend', function(){
+        //   objZoomWrap.style.display = 'none';
+        //   objRedDot.style.display = 'none';
+        //   objZoomWrap.style.animation = '';
+        // });
+        // objTouchImg.addEventListener('touchcancel', function(){
+        //   objZoomWrap.style.display = 'none';
+        //   objRedDot.style.display = 'none';
+        //   objZoomWrap.style.animation = '';
+        // });
       }
       objTouchImg.addEventListener('click', function(){
           objZoomWrap.style.display = 'none';
