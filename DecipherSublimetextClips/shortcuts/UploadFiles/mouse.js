@@ -129,55 +129,58 @@ cursor : pointer; \
 })();
 
 // image-zoom
-(function(){
+function fnImageZoom(){
   function fnPullZoomClass(_obj){
     var strResult = null;
     for (idx = 0; idx < document.getElementsByClassName('zoom').length; idx++){
       if (document.querySelectorAll('.zoom img')[idx] == _obj){
         strResult = document.querySelectorAll('.zoom')[idx].getAttribute('class');
+        break;
       }
     }
     return strResult;
   }
-  function fnZoom(_touch, _wrap, _image, _event){
+  function fnZoom(_target, _wrap, _image, _event, _touchPlatform){
+    var strClassName = fnPullZoomClass(_target);
+    var strViewPos = strClassName.indexOf('pos_') != -1 ? strClassName.split('pos_')[1].split(' ')[0] : 'default';
     var numMagnification = 3.0;
     var numSpace = 20;
-    var numTouchWidth = Number(getComputedStyle(_touch).width.split('px')[0]);
-    var numTouchHeight = Number(getComputedStyle(_touch).height.split('px')[0]);
-    var strClassName = fnPullZoomClass(_touch);
-    var strViewPos;
-    strViewPos = strClassName.indexOf('pos_') != -1 ? strClassName.split('pos_')[1].split(' ')[0] : 'default';
+    var numTouchWidth = Number(getComputedStyle(_target).width.split('px')[0]);
+    var numTouchHeight = Number(getComputedStyle(_target).height.split('px')[0]);
+    if (_touchPlatform){
+      var numWrapCustomWidth = strClassName.indexOf('tWidth_') != -1 && !isNaN(strClassName.split('tWidth_')[1].split(' ')[0]) ? Number(strClassName.split('tWidth_')[1].split(' ')[0]) : numTouchWidth;
+      var numWrapCustomHeight = strClassName.indexOf('tHeight_') != -1 && !isNaN(strClassName.split('tHeight_')[1].split(' ')[0]) ? Number(strClassName.split('tHeight_')[1].split(' ')[0]) : numTouchHeight;
+    }
+    else{
+      var numWrapCustomWidth = strClassName.indexOf('mWidth_') != -1 && !isNaN(strClassName.split('mWidth_')[1].split(' ')[0]) ? Number(strClassName.split('mWidth_')[1].split(' ')[0]) : numTouchWidth;
+      var numWrapCustomHeight = strClassName.indexOf('mHeight_') != -1 && !isNaN(strClassName.split('mHeight_')[1].split(' ')[0]) ? Number(strClassName.split('mHeight_')[1].split(' ')[0]) : numTouchHeight;
+    }
     if (strClassName.indexOf('redDot') != -1){
       document.getElementById('redDot').style.display = 'block';
     }
     if (strClassName.indexOf('sight_') != -1){
-      try{
-        numMagnification = Number(strClassName.split('sight_')[1].split(' ')[0]);
-      }
-      catch(e){
-        console.log("error")
-      }
+      numMagnification = Number(strClassName.split('sight_')[1].split(' ')[0]);
     }
     switch(strViewPos){
       case 'left' :
         _wrap.style.transformOrigin = 'center right';
-        _wrap.style.left = _touch.getBoundingClientRect().left - numSpace - numTouchWidth - (Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) * 2) + 'px';
-        _wrap.style.top = _touch.getBoundingClientRect().top - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + 'px';
+        _wrap.style.left = _target.getBoundingClientRect().left - numSpace - numWrapCustomWidth - (Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) * 2) + 'px';
+        _wrap.style.top = _target.getBoundingClientRect().top - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + ((numTouchHeight / 2) - (numWrapCustomHeight / 2)) + 'px';
         break;
       case 'right' :
         _wrap.style.transformOrigin = 'center left';
-        _wrap.style.left = _touch.getBoundingClientRect().left + numSpace + numTouchWidth + 'px';
-        _wrap.style.top = _touch.getBoundingClientRect().top - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + 'px';
+        _wrap.style.left = _target.getBoundingClientRect().left + numSpace + numTouchWidth + 'px';
+        _wrap.style.top = _target.getBoundingClientRect().top - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + ((numTouchHeight / 2) - (numWrapCustomHeight / 2)) + 'px';
         break;
       case 'top' :
         _wrap.style.transformOrigin = 'center bottom';
-        _wrap.style.left = _touch.getBoundingClientRect().left - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + 'px';
-        _wrap.style.top = _touch.getBoundingClientRect().top - numSpace - numTouchHeight - (Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) * 2) + 'px';
+        _wrap.style.left = _target.getBoundingClientRect().left - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + ((numTouchWidth / 2) - (numWrapCustomWidth / 2)) + 'px';
+        _wrap.style.top = _target.getBoundingClientRect().top - numSpace - numWrapCustomHeight - (Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) * 2) + 'px';
         break;
       case 'bottom' :
         _wrap.style.transformOrigin = 'center top';
-        _wrap.style.left = _touch.getBoundingClientRect().left - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + 'px';
-        _wrap.style.top = _touch.getBoundingClientRect().top + numSpace + numTouchHeight + 'px';
+        _wrap.style.left = _target.getBoundingClientRect().left - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + ((numTouchWidth / 2) - (numWrapCustomWidth / 2)) + 'px';
+        _wrap.style.top = _target.getBoundingClientRect().top + numSpace + numTouchHeight + 'px';
         break;
       case 'cursor' :
         _wrap.style.transformOrigin = 'top left';
@@ -186,21 +189,34 @@ cursor : pointer; \
         break;
       case 'fix' :
         _wrap.style.transformOrigin = 'top left';
-        _wrap.style.left = 'onorientationchange' in window ? screen.availWidth - numTouchWidth - 40 + 'px' : window.innerWidth - numTouchWidth - 40 + 'px';
-        _wrap.style.top = 'onorientationchange' in window ? screen.availHeight - numTouchHeight - 40 + 'px' : window.innerHeight - numTouchHeight - 40 + 'px';
+        _wrap.style.left = 'onorientationchange' in window ? screen.availWidth - numWrapCustomWidth - 40 + 'px' : window.innerWidth - numWrapCustomWidth - 40 + 'px';
+        _wrap.style.top = 'onorientationchange' in window ? screen.availHeight - numWrapCustomHeight - 40 + 'px' : window.innerHeight - numWrapCustomHeight - 40 + 'px';
         break;
       case 'default' :
         _wrap.style.transformOrigin = 'center left';
-        _wrap.style.left = _touch.getBoundingClientRect().left + numSpace + numTouchWidth + 'px';
-        _wrap.style.top = _touch.getBoundingClientRect().top - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + 'px';
+        _wrap.style.left = _target.getBoundingClientRect().left + numSpace + numWrapCustomWidth + 'px';
+        _wrap.style.top = _target.getBoundingClientRect().top - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + 'px';
         break;                    
     }
-    _wrap.style.width = numTouchWidth + 'px';
-    _wrap.style.height = numTouchHeight + 'px';
-    _image.style.width = numTouchWidth * numMagnification + 'px';
-    _image.style.height = numTouchHeight * numMagnification + 'px';
-    _image.style.left = (_event.offsetX / numTouchWidth) * (numTouchWidth * numMagnification) * -1 + (numTouchWidth / 2) + 'px';
-    _image.style.top = (_event.offsetY / numTouchHeight) * (numTouchHeight * numMagnification) * -1 + (numTouchHeight / 2) + 'px';
+      //화면 터치일 경우 위치 강제 고정
+      if (_touchPlatform){
+        _wrap.style.transformOrigin = 'center bottom';
+        _wrap.style.left = _event.touches[0].clientX - (numWrapCustomWidth / 2) + 'px';
+        _wrap.style.top = _event.touches[0].clientY - (numWrapCustomHeight + 40) +  'px';
+      }
+      if (_image.getAttribute('src') == null){
+        _image.setAttribute('src', _target.getAttribute('src'));
+        _wrap.style.display = 'block';
+        _wrap.style.animation = 'zoom_enter 0.2s 1 forwards';
+
+      }
+      _wrap.style.width = numWrapCustomWidth + 'px';
+      _wrap.style.height = numWrapCustomHeight + 'px';
+      _image.style.width = numTouchWidth * numMagnification + 'px';
+      _image.style.height = numTouchHeight * numMagnification + 'px';
+  
+      _image.style.left = _touchPlatform ? ((_target.getBoundingClientRect().left - _event.touches[0].clientX) / numTouchWidth * -1) * (numTouchWidth * numMagnification) * -1 + (numWrapCustomWidth / 2) + 'px' : (_event.offsetX / numTouchWidth)  * (numTouchWidth * numMagnification) * -1 + (numWrapCustomWidth / 2) + 'px';
+      _image.style.top = _touchPlatform ? ((_target.getBoundingClientRect().top - _event.touches[0].clientY) / numTouchHeight * -1) * (numTouchHeight * numMagnification) * -1 + (numWrapCustomHeight / 2) + 'px' : (_event.offsetY / numTouchHeight)  * (numTouchHeight * numMagnification) * -1 + (numWrapCustomHeight / 2) + 'px';
   }
   function fnImageZoomStyle(){
     for(k = 0; k < document.querySelectorAll('style').length; k++){
@@ -210,24 +226,24 @@ cursor : pointer; \
       }
     }
   }
-  window.addEventListener('load', function(){
-    if (document.getElementsByClassName('zoom').length != 0) {
-      var strLabel = document.querySelectorAll('#primary .question')[0].getAttribute('id').split('_')[1];
-      if (document.getElementById('zoomWrap') == null){
-        fnImageZoomStyle();
-        var objZoomWrap = document.createElement('div');
-        var objZoomImage = document.createElement('img');
-        var objRedDot = document.createElement('div');
-        objZoomWrap.id = 'zoomWrap';
-        objZoomWrap.appendChild(objZoomImage);
-        objRedDot.id = 'redDot';
-        objZoomWrap.appendChild(objRedDot);
-        document.body.appendChild(objZoomWrap);
-        objZoomWrap.oncontextmenu = function(){ return false; };
-        objZoomWrap.onselectstart = function(){ return false; };
-        objZoomWrap.ondragstart = function(){ return false; };
-        objZoomWrap.onscroll = function(){ return false; };
-        objZoomImage.setAttribute('style',
+  var strMobilePlatform = 'ontouchstart' in document.documentElement ? true : false;
+  if (document.getElementsByClassName('zoom').length != 0) {
+    var strLabel = document.querySelectorAll('#primary .question')[0].getAttribute('id').split('_')[1];
+    if (document.getElementById('zoomWrap') == null){
+      fnImageZoomStyle();
+      var objZoomWrap = document.createElement('div');
+      var objZoomImage = document.createElement('img');
+      var objRedDot = document.createElement('div');
+      objZoomWrap.id = 'zoomWrap';
+      objZoomWrap.appendChild(objZoomImage);
+      objRedDot.id = 'redDot';
+      objZoomWrap.appendChild(objRedDot);
+      document.body.appendChild(objZoomWrap);
+      objZoomWrap.oncontextmenu = function(){ return false; };
+      objZoomWrap.onselectstart = function(){ return false; };
+      objZoomWrap.ondragstart = function(){ return false; };
+      objZoomWrap.onscroll = function(){ return false; };
+      objZoomImage.setAttribute('style',
 '\
 position : absolute; \
 display : block; \
@@ -237,7 +253,7 @@ left : 0px; \
 top : 0px; \
 '
         );
-        objRedDot.setAttribute('style',
+      objRedDot.setAttribute('style',
 '\
 position : absolute; \
 display : none; \
@@ -254,7 +270,7 @@ border-radius : 100%; \
 z-index : 50;\
 '
         );
-        objZoomWrap.setAttribute('style',
+      objZoomWrap.setAttribute('style',
 '\
 position : fixed; \
 display : none; \
@@ -269,38 +285,73 @@ background-color : white; \
 overflow : hidden; \
 z-index : 20;\
 '
-        );
-        objZoomImage.addEventListener('load', function(){
-          objZoomWrap.style.display = 'block';
-          objZoomWrap.style.animation = 'zoom_enter 0.2s 1 forwards';
-        })
-      }
-      for (i = 0; i < document.querySelectorAll('.zoom img').length; i++){
-        var objTouchImg = document.querySelectorAll('.zoom img')[i];
-        objTouchImg.addEventListener('mouseenter', function(event){
+      );
+      window.addEventListener('mousemove', function(e){
+        if (e.target.tagName != 'IMG'){
+          objZoomWrap.style.display = 'none';
+          objRedDot.style.display = 'none';
+          objZoomWrap.style.animation = '';
+          objZoomImage.removeAttribute('src');
+        }
+      })
+      objZoomWrap.addEventListener('click', function(){
+        objZoomWrap.style.display = 'none';
+        objRedDot.style.display = 'none';
+        objZoomWrap.style.animation = '';
+      })
+      objZoomImage.addEventListener('load', function(){
+        objZoomWrap.style.display = 'block';
+        objZoomWrap.style.animation = 'zoom_enter 0.2s 1 forwards';
+      })
+    }
+    for (i = 0; i < document.querySelectorAll('.zoom img').length; i++){
+      var objTouchImg = document.querySelectorAll('.zoom img')[i];
+      objTouchImg.oncontextmenu = function(){ return false; };
+      objTouchImg.onselectstart = function(){ return false; };
+      objTouchImg.ondragstart = function(){ return false; };
+
+      objTouchImg.addEventListener('mouseenter', function(event){
+        objZoomImage.setAttribute('src', this.getAttribute('src'));
+        fnZoom(this, objZoomWrap, objZoomImage, event, false);
+      });
+      objTouchImg.addEventListener('mousemove', function(event){
+        fnZoom(this, objZoomWrap, objZoomImage, event, false);
+      });
+      objTouchImg.addEventListener('mouseleave', function(){
+        objZoomWrap.style.display = 'none';
+        objRedDot.style.display = 'none';
+        objZoomWrap.style.animation = '';
+      });
+      // 터치가 가능한 플랫폼일 경우 터치이벤트 추가
+      if (strMobilePlatform){
+        objTouchImg.addEventListener('touchstart', function(event){
+          event.preventDefault();
           objZoomImage.setAttribute('src', this.getAttribute('src'));
-          fnZoom(this, objZoomWrap, objZoomImage, event);
+          fnZoom(this, objZoomWrap, objZoomImage, event, true);
         });
-        objTouchImg.addEventListener('mousemove', function(event){
-          fnZoom(this, objZoomWrap, objZoomImage, event);
+        objTouchImg.addEventListener('touchmove', function(event){
+          event.preventDefault();
+          fnZoom(this, objZoomWrap, objZoomImage, event, true);
         });
-        objTouchImg.addEventListener('mouseleave', function(){
+        objTouchImg.addEventListener('touchend', function(){
           objZoomWrap.style.display = 'none';
           objRedDot.style.display = 'none';
           objZoomWrap.style.animation = '';
         });
-        objTouchImg.addEventListener('click', function(){
-          var strClickClass = fnPullZoomClass(objTouchImg);
-          if (strClickClass.indexOf('clickOut') != -1){
-            objZoomWrap.style.display = 'none';
-            objRedDot.style.display = 'none';
-            objZoomWrap.style.animation = '';
-          }
+        objTouchImg.addEventListener('touchcancel', function(){
+          objZoomWrap.style.display = 'none';
+          objRedDot.style.display = 'none';
+          objZoomWrap.style.animation = '';
         });
       }
+      objTouchImg.addEventListener('click', function(){
+          objZoomWrap.style.display = 'none';
+          objRedDot.style.display = 'none';
+          objZoomWrap.style.animation = '';
+      });
     }
-  })
-})();
+  }
+}
 
 // 3D
 (function(){
