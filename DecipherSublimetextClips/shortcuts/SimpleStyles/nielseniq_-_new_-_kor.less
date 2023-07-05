@@ -1294,6 +1294,10 @@ body {
 
 
 /* Cardsort custom */
+.sq-cardsort-card-item {
+  min-width: 300px;
+}
+
 .sq-cardsort {
   margin: 0 !important;
   max-width: @custom-max-width;
@@ -1305,6 +1309,11 @@ body {
       display: flex;
       justify-content: center;
     }
+
+    .sq-cardsort-bucket {
+      max-width: 100px;
+      overflow: hidden;
+    }
   }
   
   .sq-cardsort-mobile {
@@ -1312,13 +1321,6 @@ body {
       text-align: left;
       padding-left: 10px;
     }
-  }
-}
-
-.sq-cardsort-desktop {
-  .sq-cardsort-bucket {
-    max-width: 100px;
-    overflow: hidden;
   }
 }
 
@@ -1371,9 +1373,6 @@ select {
   outline-color: @custom-color;
 }
 
-.sq-cardsort-completion-item {
-  font-size: 1.2rem !important;
-}
 
 @media @mobile {
   .cardsort-rating {
