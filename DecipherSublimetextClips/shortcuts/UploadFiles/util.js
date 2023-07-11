@@ -629,7 +629,7 @@ function fnLengthCheck(_label, _num){
         changeAreaGageOutLine.style.borderColor = 'rgb(' + numHighRed + ', ' + numHighGreen + ', ' + numHighBlue + ')';
         changeAreaGageInnerLine.style.backgroundColor = 'rgb(' + numHighRed + ', ' + numHighGreen + ', ' + numHighBlue + ')';
         changeAreaGageInnerLine.style.width = '100%';
-        changeAreaGageInnerLine.style.borderRadius = '4px';
+        changeAreaGageInnerLine.style.borderRadius = '6px';
         changeAreaWrap.classList.add('checkPass');
         changePassView.style.opacity = '1';
         changeFailView.style.opacity = '0';
@@ -649,8 +649,8 @@ function fnLengthCheck(_label, _num){
           numCalcBlue = (numMiddleBlue - numHighBlue) * ((100 - numConvertPer) / 100 * 2) + numHighBlue;
         }
         changeAreaGageInnerLine.style.width = numConvertPer + '%';
-        changeAreaGageInnerLine.style.borderTopRightRadius = Math.round(4 * (numConvertPer / 100)) + 'px';
-        changeAreaGageInnerLine.style.borderBottomRightRadius = Math.round(4 * (numConvertPer / 100)) + 'px';
+        changeAreaGageInnerLine.style.borderTopRightRadius = Math.round(6 * (numConvertPer / 100)) + 'px';
+        changeAreaGageInnerLine.style.borderBottomRightRadius = Math.round(6 * (numConvertPer / 100)) + 'px';
         changePassView.style.opacity = '0';
         changeFailView.style.opacity = '1';
         changeAreaWrap.classList.remove('checkPass');
@@ -679,11 +679,13 @@ function fnLengthCheck(_label, _num){
       let objTextArea = document.querySelectorAll(`#question_${_label} textarea`)[i];
       let objAreaWrap = document.createElement('span');
       let objSection = document.createElement('div');
+      let objAreaGageOutLineShield = document.createElement('div');
       let objAreaGageOutLine = document.createElement('div');
       let objAreaGageInnerLine = document.createElement('div');
       let objMarkPassArea = document.createElement('span');
       let objMarkFailArea = document.createElement('span');
-      let objMarkPassView = document.createElement('div');
+      let objMarkPassLeftView = document.createElement('div');
+      let objMarkPassBottomView = document.createElement('div');
       let objMarkFailLeftView = document.createElement('div');
       let objMarkFailRightView = document.createElement('div');
       let objMarkFailLeftRect = document.createElement('div');
@@ -695,17 +697,26 @@ function fnLengthCheck(_label, _num){
       objAreaGageOutLine.classList.add('areaGageOutLine');
       objAreaGageOutLine.style.width = 'calc(100% - 20px)';
       objAreaGageOutLine.style.height = '14px';
-      
       objAreaGageOutLine.style.border = 'solid 2px rgb(230, 21, 33)';
       objAreaGageOutLine.style.borderRadius = '10px';
       objAreaGageOutLine.style.transitionDuration = '0.15s';
+
+      objAreaGageOutLineShield.classList.add('areaGageOutLineShield');
+      objAreaGageOutLineShield.style.position = 'relative';
+      objAreaGageOutLineShield.style.width = 'calc(100% + 2px)';
+      objAreaGageOutLineShield.style.height = 'calc(100% + 2px)';
+      objAreaGageOutLineShield.style.borderRadius = '10px';
+      objAreaGageOutLineShield.style.left = '-1px';
+      objAreaGageOutLineShield.style.top = '-1px';
+      objAreaGageOutLineShield.style.overflow = 'hidden';
     
       objAreaGageInnerLine.classList.add('areaGageInnerLine');
+      objAreaGageInnerLine.style.position = 'relative';
       objAreaGageInnerLine.style.width = '0%';
       objAreaGageInnerLine.style.height = '100%';
       objAreaGageInnerLine.style.backgroundColor = 'rgb(230, 21, 33)';
-      objAreaGageInnerLine.style.borderTopLeftRadius = '4px';
-      objAreaGageInnerLine.style.borderBottomLeftRadius = '4px';
+      objAreaGageInnerLine.style.borderTopLeftRadius = '6px';
+      objAreaGageInnerLine.style.borderBottomLeftRadius = '6px';
       objAreaGageInnerLine.style.borderTopRightRadius = '0px';
       objAreaGageInnerLine.style.borderBottomRightRadius = '0px';
       objAreaGageInnerLine.style.transitionDuration = '0.15s';
@@ -724,19 +735,27 @@ function fnLengthCheck(_label, _num){
       objMarkPassArea.style.overflow = 'hidden';
       objMarkPassArea.style.transitionDuration = '0.2s';
     
-      objMarkPassView.style.position = 'absolute';
-      objMarkPassView.style.display = 'block';
-      objMarkPassView.style.width = '8px';
-      objMarkPassView.style.height = '4px';
-      objMarkPassView.style.left = '1px';
-      objMarkPassView.style.top = '2px';
-      objMarkPassView.style.borderLeftWidth = '2px';
-      objMarkPassView.style.borderBottomWidth = '2px';
-      objMarkPassView.style.borderLeftStyle = 'solid';
-      objMarkPassView.style.borderBottomStyle = 'solid';
-      objMarkPassView.style.borderLeftColor = 'rgb(45, 109, 246)';
-      objMarkPassView.style.borderBottomColor = 'rgb(45, 109, 246)';
-      objMarkPassView.style.transform = 'rotate(-45deg)';
+      objMarkPassLeftView.style.position = 'absolute';
+      objMarkPassLeftView.style.display = 'block';
+      objMarkPassLeftView.style.width = '8px';
+      objMarkPassLeftView.style.height = '4px';
+      objMarkPassLeftView.style.left = '1px';
+      objMarkPassLeftView.style.top = '2px';
+      objMarkPassLeftView.style.borderLeftWidth = '2px';
+      objMarkPassLeftView.style.borderLeftStyle = 'solid';
+      objMarkPassLeftView.style.borderLeftColor = 'rgb(45, 109, 246)';
+      objMarkPassLeftView.style.transform = 'rotate(-45deg)';
+
+      objMarkPassBottomView.style.position = 'absolute';
+      objMarkPassBottomView.style.display = 'block';
+      objMarkPassBottomView.style.width = '8px';
+      objMarkPassBottomView.style.height = '4px';
+      objMarkPassBottomView.style.left = '1px';
+      objMarkPassBottomView.style.top = '2px';
+      objMarkPassBottomView.style.borderBottomWidth = '2px';
+      objMarkPassBottomView.style.borderBottomStyle = 'solid';
+      objMarkPassBottomView.style.borderBottomColor = 'rgb(45, 109, 246)';
+      objMarkPassBottomView.style.transform = 'rotate(-45deg)';
     
       objMarkFailArea.classList.add('areaFailView')
       objMarkFailArea.style.position = 'absolute';
@@ -789,12 +808,14 @@ function fnLengthCheck(_label, _num){
     
       objTextArea.after(objAreaWrap);
       objAreaWrap.append(document.querySelectorAll(`#question_${_label} textarea`)[i]);
-      objAreaGageOutLine.append(objAreaGageInnerLine);
+      objAreaGageOutLineShield.append(objAreaGageInnerLine);
       objMarkFailLeftView.append(objMarkFailLeftRect);
       objMarkFailRightView.append(objMarkFailRightRect);
-      objMarkPassArea.append(objMarkPassView);
+      objMarkPassArea.append(objMarkPassLeftView);
+      objMarkPassArea.append(objMarkPassBottomView);
       objMarkFailArea.append(objMarkFailLeftView);
       objMarkFailArea.append(objMarkFailRightView);
+      objAreaGageOutLine.append(objAreaGageOutLineShield);
       objSection.append(objAreaGageOutLine);
       objSection.append(objMarkPassArea);
       objSection.append(objMarkFailArea);
@@ -822,95 +843,6 @@ function fnLengthCheck(_label, _num){
         });
       }
     }
-  }
-}
-
-
-function fnSemiOpenBadText(){
-  const fnOpenFilltering = (_obj) => {
-    if (_obj.getAttribute('type') === 'text' && !_obj.disabled && _obj.getAttribute('class').indexOf('badText') !== -1){
-      let strMainText = _obj.value;
-      let strFillteringWord = 'ㄱ,ㄲ,ㄴ,ㄷ,ㄸ,ㄹ,ㅁ,ㅂ,ㅃ,ㅅ,ㅆ,ㅇ,ㅈ,ㅉ,ㅊ,ㅋ,ㅌ,ㅍ,ㅎ,ㅏ,ㅐ,ㅑ,ㅒ,ㅓ,ㅔ,ㅕ,ㅖ,ㅗ,ㅘ,ㅙ,ㅚ,ㅛ,ㅜ,ㅝ,ㅞ,ㅟ,ㅠ,ㅡ,ㅢ,ㅣ,ㄳ,ㄵ,ㄶ,ㄺ,ㄻ,ㄼ,ㄽ,ㄾ,ㄿ,ㅀ,ㅄ,ㆍ,ᆢ';
-      for (i = 0; i < strFillteringWord.split(',').length; i++){
-        strMainText = strMainText.replaceAll(strFillteringWord.split(',')[i], '');
-      }
-      while (strMainText.charAt(strMainText.length - 1) === '\n' || strMainText.charAt(strMainText.length - 1) === ' '){
-        strMainText = strMainText.slice(0, strMainText.length - 1);
-      }
-      _obj.value = strMainText;
-      fnOpenCheck(_obj);
-    }
-  }
-  const fnOpenCheck = (_obj) => {
-    if (_obj.getAttribute('type') === 'text' && !_obj.disabled && _obj.getAttribute('class').indexOf('badText') !== -1){
-      let strBeforeText = _obj.value;
-      let strAfterText;
-      strBeforeText = strBeforeText.replace(/\n\n\n\n\n\n\n\n\n\n|\n\n\n\n\n\n\n\n\n|\n\n\n\n\n\n\n\n|\n\n\n\n\n\n\n|\n\n\n\n\n\n|\n\n\n\n\n|\n\n\n\n|\n\n\n|\n\n/g, '\n');
-      strBeforeText = strBeforeText.replace(/\.\.\.\.\.\.\.\.\.\.|\.\.\.\.\.\.\.\.\.|\.\.\.\.\.\.\.\.|\.\.\.\.\.\.\.|\.\.\.\.\.\.|\.\.\.\.\.|\.\.\.\.|\.\.\.|\.\./g, '\.');
-      strBeforeText = strBeforeText.replace(/\~\~\~\~\~\~\~\~\~\~|\~\~\~\~\~\~\~\~\~|\~\~\~\~\~\~\~\~|\~\~\~\~\~\~\~|\~\~\~\~\~\~|\~\~\~\~\~|\~\~\~\~|\~\~\~|\~\~/g, '\~');
-      strBeforeText = strBeforeText.replace(/\?\?\?\?\?\?\?\?\?\?|\?\?\?\?\?\?\?\?\?|\?\?\?\?\?\?\?\?|\?\?\?\?\?\?\?|\?\?\?\?\?\?|\?\?\?\?\?|\?\?\?\?|\?\?\?|\?\?/g, '\?');
-      strBeforeText = strBeforeText.replace(/\(\(\(\(\(\(\(\(\(\(|\(\(\(\(\(\(\(\(\(|\(\(\(\(\(\(\(\(|\(\(\(\(\(\(\(|\(\(\(\(\(\(|\(\(\(\(\(|\(\(\(\(|\(\(\(|\(\(/g, '\(');
-      strBeforeText = strBeforeText.replace(/\)\)\)\)\)\)\)\)\)\)|\)\)\)\)\)\)\)\)\)|\)\)\)\)\)\)\)\)|\)\)\)\)\)\)\)|\)\)\)\)\)\)|\)\)\)\)\)|\)\)\)\)|\)\)\)|\)\)/g, '\)');
-      strBeforeText = strBeforeText.replace(/\/\/\/\/\/\/\/\/\/\/|\/\/\/\/\/\/\/\/\/|\/\/\/\/\/\/\/\/|\/\/\/\/\/\/\/|\/\/\/\/\/\/|\/\/\/\/\/|\/\/\/\/|\/\/\/|\/\//g, '\/');
-      strBeforeText = strBeforeText.replace(/\+\+\+\+\+\+\+\+\+\+|\+\+\+\+\+\+\+\+\+|\+\+\+\+\+\+\+\+|\+\+\+\+\+\+\+|\+\+\+\+\+\+|\+\+\+\+\+|\+\+\+\+|\+\+\+|\+\+/g, '\+');
-      strBeforeText = strBeforeText.replace(/ㆍㆍㆍㆍㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍ|ㆍㆍㆍ|ㆍㆍ/g, 'ㆍ');
-      strBeforeText = strBeforeText.replace(/ᆢᆢᆢᆢᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢ|ᆢᆢᆢ|ᆢᆢ/g, 'ᆢ');
-      strBeforeText = strBeforeText.replace(/          |         |        |       |      |     |    |   |  /g, ' ');
-      strBeforeText = strBeforeText.replace(/!!!!!!!!!!|!!!!!!!!!|!!!!!!!!|!!!!!!!|!!!!!!|!!!!!|!!!!|!!!|!!/g, '!');
-      strBeforeText = strBeforeText.replace(/,,,,,,,,,,|,,,,,,,,,|,,,,,,,,|,,,,,,,|,,,,,,|,,,,,|,,,,|,,,|,,/g, ',');
-      strBeforeText = strBeforeText.replace(/::::::::::|:::::::::|::::::::|:::::::|::::::|:::::|::::|:::|::/g, ':');
-      strBeforeText = strBeforeText.replace(/''''''''''|'''''''''|''''''''|'''''''|''''''|'''''|''''|'''|''/g, "'");
-      strBeforeText = strBeforeText.replace(/""""""""""|"""""""""|""""""""|"""""""|""""""|"""""|""""|"""|""/g, '"');
-      strBeforeText = strBeforeText.replace(/{{{{{{{{{{|{{{{{{{{{|{{{{{{{{|{{{{{{{|{{{{{{|{{{{{|{{{{|{{{|{{/g, '{');
-      strBeforeText = strBeforeText.replace(/}}}}}}}}}}|}}}}}}}}}|}}}}}}}}|}}}}}}}|}}}}}}|}}}}}|}}}}|}}}|}}/g, '}');
-      strBeforeText = strBeforeText.replace(/<<<<<<<<<<|<<<<<<<<<|<<<<<<<<|<<<<<<<|<<<<<<|<<<<<|<<<<|<<<|<</g, '<');
-      strBeforeText = strBeforeText.replace(/>>>>>>>>>>|>>>>>>>>>|>>>>>>>>|>>>>>>>|>>>>>>|>>>>>|>>>>|>>>|>>/g, '>');
-      strBeforeText = strBeforeText.replace(/----------|---------|--------|-------|------|-----|----|---|--/g, '-');
-      strBeforeText = strBeforeText.replace(/__________|_________|________|_______|______|_____|____|___|__/g, '_');
-      strBeforeText = strBeforeText.replace(/==========|=========|========|=======|======|=====|====|===|==/g, '=');
-      strBeforeText = strBeforeText.replace(/ㆍᆢ/g, 'ㆍ');
-      strBeforeText = strBeforeText.replace(/ᆢㆍ/g, 'ᆢ');
-      strBeforeText = strBeforeText.replace(/\n /g, '\n');
-      strBeforeText = strBeforeText.replace(/`|@|#|\$|%|\^|&|\*|\\|\||;|♡|♥|§|×|÷|♤|♠|☆|♧|♣|$|€|£|¥|°|○|●|□|■|◇|※|《|》|¤|¡|¿|＃|＆|＊|＠|★|◎|◆|△|▲|▽|▼|→|←|↑|↓|↔|〓|◁|◀|▷|▶|⊙|◈|▣|◐|◑|▒|▤|▥|▨|▧|▦|▩|♨|☏|☎|☜|☞|¶|†|‡|↕|↗|↙|↖|↘|♭|♩|♪|♬|㉿|㈜|№|㏇|™|㏂|㏘|℡|®|ª|º|㉾/g, '');
-      if(strBeforeText.charAt(0) === ' '){
-        strBeforeText = strBeforeText.slice(1);
-      }
-      if(strBeforeText.charAt(0) === '\n'){
-        strBeforeText = strBeforeText.slice(1);
-      }
-      _obj.value = strBeforeText;
-      }
-  }
-  let objAllOpen = document.querySelectorAll('#primary input[type=text]');
-  for (i = 0; i < objAllOpen.length; i++){
-    if (objAllOpen[i].getAttribute('name') !== null && objAllOpen[i].getAttribute('name').indexOf('oe') !== -1){
-      if (objAllOpen[i].className.indexOf('badText') === -1){
-        objAllOpen[i].classList.add('badText');
-      }
-    }
-  }
-  for (index = 0; index < document.getElementsByClassName('badText').length; index++){
-    document.getElementsByClassName('badText')[index].addEventListener('propertychange', (e) => {
-      fnOpenCheck(e.target);
-    })
-    document.getElementsByClassName('badText')[index].addEventListener('change', (e) => {
-      fnOpenCheck(e.target);
-    })
-    document.getElementsByClassName('badText')[index].addEventListener('keyup', (e) => {
-      fnOpenCheck(e.target);
-    })
-    document.getElementsByClassName('badText')[index].addEventListener('paste', (e) => {
-      fnOpenCheck(e.target);
-    })
-    document.getElementsByClassName('badText')[index].addEventListener('input', (e) => {
-      fnOpenCheck(e.target);
-    })
-    document.getElementsByClassName('badText')[index].addEventListener('focus', (e) => {
-      fnOpenCheck(e.target);
-    })
-    document.getElementsByClassName('badText')[index].addEventListener('blur', (e) => {
-      fnOpenFilltering(e.target);
-    })
   }
 }
 
