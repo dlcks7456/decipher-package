@@ -81,21 +81,21 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
     const [errRows, setErrRows] = React.useState(errors.map((err)=>{
         const [errText, errProp, errIndex] = err;
         if( errProp === 'row' ){
-            return errIndex;
+            return errIndex.toString();
         }
     }).filter(element=>element));
 
     const [errCols, setErrCols] = React.useState(errors.map((err)=>{
         const [errText, errProp, errIndex] = err;
         if( errProp === 'col' ){
-            return errIndex;
+            return errIndex.toString();
         }
     }).filter(element=>element));
 
     const [errRowLegends, setrrRowLegends] = React.useState(errors.map((err)=>{
         const [errText, errProp, errIndex] = err;
         if( errProp === 'row-legend' ){
-            return errIndex;
+            return errIndex.toString();
         }
     }).filter(element=>element));
 
@@ -126,7 +126,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
             <div
                 className={`rank-text rank-text-${row.label} ${answers.includes(row.index) ? `answer-rank-${answers.indexOf(row.index) + 1}` : ''}`}
                 style={{
-                        border: errRows.includes(idx) || errCols.length >= 1 ? '2px solid #e7046f' : '1px solid #ccc',
+                        border: errRows.includes(idx.toString()) || errCols.length >= 1 ? '2px solid #e7046f' : '1px solid #ccc',
                         background : isNone ? (showNone ? (styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7') : '#918d8d')  : (styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7'),
                         color : isNone ? (showNone ? (styleFlag() ? '#fff' : '#242424') : '#242424')  : (styleFlag() ? '#fff' : '#242424'),
                         pointerEvents : isNone ? (showNone ? ((!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : '') : 'none')  : ((!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : ''),
