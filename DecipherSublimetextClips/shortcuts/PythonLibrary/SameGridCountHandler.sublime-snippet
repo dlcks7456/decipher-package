@@ -1,0 +1,27 @@
+<snippet>
+	<content><![CDATA[
+<res label="same_cnt_err">동일한 응답을 %d개 연속으로 응답할 수 없습니다.</res>
+
+def grid_same_answer(max_cnt) :
+  cnt = 0
+  order_row = this.rows.order
+  error_row = []
+  for idx, eachRow in enumerate(order_row) :
+    chk_rows = order_row[idx:idx+max_cnt]
+    if len(chk_rows) lt max_cnt :
+      continue
+
+    chk_value = set([this.cols[each.val].label for each in chk_rows])
+    if len(chk_value) == 1 :
+      error_row.append(chk_rows)
+
+  high_err = sum(error_row, [])
+  if high_err :
+    for eachRow in high_err :
+      error(res.same_cnt_err%(max_cnt), row=eachRow)
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>samegrid.cnt</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
