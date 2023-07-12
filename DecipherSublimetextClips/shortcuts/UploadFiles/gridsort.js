@@ -81,21 +81,21 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
     const [errRows, setErrRows] = React.useState(errors.map((err)=>{
         const [errText, errProp, errIndex] = err;
         if( errProp === 'row' ){
-            return errIndex.toString();
+            return errIndex;
         }
     }).filter(element=>element));
 
     const [errCols, setErrCols] = React.useState(errors.map((err)=>{
         const [errText, errProp, errIndex] = err;
         if( errProp === 'col' ){
-            return errIndex.toString();
+            return errIndex;
         }
     }).filter(element=>element));
 
     const [errRowLegends, setrrRowLegends] = React.useState(errors.map((err)=>{
         const [errText, errProp, errIndex] = err;
         if( errProp === 'row-legend' ){
-            return errIndex.toString();
+            return errIndex;
         }
     }).filter(element=>element));
 
@@ -111,7 +111,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
         }
     }, [setrrRowLegends])
 
-
+    
     return (
         <>
         <div 
@@ -126,7 +126,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
             <div
                 className={`rank-text rank-text-${row.label} ${answers.includes(row.index) ? `answer-rank-${answers.indexOf(row.index) + 1}` : ''}`}
                 style={{
-                        border: errRows.includes(idx.toString()) || errCols.length >= 1 ? '2px solid #e7046f' : '1px solid #ccc',
+                        border: (errRows.includes(row.label) || errCols.length >= 1) ? '2px solid #e7046f' : '1px solid #ccc',
                         background : isNone ? (showNone ? (styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7') : '#918d8d')  : (styleFlag() ? '#2d6df6' : (!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? '#918d8d' : '#f7f7f7'),
                         color : isNone ? (showNone ? (styleFlag() ? '#fff' : '#242424') : '#242424')  : (styleFlag() ? '#fff' : '#242424'),
                         pointerEvents : isNone ? (showNone ? ((!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : '') : 'none')  : ((!answers.includes(row.index) && answerComplete) || (!isNoanswer && noAnswer) ? 'none' : ''),
@@ -195,6 +195,17 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
 
 const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[], noneIndex, ableNone, ableSort, showAnswers})=>{
     const {label, uid, cols, rows, noanswers, errors} = json;
+    const [newError, setNewError] = React.useState(
+        errors.map((err)=>{
+            const [errText, errProp, errIndex] = err;
+            if(errProp==='row'){
+                return [errText, errProp, rows[errIndex].label]
+            }else{
+                return [errText, errProp, errIndex];
+            }
+        })
+    );
+
     let orderGroups = [];
     let setGroupRows = [];
     rows.forEach((row)=>{
@@ -675,18 +686,18 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                                     className="animate__animated animate__fadeIn rank-group">
                                     <div className="rank-group-title">{group[2]}</div>
                                     <div className="custom-rank-rows">
-                                    {rows.filter((row)=> group[0].includes(row.index) && row.index !== noneIndex).map((row, index)=>{
+                                    {rows.filter((row)=> group[0].includes(row.index) && row.index !== noneIndex).map((row, idx)=>{
                                         return (
                                             <RankBtn 
                                                 key={row.index} 
-                                                idx={index}
+                                                idx={idx}
                                                 row={row} 
                                                 answers={rankAnswers} 
                                                 setAnswers={setRankAnswers} 
                                                 answerComplete={answerCompleted}
                                                 noAnswer={noAnswer}
                                                 setAnswerComple={setAnswerCompleted}
-                                                errors={errors}/>
+                                                errors={newError}/>
                                             )
                                     })}
                                     </div>
@@ -706,7 +717,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                                 answerComplete={answerCompleted}
                                 noAnswer={noAnswer}
                                 setAnswerComple={setAnswerCompleted}
-                                errors={errors}/>
+                                errors={newError}/>
                             )
                     })}
                     </div>
@@ -725,7 +736,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                                 isNone={true}
                                 showNone={showNone}
                                 setAnswerComple={setAnswerCompleted}
-                                errors={errors}/>
+                                errors={newError}/>
                             )
                     })}
                     {noanswers.map((noanswer, index)=>{
@@ -741,7 +752,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                                 setAnswerComple={setAnswerCompleted}
                                 noAnswerFnc={noAnswerSelect}
                                 isNoanswer={true}
-                                errors={errors}/>
+                                errors={newError}/>
                             )
                     })}
                 </div>
