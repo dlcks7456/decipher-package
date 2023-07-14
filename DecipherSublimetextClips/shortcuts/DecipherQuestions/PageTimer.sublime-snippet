@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-  <radio 
+  <checkbox 
     label="${2}"
     optional="1">
     <title>${3}</title>
@@ -32,7 +32,7 @@ if(timeflag){
 }
 ]]${-1}></style>
 		<row label="dummy" ss:rowClassNames="hidden"/>
-	</radio>
+	</checkbox>
 <suspend/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
