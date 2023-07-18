@@ -130,6 +130,17 @@ cursor : pointer; \
 
 // image-zoom
 function fnImageZoom(){
+  function fnCustomClick(_target, _posX, _posY){
+    var evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+      clientX: _posX,
+      clientY: _posY,
+    })
+    var clickPos = document.elementFromPoint(_posX, _posY);
+    clickPos.dispatchEvent(evt);
+  }
   function fnPullZoomClass(_obj){
     var strResult = null;
     for (idx = 0; idx < document.getElementsByClassName('zoom').length; idx++){
@@ -148,12 +159,12 @@ function fnImageZoom(){
     var numTouchWidth = Number(getComputedStyle(_target).width.split('px')[0]);
     var numTouchHeight = Number(getComputedStyle(_target).height.split('px')[0]);
     if (_touchPlatform){
-      var numWrapCustomWidth = strClassName.indexOf('tWidth_') != -1 && !isNaN(strClassName.split('tWidth_')[1].split(' ')[0]) ? Number(strClassName.split('tWidth_')[1].split(' ')[0]) : numTouchWidth;
-      var numWrapCustomHeight = strClassName.indexOf('tHeight_') != -1 && !isNaN(strClassName.split('tHeight_')[1].split(' ')[0]) ? Number(strClassName.split('tHeight_')[1].split(' ')[0]) : numTouchHeight;
-    }
-    else{
       var numWrapCustomWidth = strClassName.indexOf('mWidth_') != -1 && !isNaN(strClassName.split('mWidth_')[1].split(' ')[0]) ? Number(strClassName.split('mWidth_')[1].split(' ')[0]) : numTouchWidth;
       var numWrapCustomHeight = strClassName.indexOf('mHeight_') != -1 && !isNaN(strClassName.split('mHeight_')[1].split(' ')[0]) ? Number(strClassName.split('mHeight_')[1].split(' ')[0]) : numTouchHeight;
+    }
+    else{
+      var numWrapCustomWidth = strClassName.indexOf('pWidth_') != -1 && !isNaN(strClassName.split('pWidth_')[1].split(' ')[0]) ? Number(strClassName.split('pWidth_')[1].split(' ')[0]) : numTouchWidth;
+      var numWrapCustomHeight = strClassName.indexOf('pHeight_') != -1 && !isNaN(strClassName.split('pHeight_')[1].split(' ')[0]) ? Number(strClassName.split('pHeight_')[1].split(' ')[0]) : numTouchHeight;
     }
     if (strClassName.indexOf('redDot') != -1){
       document.getElementById('redDot').style.display = 'block';
@@ -194,8 +205,8 @@ function fnImageZoom(){
         break;
       case 'default' :
         _wrap.style.transformOrigin = 'center left';
-        _wrap.style.left = _target.getBoundingClientRect().left + numSpace + numWrapCustomWidth + 'px';
-        _wrap.style.top = _target.getBoundingClientRect().top - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + 'px';
+        _wrap.style.left = _target.getBoundingClientRect().left + numSpace + numTouchWidth + 'px';
+        _wrap.style.top = _target.getBoundingClientRect().top - Number(getComputedStyle(document.getElementById('zoomWrap')).borderWidth.split('px')[0]) + ((numTouchHeight / 2) - (numWrapCustomHeight / 2)) + 'px';
         break;                    
     }
       //화면 터치일 경우 위치 강제 고정
@@ -208,7 +219,6 @@ function fnImageZoom(){
         _image.setAttribute('src', _target.getAttribute('src'));
         _wrap.style.display = 'block';
         _wrap.style.animation = 'zoom_enter 0.2s 1 forwards';
-
       }
       _wrap.style.width = numWrapCustomWidth + 'px';
       _wrap.style.height = numWrapCustomHeight + 'px';
@@ -286,6 +296,7 @@ overflow : hidden; \
 z-index : 20;\
 '
       );
+
       window.addEventListener('mousemove', function(e){
         if (e.target.tagName != 'IMG'){
           objZoomWrap.style.display = 'none';
@@ -309,6 +320,9 @@ z-index : 20;\
       objTouchImg.oncontextmenu = function(){ return false; };
       objTouchImg.onselectstart = function(){ return false; };
       objTouchImg.ondragstart = function(){ return false; };
+      objTouchImg.setAttribute('oncontextmenu', 'return false');
+      objTouchImg.setAttribute('style', '-webkit-touch-callout:none');
+      objTouchImg.style.userSelect = 'none';
 
       objTouchImg.addEventListener('mouseenter', function(event){
         objZoomImage.setAttribute('src', this.getAttribute('src'));
@@ -324,24 +338,27 @@ z-index : 20;\
       });
       // 터치가 가능한 플랫폼일 경우 터치이벤트 추가
       if (strMobilePlatform){
-        // objTouchImg.addEventListener('touchstart', function(event){
-        //   objZoomImage.setAttribute('src', this.getAttribute('src'));
-        //   fnZoom(this, objZoomWrap, objZoomImage, event, true);
-        // });
+        objTouchImg.addEventListener('touchstart', function(event){
+          objZoomImage.setAttribute('src', this.getAttribute('src'));
+          fnZoom(this, objZoomWrap, objZoomImage, event, true);
+        });
         objTouchImg.addEventListener('touchmove', function(event){
           event.preventDefault();
           fnZoom(this, objZoomWrap, objZoomImage, event, true);
         });
-        // objTouchImg.addEventListener('touchend', function(){
-        //   objZoomWrap.style.display = 'none';
-        //   objRedDot.style.display = 'none';
-        //   objZoomWrap.style.animation = '';
-        // });
-        // objTouchImg.addEventListener('touchcancel', function(){
-        //   objZoomWrap.style.display = 'none';
-        //   objRedDot.style.display = 'none';
-        //   objZoomWrap.style.animation = '';
-        // });
+        objTouchImg.addEventListener('touchend', function(event){
+          event.preventDefault();
+          objZoomWrap.style.display = 'none';
+          objRedDot.style.display = 'none';
+          objZoomWrap.style.animation = '';
+          fnCustomClick(this, event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+        });
+        objTouchImg.addEventListener('touchcancle', function(event){
+          event.preventDefault();
+          objZoomWrap.style.display = 'none';
+          objRedDot.style.display = 'none';
+          objZoomWrap.style.animation = '';
+        });
       }
       objTouchImg.addEventListener('click', function(){
           objZoomWrap.style.display = 'none';
