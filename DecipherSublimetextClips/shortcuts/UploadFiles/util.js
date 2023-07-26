@@ -1041,3 +1041,147 @@ function groupToggleSetting(){
         });
     });
 }
+function onerowatatime(_label, _row, _col){
+  function fnOneRowStyle(){
+    for(k = 0; k < document.querySelectorAll('style').length; k++){
+      if (document.querySelectorAll('style')[k].getAttribute('media') == null){
+       document.querySelectorAll('style')[k].innerHTML = document.querySelectorAll('style')[k].innerHTML + '.grid-list-mode .row-elements{transition-duration: 0.15s;}.grid-list-mode .clicked{background-color: rgba(45, 109, 246, 0.2);}';
+       break;
+      }
+    }
+  }
+  function fnShow(_target){
+    _target.style.display = ''; 
+    if(_target.nextSibling !== null){
+      if(_target.className.indexOf('row-group') !== -1 || _target.className.indexOf('row-col-legends') !== -1){
+        _target.nextSibling.style.display = '';
+        if(_target.nextSibling !== null && _target.nextSibling.className.indexOf('row-group') !== -1 || _target.nextSibling.className.indexOf('row-col-legends') !== -1){
+          _target.nextSibling.nextSibling.style.display = '';
+        }
+      }
+    }
+  }
+  function fnCheck(_target){
+    let checkFlag = false;
+    for(k = 0; k < _target.querySelectorAll('.hasError').length; k++){
+      _target.querySelectorAll('.hasError')[k].classList.remove('hasError');
+    }
+    for(i = 0; i < _target.querySelectorAll('input').length; i++){
+      if(_target.querySelectorAll('.fir-icon')[i].className.indexOf('selected') !== -1 && _target.querySelectorAll('input')[i].checked){
+        checkFlag = true;
+        break;
+      }
+    }
+    return checkFlag;
+  }
+  function fnAllCheck(_name){
+    const objList = document.querySelectorAll('#question_' + _name + ' .setWidth tbody')[document.querySelectorAll('#question_' + _name + ' .setWidth tbody').length - 1].childNodes;
+    for(i = 0; i < objList.length; i++){
+      for(k = 0; k < objList[i].querySelectorAll('input').length; k++){
+        if(objList[i].querySelectorAll('.fir-icon')[k].className.indexOf('selected') !== -1 && objList[i].querySelectorAll('input')[k].checked){
+          objList[i].classList.add('clicked');
+          break;
+        }   
+      }
+    }
+  }
+  function fnScroll(_target){
+    let bolFlag = true;
+
+    if(_target === null || _target.className.indexOf('row-group') !== -1 || _target.className.indexOf('row-col-legends') !== -1){
+      bolFlag = false;
+    }
+    else{
+      for(i = 0; i < _target.querySelectorAll('.fir-icon').length; i++){
+        if(_target.querySelectorAll('.fir-icon')[i].className.indexOf('selected') !== -1 && _target.querySelectorAll('input')[i].checked){
+          bolFlag = false;
+          break;
+        } 
+      }
+    }
+    if(bolFlag){
+      const objMain = document.getElementById('surveyContainer') === null ? document.querySelector('html') : document.getElementById('surveyContainer');
+      const numMarginHeight = 80;
+      const mainHeight = document.getElementById('surveyContainer') === null ? window.innerHeight - numMarginHeight : Number(getComputedStyle(objMain).height.split('px')[0]) - numMarginHeight;
+      const mainScrollPosY = objMain.scrollTop;
+      const targetHeight = Number(getComputedStyle(_target).height.split('px')[0]);
+      const targetPosY = _target.getBoundingClientRect().top;
+      if(mainHeight < (targetHeight + targetPosY)){
+
+        //jQuery(objMain).animate({
+        //  scrollTop: mainScrollPosY + ((targetHeight + targetPosY) - mainHeight)
+        //}, 100)
+        objMain.scrollTop = mainScrollPosY + ((targetHeight + targetPosY) - mainHeight);
+      }
+    }
+  }
+
+  function fnAnswerCount(){
+    const numCount = document.querySelectorAll('#question_' + strLabel + ' .setWidth .clicked').length;
+    return numCount;
+  }
+
+  function fnShowAnswer(){
+    const numTotal = numRowCound;
+    let numCurrent = fnAnswerCount();
+  }
+
+
+  function fnInit(){
+    const objMain = document.getElementById('surveyContainer') === null ? document.querySelector('html').style.scrollBehavior = 'smooth' : document.getElementById('surveyContainer').style.scrollBehavior = 'smooth';
+    const arrCheckList = document.querySelectorAll('#question_' + strLabel + ' .setWidth .clickableCell');
+    for(i = 0; i < arrCheckList.length; i++){
+      jQuery(arrCheckList[i].querySelector('input')).on("propertychange change input", (e) => {
+        if(fnCheck(e.target.parentNode.parentNode.parentNode.parentNode)){
+          e.target.parentNode.parentNode.parentNode.parentNode.classList.add('clicked');
+        }
+        else{
+          e.target.parentNode.parentNode.parentNode.parentNode.classList.remove('clicked');
+        }
+        if(e.target.checked && e.target.parentNode.parentNode.parentNode.parentNode.nextSibling !== null){
+          fnShow(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling);
+          if(e.target.type === 'radio'){
+            if(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling !== null && e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling !== null && (e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.className.indexOf('row-group') !== -1 || e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.className.indexOf('row-col-legends') !== -1)){
+              fnScroll(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling);
+              if(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling !== null && e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling !== null && (e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.className.indexOf('row-group') !== -1 || e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.className.indexOf('row-col-legends') !== -1)){
+                fnScroll(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling);
+              }
+            }
+            else{
+              fnScroll(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling);
+            }
+          }
+        } 
+      });
+      if(arrCheckList[i].parentNode.nextSibling !== null){
+        if(arrCheckList[i].querySelector('.fir-icon').className.indexOf('selected') !== -1 && arrCheckList[i].querySelector('input').checked){
+          fnShow(arrCheckList[i].parentNode.nextSibling);
+        }
+      }
+    }
+    for(i = 0; i < document.querySelectorAll('#question_' + strLabel + ' .setWidth tr').length; i++){
+      if(document.querySelectorAll('#question_' + strLabel + ' .setWidth tr')[i].className.indexOf('hasError') !== -1){
+        fnScroll(document.querySelectorAll('#question_' + strLabel + ' .setWidth tr')[i]);
+        break;
+      }
+    }
+    fnOneRowStyle();
+    fnAllCheck(strLabel);
+  }
+  const strLabel = _label;
+  const numRowCound = _row;
+  const numColCound = _col;
+
+  if(numRowCound <= 1 || numColCound <= 1){
+    console.log('onerowatatime not activate');
+  }
+  else{
+    const objTarget = document.querySelectorAll('#question_' + strLabel + ' .setWidth tbody')[document.querySelectorAll('#question_' + strLabel + ' .setWidth tbody').length - 1];
+    for(i = 0; i < objTarget.childNodes.length; i++){
+      objTarget.childNodes[i].setAttribute('style', 'display:none !important');
+    }
+    fnShow(objTarget.childNodes[0]);
+    if(objTarget.childNodes[objTarget.childNodes.length - 1].className.indexOf('row-col-legends') !== -1) fnShow(objTarget.childNodes[objTarget.childNodes.length - 1]);
+    fnInit();
+  }
+}

@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+<style label="onerowatatime" name="question.after" wrap="ready"><![CDATA[
+onerowatatime(`\$(this.label)`, \${len([eachRow.label for eachRow in \$(this.label).rows])}, \${len([eachCol.label for eachCol in \$(this.label).cols])});
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>js.onerow</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
