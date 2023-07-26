@@ -56,7 +56,14 @@
         ]
     },
     { 
-        "keys": ["ctrl+q"], "command": "make_quota", "context": [
+        "keys": ["ctrl+shift+q"], "command": "make_quota", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.xml"
+            }
+        ]
+    },
+    { 
+        "keys": ["ctrl+q"], "command": "make_qname", "context": [
             {
               "key": "selector", "operator": "equal", "operand":"text.xml"
             }
