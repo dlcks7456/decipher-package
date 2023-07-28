@@ -1,7 +1,8 @@
 <snippet>
 	<content><![CDATA[
 <style label="custom_rank" arg:colCnt="${1:1}" arg:ableNone="${2:2}" arg:noneLabel="${3:r99}" arg:showAnswers="true" arg:ableSort="true" arg:showGrpups="false" name="question.after"><![CDATA[
-<style>.grid-table-mode, .grid-list-mode{display: none !important;}</style>
+<style>.grid-table-mode, .grid-list-mode, .col-legend, .element {display: none !important;}</style>
+
 <div class="custom-loader"></div>
 <script type="text/babel">
 const group_info = [
