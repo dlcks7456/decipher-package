@@ -2261,3 +2261,40 @@ input[type="text"]:disabled {
 .fir-base, .fir-bg, .fir-selected {
   transition-duration: 0.15s;
 }
+
+
+
+
+/* Step By Step Question  */
+.sts-question {
+    .fir-select {
+        width: 100%;
+    }
+
+    .dropdown {
+        min-width: 100% !important;
+    }
+}
+
+
+.step-by-step {
+    &.select-disabled {
+        opacity: 50%;
+        pointer-events: none;
+    }
+}
+
+.step-by-step-oe {
+    margin-top: 5px;
+
+    .other-open {
+        border-radius: 5px;
+        width: 100% !important;
+
+        &.input-disabled {
+          pointer-events: none;
+          background-color: #e3e2e2 !important;
+        }
+    }
+}
+
