@@ -2267,12 +2267,87 @@ input[type="text"]:disabled {
 
 /* Step By Step Question  */
 .sts-question {
+    .grid-list-mode {
+      .row-elements {
+        max-width: 350px;
+      }
+
+      .element {
+          padding: 0.4em !important;
+      }
+    }
+
     .fir-select {
         width: 100%;
     }
 
     .dropdown {
         min-width: 100% !important;
+    }
+
+    .none {
+        display: flex;
+        flex-direction: row;
+        font-size: 1.3rem;
+        font-weight: normal;
+        margin-top: 10px;
+        align-items: center;
+
+        input[type='checkbox'] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            outline: none;
+
+            &:before {
+                content: '';
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            &:checked {
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    background-color: @custom-color;
+                    border: 1px solid @custom-color;
+                    border-radius: 4px;
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    left: 7px;
+                    top: 3px;
+                    width: 6px;
+                    height: 12px;
+                    border: solid #fff;
+                    border-width: 0 2px 2px 0;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+        .none-input {
+            margin-left: 5px;
+            margin-top: 5px;
+
+            .fir-hidden {
+                position: relative !important;
+                left: 0 !important;
+            }
+
+            .fir-icon {
+                display: none !important;
+            }
+        }
     }
 }
 
@@ -2294,6 +2369,7 @@ input[type="text"]:disabled {
         &.input-disabled {
           pointer-events: none;
           background-color: #e3e2e2 !important;
+          opacity: 0.5;
         }
     }
 }

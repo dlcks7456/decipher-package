@@ -1041,6 +1041,193 @@ function groupToggleSetting(){
         });
     });
 }
+
+// Step By Step Question
+function stepQuestion(bundleClassName){
+     const setElements = document.querySelectorAll(bundleClassName);
+
+     if( setElements === null || setElements === undefined || setElements.length === 0 ){
+          return;
+     }
+
+     setElements.forEach((el)=>{
+        const sts = el.querySelectorAll('.step-by-step');
+        const lastIndex = sts.length - 1;
+        const noneInput = el.querySelector('.none-input input[type=checkbox]');
+
+        const noneHandler = ()=>{
+          if( noneInput === null || noneInput === undefined ){
+               return;
+          }
+          const noneIf = (select)=>{
+               if( noneInput.checked ){
+                    select.classList.add('select-disabled');
+                    select.disabled = true;
+               }else{
+                    select.classList.remove('select-disabled');
+                    select.disabled = false;
+               }
+          }
+          const noneOpen = (select)=>{
+               const openDiv = select.parentElement.nextElementSibling;
+               if( openDiv === null || openDiv === undefined ){
+                    return;
+               }
+
+               if( !openDiv.classList.contains('step-by-step-oe')  ){
+                    return;
+               }
+
+               const open = openDiv.querySelector('input[type=text]');
+               if( open === null || open === undefined ){
+                    return;
+               }
+               if( noneInput.checked ){
+                    open.classList.add('input-disabled');
+                    open.disabled = true;
+               }else{
+                    if( select.options[select.selectedIndex].dataset.open === '1' ){
+                         open.classList.remove('input-disabled');
+                         open.disabled = false;
+                    }else{
+                         open.classList.add('input-disabled');
+                         open.disabled = true;
+                    }
+               }
+          }
+          const eachHandler = (select)=>{
+               noneIf(select);
+               noneOpen(select);
+          }
+          sts.forEach((step, index)=>{
+               const beforeIndex = index-1;
+               if( index === 0 ){
+                    eachHandler(step);
+                    return;
+               }else{
+                    const beforeSelect = sts[beforeIndex];
+                    if( beforeSelect.selectedIndex === 0 ){
+                         step.classList.add('select-disabled');
+                         step.disabled = true;
+                    }else{
+                         eachHandler(step);
+                    }
+               }
+          });
+        }
+
+        noneHandler();
+
+        el.addEventListener('change', ()=>{
+          noneHandler();
+        });
+
+        sts.forEach((step, index)=>{
+            const nextIndex = index + 1;
+
+            const openHandler = ()=>{
+                 const openChk = step.options[step.selectedIndex].dataset.open;
+
+                 const openDiv = step.parentElement.nextElementSibling;
+                 
+                 if( openDiv === null || openDiv === undefined ){
+                    return;
+                 }
+
+                 if( !openDiv.classList.contains('step-by-step-oe')  ){
+                    return;
+                 }
+
+                 const open = openDiv.querySelector('input[type=text]');
+                 if( open === null || open === undefined ){
+                    return;
+                 }
+                 if( openChk === '1' ){
+                    open.classList.remove('input-disabled');
+                    open.disabled = false;
+                    open.focus();
+                 }else{
+                    open.classList.add('input-disabled');
+                    open.disabled = true;
+                 }
+
+            }
+
+            if( index === lastIndex ){
+                step.addEventListener('change', ()=>{
+                     openHandler();
+                });
+                return;
+            }
+            const nextSelectCopy = [...sts[nextIndex].options].map((option) => option.cloneNode(true));
+            const nextSelect = sts[nextIndex];
+
+
+            const optionHandler = ()=>{
+                // reset
+                [...sts].slice(index+1).forEach((rst)=>{
+                    rst.selectedIndex = 0;
+                    rst.disabled = true;
+                    rst.classList.add('select-disabled');
+                    const openDiv = rst.parentElement.nextElementSibling;
+
+                    if( openDiv === null || openDiv === undefined ){
+                        return;
+                    }else{
+                        const open = openDiv.querySelector('input[type=text]');
+                        open.value = null;
+                        open.disabled = true;
+                        open.classList.add('input-disabled');
+                    }
+                });
+
+                let base = step.options[step.selectedIndex].dataset.base;
+
+                if( base === null || base === undefined ){
+                    [...nextSelect.options].slice(1).forEach( (item) => {
+                        item.parentNode.removeChild(item);
+                    });
+                    nextSelect.selectedIndex = 0;
+                    nextSelect.classList.add('select-disabled');
+                    return;
+                }
+
+                base = base.split(',');
+
+                const showOptions = nextSelectCopy.filter((item)=> base.includes(item.dataset.code));
+                 
+                [...nextSelect.options].slice(1).forEach( (item) => {
+                    const showValues = showOptions.map((opt)=>{return opt.value});
+                    const currValue = item.value;
+                    if( !showValues.includes(currValue) ){
+                        item.parentNode.removeChild(item);
+                    }
+                });
+
+                const alreadyShowValues = [...nextSelect.options].map((opt)=>{return opt.value});
+                [...showOptions].forEach((opt)=>{
+                    if( !alreadyShowValues.includes(opt.value) ){
+                        nextSelect.appendChild(opt);
+                    }
+                });
+
+                nextSelect.disabled = false;
+                nextSelect.classList.remove('select-disabled');
+
+                openHandler();
+            };
+
+            optionHandler();
+
+            step.addEventListener('change', ()=>{
+                optionHandler();
+            });
+        });
+     });
+}
+
+
+
 function onerowatatime(_label, _row, _col){
   function fnOneRowStyle(){
     for(k = 0; k < document.querySelectorAll('style').length; k++){
@@ -1185,3 +1372,4 @@ function onerowatatime(_label, _row, _col){
     fnInit();
   }
 }
+

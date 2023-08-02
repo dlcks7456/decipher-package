@@ -55,6 +55,9 @@ window.addEventListener("DOMContentLoaded", function(){
   /** accordian show **/
   accordionFirstRowShow();
   accordionErrorHighLight();
+
+  /** step by step **/
+  stepQuestion('.row-elements');
 });
 </script>
 ]]${-1}></style>

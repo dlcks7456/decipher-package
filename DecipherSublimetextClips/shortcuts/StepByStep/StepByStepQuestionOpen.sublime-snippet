@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+<style name="el.select.footer"><![CDATA[
+</select>
+<div class="step-by-step-oe ${1}oe-\$(row.label)"></div>
+]]${-1}></style>
+
+<text 
+    label="${1}oe"
+    onLoad="copy('${1}', rows=True)"
+    size="40"
+    ss:questionClassNames="hidden">
+    <title>${1} oe</title>
+    <style name="el.text"><![CDATA[
+<input type="text" name="\$(name)" id="\$(id)" class="other-open \${"" if value else "input-disabled"}" value="\$(value)" size="\$(size)" \${"" if value else "disabled"} placeholder="\${this.styles.ss.postText or ""}"/>
+<script>
+document.querySelector('.\$(this.label)-\$(row.label)').appendChild(document.querySelector("input[name='\$(name)']"));
+</script>
+]]${-1}></style>
+</text>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>sts.oe</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>
