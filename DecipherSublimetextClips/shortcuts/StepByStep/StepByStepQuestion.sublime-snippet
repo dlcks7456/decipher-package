@@ -4,7 +4,7 @@
     <select 
     label="${2}a"
     grouping="rows"
-    ss:questionClassNames="sts-question"
+    ss:questionClassNames="sbs-question"
     surveyDisplay="mobile">
       <title><div class="q-name">${2}</div> </title>
       <style name="el.select.header"><![CDATA[
@@ -43,7 +43,7 @@
 <suspend/>
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <tabTrigger>sts</tabTrigger>
+    <tabTrigger>sbs</tabTrigger>
     <!-- Optional: Set a scope to limit where the snippet will trigger -->
     <scope>text.xml</scope>
 </snippet>
