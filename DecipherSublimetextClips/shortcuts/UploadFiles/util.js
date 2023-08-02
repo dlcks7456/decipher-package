@@ -1164,23 +1164,6 @@ function stepQuestion(bundleClassName){
 
 
             const optionHandler = ()=>{
-                // reset
-                [...sts].slice(index+1).forEach((rst)=>{
-                    rst.selectedIndex = 0;
-                    rst.disabled = true;
-                    rst.classList.add('select-disabled');
-                    const openDiv = rst.parentElement.nextElementSibling;
-
-                    if( openDiv === null || openDiv === undefined ){
-                        return;
-                    }else{
-                        const open = openDiv.querySelector('input[type=text]');
-                        open.value = null;
-                        open.disabled = true;
-                        open.classList.add('input-disabled');
-                    }
-                });
-
                 let base = step.options[step.selectedIndex].dataset.base;
 
                 if( base === null || base === undefined ){
@@ -1220,6 +1203,24 @@ function stepQuestion(bundleClassName){
             optionHandler();
 
             step.addEventListener('change', ()=>{
+                // reset
+                [...sts].slice(index+1).forEach((rst)=>{
+                    rst.selectedIndex = 0;
+                    if( step.selectedIndex === 0 ){
+                        rst.disabled = true;
+                        rst.classList.add('select-disabled');
+                    }
+                    const openDiv = rst.parentElement.nextElementSibling;
+
+                    if( openDiv === null || openDiv === undefined ){
+                        return;
+                    }else{
+                        const open = openDiv.querySelector('input[type=text]');
+                        open.value = null;
+                        open.disabled = true;
+                        open.classList.add('input-disabled');
+                    }
+                });
                 optionHandler();
             });
         });
