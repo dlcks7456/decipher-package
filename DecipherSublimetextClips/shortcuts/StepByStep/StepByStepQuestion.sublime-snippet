@@ -7,10 +7,10 @@
     ss:questionClassNames="sbs-question"
     surveyDisplay="mobile">
       <title><div class="q-name">${2}</div> </title>
-      <style name="el.select.header"><![CDATA[
+      <style name="el.select.header" label="sbs_select_header"><![CDATA[
 <select name="\$(name)" id="\$(id)" class="input dropdown step-by-step" \$(extra)>
 ]]${-1}></style>
-      <style arg:stepName="${3}" name="el.select.default"><![CDATA[
+      <style arg:stepName="${3}" name="el.select.default" label="sbs_select_default"><![CDATA[
 <option value="-1" \$(selected)>\$(stepName)</option>
 ]]${-1}></style>
       <style name="el.select.element"><![CDATA[
@@ -22,15 +22,10 @@
     <select 
     label="${2}b"
     grouping="rows"
-    onLoad="copy('${2}a', rows=True)"
     rightOf="${2}a">
       <title>${2}b</title>
-      <style name="el.select.header"><![CDATA[
-<select name="\$(name)" id="\$(id)" class="input dropdown step-by-step" \$(extra)>
-]]${-1}></style>
-      <style arg:stepName="${4}" name="el.select.default"><![CDATA[
-<option value="-1" \$(selected)>\$(stepName)</option>
-]]${-1}></style>
+      <style name="el.select.header" copy="sbs_select_header"/>
+      <style arg:stepName="${4}" name="el.select.default" label="sbs_select_default">
       <style name="el.select.element"><![CDATA[
 <option value="\$(value)" data-code="\${choice.value//100}" data-base="\${choice.value}" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}" data-open="\${1 if choice.open else 0}">\$(text)</option>
 ]]${-1}></style>

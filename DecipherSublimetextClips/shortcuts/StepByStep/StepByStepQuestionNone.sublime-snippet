@@ -1,6 +1,6 @@
 <snippet>
     <content><![CDATA[
-<style name="question.left"><![CDATA[
+<style name="question.left" label="sbs_none"><![CDATA[
 \@if this.styles.ss.legendColWidth
     <\$(tag) scope="row" class="cell nonempty legend row-legend row-legend-left \${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic \${"mobile-left-row-legend " if force else ""}\$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"row-legend-both-space " if ec.haveRightLegend and ec.haveLeftLegend and (not row.group or not row.index==0) else "border-collapse "} \$(row.styles.ss.rowClassNames)" style="width:\${this.styles.ss.legendColWidth}; min-width:\${this.styles.ss.legendColWidth}">
         <div class="row-text">\$(text)<div class="none-\$(row.index)-div"></div></div>
@@ -13,11 +13,10 @@
 ]]${-1}></style>
 
 <checkbox 
-    label="${1}none"
-    onLoad="copy('${2}', rows=True)"
+    label="${2}none"
     ss:questionClassNames="hidden">
-    <title>${3}</title>
-<style arg:noneText="${3}" name="el.checkbox"><![CDATA[
+    <title>${2} none checkbox question</title>
+<style arg:noneText="${3}" name="el.checkbox" label="sbs_none_checkbox"><![CDATA[
 <div class="none \$(this.label)-\$(row.label)">
 \$(noneText) <div class="none-input"><input type="checkbox" name="\$(name)" id="\$(id)" value="1" \$(checked)/></div>
 </div>

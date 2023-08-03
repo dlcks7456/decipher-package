@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+${2:<style name="el.select.footer" arg:baseName="${1}" copy="sbs_select_footer"/>}
+
+<text 
+    label="${1}oe"
+    size="40"
+    ss:questionClassNames="hidden">
+    <title>${1} open text question</title>
+    <style name="el.text" copy="sbs_open"/>
+</text>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>sbs.oe.copy</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>

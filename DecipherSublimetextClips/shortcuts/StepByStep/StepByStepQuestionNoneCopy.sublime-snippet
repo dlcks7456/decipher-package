@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+${3:<style name="question.left" copy="sbs_none"/>}
+
+<checkbox 
+    label="${1}none"
+    ss:questionClassNames="hidden">
+    <title>${1} none checkbox question</title>
+<style arg:noneText="${2}" name="el.checkbox" copy="sbs_none_checkbox"/>
+</checkbox>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>sbs.none.copy</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>
