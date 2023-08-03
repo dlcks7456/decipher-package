@@ -4,7 +4,7 @@ ${1:bmQuestionHanler('.bm-question'); // enter in the respview.client.js}
 
 <style label="bmHeader" name="el.select.header"><![CDATA[
 \@if col.label == 'model'
-<select name="\$(name)" id="\$(id)" class="input dropdown \${'' if \$(this.label).attr(row.label).attr(col.label).any else 'select-disabled'}" \$(extra) data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)">
+<select name="\$(name)" id="\$(id)" class="input dropdown" \$(extra) data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)">
 \@else
 <select name="\$(name)" id="\$(id)" class="input dropdown" \$(extra) data-open=".\$(this.label)oe-\$(row.index)-\$(col.index)">
 \@endif
@@ -35,7 +35,7 @@ ${1:bmQuestionHanler('.bm-question'); // enter in the respview.client.js}
 <div class="select-oe-div \$(this.label)oe-\$(row.index)-\$(col.index)-div"></div>
 ]]${-1}></style>
 <style label="bmOpen" name="el.text"><![CDATA[
-<input type="text" name="\$(name)" id="\$(id)" class="\$(this.label)-\$(row.index)-\$(col.index) other-open \${"" if value else "input-disabled"}" value="\$(value)" size="\$(size)" \${"" if value else "disabled"} placeholder="\${this.styles.ss.postText or ""}"/>
+<input type="text" name="\$(name)" id="\$(id)" class="\$(this.label)-\$(row.index)-\$(col.index) other-open" value="\$(value)" size="\$(size)" \${"" if value else "disabled"} placeholder="\${this.styles.ss.postText or ""}"/>
 <script>
 document.querySelector(".\$(this.label)-\$(row.index)-\$(col.index)-div").appendChild(document.querySelector("input[name='\$(name)']"));
 </script>

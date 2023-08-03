@@ -878,9 +878,9 @@ function bmQuestionHanler(questionClassName){
         }
       });
       if( brandSelect.selectedIndex === 0 ){
-        modelSelect.classList.add('select-disabled');
+        modelSelect.disabled = true;
       }else{
-        modelSelect.classList.remove('select-disabled');
+        modelSelect.disabled = false;
       }
   };
 
@@ -893,11 +893,10 @@ function bmQuestionHanler(questionClassName){
       const openFlag = selectedOption.dataset.oe;
       if( !openFlag ){
           openInput.disabled = true;
-          openInput.classList.add("input-disabled");
           return;
       }
       openInput.disabled = false;
-      openInput.classList.remove("input-disabled");
+
       if( event.type === "change" ){
         openInput.focus();
       }
@@ -914,11 +913,9 @@ function bmQuestionHanler(questionClassName){
         const selectedIndex = item.selectedIndex;
         const oeCheck = item.options[selectedIndex].dataset.oe;
 
-        item.classList.add("input-disabled");
         item.disabled = true;
 
         if( oeCheck ){
-          openInput.classList.add("input-disabled");
           openInput.disabled = true;
         }
       })
@@ -928,11 +925,9 @@ function bmQuestionHanler(questionClassName){
         const selectedIndex = item.selectedIndex;
         const oeCheck = item.options[selectedIndex].dataset.oe;
 
-        item.classList.remove("input-disabled");
         item.disabled = false;
 
         if( oeCheck ){
-          openInput.classList.remove("input-disabled");
           openInput.disabled = false;
         }
       })
@@ -949,7 +944,6 @@ function bmQuestionHanler(questionClassName){
             const openInput = document.querySelector(openClassName);
             if( openInput ){
               openInput.disabled = true;
-              openInput.classList.add("input-disabled");
             }
           }
           modelSelect.selectedIndex = 0;
@@ -1061,10 +1055,8 @@ function stepQuestion(bundleClassName){
           }
           const noneIf = (select)=>{
                if( noneInput.checked ){
-                    select.classList.add('select-disabled');
                     select.disabled = true;
                }else{
-                    select.classList.remove('select-disabled');
                     select.disabled = false;
                }
           }
@@ -1083,14 +1075,11 @@ function stepQuestion(bundleClassName){
                     return;
                }
                if( noneInput.checked ){
-                    open.classList.add('input-disabled');
                     open.disabled = true;
                }else{
                     if( select.options[select.selectedIndex].dataset.open === '1' ){
-                         open.classList.remove('input-disabled');
                          open.disabled = false;
                     }else{
-                         open.classList.add('input-disabled');
                          open.disabled = true;
                     }
                }
@@ -1107,7 +1096,6 @@ function stepQuestion(bundleClassName){
                }else{
                     const beforeSelect = sts[beforeIndex];
                     if( beforeSelect.selectedIndex === 0 ){
-                         step.classList.add('select-disabled');
                          step.disabled = true;
                     }else{
                          eachHandler(step);
@@ -1143,11 +1131,9 @@ function stepQuestion(bundleClassName){
                     return;
                  }
                  if( openChk === '1' ){
-                    open.classList.remove('input-disabled');
                     open.disabled = false;
                     open.focus();
                  }else{
-                    open.classList.add('input-disabled');
                     open.disabled = true;
                  }
 
@@ -1171,7 +1157,7 @@ function stepQuestion(bundleClassName){
                         item.parentNode.removeChild(item);
                     });
                     nextSelect.selectedIndex = 0;
-                    nextSelect.classList.add('select-disabled');
+                    nextSelect.disabled = true;
                     return;
                 }
 
@@ -1195,7 +1181,6 @@ function stepQuestion(bundleClassName){
                 });
 
                 nextSelect.disabled = false;
-                nextSelect.classList.remove('select-disabled');
 
                 openHandler();
             };
@@ -1208,7 +1193,6 @@ function stepQuestion(bundleClassName){
                     rst.selectedIndex = 0;
                     if( step.selectedIndex === 0 ){
                         rst.disabled = true;
-                        rst.classList.add('select-disabled');
                     }
                     const openDiv = rst.parentElement.nextElementSibling;
 
@@ -1218,7 +1202,6 @@ function stepQuestion(bundleClassName){
                         const open = openDiv.querySelector('input[type=text]');
                         open.value = null;
                         open.disabled = true;
-                        open.classList.add('input-disabled');
                     }
                 });
                 optionHandler();
