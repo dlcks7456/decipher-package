@@ -1,0 +1,44 @@
+<snippet>
+    <content><![CDATA[
+def sbs_validation(sbs_list, none_qid=None, oe_qid_rule='%soe') :
+  # oe validation
+  for st in sbs_list :
+    if not 'qid' in st :
+      continue
+    
+    qset = st['qid']
+
+    if not 'other' in st :
+      continue
+
+    other_code = st['other']
+    oe_qid = oe_qid_rule%(qset.label)
+    if oe_qid in allQuestions :
+      for eachRow in qset.rows :
+        if eachRow.any :
+          vl = qset.choices[eachRow.val]
+          if vl.value in other_code :
+            oe_row = allQuestions[oe_qid].attr(eachRow.label)
+            if oe_row.val == None or oe_row.val == '' :
+              error(this.lget("extraInfo"), row=oe_row)
+
+  # None validation
+  if none_qid :
+    for st in sbs_list :
+      if not 'qid' in st :
+        continue
+      
+      qset = st['qid']
+
+      for eachRow in qset.rows :
+        if none_qid.attr(eachRow.label) :
+          continue
+
+        if not eachRow.any :
+          error(this.lget('noAnswerSelected'))
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>sbs.vali.def</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>

@@ -1113,7 +1113,7 @@ function stepQuestion(bundleClassName){
         sts.forEach((step, index)=>{
             const nextIndex = index + 1;
 
-            const openHandler = ()=>{
+            const openHandler = (focus=true)=>{
                  const openChk = step.options[step.selectedIndex].dataset.open;
 
                  const openDiv = step.parentElement.nextElementSibling;
@@ -1132,7 +1132,9 @@ function stepQuestion(bundleClassName){
                  }
                  if( openChk === '1' ){
                     open.disabled = false;
-                    open.focus();
+                    if( focus ){
+                        open.focus();
+                    }
                  }else{
                     open.disabled = true;
                  }
@@ -1181,11 +1183,10 @@ function stepQuestion(bundleClassName){
                 });
 
                 nextSelect.disabled = false;
-
-                openHandler();
             };
 
             optionHandler();
+            openHandler(false);
 
             step.addEventListener('change', ()=>{
                 // reset
@@ -1205,6 +1206,7 @@ function stepQuestion(bundleClassName){
                     }
                 });
                 optionHandler();
+                openHandler();
             });
         });
      });
