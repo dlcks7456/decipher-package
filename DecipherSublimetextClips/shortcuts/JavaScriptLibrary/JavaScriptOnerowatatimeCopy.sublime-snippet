@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style copy="onerowatatime" name="question.after" wrap="ready"/>
+<style copy="onerowatatime" arg:completeWord="default" arg:multiControl="true" arg:nextControl="true" arg:resultView="true" arg:scrollMove="true" name="question.after" wrap="ready"/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>js.onerow.copy</tabTrigger>
