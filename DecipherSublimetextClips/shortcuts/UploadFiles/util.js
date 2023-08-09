@@ -846,6 +846,110 @@ function fnLengthCheck(_label, _num){
   }
 }
 
+function fnSemiOpenBadText(){
+  const fnOpenFilltering = (_obj) => {
+    if (_obj.getAttribute('type') === 'text' && !_obj.disabled && _obj.getAttribute('class').indexOf('badText') !== -1){
+      let strMainText = _obj.value;
+      let bolFlag = false;
+      let strFillteringWord = 'ㄱ,ㄲ,ㄴ,ㄷ,ㄸ,ㄹ,ㅁ,ㅂ,ㅃ,ㅅ,ㅆ,ㅇ,ㅈ,ㅉ,ㅊ,ㅋ,ㅌ,ㅍ,ㅎ,ㅏ,ㅐ,ㅑ,ㅒ,ㅓ,ㅔ,ㅕ,ㅖ,ㅗ,ㅘ,ㅙ,ㅚ,ㅛ,ㅜ,ㅝ,ㅞ,ㅟ,ㅠ,ㅡ,ㅢ,ㅣ,ㄳ,ㄵ,ㄶ,ㄺ,ㄻ,ㄼ,ㄽ,ㄾ,ㄿ,ㅀ,ㅄ,ㆍ,ᆢ';
+      for(i = 0; i < strFillteringWord.split(',').length; i++){
+        if(strMainText.indexOf(strFillteringWord.split(',')[i]) !== -1){
+          bolFlag = true;
+          break;
+        }
+      }
+      if(bolFlag){
+        let strTempText = strMainText;
+        for (i = 0; i < strFillteringWord.split(',').length; i++){
+          if(strMainText.indexOf(strFillteringWord.split(',')[i]) !== -1){
+            strTempText = strTempText.replaceAll(strFillteringWord.split(',')[i], '');
+          }
+        }
+        if(strTempText.length <= 0){
+          for (i = 0; i < strFillteringWord.split(',').length; i++){
+            strMainText = strMainText.replaceAll(strFillteringWord.split(',')[i], '');
+          }
+        }
+      }
+      while (strMainText.charAt(strMainText.length - 1) === '\n' || strMainText.charAt(strMainText.length - 1) === ' '){
+        strMainText = strMainText.slice(0, strMainText.length - 1);
+      }
+      _obj.value = strMainText;
+      fnOpenCheck(_obj);
+    }
+  }
+  const fnOpenCheck = (_obj) => {
+    if (_obj.getAttribute('type') === 'text' && !_obj.disabled && _obj.getAttribute('class').indexOf('badText') !== -1){
+      let strBeforeText = _obj.value;
+      let strAfterText;
+      strBeforeText = strBeforeText.replace(/\n\n\n\n\n\n\n\n\n\n|\n\n\n\n\n\n\n\n\n|\n\n\n\n\n\n\n\n|\n\n\n\n\n\n\n|\n\n\n\n\n\n|\n\n\n\n\n|\n\n\n\n|\n\n\n|\n\n/g, '\n');
+      strBeforeText = strBeforeText.replace(/\.\.\.\.\.\.\.\.\.\.|\.\.\.\.\.\.\.\.\.|\.\.\.\.\.\.\.\.|\.\.\.\.\.\.\.|\.\.\.\.\.\.|\.\.\.\.\.|\.\.\.\.|\.\.\.|\.\./g, '\.');
+      strBeforeText = strBeforeText.replace(/\~\~\~\~\~\~\~\~\~\~|\~\~\~\~\~\~\~\~\~|\~\~\~\~\~\~\~\~|\~\~\~\~\~\~\~|\~\~\~\~\~\~|\~\~\~\~\~|\~\~\~\~|\~\~\~|\~\~/g, '\~');
+      strBeforeText = strBeforeText.replace(/\?\?\?\?\?\?\?\?\?\?|\?\?\?\?\?\?\?\?\?|\?\?\?\?\?\?\?\?|\?\?\?\?\?\?\?|\?\?\?\?\?\?|\?\?\?\?\?|\?\?\?\?|\?\?\?|\?\?/g, '\?');
+      strBeforeText = strBeforeText.replace(/\(\(\(\(\(\(\(\(\(\(|\(\(\(\(\(\(\(\(\(|\(\(\(\(\(\(\(\(|\(\(\(\(\(\(\(|\(\(\(\(\(\(|\(\(\(\(\(|\(\(\(\(|\(\(\(|\(\(/g, '\(');
+      strBeforeText = strBeforeText.replace(/\)\)\)\)\)\)\)\)\)\)|\)\)\)\)\)\)\)\)\)|\)\)\)\)\)\)\)\)|\)\)\)\)\)\)\)|\)\)\)\)\)\)|\)\)\)\)\)|\)\)\)\)|\)\)\)|\)\)/g, '\)');
+      strBeforeText = strBeforeText.replace(/\/\/\/\/\/\/\/\/\/\/|\/\/\/\/\/\/\/\/\/|\/\/\/\/\/\/\/\/|\/\/\/\/\/\/\/|\/\/\/\/\/\/|\/\/\/\/\/|\/\/\/\/|\/\/\/|\/\//g, '\/');
+      strBeforeText = strBeforeText.replace(/\+\+\+\+\+\+\+\+\+\+|\+\+\+\+\+\+\+\+\+|\+\+\+\+\+\+\+\+|\+\+\+\+\+\+\+|\+\+\+\+\+\+|\+\+\+\+\+|\+\+\+\+|\+\+\+|\+\+/g, '\+');
+      strBeforeText = strBeforeText.replace(/ㆍㆍㆍㆍㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍㆍ|ㆍㆍㆍㆍ|ㆍㆍㆍ|ㆍㆍ/g, 'ㆍ');
+      strBeforeText = strBeforeText.replace(/ᆢᆢᆢᆢᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢᆢ|ᆢᆢᆢᆢ|ᆢᆢᆢ|ᆢᆢ/g, 'ᆢ');
+      strBeforeText = strBeforeText.replace(/          |         |        |       |      |     |    |   |  /g, ' ');
+      strBeforeText = strBeforeText.replace(/!!!!!!!!!!|!!!!!!!!!|!!!!!!!!|!!!!!!!|!!!!!!|!!!!!|!!!!|!!!|!!/g, '!');
+      strBeforeText = strBeforeText.replace(/,,,,,,,,,,|,,,,,,,,,|,,,,,,,,|,,,,,,,|,,,,,,|,,,,,|,,,,|,,,|,,/g, ',');
+      strBeforeText = strBeforeText.replace(/::::::::::|:::::::::|::::::::|:::::::|::::::|:::::|::::|:::|::/g, ':');
+      strBeforeText = strBeforeText.replace(/''''''''''|'''''''''|''''''''|'''''''|''''''|'''''|''''|'''|''/g, "'");
+      strBeforeText = strBeforeText.replace(/""""""""""|"""""""""|""""""""|"""""""|""""""|"""""|""""|"""|""/g, '"');
+      strBeforeText = strBeforeText.replace(/{{{{{{{{{{|{{{{{{{{{|{{{{{{{{|{{{{{{{|{{{{{{|{{{{{|{{{{|{{{|{{/g, '{');
+      strBeforeText = strBeforeText.replace(/}}}}}}}}}}|}}}}}}}}}|}}}}}}}}|}}}}}}}|}}}}}}|}}}}}|}}}}|}}}|}}/g, '}');
+      strBeforeText = strBeforeText.replace(/<<<<<<<<<<|<<<<<<<<<|<<<<<<<<|<<<<<<<|<<<<<<|<<<<<|<<<<|<<<|<</g, '<');
+      strBeforeText = strBeforeText.replace(/>>>>>>>>>>|>>>>>>>>>|>>>>>>>>|>>>>>>>|>>>>>>|>>>>>|>>>>|>>>|>>/g, '>');
+      strBeforeText = strBeforeText.replace(/----------|---------|--------|-------|------|-----|----|---|--/g, '-');
+      strBeforeText = strBeforeText.replace(/__________|_________|________|_______|______|_____|____|___|__/g, '_');
+      strBeforeText = strBeforeText.replace(/==========|=========|========|=======|======|=====|====|===|==/g, '=');
+      strBeforeText = strBeforeText.replace(/ㆍᆢ/g, 'ㆍ');
+      strBeforeText = strBeforeText.replace(/ᆢㆍ/g, 'ᆢ');
+      strBeforeText = strBeforeText.replace(/\n /g, '\n');
+      strBeforeText = strBeforeText.replace(/`|@|#|\$|%|\^|&|\*|\\|\||;|♡|♥|§|×|÷|♤|♠|☆|♧|♣|$|€|£|¥|°|○|●|□|■|◇|※|《|》|¤|¡|¿|＃|＆|＊|＠|★|◎|◆|△|▲|▽|▼|→|←|↑|↓|↔|〓|◁|◀|▷|▶|⊙|◈|▣|◐|◑|▒|▤|▥|▨|▧|▦|▩|♨|☏|☎|☜|☞|¶|†|‡|↕|↗|↙|↖|↘|♭|♩|♪|♬|㉿|㈜|№|㏇|™|㏂|㏘|℡|®|ª|º|㉾/g, '');
+      if(strBeforeText.charAt(0) === ' '){
+        strBeforeText = strBeforeText.slice(1);
+      }
+      if(strBeforeText.charAt(0) === '\n'){
+        strBeforeText = strBeforeText.slice(1);
+      }
+      _obj.value = strBeforeText;
+      }
+  }
+  let objAllOpen = document.querySelectorAll('#primary input[type=text]');
+  for (i = 0; i < objAllOpen.length; i++){
+    if (objAllOpen[i].getAttribute('name') !== null && objAllOpen[i].getAttribute('name').indexOf('oe') !== -1){
+      if (objAllOpen[i].className.indexOf('badText') === -1){
+        objAllOpen[i].classList.add('badText');
+      }
+    }
+  }
+  for (index = 0; index < document.getElementsByClassName('badText').length; index++){
+    document.getElementsByClassName('badText')[index].addEventListener('propertychange', (e) => {
+      fnOpenCheck(e.target);
+    })
+    document.getElementsByClassName('badText')[index].addEventListener('change', (e) => {
+      fnOpenCheck(e.target);
+    })
+    document.getElementsByClassName('badText')[index].addEventListener('keyup', (e) => {
+      fnOpenCheck(e.target);
+    })
+    document.getElementsByClassName('badText')[index].addEventListener('paste', (e) => {
+      fnOpenCheck(e.target);
+    })
+    document.getElementsByClassName('badText')[index].addEventListener('input', (e) => {
+      fnOpenCheck(e.target);
+    })
+    document.getElementsByClassName('badText')[index].addEventListener('focus', (e) => {
+      fnOpenCheck(e.target);
+    })
+    document.getElementsByClassName('badText')[index].addEventListener('blur', (e) => {
+      fnOpenFilltering(e.target);
+    })
+  }
+}
 
 
 // BM Question JS
@@ -1214,30 +1318,116 @@ function stepQuestion(bundleClassName){
 
 
 
-function onerowatatime(_label, _row, _col){
+function onerowatatime(_label, _row, _col, _result, _scroll, _next, _multi, _complete){
+  function fnNextActivate(_bol){
+    const objNextBtn = document.getElementById('btn_continue');
+    if(_next){
+      if (_bol){
+        objNextBtn.disabled = false;
+      }
+      else if (!_bol){
+        objNextBtn.disabled = true;
+      }
+      else{
+        console.log('chk_plz');
+      }
+    }
+  }
   function fnOneRowStyle(){
     for(k = 0; k < document.querySelectorAll('style').length; k++){
       if (document.querySelectorAll('style')[k].getAttribute('media') == null){
-       document.querySelectorAll('style')[k].innerHTML = document.querySelectorAll('style')[k].innerHTML + '.grid-list-mode .row-elements{transition-duration: 0.15s;}.grid-list-mode .clicked{background-color: rgba(45, 109, 246, 0.2);}';
+       document.querySelectorAll('style')[k].innerHTML = document.querySelectorAll('style')[k].innerHTML + '@keyframes fallingFadeIn{0%{opacity : 0; transform : translateY(-10px);}100%{opacity : 1; transform : translateY(0px);}}@keyframes fallingInfinityScroll{0%{transform: translateY(-75%);}100%{transform: translateY(5%);}}.grid-list-mode .row-elements{transition-duration: 0.15s;}.grid-list-mode .clicked{background-color: rgba(45, 109, 246, 0.2);}.grid-list-mode .nextShow{animation : fallingFadeIn 0.5s 1 forwards;}.survey-buttons .showWrap{pointer-events: none;}.survey-buttons .showWrap .backgroundText{position: relative;display: block;opacity: 0;font-size: 0.9rem;pointer-events: none;}.survey-buttons .showWrap .showText{position: absolute;display: block;width: 100%;left: 50%;top: 50%;transform: translate(-50%, -50%);}.survey-buttons .showWrap .commonCheck{position: absolute;display: block;width: 20px;left: 50%;top: 50%;transform: translate(-50%, -50%);}#primary:has(.answers-table) .survey-buttons .showWrap{position: absolute;display: inline-block;}#primary:has(.answers-list) .survey-buttons .showWrap{position: fixed;display: block;right: 5%;top: 2%;}.grid-table-mode .createWarp{height: 37px;}.grid-table-mode .createHead{}.grid-table-mode .createData{cursor: pointer;border: 1px solid #0c148b;overflow: hidden;}.grid-table-mode .createData:has(.arrowHover){transition-duration : 0.5s;color : white;background-color: #2d6df6;overflow: hidden;}.grid-table-mode .createArrowWrap{max-height: 37px;transform: translateY(-75%);pointer-events: none;}.grid-table-mode .arrowHover{animation : fallingInfinityScroll 0.7s infinite linear;}.grid-table-mode .createArrowWrap .downfallArrow{position: relative;display: block;width: 30px;left: 50%;transform: translateX(-50%);}.grid-list-mode .createWarp{position: relative;display: block;width: 100%;height: 37px;margin-top: 5px;border: 1px solid #ccc;border-radius: 10px;box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);animation : fallingFadeIn 0.5s 1 forwards;}.grid-list-mode .createHead{pointer-events: none;}.grid-list-mode .createData{position: relative;display: block;height: 100%;width: 100%;cursor: pointer;overflow: hidden;}.grid-list-mode .createData:has(.arrowHover){transition-duration : 0.5s;color : white;background-color: #2d6df6;border-radius: 10px;}.grid-list-mode .createArrowWrap{max-height: 37px;transform: translateY(-75%);pointer-events: none;}.grid-list-mode .arrowHover{animation : fallingInfinityScroll 0.7s infinite linear;}.grid-list-mode .createArrowWrap .downfallArrow{position: relative;display: block;width: 30px;left: 50%;transform: translateX(-50%);}';
        break;
       }
     }
   }
-  function fnShow(_target){
-    _target.style.display = ''; 
-    if(_target.nextSibling !== null){
-      if(_target.className.indexOf('row-group') !== -1 || _target.className.indexOf('row-col-legends') !== -1){
-        _target.nextSibling.style.display = '';
-        if(_target.nextSibling !== null && _target.nextSibling.className.indexOf('row-group') !== -1 || _target.nextSibling.className.indexOf('row-col-legends') !== -1){
-          _target.nextSibling.nextSibling.style.display = '';
+  function fnShow(_target, _type, _click){
+    if(_type === 'radio' || _type === 'all'){
+      _target.style.display = ''; 
+      _target.classList.add('nextShow');
+      if(_target.nextSibling !== null){
+        if(_target.className.indexOf('row-group') !== -1 || _target.className.indexOf('row-col-legends') !== -1){
+          _target.nextSibling.style.display = '';
+          _target.nextSibling.classList.add('nextShow');
+          if(_target.nextSibling !== null && _target.nextSibling.className.indexOf('row-group') !== -1 || _target.nextSibling.className.indexOf('row-col-legends') !== -1){
+            _target.nextSibling.nextSibling.style.display = '';
+            _target.nextSibling.nextSibling.classList.add('nextShow');
+          }
+        }
+      }
+    }
+    else if(_type === 'checkbox'){
+      if(_target.className.indexOf('row-col-legends') === -1){
+        const objTargetParent = _target.parentNode;
+        let numClickTargetIndex;
+        for(i = 0; objTargetParent.childNodes.length; i++){
+          if(objTargetParent.childNodes[i] === _click){
+            numClickTargetIndex = i
+            break;
+          }
+        }
+        const objClickTarget = objTargetParent.childNodes[numClickTargetIndex];
+        if(objClickTarget.getAttribute('class').indexOf('MA_continue') === -1){
+          objClickTarget.classList.add('MA_continue');
+          const objCreateWrap = document.createElement('tr');
+          const objCreateTableHead = document.createElement('th');
+          const objCreateTableData = document.createElement('td');
+          const objCreateArrowWrap = document.createElement('div');
+          const strDownfallArrow = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" class="downfallArrow" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" /></svg><svg xmlns="http://www.w3.org/2000/svg" fill="none" class="downfallArrow" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" /></svg>';
+          objCreateWrap.className = 'createWarp';
+          objCreateTableHead.className = 'createHead';
+          objCreateTableData.className = 'createData';
+          objCreateArrowWrap.className = 'createArrowWrap';
+          objCreateTableData.setAttribute('colspan', numColCound);
+          objCreateTableData.addEventListener('click', function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            e.target.parentNode.nextSibling.style.display = ''; 
+            e.target.parentNode.nextSibling.classList.add('nextShow');
+            fnScroll(e.target.parentNode.nextSibling);
+            if(e.target.parentNode.nextSibling.nextSibling !== null){
+              if(e.target.parentNode.nextSibling.className.indexOf('row-group') !== -1 || e.target.parentNode.nextSibling.className.indexOf('row-col-legends') !== -1){
+                e.target.parentNode.nextSibling.nextSibling.style.display = '';
+                e.target.parentNode.nextSibling.nextSibling.classList.add('nextShow');
+                fnScroll(e.target.parentNode.nextSibling.nextSibling);
+                if(e.target.parentNode.nextSibling.nextSibling !== null && e.target.parentNode.nextSibling.nextSibling.className.indexOf('row-group') !== -1 || e.target.parentNode.nextSibling.nextSibling.className.indexOf('row-col-legends') !== -1){
+                  e.target.parentNode.nextSibling.nextSibling.nextSibling.style.display = '';
+                  e.target.parentNode.nextSibling.nextSibling.nextSibling.classList.add('nextShow');
+                  fnScroll(e.target.parentNode.nextSibling.nextSibling.nextSibling);
+                }
+              }
+            }
+            e.target.parentNode.remove();
+          })
+          objCreateTableData.addEventListener('mouseover', function(e){
+            e.target.childNodes[0].classList.add('arrowHover');
+          })
+          objCreateTableData.addEventListener('mouseleave', function(e){
+            e.target.childNodes[0].classList.remove('arrowHover');
+          })
+          objCreateArrowWrap.innerHTML = strDownfallArrow;
+          objCreateTableData.append(objCreateArrowWrap);
+          objCreateWrap.append(objCreateTableHead);
+          objCreateWrap.append(objCreateTableData);
+          objTargetParent.insertBefore(objCreateWrap, _target);
+          //objClickTarget.append(objCreateWrap);
+        }
+
+        if(!_multi){
+          fnMultiAllClick(objTargetParent);
         }
       }
     }
   }
+  function fnMultiAllClick(_target){
+    while(_target.querySelectorAll('.createData').length != 0){
+      _target.querySelector('.createData').click();
+    }
+  }
   function fnCheck(_target){
     let checkFlag = false;
-    for(k = 0; k < _target.querySelectorAll('.hasError').length; k++){
-      _target.querySelectorAll('.hasError')[k].classList.remove('hasError');
+    while(_target.querySelectorAll('.hasError').length >= 1){
+      _target.querySelectorAll('.hasError')[0].classList.remove('hasError');
     }
     for(i = 0; i < _target.querySelectorAll('input').length; i++){
       if(_target.querySelectorAll('.fir-icon')[i].className.indexOf('selected') !== -1 && _target.querySelectorAll('input')[i].checked){
@@ -1247,8 +1437,8 @@ function onerowatatime(_label, _row, _col){
     }
     return checkFlag;
   }
-  function fnAllCheck(_name){
-    const objList = document.querySelectorAll('#question_' + _name + ' .setWidth tbody')[document.querySelectorAll('#question_' + _name + ' .setWidth tbody').length - 1].childNodes;
+  function fnAllCheck(){
+    const objList = document.querySelectorAll('#question_' + strLabel + ' .setWidth tbody')[document.querySelectorAll('#question_' + strLabel + ' .setWidth tbody').length - 1].childNodes;
     for(i = 0; i < objList.length; i++){
       for(k = 0; k < objList[i].querySelectorAll('input').length; k++){
         if(objList[i].querySelectorAll('.fir-icon')[k].className.indexOf('selected') !== -1 && objList[i].querySelectorAll('input')[k].checked){
@@ -1259,8 +1449,7 @@ function onerowatatime(_label, _row, _col){
     }
   }
   function fnScroll(_target){
-    let bolFlag = true;
-
+    let bolFlag = _scroll ? true : false;
     if(_target === null || _target.className.indexOf('row-group') !== -1 || _target.className.indexOf('row-col-legends') !== -1){
       bolFlag = false;
     }
@@ -1279,28 +1468,65 @@ function onerowatatime(_label, _row, _col){
       const mainScrollPosY = objMain.scrollTop;
       const targetHeight = Number(getComputedStyle(_target).height.split('px')[0]);
       const targetPosY = _target.getBoundingClientRect().top;
-      if(mainHeight < (targetHeight + targetPosY)){
-
-        //jQuery(objMain).animate({
-        //  scrollTop: mainScrollPosY + ((targetHeight + targetPosY) - mainHeight)
-        //}, 100)
-        objMain.scrollTop = mainScrollPosY + ((targetHeight + targetPosY) - mainHeight);
-      }
+      const targetPosX = _target.getBoundingClientRect().right;
+      if(mainHeight < (targetHeight + targetPosY)) objMain.scrollTop = mainScrollPosY + ((targetHeight + targetPosY) - mainHeight);
     }
   }
-
   function fnAnswerCount(){
     const numCount = document.querySelectorAll('#question_' + strLabel + ' .setWidth .clicked').length;
     return numCount;
   }
-
-  function fnShowAnswer(){
+  function fnResultUpdate(){
+    const objTargetWarp = document.querySelector('#question_' + strLabel).parentNode.querySelector('.survey-buttons #' + strLabel + '_showWrap');
+    const objTargetText = objTargetWarp.querySelector('.showText');
     const numTotal = numRowCound;
-    let numCurrent = fnAnswerCount();
+    const numCurrent = fnAnswerCount();
+    const numCalc = numCurrent / numTotal * 100;
+    const strCompleteText = _complete === undefined || _complete === 'default' ? '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.0" stroke="currentColor" class="commonCheck"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>' : _complete;
+    objTargetText.innerText = numCurrent + " / " + numTotal;
+    let arrCheckList = new Array();
+    if(numCalc >= 100){
+      objTargetWarp.classList.add('complete');
+      objTargetText.classList.add('textComplete');
+      objTargetText.innerHTML = strCompleteText;
+      fnMultiAllClick(document.querySelector('#question_' + strLabel + ' .setWidth'));
+      objTargetWarp.querySelector('.backgroundText').innerText = _complete === undefined || _complete === 'default' ? objTargetWarp.parentNode.querySelector('.survey-buttons #btn_continue').value : _complete;
+    }
+    else{
+      objTargetWarp.classList.remove('complete');
+      objTargetText.classList.remove('textComplete');
+      objTargetWarp.querySelector('.backgroundText').innerText = objTargetWarp.parentNode.querySelector('.survey-buttons #btn_continue').value;
+    }
+    for(i = 0; i < document.getElementsByClassName('showWrap').length; i++){
+      if(document.getElementsByClassName('showWrap')[i].className.indexOf('complete') !== -1) arrCheckList[i] = true;
+      else arrCheckList[i] = false;
+    }
+    if(arrCheckList.every(function(_bol){return _bol})) fnNextActivate(true);
+    else fnNextActivate(false);
   }
-
-
+  function fnResultShow(){ 
+    const objShowCountArea = document.querySelector('#question_' + strLabel).parentNode.querySelector('.survey-buttons');
+    const objShowWrap = document.createElement('div');
+    const objBackgroundText = document.createElement('div');
+    const objShowText = document.createElement('div');
+    if(!_result) objShowWrap.setAttribute('style', 'display:none !important');
+    objShowWrap.oncontextmenu = function(){ return false; };
+    objShowWrap.onselectstart = function(){ return false; };
+    objShowWrap.ondragstart = function(){ return false; };
+    objShowWrap.onscroll = function(){ return false; };
+    objBackgroundText.innerText = objShowCountArea.querySelector('#btn_continue').value;
+    objShowWrap.id = strLabel + '_showWrap';
+    objShowWrap.classList.add('showWrap');
+    objShowWrap.classList.add('button');
+    objShowText.classList.add('showText');
+    objBackgroundText.classList.add('backgroundText');
+    objShowWrap.append(objBackgroundText);
+    objShowWrap.append(objShowText);
+    objShowCountArea.append(objShowWrap);
+    fnResultUpdate();
+  }
   function fnInit(){
+    fnNextActivate(false);
     const objMain = document.getElementById('surveyContainer') === null ? document.querySelector('html').style.scrollBehavior = 'smooth' : document.getElementById('surveyContainer').style.scrollBehavior = 'smooth';
     const arrCheckList = document.querySelectorAll('#question_' + strLabel + ' .setWidth .clickableCell');
     for(i = 0; i < arrCheckList.length; i++){
@@ -1311,8 +1537,9 @@ function onerowatatime(_label, _row, _col){
         else{
           e.target.parentNode.parentNode.parentNode.parentNode.classList.remove('clicked');
         }
+        fnResultUpdate();
         if(e.target.checked && e.target.parentNode.parentNode.parentNode.parentNode.nextSibling !== null){
-          fnShow(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling);
+          fnShow(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling, e.target.type, e.target.parentNode.parentNode.parentNode.parentNode);
           if(e.target.type === 'radio'){
             if(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling !== null && e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling !== null && (e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.className.indexOf('row-group') !== -1 || e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.className.indexOf('row-col-legends') !== -1)){
               fnScroll(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling);
@@ -1324,11 +1551,11 @@ function onerowatatime(_label, _row, _col){
               fnScroll(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling);
             }
           }
-        } 
+        }
       });
       if(arrCheckList[i].parentNode.nextSibling !== null){
         if(arrCheckList[i].querySelector('.fir-icon').className.indexOf('selected') !== -1 && arrCheckList[i].querySelector('input').checked){
-          fnShow(arrCheckList[i].parentNode.nextSibling);
+          fnShow(arrCheckList[i].parentNode.nextSibling, 'all');
         }
       }
     }
@@ -1339,12 +1566,12 @@ function onerowatatime(_label, _row, _col){
       }
     }
     fnOneRowStyle();
-    fnAllCheck(strLabel);
+    fnAllCheck();
+    fnResultShow();
   }
   const strLabel = _label;
   const numRowCound = _row;
   const numColCound = _col;
-
   if(numRowCound <= 1 || numColCound <= 1){
     console.log('onerowatatime not activate');
   }
@@ -1353,9 +1580,8 @@ function onerowatatime(_label, _row, _col){
     for(i = 0; i < objTarget.childNodes.length; i++){
       objTarget.childNodes[i].setAttribute('style', 'display:none !important');
     }
-    fnShow(objTarget.childNodes[0]);
-    if(objTarget.childNodes[objTarget.childNodes.length - 1].className.indexOf('row-col-legends') !== -1) fnShow(objTarget.childNodes[objTarget.childNodes.length - 1]);
+    fnShow(objTarget.childNodes[0], 'all');
+    if(objTarget.childNodes[objTarget.childNodes.length - 1].className.indexOf('row-col-legends') !== -1) fnShow(objTarget.childNodes[objTarget.childNodes.length - 1], 'all');
     fnInit();
   }
 }
-
