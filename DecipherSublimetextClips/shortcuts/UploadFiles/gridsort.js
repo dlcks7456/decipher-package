@@ -640,7 +640,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                     {answerList.map((answer, index)=>{
                         const filtRowsAnswer = rows.filter(row=> row.index === answer);
                         const getOnlyText = document.createElement('div');
-                        getOnlyText.innerHTML = filtRowsAnswer[0].text;
+                        let rpText = filtRowsAnswer[0].text.replace('<br />', ' ');
+                        rpText = rpText.replace('<br/>', ' ');
+                        getOnlyText.innerHTML = rpText;
                         const onlyText = getOnlyText.innerText;
                         return (
                         <div className={`show-ans-rk-row answer-rank-${index+1}`}>
