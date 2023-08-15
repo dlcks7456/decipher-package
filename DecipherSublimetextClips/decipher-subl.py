@@ -1323,13 +1323,14 @@ class makeRadioCommand(sublime_plugin.TextCommand):
                 if output.strip() == '':
                     printpage = printPage = """
 <radio 
-  label=\"%s\" 
+  label=\"%s\"
+  optional="1"
   where="execute">
-  <title><div class="q-name">%s</div> %s</title>
-  <row label="r1" value="1">True</row>
+  <title>(HIDDEN) %s</title>
   <row label="r0" value="0">False</row>
+  <row label="r1" value="1">True</row>
 </radio>
-<suspend/>""" % (label.strip(), label.strip().replace('x', '-'), title.strip())
+<suspend/>""" % (label.strip(), title.strip())
                     return self.view.replace(edit,sel, printpage)
 
 
