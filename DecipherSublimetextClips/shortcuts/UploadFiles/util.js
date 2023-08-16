@@ -236,7 +236,7 @@ function slideShowSetting({
     slideshowDiv.style.width = '100%';
     slideshowDiv.style.marginBottom = '20px';
     slideshowDiv.style.maxWidth = '924px';
-    slideshowDiv.style.margin = '0 auto';
+    //slideshowDiv.style.margin = '0 auto';
 
     const slideshowBody = document.createElement('div');
     const leftBtn = document.createElement('div');
