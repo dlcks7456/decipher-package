@@ -129,7 +129,7 @@ cursor : pointer; \
 })();
 
 // image-zoom
-function fnImageZoom(){
+function fnImageZoom(_click){
   function fnCustomClick(_target, _posX, _posY){
     var evt = new MouseEvent('click', {
       bubbles: true,
@@ -214,11 +214,6 @@ function fnImageZoom(){
         _wrap.style.transformOrigin = 'center bottom';
         _wrap.style.left = _event.touches[0].clientX - (numWrapCustomWidth / 2) + 'px';
         _wrap.style.top = _event.touches[0].clientY - (numWrapCustomHeight + 40) +  'px';
-      }
-      if (_image.getAttribute('src') == null){
-        _image.setAttribute('src', _target.getAttribute('src'));
-        _wrap.style.display = 'block';
-        _wrap.style.animation = 'zoom_enter 0.2s 1 forwards';
       }
       _wrap.style.width = numWrapCustomWidth + 'px';
       _wrap.style.height = numWrapCustomHeight + 'px';
@@ -315,17 +310,34 @@ z-index : 20;\
         objZoomWrap.style.animation = 'zoom_enter 0.2s 1 forwards';
       })
     }
+    var bolClickActivate = _click == undefined || _click == null || _click == false ? false : true
     for (i = 0; i < document.querySelectorAll('.zoom img').length; i++){
       var objTouchImg = document.querySelectorAll('.zoom img')[i];
+      var objTouchParent = objTouchImg.parentNode;
+      while(objTouchParent.tagName !== 'HTML'){
+        if(objTouchParent.hasAttribute('title')) objTouchParent.removeAttribute('title');
+        objTouchParent = objTouchParent.parentNode;
+      }
       objTouchImg.oncontextmenu = function(){ return false; };
       objTouchImg.onselectstart = function(){ return false; };
       objTouchImg.ondragstart = function(){ return false; };
       objTouchImg.setAttribute('oncontextmenu', 'return false');
-      objTouchImg.setAttribute('style', '-webkit-touch-callout:none');
+      objTouchImg.style.webkittouchCallout = "none"
       objTouchImg.style.userSelect = 'none';
 
       objTouchImg.addEventListener('mouseenter', function(event){
-        objZoomImage.setAttribute('src', this.getAttribute('src'));
+        var strSourceExtension = this.getAttribute('src') != null ? this.getAttribute('src').split('.')[this.getAttribute('src').split('.').length - 1] : "None";
+        var strPath = '';
+        if(strSourceExtension == 'None'){
+          strPath = 'The path could not be resolved';
+        }
+        else if(strSourceExtension == 'gif'){
+          strPath = window.location.protocol + '//' + window.location.host + this.style.backgroundImage.split('url(')[1].substr(1, this.style.backgroundImage.split('url(')[1].length - 3)
+        }
+        else{
+          strPath = this.getAttribute('src');
+        }
+        objZoomImage.setAttribute('src', strPath);
         fnZoom(this, objZoomWrap, objZoomImage, event, false);
       });
       objTouchImg.addEventListener('mousemove', function(event){
@@ -339,7 +351,18 @@ z-index : 20;\
       // 터치가 가능한 플랫폼일 경우 터치이벤트 추가
       if (strMobilePlatform){
         objTouchImg.addEventListener('touchstart', function(event){
-          objZoomImage.setAttribute('src', this.getAttribute('src'));
+          var strSourceExtension = this.getAttribute('src') != null ? this.getAttribute('src').split('.')[this.getAttribute('src').split('.').length - 1] : "None";
+          var strPath = '';
+          if(strSourceExtension == 'None'){
+            strPath = 'The path could not be resolved';
+          }
+          else if(strSourceExtension == 'gif'){
+            strPath = window.location.protocol + '//' + window.location.host + this.style.backgroundImage.split('url(')[1].substr(1, this.style.backgroundImage.split('url(')[1].length - 3)
+          }
+          else{
+            strPath = this.getAttribute('src');
+          }
+          objZoomImage.setAttribute('src', strPath);
           fnZoom(this, objZoomWrap, objZoomImage, event, true);
         });
         objTouchImg.addEventListener('touchmove', function(event){
@@ -351,7 +374,9 @@ z-index : 20;\
           objZoomWrap.style.display = 'none';
           objRedDot.style.display = 'none';
           objZoomWrap.style.animation = '';
-          fnCustomClick(this, event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+          if(bolClickActivate){
+            fnCustomClick(this, event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+          }
         });
         objTouchImg.addEventListener('touchcancle', function(event){
           event.preventDefault();
@@ -361,9 +386,11 @@ z-index : 20;\
         });
       }
       objTouchImg.addEventListener('click', function(){
+        if(bolClickActivate){
           objZoomWrap.style.display = 'none';
           objRedDot.style.display = 'none';
           objZoomWrap.style.animation = '';
+        }
       });
     }
   }
