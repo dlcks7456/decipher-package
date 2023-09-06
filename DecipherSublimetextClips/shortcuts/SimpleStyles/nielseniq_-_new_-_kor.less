@@ -2301,3 +2301,72 @@ input[type="text"]:disabled {
 [class*="autoSuggestInput"]:focus {
     border-color: @custom-color !important;
 }
+
+
+
+/* Textarea Wrapper Style */
+.textarea-with-title {
+    width: 100%;
+    max-width: 600px;
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 16px;
+        color: @custom-color;
+
+        @media (min-width: 768px) {
+            font-size: 18px;
+        }
+
+        @media (max-width: 767px) {
+            font-size: 16px;
+        }
+    }
+
+    textarea {
+        margin: 0;
+        padding: 10px;
+        box-sizing: border-box;
+        border: none;
+        outline: none;
+        resize: vertical;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        border-radius: 4px;
+        background-color: #f5f7fa;
+        border: 2px solid #e0e4e9;
+        color: #333;
+
+        &:focus {
+            border-color: @custom-color;
+            box-shadow: 0 0 8px fade(@custom-color, 30%);
+        }
+
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #c4cdd5;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: #a1aebd;
+            }
+        }
+
+        @media (min-width: 768px) {
+            width: 100%;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        @media (max-width: 767px) {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+}
+
