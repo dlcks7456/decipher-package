@@ -2343,16 +2343,16 @@ textarea {
         }
     }
 
-    @media (min-width: 768px) {
-        width: 100%;
+    @media @desktop {
         font-size: 16px;
         line-height: 24px;
     }
 
-    @media (max-width: 767px) {
-        width: 100%;
+    @media @mobile {
+        width: 100% !important;
         font-size: 14px;
         line-height: 20px;
+        resize: vertical;
     }
 }
 
@@ -2361,8 +2361,8 @@ input[type='text'] {
     .text-input-style();
     max-width: 300px;
 
-    @media (max-width: 767px) {
-        max-width: 100%;
+    @media @mobile {
+        width: 100% important;
     }
 }
 
@@ -2383,18 +2383,17 @@ input[type='text'] {
         background: @custom-color;
         .box-shadow-style();
 
-        @media (min-width: 768px) {
+        @media @desktop {
             font-size: 18px;
         }
 
-        @media (max-width: 767px) {
+        @media @mobile {
             font-size: 16px;
         }
     }
 
     textarea {
       width: 100%;
-      max-width: 600px;
       resize: vertical;
     }
 }
