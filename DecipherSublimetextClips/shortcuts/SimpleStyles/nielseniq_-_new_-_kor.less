@@ -2305,6 +2305,68 @@ input[type="text"]:disabled {
 
 
 /* Textarea Wrapper Style */
+.text-input-style() {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    border-radius: 4px;
+    border: 1px solid @color-4;
+
+    &:focus {
+        border: 1px solid @custom-color;
+        box-shadow: 0 0 8px fade(@custom-color, 30%);
+    }
+
+    &:disabled {
+      background-color: #e3e2e2 !important;
+      opacity: 0.5;
+    }
+}
+
+textarea {
+    .text-input-style();
+    padding: 10px;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #c4cdd5;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: #a1aebd;
+        }
+    }
+
+    @media (min-width: 768px) {
+        width: 100%;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    @media (max-width: 767px) {
+        width: 100%;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+
+input[type='text'] {
+    .text-input-style();
+    max-width: 300px;
+
+    @media (max-width: 767px) {
+        max-width: 100%;
+    }
+}
+
+
 .textarea-with-title {
     width: 100%;
     max-width: 600px;
@@ -2331,47 +2393,8 @@ input[type="text"]:disabled {
     }
 
     textarea {
-        margin: 0;
-        padding: 10px;
-        box-sizing: border-box;
-        border: none;
-        outline: none;
-        resize: vertical;
-        transition: border-color 0.3s, box-shadow 0.3s;
-        border-radius: 4px;
-        background-color: #f5f7fa;
-        border: 2px solid #e0e4e9;
-        color: #333;
-
-        &:focus {
-            border-color: @custom-color;
-            box-shadow: 0 0 8px fade(@custom-color, 30%);
-        }
-
-        &::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: #c4cdd5;
-            border-radius: 4px;
-
-            &:hover {
-                background-color: #a1aebd;
-            }
-        }
-
-        @media (min-width: 768px) {
-            width: 100%;
-            font-size: 16px;
-            line-height: 24px;
-        }
-
-        @media (max-width: 767px) {
-            width: 100%;
-            font-size: 14px;
-            line-height: 20px;
-        }
+      width: 100%;
+      max-width: 600px;
+      resize: vertical;
     }
 }
-
