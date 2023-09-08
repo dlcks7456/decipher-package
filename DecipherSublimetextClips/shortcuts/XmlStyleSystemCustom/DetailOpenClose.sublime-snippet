@@ -1,0 +1,42 @@
+<snippet>
+	<content><![CDATA[
+<res label="detail_open">Open</res>
+<res label="detail_close">Close</res>
+
+<style>
+.ch-showcard > summary {
+  list-style: none;
+}
+
+.ch-showcard > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ch-showcard > summary::marker {
+  display: none;
+}
+
+.ch-showcard > details > summary {
+  list-style-type: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ch-showcard > details[open] summary::before {
+  content: "▲ [\${res.detail_close}]";
+  margin-right: 20px;
+}
+
+.ch-showcard > details:not([open]) summary::before {
+  content: "▼ [\${res.detail_open}]";
+  margin-right: 20px;
+}
+</style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>detail.oc</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
