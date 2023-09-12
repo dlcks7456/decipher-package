@@ -1,4 +1,4 @@
-// Theme: <Frozen Theme (NIQ)>
+// Theme: <Survey-Specific Theme>
 
 /* ================================================ READ ME! ================================================ */
 /*
@@ -238,8 +238,8 @@
 @primary-button-font-size:          @small-text;
 @primary-button-font-family:        @secondary-font-family;
 @primary-button-bg-color:           #2D6DF6;
-@primary-button-bg-color-hover:		#0A52ED;
-@primary-button-bg-color-selected:	#0946CA;
+@primary-button-bg-color-hover:   #0A52ED;
+@primary-button-bg-color-selected:  #0946CA;
 //@primary-button-bg-color-hover:     lighten(@primary-button-bg-color, 5%);
 @primary-button-border-color:       transparent;
 @primary-button-border-color-hover: transparent;
@@ -282,7 +282,7 @@
 @fir-inner:              @foreground-color;
 @fir-inner-hover:        #E6E6E6;
 @fir-inner-selected:     #ffffff; // DO NOT MAKE THIS THE SAME COLOR AS @FIR-INNER-HOVER
-@fir-size:				 24px;
+@fir-size:         24px;
 
 
 // *********************** Footer *********************** //
@@ -779,13 +779,13 @@ textarea {
   .row-elements + .row-elements, .row-elements + .row-group {
     // Reset margin to remove earlier list-mode spacing.
     margin-top: 0;
-	
-	
+  
+  
   }
   
   .odd when not (@row-bg-color-alt = @row-bg-color) {
-	  background:       @row-bg-color-alt;
-	}
+    background:       @row-bg-color-alt;
+  }
   
 }
 
@@ -924,7 +924,7 @@ textarea {
 
 .cell.legend.desktop.hasError
 {
-	background-color: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 /* ============================================ ( Extra Info ) ============================================== */
@@ -993,9 +993,9 @@ textarea {
   a {
     color:      #2D6DF6;
     &:hover, &:focus {
-	  color:    #0A52ED;
-	}
-	&:active {
+    color:    #0A52ED;
+  }
+  &:active {
       color:    #0946CA;
     }
   }
@@ -1050,7 +1050,7 @@ form#primary, .exit-message {
 
 #primary .survey-buttons {
     text-align: center;
-	padding: 15px;
+  padding: 15px;
 }
 
 // Changes the font size of instruction text and row/col text
@@ -1090,8 +1090,8 @@ form#primary, .exit-message {
     bottom: 36px;
     left: 0;
     overflow: auto;
-	padding-top: 5px;
-	padding: 0em 14px;
+  padding-top: 5px;
+  padding: 0em 14px;
 }
 
 .exit-message-header {
@@ -1121,7 +1121,7 @@ form#primary, .exit-message {
 }
 
 .sq-atm1d .sq-atm1d-selected{
-	background-color: #E7EEFF !important;
+  background-color: #E7EEFF !important;
 }
 
 .sq-atm1d .sq-atm1d-hovered{
@@ -1129,9 +1129,9 @@ form#primary, .exit-message {
 }
 
 .sq-atmrating .atmrating-btn {
-	background-color: #ffffff !important;
-	color: #000000 !important;
-	border-color: #000000 !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
 }
 
 .sq-atmrating .atmrating-hover {
@@ -1139,7 +1139,7 @@ form#primary, .exit-message {
 }
 
 .sq-atmrating .atmrating-selected {
-	background-color: #BDD1FC !important;
+  background-color: #BDD1FC !important;
 }
 
 .sq-atmtable-btn {
@@ -1148,7 +1148,7 @@ form#primary, .exit-message {
     font-size: 18px;
     text-align: center;
     color: #000 !important;
-	  border-color: #000000 !important;	
+    border-color: #000000 !important; 
     cursor: pointer;
     transition-property: background-color, border-color, color, opacity;
     transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
@@ -1157,7 +1157,7 @@ form#primary, .exit-message {
 }
 
 .sq-atmtable-btn-selected {
-	background-color: @custom-sub-color !important;
+  background-color: @custom-sub-color !important;
 }
 
 .sq-atmtable-btn-hover {
@@ -1167,10 +1167,10 @@ form#primary, .exit-message {
 .sq-cardrating-button {
   background-color: #ffffff !important;
   color: #000 !important;
-	border-color: #000000 !important;
-	.box-shadow-style();
+  border-color: #000000 !important;
+  .box-shadow-style();
 
-	&[data-hovered] {
+  &[data-hovered] {
     background-color: @custom-sub-color !important;
     
   }
@@ -1192,23 +1192,23 @@ form#primary, .exit-message {
 .sq-sliderpoints .sliderpoints-legenditem.sliderpoints-hover,
 .sq-sliderpoints .sliderpoints-legenditem.sliderpoints-selected,
 .sq-sliderpoints .sliderpoints-oolegenditem.sliderpoints-selected {
-	color: #000000 !important;
+  color: #000000 !important;
 }
 
 .sq-sliderpoints .fa-icon-circle.sliderpoints-selected {
-	color: #2D6DF6 !important
+  color: #2D6DF6 !important
 }
 
 .sq-sliderpoints .sq-sliderpoints-element.hasError .fa-icon-circle {
-	color: #e7046f !important;
+  color: #e7046f !important;
 }
 
 .sq-sliderpoints .sq-sliderpoints-element.hasError .ui-slider {
-	background-color: #e7046f !important;
+  background-color: #e7046f !important;
 }
 
 .sq-sliderpoints .ui-slider .ui-slider-handle {
-	background-color: #2D6DF6 !important;
+  background-color: #2D6DF6 !important;
 }
 
 // Added for NIQ theme April'23
@@ -1222,7 +1222,7 @@ body {
 }
 
 .sq-slidernumber .ui-slider .ui-slider-handle {
-	background-color: #2D6DF6 !important;
+  background-color: #2D6DF6 !important;
 }
 
 .sq-cardsort-buckets .sq-cardsort-bucket {
@@ -1241,11 +1241,11 @@ body {
 
 .sq-cardsort-buckets .sq-cardsort-bucket.sq-cardsort-state-hovered,
 .sq-cardsort-buckets .sq-cardsort-bucket.sq-cardsort-state-selected {
-	background-color: @custom-sub-color !important;
+  background-color: @custom-sub-color !important;
 }
 
 .selected-row .sq-accordion-header {
-	background: @custom-color !important;
+  background: @custom-color !important;
   color: #fff !important;
 }
 
@@ -1259,7 +1259,7 @@ body {
 }
 
 .sq-starrating-stars .sq.starrating-star-highlighted {
-	color: #2D6DF6 !important;
+  color: #2D6DF6 !important;
 }
 
 .sq-starrating-stars .sq-starrating-star-highlighted .sq.starrating-star-selected {
@@ -1267,7 +1267,7 @@ body {
 }
 
 .sq-ratingscale-containment .clickableCell .sq-ratingscale-radio {
-	color: #000000 !important;
+  color: #000000 !important;
 }
 
 .sq-ranksort-container .sq-ranksort-cards .sq-ranksort-card {
@@ -1277,11 +1277,11 @@ body {
 }
 
 .sq-ranksort-container .sq-ranksort-cards .sq-ranksort-card.sq-ranksort-card-dropped.ui-draggable-disabled.ui-state-disabled{
-	border: 0px solid transparent !important;
+  border: 0px solid transparent !important;
 }
 
 .sq-ranksort-container .sq-ranksort-cards .sq-ranksort-card:hover {
-	background-color: #F2F2F2 !important;
+  background-color: #F2F2F2 !important;
     border-color: #000000 !important;
     color: #000000 !important;
 }
@@ -2311,6 +2311,10 @@ input[type="text"]:disabled {
 
 
 /* Textarea Wrapper Style */
+input[type='number']{
+  text-align: right;
+}
+
 .text-input-style() {
     width: 100%;
     margin: 0;
@@ -2363,13 +2367,8 @@ textarea {
 }
 
 
-input[type='text'] {
+input[type='text'], input[type='number'] {
     .text-input-style();
-    max-width: 300px;
-
-    @media @mobile {
-        width: 100% important;
-    }
 }
 
 
@@ -2402,4 +2401,9 @@ input[type='text'] {
       width: 100%;
       resize: vertical;
     }
+}
+
+
+.fir-icon.selected .rounded .fir-selected, .fir-icon.selected .square .fir-selected {
+  r: 5;
 }
