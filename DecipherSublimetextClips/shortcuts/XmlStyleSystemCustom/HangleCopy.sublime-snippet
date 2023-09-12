@@ -1,5 +1,6 @@
 <snippet>
 	<content><![CDATA[
+<style name="page.head" copy="hangle_css"/>
 <style name="question.after" wrap="ready" arg:hanPostText="${1}" copy="hangleConverter"/>
 <style name="el.text" copy="hangleClass"/>
 ]]></content>
