@@ -2290,6 +2290,9 @@ input[type="text"]:disabled {
   transition-duration: 0.15s;
 }
 
+.fir-icon.selected .rounded .fir-selected, .fir-icon.selected .square .fir-selected {
+  r: 5;
+}
 
 
 /* Step By Step Question  */
@@ -2312,7 +2315,6 @@ input[type="text"]:disabled {
 
 /* Textarea Wrapper Style */
 .text-input-style() {
-    width: 100%;
     margin: 0;
     box-sizing: border-box;
     border: none;
@@ -2334,6 +2336,7 @@ input[type="text"]:disabled {
 
 textarea {
     .text-input-style();
+    width: 100%;
     padding: 10px;
 
     &::-webkit-scrollbar {
@@ -2365,6 +2368,7 @@ textarea {
 
 input[type='text'] {
     .text-input-style();
+    width: 100%;
     max-width: 300px;
 
     @media @mobile {
@@ -2372,6 +2376,9 @@ input[type='text'] {
     }
 }
 
+input[type='number'] {
+    .text-input-style();
+}
 
 .textarea-with-title {
     width: 100%;

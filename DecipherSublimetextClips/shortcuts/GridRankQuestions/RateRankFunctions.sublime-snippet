@@ -39,6 +39,7 @@ def rate_top_auto(base, auto_qid) :
 <res label="rate_low_error">이전 문항에서 가장 낮은 점수로 응답하셨습니다. 응답 확인 부탁드립니다.</res>
 <res label="rate_show_score_text">%s <strong>(%s점)</strong></res>
 <res label="rate_ans_reset">1순위 응답이 변경되었습니다. 다시 응답 부탁드립니다.</res>
+<res label="rank_ans_check">응답이 점수와 일치하지 않으니 확인해 주세요.</res>
 
 <exec when="init">
 def rate_top_check(base) :
@@ -68,6 +69,21 @@ def rank_ans_reset(base) :
       for eachCol in this.cols :
         eachCol.val = None
       error(res.rate_ans_reset)
+
+def order_answer_check(base) :
+  chk_answer = [base.cols[each.val].value for each in base.rows]
+  chk_answer = sorted(chk_answer, reverse=True)
+
+  real_answer = [base.cols[base.rows[each.val].val].value for each in this.cols]
+
+  bad_answer = []
+  for idx, ans in enumerate(chk_answer) :
+    if not ans == real_answer[idx] :
+      bad_answer.append(idx)
+
+  if bad_answer :
+    for bad in bad_answer :
+      error(res.rank_ans_check, col=this.cols[idx])
 </exec>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
