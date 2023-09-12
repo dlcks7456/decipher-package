@@ -1,21 +1,41 @@
 <snippet>
 	<content><![CDATA[
-<style name="question.after" wrap="ready" arg:hanPostText="${2}" label="hangleConverter"><![CDATA[
-han('${1}', '\$(hanPostText)');
+<style name="page.head" label="hangle_css"><![CDATA[
+<style>
+.text-input {
+  text-align: right;
+  max-width: 100px !important;
+}
+
+\@media (max-width:800px) {
+  .text-input {
+    max-width: 100% !important;
+  }
+  
+  .show-hangle {
+    text-align: center;
+  }
+}
+</style>
+]]${-1}></style>
+<style label="hangleConverter" arg:hanPostText="${1}" name="question.after" wrap="ready"><![CDATA[
+han('0000', '\$(hanPostText)');
 //han('0000', '\$(hanPostText)'); //만원 단위
 ]]${-1}></style>
-<style name="el.text" label="hangleClass"><![CDATA[
+<style label="hangleClass" name="el.text"><![CDATA[
 <div class="hanchange">
-  <div class="han-input-div">
+  <div class="han-input-div" style="gap: 0 !important;">
     <div>\${row.styles.ss.preText if not row.styles.ss.preText == None else ''}</div>
-    <div>
+    <div style="display: flex; gap: 10px; align-items: center;">
       <input type="number" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra)/>
-      \${row.styles.ss.postText if not row.styles.ss.postText == None else ''}
+      <span>\${row.styles.ss.postText if not row.styles.ss.postText == None else ''}</span>
     </div>
   </div>
+\@if True
   <div style="height:20px;">
     <span class="hangle-span"></span>
   </div>
+\@endif
 </div>
 ]]${-1}></style>
 ]]></content>
