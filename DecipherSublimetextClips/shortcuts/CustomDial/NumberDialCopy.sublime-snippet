@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+<style name='el.text' arg:minValue="${1:0}" arg:maxValue="${2:100}" copy="number_dial"/>
+<style name="question.after" wrap="ready" copy="number_dial_js"/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dial.copy</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

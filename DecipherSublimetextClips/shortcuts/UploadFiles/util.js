@@ -1585,3 +1585,181 @@ function onerowatatime(_label, _row, _col, _result, _scroll, _next, _multi, _com
     fnInit();
   }
 }
+
+
+// Dial
+function hexToRgbA(hex, alpha) {
+    let r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function createDial(
+    selector = ".custom-diar",
+    barColor = "#2d6df6",
+    barWidth = 50,
+    backGroundColor = "lightgray",
+    inputWidth = 80,
+    inputFontSize = 38,
+    rounded = true,
+    canvasSize = 200
+) {
+    const diars = document.querySelectorAll(selector);
+    let currentAngle = 0;
+    let targetAngle = 0;
+
+    // 숨기기 스타일 추가
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `
+${selector} {
+  position: relative;
+  width: ${canvasSize}px;
+  height: ${canvasSize}px;
+}
+
+@media (max-width: 800px){
+    ${selector} {
+        margin: 0 auto;
+    }
+}
+
+${selector} canvas {
+  transform: rotate(90deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+${selector} input[type=number] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: ${inputWidth}px;
+  text-align: center;
+  border: 1px solid ${backGroundColor};
+  border-radius: 10px;
+  outline: none;
+  color: ${barColor};
+  font-size: ${inputFontSize}px;
+  transition: border 0.25s, box-shadow 0.25s;
+}
+${selector} input[type=number]:focus {
+  border: 1px solid ${barColor};
+  box-shadow: 0 0 10px ${hexToRgbA(barColor, 0.5)};
+}
+
+
+${selector} input[type=number]::-webkit-inner-spin-button, 
+${selector} input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}`;
+    document.head.appendChild(styleSheet);
+
+
+    diars.forEach(diar => {
+        const canvas = diar.querySelector('canvas');
+        const inputElem = diar.querySelector('input');
+        const minValue = parseInt(inputElem.getAttribute('min'));
+        const maxValue = parseInt(inputElem.getAttribute('max'));
+
+        canvas.width = canvasSize;
+        canvas.height = canvasSize;
+
+        const ctx = canvas.getContext('2d');
+        let isDragging = false;
+
+        function drawDonut(value) {
+            const angleValue = ((value - minValue) / (maxValue - minValue)) * 2 * Math.PI;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 배경 도넛
+            ctx.beginPath();
+            ctx.arc(canvasSize / 2, canvasSize / 2, (canvasSize / 2) - (barWidth / 2), 0, 2 * Math.PI);
+            ctx.lineWidth = barWidth;
+            ctx.strokeStyle = backGroundColor;
+            ctx.stroke();
+
+            // 색을 채운 도넛
+            if (rounded) ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.arc(canvasSize / 2, canvasSize / 2, (canvasSize / 2) - (barWidth / 2), 1.5 * Math.PI, 1.5 * Math.PI + angleValue);
+            ctx.lineWidth = barWidth;
+            ctx.strokeStyle = barColor;
+            ctx.stroke();
+            ctx.lineCap = 'butt';
+        }
+
+        function updateDial(x, y) {
+            const angle = Math.atan2(y - (canvasSize / 2), x - (canvasSize / 2));
+            const filledAngle = angle >= 0 ? angle : 2 * Math.PI + angle;
+            const value = minValue + Math.round((filledAngle / (2 * Math.PI)) * (maxValue - minValue));
+            inputElem.value = value;
+            drawDonut(value);
+        }
+
+        drawDonut(parseInt(inputElem.value));
+
+        function startDial(x, y, prevent=false){
+            isDragging = true;
+            updateDial(
+                x - canvas.getBoundingClientRect().left, 
+                y - canvas.getBoundingClientRect().top
+            )
+
+            if( prevent ){
+                event.preventDefault();
+            }
+        }
+
+        function endDial(){
+            isDragging = false;
+        }
+
+        function moveDial(x, y, prevent=false){
+            if (isDragging) {
+                updateDial(
+                    x - canvas.getBoundingClientRect().left, 
+                    y - canvas.getBoundingClientRect().top
+                );
+            }
+            if( prevent ){
+                event.preventDefault();
+            }
+        }
+
+        canvas.addEventListener('mousedown', (event) => { startDial(event.clientX, event.clientY); });
+        canvas.addEventListener('touchstart', (event) => { startDial(event.touches[0].clientX, event.touches[0].clientY, true); });
+
+        canvas.addEventListener('mousemove', (event) => { moveDial(event.clientX, event.clientY); });
+        canvas.addEventListener('touchmove', (event) => { moveDial(event.touches[0].clientX, event.touches[0].clientY, true); });
+
+        canvas.addEventListener('mouseup', () => { endDial(); });
+        canvas.addEventListener('mouseleave', () => { endDial(); });
+        canvas.addEventListener('touchend', () => { endDial(); });
+
+        inputElem.addEventListener('input', () => {
+            let value = parseInt(inputElem.value);
+            
+            // 입력 값이 유효 범위를 벗어나면 초기값으로 재설정
+            if (value > maxValue) {
+                value = '';
+                inputElem.value = value;
+            } else if (value < minValue || isNaN(value)) {
+                value = '';
+                inputElem.value = value;
+            }
+
+            drawDonut(value);
+        });
+    });
+}
+
+
+
+
