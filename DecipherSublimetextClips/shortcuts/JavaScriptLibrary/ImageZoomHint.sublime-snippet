@@ -1,0 +1,33 @@
+<snippet>
+	<content><![CDATA[
+# zoom
+default class 
+
+# zoom position
+pos_left
+pos_right
+pos_top
+pos_bottom
+pos_cursor # the zoom area follows the mouse cursor
+pos_fix
+
+# zoom PC width, height
+pWidth_350 / pHeight_350
+
+# zoom mobile width, height
+mWidth_350 / mHeight_350
+
+# zoom factor (default 3.0)
+sight_3.0
+
+# zoom cursor show pointer
+redDot
+
+# JavaScript
+fnImageZoom();
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zoom.hint</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
