@@ -6,8 +6,10 @@
   <input type="number" min="\$(minValue)" max="\$(maxValue)" name="\$(name)" id="\$(id)" value="\$(value)"/>
 </div>
 ]]${-1}></style>
-<style name="question.after" wrap="ready" label="number_dial_js"><![CDATA[
+<style name="question.after" label="number_dial_js"><![CDATA[
+<script>
 createDial();
+</script>
 ]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
