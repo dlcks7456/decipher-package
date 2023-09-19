@@ -1477,9 +1477,17 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
       objTargetText.innerHTML = strCompleteText;
       fnMultiAllClick(document.querySelector('#question_' + strLabel + ' .grid'));
       objTargetWarp.querySelector('.backgroundText').innerText = _complete === undefined || _complete === 'default' ? objTargetWarp.parentNode.querySelector('.survey-buttons #btn_continue').value : _complete;
-      if(strInputType === 'radio') fnScroll(null, true);
-      else if(strInputType === 'checkbox') for(i = 0; i < objMain.querySelectorAll('.answers .grid .row-elements').length; i++){
-        objMain.querySelectorAll('.answers .grid .row-elements')[i].classList.add('MA_continue');
+      if(objMain.querySelectorAll('.answers .grid tr .hasError').length === 0){
+        console.log("aaaa")
+        if(numRowCound !== numCurrentAnswerCount){
+          if(strInputType === 'radio') fnScroll(null, true);
+        }
+        else{
+          numCurrentAnswerCount = 0;
+          if(strInputType === 'checkbox') for(i = 0; i < objMain.querySelectorAll('.answers .grid .row-elements').length; i++){
+            objMain.querySelectorAll('.answers .grid .row-elements')[i].classList.add('MA_continue');
+          }
+        }
       }
     }
     else{
@@ -1576,7 +1584,7 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
   const strLabel = _label;
   const numRowCound = _row;
   const numColCound = _col;
-  const numCurrentAnswerCount = _answer;
+  let numCurrentAnswerCount = _answer;
   if(numRowCound <= 1 || numColCound <= 1){
     console.log('onerowatatime not activate. row or col is 1 or less.');
   }
@@ -1596,7 +1604,6 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
     }
     if(objTarget.childNodes[objTarget.childNodes.length - 1].className.indexOf('row-col-legends') !== -1) fnShow(objTarget.childNodes[objTarget.childNodes.length - 1], 'all');
     fnInit();
-    fnScroll(null, true);
   }
   else{
     const objTarget = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1];
