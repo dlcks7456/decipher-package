@@ -1422,10 +1422,18 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
       }
     }
   }
-  function fnScroll(_target, _clear){
-    let bolClear = _clear === true ? true : false;
+  function fnScroll(_target, _str){
+    const strCheck = _str === null ? 'blank' : _str
     if(_scroll){
-      if(!bolClear){
+      if(strCheck === 'end'){
+        const objMain = document.getElementById('surveyContainer') === null ? document.querySelector('html') : document.getElementById('surveyContainer');
+        objMain.scrollTop = objMain.scrollTop + document.querySelector('#btn_continue').getBoundingClientRect().top;
+      }
+      else if(strCheck === 'error'){
+        const objMain = document.getElementById('surveyContainer') === null ? document.querySelector('html') : document.getElementById('surveyContainer');
+        objMain.scrollTop = objMain.scrollTop + document.querySelector('#' + strLabel + '_error').getBoundingClientRect().top;
+      }
+      else{
         if(_target.className.indexOf('clicked') === -1){
           let strPlatform = document.querySelector('#question_' + strLabel + ' .grid').className.indexOf('grid-table-mode') !== -1 ? 'pc' : document.querySelector('#question_' + strLabel + ' .grid').className.indexOf('grid-list-mode') !== -1 ? 'mobile' : 'undefined'
           const objMain = document.getElementById('surveyContainer') === null ? document.querySelector('html') : document.getElementById('surveyContainer');
@@ -1450,10 +1458,6 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
           }
         }
       }
-      else{
-        const objMain = document.getElementById('surveyContainer') === null ? document.querySelector('html') : document.getElementById('surveyContainer');
-        objMain.scrollTop = objMain.scrollTop + document.querySelector('#btn_continue').getBoundingClientRect().top;
-      }
     }
   }
   function fnAnswerCount(){
@@ -1477,16 +1481,18 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
       objTargetText.innerHTML = strCompleteText;
       fnMultiAllClick(document.querySelector('#question_' + strLabel + ' .grid'));
       objTargetWarp.querySelector('.backgroundText').innerText = _complete === undefined || _complete === 'default' ? objTargetWarp.parentNode.querySelector('.survey-buttons #btn_continue').value : _complete;
+      if(strInputType === 'radio') for(i = 0; i < objMain.querySelectorAll('.answers .grid tbody')[1].childNodes.length; i++){
+        objMain.querySelectorAll('.answers .grid tbody')[1].childNodes[i].classList.add('nextShow');
+      }
+      else if(strInputType === 'checkbox') for(i = 0; i < objMain.querySelectorAll('.answers .grid .row-elements').length; i++){
+        objMain.querySelectorAll('.answers .grid .row-elements')[i].classList.add('MA_continue');
+      }
       if(objMain.querySelectorAll('.answers .grid tr .hasError').length === 0){
-        console.log("aaaa")
         if(numRowCound !== numCurrentAnswerCount){
-          if(strInputType === 'radio') fnScroll(null, true);
+          if(strInputType === 'radio') fnScroll(null, 'end');
         }
         else{
           numCurrentAnswerCount = 0;
-          if(strInputType === 'checkbox') for(i = 0; i < objMain.querySelectorAll('.answers .grid .row-elements').length; i++){
-            objMain.querySelectorAll('.answers .grid .row-elements')[i].classList.add('MA_continue');
-          }
         }
       }
     }
@@ -1573,7 +1579,7 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
     }
     for(i = 0; i < document.querySelectorAll('#question_' + strLabel + ' .grid tr').length; i++){
       if(document.querySelectorAll('#question_' + strLabel + ' .grid tr')[i].className.indexOf('hasError') !== -1){
-        fnScroll(document.querySelectorAll('#question_' + strLabel + ' .grid tr')[i]);
+        fnScroll(null, 'error');
         break;
       }
     }
