@@ -1072,8 +1072,8 @@ function bmQuestionHanler(questionClassName){
 }
 
 // Group Toggle setting
-function groupToggleSetting(){
-    const groupToggle = document.querySelectorAll('.ch-group-toggle');
+function groupToggleSetting(toggleClassName=".ch-group-toggle", groupRows=".ch-group-rows", groupTitle=".ch-group-name"){
+    const groupToggle = document.querySelectorAll(toggleClassName);
 
     const maxHeightHandler = (groupRowCell, groupName) => {
         const originalMaxHeight = groupRowCell.style.maxHeight;
@@ -1093,10 +1093,10 @@ function groupToggleSetting(){
     };
 
     const groupSelected = () => {
-        const groupToggle = document.querySelectorAll('.ch-group-toggle');
+        const groupToggle = document.querySelectorAll(toggleClassName);
         groupToggle.forEach((group) => {
-            const groupRowCell = group.querySelector('.ch-group-rows');
-            const groupName = group.querySelector('.ch-group-name');
+            const groupRowCell = group.querySelector(groupRows);
+            const groupName = group.querySelector(groupTitle);
             const selectedCheck = groupRowCell.querySelectorAll('input:checked');
             if(selectedCheck.length >= 1){
                 groupName.classList.add('ch-group-selected');
@@ -1112,8 +1112,8 @@ function groupToggleSetting(){
     const toggleArrow = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>`;
 
     groupToggle.forEach((group) => {
-        const groupRowCell = group.querySelector('.ch-group-rows');
-        const groupName = group.querySelector('.ch-group-name');
+        const groupRowCell = group.querySelector(groupRows);
+        const groupName = group.querySelector(groupTitle);
 
         groupName.style.cursor = 'pointer';
 
