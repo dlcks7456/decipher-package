@@ -193,7 +193,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
 }
 
 
-const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[], noneIndex, ableNone, ableSort, showAnswers})=>{
+const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[], noneIndex, ableNone, ableSort, showAnswers, toggle})=>{
     const {label, uid, cols, rows, noanswers, errors} = json;
     const [newError, setNewError] = React.useState(
         errors.map((err)=>{
@@ -363,6 +363,50 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     }
     
 
+    React.useEffect(()=>{
+        if( !toggle ){
+            return;
+        }
+        const openClassName = 'group-open';
+        const maxHeightHandler = (groupRowCell, groupName) => {
+            const originalMaxHeight = groupRowCell.style.maxHeight;
+            groupRowCell.style.maxHeight = 'none';
+            const domMaxHeight = groupRowCell.offsetHeight;
+            groupRowCell.style.maxHeight = originalMaxHeight;
+    
+            window.requestAnimationFrame(() => {
+                if (groupRowCell.style.maxHeight === '0px') {
+                    groupRowCell.style.maxHeight = `${domMaxHeight}px`;
+                    groupName.classList.add(openClassName);
+                } else {
+                    groupRowCell.style.maxHeight = '0px';
+                    groupName.classList.remove(openClassName);
+                }
+            });
+        };
+        const groupToggle = document.querySelectorAll('.rank-group');
+
+        groupToggle.forEach((group) => {
+            const groupRowCell = group.querySelector('.custom-rank-rows');
+            const groupName = group.querySelector('.rank-group-title');
+    
+            const clickHandler = () => maxHeightHandler(groupRowCell, group);
+            clickHandler();
+    
+            groupName.addEventListener('click', clickHandler);
+    
+            window.addEventListener('resize', () => {
+                groupName.removeEventListener('click', clickHandler);
+                if(group.classList.contains(openClassName)) {
+                    groupRowCell.style.maxHeight = 'none';
+                    const domMaxHeight = groupRowCell.offsetHeight;
+                    groupRowCell.style.maxHeight = `${domMaxHeight}px`;
+                }
+                groupName.addEventListener('click', clickHandler);
+            });
+        });
+
+    }, []);
 
     return (
         <>
@@ -376,18 +420,36 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     display : grid;
     grid-template-columns : ${gridColCnt.join(' ')};
     grid-row-gap : 10px;
+    ${toggle ? null : 'padding: 10px;'}
 }
 
 
-.rank-group{
+.rank-group {
     margin-bottom : 20px;
+    border: ${newError.length>=1 ? '2px solid rgb(231, 4, 111)' : '1px solid #ccc'};
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .rank-group-title {
     padding-left : 3.5rem;
-    margin-bottom : 10px;
     font-size : 1.4rem;
     font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1.3rem !important;
+    transition: background-color .5s;
+    font-weight: 700;
+    background-color: #f1f1f1;
+    color: #000;
+    margin-bottom: 0px !important;
+}
+
+.rank-group:hover .rank-group-title {
+    background-color: #2d6df6;
+    color: #fff;
 }
 
 .rank-group-div {
@@ -455,6 +517,10 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     max-width: ${gridColCnt[0]};
     margin: 20px auto;
     text-align: center;
+}
+
+.rank-noanswers .show-rank-div {
+    display: none;
 }
 
 @media all and (max-width: 950px){
@@ -635,6 +701,52 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
 }
 `}
         </style>
+        {/* Toggle feature */}
+        {toggle ? (
+            <style jsx="true">{`
+.rank-group-title {
+    position: relative;
+}
+
+.rank-group-title .group-title-text {
+    cursor: pointer;
+}
+
+.custom-rank-rows {
+    margin-right: 10px;
+    transition: max-height 0.5s;
+}
+
+.group-title-arrow {
+    position: absolute;
+    width: 20px;
+    top: 30%;
+    right: 10px;
+}
+
+.group-title-arrow svg {
+    transition: transform 0.5s;
+}
+
+.group-open .group-title-arrow svg {
+    transform: rotate(90deg);
+}
+
+.group-open .custom-rank-rows {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.rank-group .rank-row-btn {
+    transform: scaleY(0);
+    transition: transform 0.5s;
+}
+
+.group-open.rank-group .rank-row-btn {
+    transform: scaleY(1);
+}
+            `}</style>
+        ) : null}
             {showAnswers && answerList.length > 0 ? (
                 <div className="show-answers answer-rank-">
                     {answerList.map((answer, index)=>{
@@ -686,7 +798,14 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                         return (
                                 <div key={groupIndex}
                                     className="animate__animated animate__fadeIn rank-group">
-                                    <div className="rank-group-title">{group[2]}</div>
+                                    <div className="rank-group-title">
+                                        <div className="group-title-text">{group[2]}</div>
+                                        {toggle ? (
+                                            <div className="group-title-arrow">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                                            </div>
+                                        ) : null}
+                                    </div>
                                     <div className="custom-rank-rows">
                                     {rows.filter((row)=> group[0].includes(row.index) && row.index !== noneIndex).map((row, idx)=>{
                                         return (
@@ -788,8 +907,12 @@ const LoadingComp = () =>{
     )
 }
 
-const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader'})=>{
+const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader', toggle=false})=>{
     const root = document.querySelector('.answers');
+    let toggleFlag = toggle;
+    if( !showGrpups ){
+        toggleFlag = false;
+    }
     ReactDOM.render(
         <GridRankSort
             json={json}
@@ -800,7 +923,9 @@ const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], c
             noneIndex={noneIndex}
             ableNone={ableNone}
             ableSort={ableSort}
-            showAnswers={showAnswers}/>, root
+            showAnswers={showAnswers}
+            toggle={toggleFlag}
+        />, root
     );
     document.querySelector(loadingQuery).remove();
 }

@@ -1,0 +1,23 @@
+[
+    { 
+        "keys": ["ctrl+b"], "command": "span_bold", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.html"
+            }
+        ]
+    },
+    { 
+        "keys": ["ctrl+shift+b"], "command": "span_green_bold", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.html"
+            }
+        ]
+    },
+    { 
+        "keys": ["ctrl+shift+e"], "command": "entity", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.html"
+            }
+        ]
+    },
+]
