@@ -193,7 +193,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
 }
 
 
-const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[], noneIndex, ableNone, ableSort, showAnswers, toggle})=>{
+const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[], noneIndex, ableNone, ableSort, showAnswers, toggle})=>{
     const {label, uid, cols, rows, noanswers, errors} = json;
     const [newError, setNewError] = React.useState(
         errors.map((err)=>{
@@ -661,7 +661,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
 `}
         </style>
         {/* Group css */}
-        {showGrpups ? (
+        {showGroups ? (
             <style jsx="true">{`
 .rank-group {
     margin-bottom : 20px;
@@ -801,7 +801,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
                 </div>
             ) : null}
             <div className="custom-rank-sort">
-                {setGroupRows.length > 0 && showGrpups ? (
+                {setGroupRows.length > 0 && showGroups ? (
                     setGroupRows.map((group, groupIndex)=>{
                         return (
                                 <div key={groupIndex}
@@ -915,10 +915,10 @@ const LoadingComp = () =>{
     )
 }
 
-const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader', toggle=false})=>{
+const SettingGridRankSort = ({json, defaultValue, showGroups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader', toggle=false})=>{
     const root = document.querySelector('.answers');
     let toggleFlag = toggle;
-    if( !showGrpups ){
+    if( !showGroups ){
         toggleFlag = false;
     }
     ReactDOM.render(
@@ -926,7 +926,7 @@ const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], c
             json={json}
             defaultValue={defaultValue}
             gridColumnCount={colCnt}
-            showGrpups={showGrpups}
+            showGroups={showGroups}
             groups={groups}
             noneIndex={noneIndex}
             ableNone={ableNone}
