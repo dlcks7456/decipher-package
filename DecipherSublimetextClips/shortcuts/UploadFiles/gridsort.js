@@ -420,43 +420,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     display : grid;
     grid-template-columns : ${gridColCnt.join(' ')};
     grid-row-gap : 10px;
-    ${toggle ? null : 'padding: 10px;'}
-}
-
-
-.rank-group {
-    margin-bottom : 20px;
-    border: ${newError.length>=1 ? '2px solid rgb(231, 4, 111)' : '1px solid #ccc'};
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
-    border-radius: 10px;
-    margin-bottom: 10px;
-    overflow: hidden;
-}
-
-.rank-group-title {
-    padding-left : 3.5rem;
-    font-size : 1.4rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 1.3rem !important;
-    transition: background-color .5s;
-    font-weight: 700;
-    background-color: #f1f1f1;
-    color: #000;
-    margin-bottom: 0px !important;
-}
-
-.rank-group:hover .rank-group-title {
-    background-color: #2d6df6;
-    color: #fff;
-}
-
-.rank-group-div {
-    display : flex;
-    flex-direction : column;
-    gap : 10px;
-    height : 100%;
 }
 
 .show-rank-div{
@@ -519,11 +482,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
     text-align: center;
 }
 
-.rank-noanswers .show-rank-div {
-    display: none;
-}
-
-@media all and (max-width: 950px){
+@media all and (max-width: 900px){
     .custom-rank-rows {
         grid-template-columns: ${gridColCnt.length >= 3 ? "50% 50%" : "100%"};
     }
@@ -701,6 +660,55 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[
 }
 `}
         </style>
+        {/* Group css */}
+        {showGrpups ? (
+            <style jsx="true">{`
+.rank-group {
+    margin-bottom : 20px;
+    border: ${newError.length>=1 ? '2px solid rgb(231, 4, 111)' : '1px solid #ccc'};
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.rank-group-title {
+    padding-left : 3.5rem;
+    font-size : 1.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1.3rem !important;
+    transition: background-color .5s;
+    font-weight: 700;
+    background-color: #f1f1f1;
+    color: #000;
+    margin-bottom: 0px !important;
+}
+
+.rank-group:hover .rank-group-title {
+    background-color: #2d6df6;
+    color: #fff;
+}
+
+.rank-group-div {
+    display : flex;
+    flex-direction : column;
+    gap : 10px;
+    height : 100%;
+}
+
+.custom-rank-rows {
+    ${toggle ? null : 'padding: 10px;'}
+}
+
+@media all and (max-width: 900px) {
+    .rank-noanswers .show-rank-div {
+        display: none;
+    }
+}
+            `}</style>
+        ) : null}
         {/* Toggle feature */}
         {toggle ? (
             <style jsx="true">{`
