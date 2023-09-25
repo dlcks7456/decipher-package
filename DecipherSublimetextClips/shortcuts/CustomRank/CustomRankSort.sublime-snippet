@@ -8,7 +8,7 @@
 const group_info = [
 \@for eachRow in this.rows
 \@if eachRow.group
-[\${eachRow.index}, '\${eachRow.group.label}', '\${eachRow.group.text}'],
+[\${eachRow.index}, `\${eachRow.group.label}`, `\${eachRow.group.text}`],
 \@endif
 \@end
 ];
