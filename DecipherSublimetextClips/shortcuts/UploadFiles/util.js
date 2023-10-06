@@ -1244,6 +1244,8 @@ function stepQuestion(bundleClassName){
                  }
 
             }
+            
+            openHandler(false);
 
             if( index === lastIndex ){
                 step.addEventListener('change', ()=>{
