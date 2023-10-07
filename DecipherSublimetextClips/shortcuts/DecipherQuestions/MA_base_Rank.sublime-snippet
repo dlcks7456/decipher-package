@@ -23,7 +23,7 @@ $5
   shuffle="rows"
   shuffleBy="$2a"
   ss:questionClassNames="gridRank">
-  <title>$7 \${rankCnt($2a,3)}</title>
+  <title>$7 \${rankCnt($2b)}</title>
   <col label="c1">1순위</col>
   <col label="c2">2순위</col>
   <col label="c3">3순위</col>
