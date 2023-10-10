@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+<div class="mypost-callout">${1}</div>
+<div class="mypost-refer">
+	<div class="mypost-refer-content">${2}</div>
+	<div class="mypost-refer-source">${3} (<a href="${4}" target="_blank">🔗</a>)</div>
+</div>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>refer</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.html</scope>
+</snippet>

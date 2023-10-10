@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+<link rel="stylesheet" type="text/css" href="https://tistory4.daumcdn.net/tistory/6187703/skin/images/mystyles.css">
+<div class="mypost-body">
+	<div class="mypost-title">${1}</div>
+</div>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>start</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.html</scope>
+</snippet>

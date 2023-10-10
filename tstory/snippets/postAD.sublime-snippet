@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5461323615661647"
+     crossorigin="anonymous"></script>
+<!-- POSTAD -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5461323615661647"
+     data-ad-slot="3674534741"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>postad</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.html</scope>
+</snippet>
