@@ -21,12 +21,12 @@ details > summary::-webkit-details-marker {
 }
 
 .ch-showcard > details[open] summary::before {
-  content: "▲ [${res.detail_close}]";
+  content: "▲ [CLOSE]";
   margin-right: 20px;
 }
 
 .ch-showcard > details:not([open]) summary::before {
-  content: "▼ [${res.detail_open}]";
+  content: "▼ [OPEN]";
   margin-right: 20px;
 }
 ]]></content>
