@@ -1,9 +1,12 @@
 <snippet>
   <content><![CDATA[
 def hangle_length(num) :
-  curr_val = len(this.unsafe_val)
-  if num*3 gt len(this.unsafe_val) :
-    error(this.lget("lenAtLeast", min=num, count=curr_val/3))
+  txt = str(this.unsafe_val)
+  utxt = unicode(txt, 'utf-8') 
+  curr_val = len(utxt)
+  
+  if num gt curr_val :
+    error(this.lget("lenAtLeast", min=num, count=curr_val))
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>han.len</tabTrigger>
