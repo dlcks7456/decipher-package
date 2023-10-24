@@ -28,6 +28,18 @@ div.dcm {
     text-align: center;
     width: 120px;
 }
+
+.dcm th, .dcm td {
+  border: 1px solid #0c148b;
+}
+
+.dcm .dcm_legend2, .dcm .survey-q-grid-collegend {
+  background-color: #B3B3B3;
+}
+
+.dcm table {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>dcm.css</tabTrigger>
