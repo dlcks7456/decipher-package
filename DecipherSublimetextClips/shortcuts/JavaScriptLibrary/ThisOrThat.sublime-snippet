@@ -16,6 +16,14 @@ const swichRow = (base) => {
       firIcon.classList.remove('selected');
       const currInput = item.querySelector('input[type=radio]');
       currInput.checked = false;
+
+      item.style.opacity = '0.5';
+      item.style.pointerEvents = 'none';
+    });
+  }else{
+    disableInput.forEach( (item)=>{
+      item.style.opacity = '1';
+      item.style.pointerEvents = '';
     });
   }
 }
@@ -35,7 +43,9 @@ thisOrThis.forEach( (row) =>{
 });
 
 const answers = document.querySelector('.answers');
-answers.change = executeFnc();
+answers.onchange = ()=>{
+  executeFnc();
+};
 executeFnc();
 ]]${-1}></style>
 ]]></content>
