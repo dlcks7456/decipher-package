@@ -24,7 +24,7 @@
         - Avoid too much style nesting. By keeping things flat, you'll make it much easier for users to perform simple
           overrides in the theme editor's css/less injector. Wouldn't you rather override ".instructions" instead of
           ".survey-body .question .instructions"?
-    • Stay Responsive. The responsive strategy is as follows..
+    • Stay Responsive. The responsive strategy is as follows..
         - Mobile first. Style the survey with a narrow viewport in mind first.
         - Then apply Desktop styling using media queries. You can use the "@media @desktop {}" media query in any
           selector to apply its styling over the @breakpoint (there are examples of this scattered about).
@@ -1427,7 +1427,7 @@ select {
     grid-column-gap: 5px;
     grid-row-gap: 5px;
     max-width: @custom-max-width;
-    align-items: center;
+    align-items: stretch;
 
     @media @medium {
       grid-template-columns: 50% 50%;
@@ -1447,8 +1447,8 @@ select {
     grid-row-gap: 5px;
     width: 100% !important;
     max-width: @custom-max-width;
-    align-items: center;
-
+    align-items: stretch;
+    
     @media @mobile {
       grid-template-columns: 100%;
     }
