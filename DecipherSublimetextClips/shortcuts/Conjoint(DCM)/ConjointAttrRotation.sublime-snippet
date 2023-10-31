@@ -1,0 +1,28 @@
+<snippet>
+	<content><![CDATA[
+<style name="question.after"><![CDATA[
+<script>
+const rearrangeTableRows = (orderArray)=>{
+    const tbody = document.querySelector('.dcm table tbody:nth-child(1)');
+
+    if (!tbody) {
+        console.error('해당 조건에 맞는 tbody를 찾을 수 없습니다.');
+        return;
+    }
+    const trs = Array.from(tbody.querySelectorAll('tr'));
+    const headerTr = trs.shift();
+    const reorderedTrs = orderArray.map(index => trs[index]);
+    tbody.innerHTML = '';
+    tbody.appendChild(headerTr);
+    reorderedTrs.forEach(tr => tbody.appendChild(tr));
+}
+
+//rearrangeTableRows([5, 0, 1, 2, 3, 4, 6]);
+</script>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dcm.rotation</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
