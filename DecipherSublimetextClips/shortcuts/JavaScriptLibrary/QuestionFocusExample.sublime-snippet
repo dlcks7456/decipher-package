@@ -1,0 +1,52 @@
+<snippet>
+	<content><![CDATA[
+<style name="question.after"><![CDATA[
+<style>
+* {
+  scroll-behavior: smooth;
+}
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', ()=>{
+    const questions = document.querySelectorAll('.question');
+
+    const questionFocus = ()=>{
+      const questionAnswer = [...questions].filter((qu)=>{
+        const checkAnswer = qu.querySelectorAll('input[type=radio]:checked');
+        if( checkAnswer.length > 0 ){
+          return true;
+        }else{
+          return false;
+        }
+      });
+
+      if( questionAnswer.length > 0 ){
+        const questionNoAnswer = [...questions].filter((qu)=>{
+          const checkAnswer = qu.querySelectorAll('input[type=radio]:checked');
+          if( checkAnswer.length == 0 ){
+            return true;
+          }else{
+            return false;
+          }
+        });
+        questionNoAnswer[0].focus();
+      }
+    }
+
+    questions.forEach((qu, index)=>{
+      qu.setAttribute('tabindex', index);
+      qu.onchange = ()=>{
+        questionFocus();
+      };
+
+      qu.addEventListener('click', questionFocus);
+    });
+});
+</script>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>focus.ex</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
