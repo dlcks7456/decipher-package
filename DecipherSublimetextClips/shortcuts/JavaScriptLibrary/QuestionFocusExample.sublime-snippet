@@ -9,6 +9,7 @@
 <script>
 window.addEventListener('DOMContentLoaded', ()=>{
     const questions = document.querySelectorAll('.question');
+    const continueBtn = document.querySelector('#btn_continue');
 
     const questionFocus = ()=>{
       const questionAnswer = [...questions].filter((qu)=>{
@@ -29,7 +30,12 @@ window.addEventListener('DOMContentLoaded', ()=>{
             return false;
           }
         });
-        questionNoAnswer[0].focus();
+
+        if( questionNoAnswer.length > 0 ){
+          questionNoAnswer[0].focus();
+        }else{
+          continueBtn.focus();
+        }
       }
     }
 
@@ -38,8 +44,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
       qu.onchange = ()=>{
         questionFocus();
       };
-
-      qu.addEventListener('click', questionFocus);
+      const answers = qu.querySelector('.answers');
+      answers.addEventListener('click', questionFocus);
     });
 });
 </script>
