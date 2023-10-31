@@ -1811,9 +1811,9 @@ input[type="number"]::-webkit-inner-spin-button {
   height: 100%; 
   line-height: 32px; 
   font-size: 20px; 
-  color: @custom-text-color;
-  background-color: @custom-color;
-  border-radius: 32px; 
+  background-color: @custom-sub-color;
+  border: 1px solid #343434;
+  border-radius: 7px;
   height:100%;
   padding:5px;
   font-weight: bold;
@@ -2033,27 +2033,26 @@ input[type="number"]::-webkit-inner-spin-button {
   cursor: pointer;
 
   details {
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border: 1px solid #343434;
+    border-radius: 7px;
     padding: .5em .5em 0;
     margin-bottom: 1em;
+    overflow: hidden;
     .box-shadow-style();
 
     &[open] {
       padding: .5em;
 
       summary {
-        border-bottom: 1px solid #aaa;
+        border-bottom: 1px solid #343434;
         margin-bottom: .5em;
-        background-color: @custom-color;
-        color: @custom-text-color;
-        border-radius: 10px 10px 0 0;
+        background-color: @custom-sub-color;
+        border-radius: 7px 7px 0 0;
       }
     }
 
     summary {
       font-weight: bold;
-      border-radius: 10px;
       margin: -.5em -.5em 0;
       padding: .5em;
       transition: color 0.5s, background-color 0.5s;
