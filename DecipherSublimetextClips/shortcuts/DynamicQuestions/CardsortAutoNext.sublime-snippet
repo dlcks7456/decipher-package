@@ -22,9 +22,8 @@ buckets.forEach((bucket)=>{
 ]]${-1}></style>
 
 
-<note>특정 조건 시 자동으로 넘기기 (예시 샘플은 '없음' 또는 2개 응답시 자동으로 넘어가짐)</note>
+<note>특정 조건 시 자동으로 넘기기 (예시 샘플은 '없음(b99)' 또는 필수로 2개 응답시 자동으로 넘어가짐)</note>
 <style name="question.after"><![CDATA[
-<script>
 document.addEventListener('DOMContentLoaded', () => {
   const cardSortBucketView = document.querySelector('.sq-cardsort-buckets-view');
   const nextButton = document.querySelector('.sq-cardsort-next');
@@ -46,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   noneBucket.addEventListener('click', ()=>{
+    nextButton.classList.remove('sq-cardsort-state-disabled');
     nextButton.click();
     nextFlag = true;
   });
@@ -58,8 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if( selected.length >= 2 ){
+      nextButton.classList.remove('sq-cardsort-state-disabled');
       nextButton.click();
       nextFlag = true;
+    }else{
+      nextButton.classList.add('sq-cardsort-state-disabled');
     }
   });
 
