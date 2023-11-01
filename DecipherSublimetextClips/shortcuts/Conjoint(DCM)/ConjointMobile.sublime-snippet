@@ -1,0 +1,162 @@
+<snippet>
+  <content><![CDATA[
+<note># CSS</note>
+\@keyframes slideAnimation {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-10px);
+    }
+}
+
+.scroll-indicator {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  cursor: pointer;
+  display: none;
+  animation: slideAnimation 1s infinite alternate;
+  transition: transform 0.3s;
+}
+
+.scroll-indicator:hover {
+    animation-play-state: paused;
+}
+
+.scroll-indicator svg {
+  width: 50px;
+  opacity: 0.8;
+  color: #2d6df6;
+}
+
+.survey-container {
+  overflow: unset !important;
+}
+
+\@media (max-width: 800px){
+  .survey-container {
+    //width: fit-content;
+  }
+\@if not device.mobileDevice
+  .answers {
+      overflow-x: scroll;
+  }
+\@endif
+\@if device.mobileDevice
+  .answers {
+    zoom: 0.5;
+  }
+\@endif
+}
+
+.dcm .legend.top-legend {
+  position: sticky;
+  top: 0;
+}
+
+.only-mobile {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+
+<note># JS</note>
+<style label="scroll_indicator" name="survey.question.answers.end"><![CDATA[
+\@if not ec.simpleList
+\@if not simple
+</tbody>
+\@endif
+</\$(tag)>
+\@endif
+<!-- /.grid -->
+<div class="only-mobile"></div>
+<div class="scroll-indicator">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" clip-rule="evenodd" />
+  </svg>
+</div>
+</div>
+\@if device.mobileDevice
+<script>
+const noneCell = document.querySelector('td[headers="\$(this.label)_c99"]');
+const inputID = noneCell.querySelector('input[type=radio]').id;
+const setMobile = document.querySelector('.only-mobile');
+
+while (noneCell.firstChild) {
+    setMobile.appendChild(noneCell.firstChild);
+}
+
+const noneText = "\${res.NoneText}";
+const newLabel = document.createElement('label');
+newLabel.innerHTML = noneText;
+newLabel.htmlFor = inputID;
+
+setMobile.appendChild(newLabel);
+
+noneCell.style.display = 'none';
+</script>
+\@endif
+<!-- /.answers -->
+]]${-1}></style>
+<style label="move_to_right" name="question.after" wrap="ready"><![CDATA[
+const btnContinue = document.querySelector('#btn_continue');
+const answersDiv = document.querySelector('.answers');
+const scrollDiv = document.querySelector('.answers');
+const scrollIndicator = document.querySelector('.scroll-indicator');
+let isUnlocked = false; // 스크롤을 다 넘긴 후의 상태를 추적하기 위한 변수
+
+const handleScroll = () => {
+    if (((scrollDiv.scrollWidth - scrollDiv.scrollLeft) - 5) <= scrollDiv.clientWidth) {
+        btnContinue.disabled = false;
+        scrollIndicator.style.display = 'none';
+        isUnlocked = true; // 스크롤을 다 넘겼다는 상태를 저장
+    }
+};
+
+const updateScrollIndicatorAndButton = () => {
+    if (!isUnlocked) { // 스크롤을 다 넘기지 않은 상태에서만 실행
+        if (scrollDiv.scrollWidth >  scrollDiv.clientWidth) {
+            scrollIndicator.style.display = 'block';
+            btnContinue.disabled = true;
+        } else {
+            scrollIndicator.style.display = 'none';
+            btnContinue.disabled = false;
+            isUnlocked = true;
+        }
+    }
+};
+
+// 페이지 로드 시 스크롤 가능한지 확인
+updateScrollIndicatorAndButton();
+
+// 스크롤 이벤트 리스너 추가
+scrollDiv.addEventListener('scroll', handleScroll);
+
+// 브라우저 크기 변동 시 스크롤 가능한지 확인
+window.addEventListener('resize', updateScrollIndicatorAndButton);
+window.addEventListener('orientationchange', updateScrollIndicatorAndButton);
+
+// .scroll-indicator 클릭 시 스크롤 움직이기
+scrollIndicator.addEventListener('click', () => {
+    scrollDiv.scrollLeft += 300;  // ex: 300px만큼 스크롤 움직임
+});
+]]${-1}></style>
+
+
+<note># Question XML Style Change</note>
+<note>name="question.top-legend"</note>
+<td rowspan="\${int(\$(attributes))}" style=" border-top: none; text-align: center;\${'display: none;' if device.mobileDevice else ''}"><b>\$(noneText)</b></td>
+
+<note>question.top-legend-item</note>
+\@if addNoneColumn == '1' and col.index == (ec.colCount - 1)
+    <th id="\$(this.label)_\$(col.label)" style="border-bottom: none; width: 125px;\${'display: none;' if device.mobileDevice else ''}" >
+        \$(text)
+    </th>
+\@else
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dcm.mobile</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>

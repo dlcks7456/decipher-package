@@ -1,0 +1,99 @@
+<snippet>
+	<content><![CDATA[
+<note>기타 오픈을 제외하고 자동으로 넘기기</note>
+<style name="question.after" wrap="ready" label="cardsort_other_focus"><![CDATA[
+const buckets = document.querySelectorAll(".sq-cardsort-bucket");
+const nextButton = document.querySelector(".sq-cardsort-next");
+
+const otherHandler = (event)=>{
+ const inputCheck = event.target.querySelector('input[type=text]');
+
+ if( inputCheck === null || inputCheck === undefined ){
+    nextButton.click();
+    return;
+ }else{
+    inputCheck.focus();
+ }
+}
+
+buckets.forEach((bucket)=>{
+  bucket.addEventListener('click', otherHandler);
+});
+]]${-1}></style>
+
+
+<note>특정 조건 시 자동으로 넘기기 (예시 샘플은 '없음' 또는 2개 응답시 자동으로 넘어가짐)</note>
+<style name="question.after"><![CDATA[
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cardSortBucketView = document.querySelector('.sq-cardsort-buckets-view');
+  const nextButton = document.querySelector('.sq-cardsort-next');
+  const prevButton = document.querySelector('.sq-cardsort-previous');
+  const cardsort = document.querySelector('.sq-cardsort');
+  const completeAnswer = document.querySelector('.sq-cardsort-completion');
+  const contuneButton = document.querySelector('#btn_continue');
+
+  const noneBucket = document.querySelector('.sq-cardsort-bucket-b99');
+
+  let nextFlag = true;
+
+  prevButton.addEventListener('click', ()=>{
+    nextFlag = false;
+  });
+
+  nextButton.addEventListener('click', ()=>{
+    nextFlag = true;
+  });
+
+  noneBucket.addEventListener('click', ()=>{
+    nextButton.click();
+    nextFlag = true;
+  });
+
+  cardSortBucketView.addEventListener('click', ()=>{
+    const selected = cardSortBucketView.querySelectorAll('.sq-cardsort-state-selected');
+    
+    if( !nextFlag ){
+      return;
+    }
+
+    if( selected.length >= 2 ){
+      nextButton.click();
+      nextFlag = true;
+    }
+  });
+
+  contuneButton.disabled = true;
+  contuneButton.style.display = 'none';
+
+
+  const config = {
+      attributes: true,
+      childList: true,
+      subtree: true,
+      characterData: true
+  };
+
+  const checkAnswer = ()=>{
+    const flagStyle = completeAnswer.style.display;
+    if( flagStyle == 'list-item' ){
+      contuneButton.disabled = false;
+      contuneButton.style.display = '';
+    }
+  }
+
+  const callback = function(mutationsList, observer) {
+      checkAnswer();
+  };
+
+  const observer = new MutationObserver(callback);
+  observer.observe(cardsort, config);
+});
+</script>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>cardsort.auto.next</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

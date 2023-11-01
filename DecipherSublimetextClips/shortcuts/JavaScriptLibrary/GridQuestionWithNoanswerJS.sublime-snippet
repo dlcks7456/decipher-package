@@ -1,0 +1,148 @@
+<snippet>
+	<content><![CDATA[
+<style name="page.head"><![CDATA[
+<style>
+.grid.grid-list-mode.setWidth tbody {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 10px;
+}
+
+.row-elements+.row-elements, .row-elements+.row-group {
+  margin-top: 0;
+}
+
+\@media (max-width: 800px){
+  .grid.grid-list-mode.setWidth tbody {
+    grid-template-columns: 100%;
+  }
+}
+
+#question_\$(this.label) .answers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+\@media (max-width:720px){
+  #question_\$(this.label) .answers {
+    flex-direction: column-reverse;
+  }
+}
+
+.row-elements {
+  transition: 0.7s;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+</style>
+]]${-1}></style>
+<style name="question.after"><![CDATA[
+<script>
+const setQuestion = document.querySelector('#question_\$(this.label)');
+const setQuestionAnswers = setQuestion.querySelector('.answers');
+const noAnswerCell = setQuestion.querySelector('.row-no-answer');
+const noAnswerFir = noAnswerCell.querySelector('.cell-legend-right');
+
+const newDiv = document.createElement('div');
+setQuestionAnswers.appendChild(newDiv);
+
+const noAnswerPosistion = ()=>{
+  const gridMode = setQuestion.querySelector('.answers');
+  const gridListMode = gridMode.querySelector('.grid');
+
+  if( gridMode.classList.contains('answers-list') ){
+    newDiv.appendChild(noAnswerFir);
+    noAnswerCell.style.display = 'none';
+
+    const noAnswerInput = noAnswerFir.querySelector('input[type=checkbox]');
+    if( noAnswerInput.checked ){
+      gridListMode.style.display = 'none';
+      return;
+    }else{
+      gridListMode.style.display = '';
+    }
+  }
+
+  if( gridMode.classList.contains('answers-table') ){
+    const noAnswerTd = noAnswerCell.querySelector('td');
+    noAnswerTd.appendChild(noAnswerFir);
+    noAnswerCell.style.display = '';
+    gridListMode.style.display = '';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', ()=>{
+  noAnswerPosistion();
+});
+window.addEventListener('mousemove', ()=>{
+  noAnswerPosistion();
+});
+window.addEventListener('resize', ()=>{
+  noAnswerPosistion();
+});
+window.addEventListener('orientationchange', ()=>{
+  noAnswerPosistion();
+});
+
+
+const noAnswerHandler = ()=>{
+  const gridListMode = setQuestion.querySelector('.grid-list-mode');
+  if( gridListMode == undefined || gridListMode == null ){
+    return;
+  }
+
+  const rowElements = gridListMode.querySelectorAll('.row-elements:not(.row-no-answer)');
+  
+  rowElements.forEach((el)=>{
+    const inputRaido = el.querySelector('input[type=radio]:checked');
+    if( !(inputRaido == undefined || inputRaido == null ) ){
+      el.style.backgroundColor = 'rgba(45, 109, 246, 0.2)';
+
+      const firstEl = gridListMode.querySelectorAll('.row-elements:not(.row-no-answer)');
+
+      for(let fel of firstEl){
+        const notChecked = fel.querySelector('input[type=radio]:checked');
+        if( notChecked == undefined || notChecked == null ) {
+            const firstInput = fel.querySelectorAll('input[type=radio]');
+            const firs = fel.querySelectorAll('.fir-icon');
+            firstInput[firstInput.length-1].focus();
+            firs.forEach((fir)=>{
+              if(fir.classList.contains('focus')){
+                fir.classList.remove('focus');
+              }
+            })
+            break;
+        }
+      }
+
+      const nextBtn = document.querySelector('#btn_continue');
+      let allChecked = Array.from(firstEl).every(element => {
+        return element.querySelector('input:checked');
+      });
+      if( allChecked ){
+        nextBtn.focus();
+      }
+
+    }else{
+      el.style.backgroundColor = '';
+    }
+  });
+}
+
+setQuestion.addEventListener('click', noAnswerHandler);
+
+setQuestion.onchange = ()=>{
+  noAnswerHandler();
+  noAnswerPosistion();
+}
+</script>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>grid.noanswer</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

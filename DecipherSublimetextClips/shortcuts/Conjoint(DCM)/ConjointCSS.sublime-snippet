@@ -19,11 +19,11 @@ div.dcm {
   font-size: 1.1rem;
 }
 
-.dcm tr.dcm_even {
+.dcm tbody:nth-child(1) tr:nth-child(even) {
     background-color: #FFFFFF;
 }
 
-.dcm tr.dcm_odd {
+.dcm tbody:nth-child(1) tr:nth-child(odd):not(:nth-child(1)) {
     background-color: #f3f3f3;
 }
 
@@ -33,7 +33,7 @@ div.dcm {
     width: 120px;
 }
 
-.dcm tr.dcm_even td.dcm_item, .dcm tr.dcm_odd td.dcm_item {
+.dcm td.dcm_item {
     text-align: center;
     width: 120px;
 }
