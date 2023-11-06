@@ -1,0 +1,22 @@
+<snippet>
+	<content><![CDATA[
+<style name="page.head" label="tog_group_cols"><![CDATA[
+<style>
+.ch-group-rows {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+\@media (max-width: 768px){
+    .ch-group-rows {
+        grid-template-columns: 100%;
+    }
+}
+</style>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tog.group.cols</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
