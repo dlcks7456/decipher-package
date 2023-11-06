@@ -25,6 +25,8 @@ ${5}
   ${4:<row label="r98" value="98" randomize="0">\${$2a.r98.open\}</row>}
 </checkbox>
 
+<suspend/>
+
 <checkbox
   label="${2}c"
   rowCond="${2}b[row]"
@@ -35,6 +37,8 @@ ${5}
   <insert source="${1}"/>
   ${4:<row label="r98" value="98" randomize="0">\${$2a.r98.open\}</row>}
 </checkbox>
+
+<suspend/>
 
 <radio
   label="${2}d"
