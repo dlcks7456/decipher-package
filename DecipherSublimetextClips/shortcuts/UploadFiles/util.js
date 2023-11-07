@@ -52,7 +52,6 @@ function gridRankSetting(rankClass, noneRowClass){
   });
 }
 
-
 // 한글 변환
 function viewKorean(num, dan, postText){
   string=num;
@@ -1320,7 +1319,7 @@ function stepQuestion(bundleClassName){
 
 
 
-function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _multi, _complete){
+function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _multi, _complete, _posfix){
   function fnNextActivate(_bol){
     const objNextBtn = document.getElementById('btn_continue');
     if(_next){
@@ -1336,9 +1335,16 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
     }
   }
   function fnOneRowStyle(){
+    console.log(strLabel)
     for(k = 0; k < document.querySelectorAll('style').length; k++){
       if (document.querySelectorAll('style')[k].getAttribute('media') == null){
-       document.querySelectorAll('style')[k].innerHTML = document.querySelectorAll('style')[k].innerHTML + '@keyframes fallingFadeIn{0%{opacity : 0; transform : translateY(-10px);}100%{opacity : 1; transform : translateY(0px);}}@keyframes fallingInfinityScroll{0%{transform: translateY(-75%);}100%{transform: translateY(8%);}}.grid-list-mode .row-elements{transition-duration: 0.15s;}.grid-list-mode .clicked{background-color: rgba(45, 109, 246, 0.2);}.grid-list-mode .nextShow{animation : fallingFadeIn 0.5s 1 forwards;}.survey-buttons .showWrap{pointer-events: none;}.survey-buttons .showWrap .backgroundText{position: relative;display: block;opacity: 0;font-size: 0.9rem;pointer-events: none;}.survey-buttons .showWrap .showText{position: absolute;display: block;width: 100%;left: 50%;top: 50%;transform: translate(-50%, -50%);}.survey-buttons .showWrap .commonCheck{position: absolute;display: block;width: 20px;left: 50%;top: 50%;transform: translate(-50%, -50%);}#primary:has(.answers-table) .survey-buttons .showWrap{position: absolute;display: inline-block;}#primary:has(.answers-list) .survey-buttons .showWrap{position: fixed;display: block;right: 5%;top: 2%;}.grid-table-mode .createWarp{height: 36px;}.grid-table-mode .createHead{}.grid-table-mode .createData{cursor: pointer;border: 1px solid #0c148b;overflow: hidden;}.grid-table-mode .createData:has(.arrowHover){transition-duration : 0.5s;color : white;background-color: #2d6df6;overflow: hidden;}.grid-table-mode .createArrowWrap{max-height: 36px;transform: translateY(-75%);pointer-events: none;}.grid-table-mode .arrowHover{animation : fallingInfinityScroll 0.7s infinite linear;}.grid-table-mode .createArrowWrap .downfallArrow{position: relative;display: block;width: 30px;left: 50%;transform: translateX(-50%);}.grid-list-mode .createWarp{position: relative;display: block;width: 100%;height: 36px;margin-top: 5px;border: 1px solid #ccc;border-radius: 10px;box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);animation : fallingFadeIn 0.5s 1 forwards;overflow: hidden;}.grid-list-mode .createHead{pointer-events: none;}.grid-list-mode .createData{position: relative;display: block;height: 100%;width: 100%;cursor: pointer;overflow: hidden;}.grid-list-mode .createData:has(.arrowHover){transition-duration : 0.5s;color : white;background-color: #2d6df6;}.grid-list-mode .createArrowWrap{max-height: 36px;transform: translateY(-75%);pointer-events: none;}.grid-list-mode .arrowHover{animation : fallingInfinityScroll 0.7s infinite linear;}.grid-list-mode .createArrowWrap .downfallArrow{position: relative;display: block;width: 30px;left: 50%;transform: translateX(-50%);}';
+       document.querySelectorAll('style')[k].innerHTML = document.querySelectorAll('style')[k].innerHTML + '@keyframes fallingFadeIn{0%{opacity : 0; transform : translateY(-10px);}100%{opacity : 1; transform : translateY(0px);}}@keyframes fallingInfinityScroll{0%{transform: translateY(-75%);}100%{transform: translateY(8%);}}#question_' + strLabel + ' .grid-list-mode .row-elements{transition-duration: 0.15s;}#question_' + strLabel + ' .grid-list-mode .clicked{background-color: rgba(45, 109, 246, 0.2);}#question_' + strLabel + ' .grid-list-mode .nextShow{animation : fallingFadeIn 0.5s 1 forwards;}#question_' + strLabel + ' .grid-table-mode .createWarp{height: 36px;}#question_' + strLabel + ' .grid-table-mode .createData{cursor: pointer;border: 1px solid #0c148b;overflow: hidden;}#question_' + strLabel + ' .grid-table-mode .createData:has(.arrowHover){transition-duration : 0.5s;color : white;background-color: #2d6df6;overflow: hidden;}#question_' + strLabel + ' .grid-table-mode .createArrowWrap{max-height: 36px;transform: translateY(-75%);pointer-events: none;}#question_' + strLabel + ' .grid-table-mode .arrowHover{animation : fallingInfinityScroll 0.7s infinite linear;}#question_' + strLabel + ' .grid-table-mode .createArrowWrap .downfallArrow{position: relative;display: block;width: 30px;left: 50%;transform: translateX(-50%);}#question_' + strLabel + ' .grid-list-mode .createWarp{position: relative;display: block;width: 100%;height: 36px;margin-top: 5px;border: 1px solid #ccc;border-radius: 10px;box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);animation : fallingFadeIn 0.5s 1 forwards;overflow: hidden;}#question_' + strLabel + ' .grid-list-mode .createHead{pointer-events: none;}#question_' + strLabel + ' .grid-list-mode .createData{position: relative;display: block;height: 100%;width: 100%;cursor: pointer;overflow: hidden;}#question_' + strLabel + ' .grid-list-mode .createData:has(.arrowHover){transition-duration : 0.5s;color : white;background-color: #2d6df6;}#question_' + strLabel + ' .grid-list-mode .createArrowWrap{max-height: 36px;transform: translateY(-75%);pointer-events: none;}#question_' + strLabel + ' .grid-list-mode .arrowHover{animation : fallingInfinityScroll 0.7s infinite linear;}#question_' + strLabel + ' .grid-list-mode .createArrowWrap .downfallArrow{position: relative;display: block;width: 30px;left: 50%;transform: translateX(-50%);}.survey-buttons .showWrap{pointer-events: none;}.survey-buttons .showWrap .backgroundText{position: relative;display: block;opacity: 0;font-size: 0.9rem;pointer-events: none;}.survey-buttons .showWrap .showText{position: absolute;display: block;width: 100%;left: 50%;top: 50%;transform: translate(-50%, -50%);}.survey-buttons .showWrap .commonCheck{position: absolute;display: block;width: 20px;left: 50%;top: 50%;transform: translate(-50%, -50%);}';
+       if(_posfix){
+        document.querySelectorAll('style')[k].innerHTML = document.querySelectorAll('style')[k].innerHTML + '#primary:has(#question_' + strLabel + ') .survey-buttons .showWrap{position: absolute;display: inline-block;}';
+       }
+       else{
+        document.querySelectorAll('style')[k].innerHTML = document.querySelectorAll('style')[k].innerHTML + '#primary:has(#question_' + strLabel + ' .answers-table) .survey-buttons .showWrap{position: absolute;display: inline-block;}#primary:has(#question_' + strLabel + ' .answers-list) .survey-buttons .showWrap{position: fixed;display: block;right: 5%;top: 2%;}';
+       }
        break;
       }
     }
@@ -1402,11 +1408,12 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
   }
   function fnCheck(_target){
     let checkFlag = false;
+    let strMainType = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1].querySelector('td input').type;
     while(_target.querySelectorAll('.hasError').length >= 1){
       _target.querySelectorAll('.hasError')[0].classList.remove('hasError');
     }
-    for(i = 0; i < _target.querySelectorAll('input').length; i++){
-      if(_target.querySelectorAll('.fir-icon')[i].className.indexOf('selected') !== -1 && _target.querySelectorAll('input')[i].checked){
+    for(i = 0; i < _target.querySelectorAll('input[type=' + strMainType + ']').length; i++){
+      if(_target.querySelectorAll('.fir-icon')[i].className.indexOf('selected') !== -1 && _target.querySelectorAll('input[type=' + strMainType + ']')[i].checked){
         checkFlag = true;
         break;
       }
@@ -1415,9 +1422,10 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
   }
   function fnAllCheck(){
     const objList = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1].childNodes;
+    let strMainType = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1].querySelector('td input').type;
     for(i = 0; i < objList.length; i++){
-      for(k = 0; k < objList[i].querySelectorAll('input').length; k++){
-        if(objList[i].querySelectorAll('.fir-icon')[k].className.indexOf('selected') !== -1 && objList[i].querySelectorAll('input')[k].checked){
+      for(k = 0; k < objList[i].querySelectorAll('input[type=' + strMainType + ']').length; k++){
+        if(objList[i].querySelectorAll('.fir-icon')[k].className.indexOf('selected') !== -1 && objList[i].querySelectorAll('input[type=' + strMainType + ']')[k].checked){
           objList[i].classList.add('clicked');
           break;
         }   
@@ -1473,7 +1481,7 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
     const numTotal = numRowCound;
     const numCurrent = fnAnswerCount();
     const numCalc = numCurrent / numTotal * 100;
-    const strInputType = objMain.querySelector('.answers .grid .row-elements input').type;
+    const strInputType = objMain.querySelector('.answers .grid .row-elements td input').type;
     const strCompleteText = _complete === undefined || _complete === 'default' ? '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.0" stroke="currentColor" class="commonCheck"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>' : _complete;
     objTargetText.innerText = numCurrent + " / " + numTotal;
     let arrCheckList = new Array();
@@ -1560,8 +1568,9 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
     fnNextActivate(false);
     const objMain = document.getElementById('surveyContainer') === null ? document.querySelector('html').style.scrollBehavior = 'smooth' : document.getElementById('surveyContainer').style.scrollBehavior = 'smooth';
     const arrCheckList = document.querySelectorAll('#question_' + strLabel + ' .grid .clickableCell');
+    let strMainType = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1].querySelector('td input').type;
     for(i = 0; i < arrCheckList.length; i++){
-      jQuery(arrCheckList[i].querySelector('input')).on("propertychange change input", (e) => {
+      jQuery(arrCheckList[i].querySelector('input[type=' + strMainType + ']')).on("propertychange change input", (e) => {
         if(fnCheck(e.target.parentNode.parentNode.parentNode.parentNode)){
           e.target.parentNode.parentNode.parentNode.parentNode.classList.add('clicked');
         }
@@ -1574,7 +1583,7 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
         }
       });
       if(arrCheckList[i].parentNode.nextSibling !== null){
-        if(arrCheckList[i].querySelector('.fir-icon').className.indexOf('selected') !== -1 && arrCheckList[i].querySelector('input').checked){
+        if(arrCheckList[i].querySelector('.fir-icon').className.indexOf('selected') !== -1 && arrCheckList[i].querySelector('input[type=' + strMainType + ']').checked){
           fnShow(arrCheckList[i].parentNode.nextSibling, 'all');
         }
       }
@@ -1601,6 +1610,7 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
   }
   else if(numRowCound === numCurrentAnswerCount){
     const objTarget = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1];
+    let strMainType = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1].querySelector('td input').type;
     for(k = 0; k < objTarget.childNodes.length; k++){
       if(objTarget.childNodes[k].className.indexOf('row-group') !== -1 || objTarget.childNodes[k].className.indexOf('row-col-legends') !== -1){
         fnShow(objTarget.childNodes[k], 'all');
@@ -1615,6 +1625,7 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
   }
   else{
     const objTarget = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1];
+    let strMainType = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1].querySelector('td input').type;
     for(i = 0; i < objTarget.childNodes.length; i++){
       objTarget.childNodes[i].setAttribute('style', 'display:none !important');
     }

@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
-<style label="js_onerowatatime" arg:completeWord="default" arg:multiControl="true" arg:nextControl="true" arg:resultView="true" arg:scrollMove="true" name="question.after" wrap="ready"><![CDATA[
-onerowatatime("\${this.label}", \${len([eachRow.label for eachRow in \$(this.label).rows if eachRow.displayed and not eachRow.disabled])}, \${len([eachCol.label for eachCol in \$(this.label).cols if eachCol.displayed and not eachCol.disabled])}, \${len([eachRow.label for eachRow in \$(this.label).rows if eachRow.any])}, \$(resultView), \$(scrollMove), \$(nextControl), \$(multiControl), "\$(completeWord)");
+<style label="js_onerowatatime" arg:completeWord="default" arg:multiControl="true" arg:nextControl="true" arg:resultPosFix="true" arg:resultView="true" arg:scrollMove="true" name="question.after" wrap="ready"><![CDATA[
+onerowatatime("\${this.label}", \${len([eachRow.label for eachRow in \$(this.label).rows if eachRow.displayed and not eachRow.disabled])}, \${len([eachCol.label for eachCol in \$(this.label).cols if eachCol.displayed and not eachCol.disabled])}, \${len([eachRow.label for eachRow in \$(this.label).rows if eachRow.any])}, \$(resultView), \$(scrollMove), \$(nextControl), \$(multiControl), "\$(completeWord)", \$(resultPosFix));
 ]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
