@@ -1419,15 +1419,25 @@ select {
   }
 }
 
+.grid-style-setup {
+  display: grid !important;
+  width: 100% !important;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  max-width: @custom-max-width;
+  align-items: stretch;
+  
+  .element {
+      display: flex;
+      align-items: stretch;
+  }
+}
+
+
 .grid-3-cols {
-  .answers {
-    display: grid !important;
-    width: 100% !important;
+  .answers {    
+    .grid-style-setup();
     grid-template-columns: 33% 33% 33%;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-    max-width: @custom-max-width;
-    align-items: stretch;
 
     @media @medium {
       grid-template-columns: 50% 50%;
@@ -1441,13 +1451,8 @@ select {
 
 .grid-2-cols {
   .answers {
-    display: grid !important;
+    .grid-style-setup();
     grid-template-columns: 50% 50%;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-    width: 100% !important;
-    max-width: @custom-max-width;
-    align-items: stretch;
     
     @media @mobile {
       grid-template-columns: 100%;
