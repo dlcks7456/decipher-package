@@ -1,0 +1,49 @@
+<snippet>
+	<content><![CDATA[
+<style label="custom_rank_grid_group" name="page.head"><![CDATA[
+<style>
+.custom-rank-sort {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 10px;
+  max-width: 80% !important;
+}
+
+.custom-rank-rows {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.rank-group {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.rank-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+\@media (max-width: 800px) {
+  .custom-rank-sort {
+    grid-template-columns: 100%;
+    max-width: 100% !important;
+  }
+  .rank-group {
+    grid-template-columns: 100%;
+  }
+  .rank-group-title {
+    display: block;
+    text-align: left;
+  }
+}
+</style>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>custom.rank.left</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

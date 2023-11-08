@@ -1,0 +1,66 @@
+<snippet>
+	<content><![CDATA[
+<style label="tog_group_left" name="page.head"><![CDATA[
+<style>
+.answers {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+}
+
+.ch-group-toggle {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    align-items: stretch;
+}
+
+.ch-group-toggle .ch-group-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.ch-group-rows {
+  display: flex;
+  flex-direction: column;
+  /* display: gird; */
+  /* grid-template-columns: 50% 50%; */
+}
+
+\@media (max-width: 768px) {
+  .ch-group-toggle {
+    grid-template-columns: 100%;
+  }
+
+  .ch-group-rows {
+  	/*	grid-template-columns: 100%; */
+  }  
+
+  .answers {
+    grid-template-columns: 100%;
+    gap: 0px;
+  }
+
+  .ch-group-toggle .ch-group-name {
+    display: block;
+    text-align: left;
+  }
+}
+
+.question {
+  margin: 0 !important;
+}
+
+.element {
+  display: flex;
+  align-items: center;
+}
+</style>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tog.group.left</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

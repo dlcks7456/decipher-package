@@ -7,7 +7,7 @@
   max-width: 100px !important;
 }
 
-\@media (max-width:800px) {
+\@media (max-width: 768px) {
   .text-input {
     max-width: 100% !important;
   }

@@ -193,7 +193,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
 }
 
 
-const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[], noneIndex, ableNone, ableSort, showAnswers, toggle})=>{
+const GridRankSort = ({json, defaultValue, gridColumnCount, showGrpups, groups=[], noneIndex, ableNone, ableSort, showAnswers, toggle, showCnt})=>{
     const {label, uid, cols, rows, noanswers, errors} = json;
     const [newError, setNewError] = React.useState(
         errors.map((err)=>{
@@ -492,16 +492,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
     }
 }
 
-@media all and (max-width: 500px){
-    .custom-rank-rows {
-        grid-template-columns: 100%;
-    }
-
-    .rank-noanswers {
-        max-width: 100%;
-    }
-}
-
 .rank-noanswers .rank-number{
     display: none !important;
 }
@@ -658,10 +648,39 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
 .changed-rank {
     color: #2d6df6;
 }
+
+.show-cnt {
+    position: fixed;
+    bottom: 7%;
+    left: 10%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #2d6df6;
+    color: #fff;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+@media all and (max-width: 768px){
+    .custom-rank-rows {
+        grid-template-columns: 100%;
+    }
+
+    .rank-noanswers {
+        max-width: 100%;
+    }
+}
+
+@media all and (max-width: 900px){
+    .show-cnt {
+        left: 2px;
+    }
+}
 `}
         </style>
         {/* Group css */}
-        {showGroups ? (
+        {showGrpups ? (
             <style jsx="true">{`
 .rank-group {
     margin-bottom : 20px;
@@ -801,7 +820,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                 </div>
             ) : null}
             <div className="custom-rank-sort">
-                {setGroupRows.length > 0 && showGroups ? (
+                {setGroupRows.length > 0 && showGrpups ? (
                     setGroupRows.map((group, groupIndex)=>{
                         return (
                                 <div key={groupIndex}
@@ -886,6 +905,11 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                     })}
                 </div>
             </div>
+            {showCnt ? (
+                <div className={answerCompleted ? "show-cnt animate__animated animate__bounceOutLeft" : "show-cnt animate__animated animate__bounceIn"}>
+                    {rankAnswers.length}/{cols.length}
+                </div>
+            ) : null}
             <HiddenInputs uid={`ans${uid}`} qid={label} cols={cols} answers={rankAnswers} noAnswers={noanswers} noAnswerCheck={noAnswer}/>
         </>
     )
@@ -915,10 +939,10 @@ const LoadingComp = () =>{
     )
 }
 
-const SettingGridRankSort = ({json, defaultValue, showGroups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader', toggle=false})=>{
+const SettingGridRankSort = ({json, defaultValue, showGrpups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader', toggle=false, showCnt=true})=>{
     const root = document.querySelector('.answers');
     let toggleFlag = toggle;
-    if( !showGroups ){
+    if( !showGrpups ){
         toggleFlag = false;
     }
     ReactDOM.render(
@@ -926,13 +950,14 @@ const SettingGridRankSort = ({json, defaultValue, showGroups=false, groups=[], c
             json={json}
             defaultValue={defaultValue}
             gridColumnCount={colCnt}
-            showGroups={showGroups}
+            showGrpups={showGrpups}
             groups={groups}
             noneIndex={noneIndex}
             ableNone={ableNone}
             ableSort={ableSort}
             showAnswers={showAnswers}
             toggle={toggleFlag}
+            showCnt={showCnt}
         />, root
     );
     document.querySelector(loadingQuery).remove();
