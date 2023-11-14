@@ -826,7 +826,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                                 <div key={groupIndex}
                                     className="animate__animated animate__fadeIn rank-group">
                                     <div className="rank-group-title">
-                                        <div className="group-title-text">{group[2]}</div>
+                                        <div className="group-title-text" dangerouslySetInnerHTML={{__html: group[2]}}></div>
                                         {toggle ? (
                                             <div className="group-title-arrow">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
