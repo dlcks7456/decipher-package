@@ -1820,5 +1820,55 @@ ${selector} input[type=number]::-webkit-outer-spin-button {
 }
 
 
+// Custom Button Style JS
+const updateLabelStyle = (element, isSelected)=>{
+   const label = element.querySelector('.cell-sub-wrapper');
+   if (label) {
+       label.style.backgroundColor = isSelected ? '#b7ceff' : '';
+   }
+}
+
+const observeElements = ()=>{
+   const elements = document.querySelectorAll('.answers .element');
+   elements.forEach(element => {
+       const observer = new MutationObserver(mutations => {
+           mutations.forEach(mutation => {
+               if (mutation.attributeName === 'class') {
+                   const firIcon = element.querySelector('.fir-icon');
+                   const isSelected = firIcon && firIcon.classList.contains('selected');
+                   updateLabelStyle(element, isSelected);
+               }
+           });
+       });
+
+       observer.observe(element, { attributes: true, subtree: true });
+   });
+}
+
+const setCustomBtn = ()=>{
+  const btnClass = document.querySelectorAll('.sp-custom-btn');
+
+  if( !btnClass ) return;
+
+  observeElements();
+
+  btnClass.forEach((btn)=>{
+    const btnClassList = btn.classList;
+    const checkMaxWidth = [...btnClassList].filter((cl)=> cl.includes('btn-mx-'));
+    if( !(checkMaxWidth.length == 1) ) {
+      return;
+    }
+
+    const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
+    const elements = btn.querySelectorAll('.answers .element');
+
+    elements.forEach((element)=>{
+      element.style.maxWidth = setMaxWidth+'px';
+    });
+  });
+}
+
+window.addEventListener('DOMContentLoaded', setCustomBtn);
+
 
 
