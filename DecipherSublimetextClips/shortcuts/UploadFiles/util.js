@@ -1915,6 +1915,7 @@ const setCustomBtn = ()=>{
 
     elements.forEach((element)=>{
         if( checkMaxWidth.length == 1 ) {
+            const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
             element.style.maxWidth = `${setMaxWidth}px`;
         }
         element.style.minHeight = `${maxHeight}px`;
