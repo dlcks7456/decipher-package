@@ -1435,8 +1435,22 @@ select {
   }
 }
 
+.grid-cols-4 {
+  .answers {    
+    .grid-style-setup();
+    grid-template-columns: 25% 25% 25% 25%;
 
-.grid-3-cols {
+    @media @medium {
+      grid-template-columns: 50% 50%;
+    }
+
+    @media @mobile {
+      grid-template-columns: 100%;
+    }
+  }
+}
+
+.grid-cols-3 {
   .answers {    
     .grid-style-setup();
     grid-template-columns: 33% 33% 33%;
@@ -1451,7 +1465,7 @@ select {
   }
 }
 
-.grid-2-cols {
+.grid-cols-2 {
   .answers {
     .grid-style-setup();
     grid-template-columns: 50% 50%;

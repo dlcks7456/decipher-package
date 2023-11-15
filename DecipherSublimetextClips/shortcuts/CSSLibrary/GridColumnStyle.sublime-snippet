@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-.grid-3-cols .answers{
+.grid-cols-3 .answers{
   display: grid !important;
   width: 100% !important;
   grid-template-columns: 33% 33% 33%;
@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.grid-2-cols .answers{
+.grid-cols-2 .answers{
   display: grid !important;
   grid-template-columns: 50% 50%;
   grid-column-gap : 5px;
@@ -21,10 +21,10 @@
 }
 
 \@media all and (max-width: 800px){
- .grid-3-cols .answers{
+ .grid-cols-3 .answers{
     grid-template-columns: 50% 50%;
  }
- .grid-2-cols .answers{
+ .grid-cols-2 .answers{
     grid-template-columns: 100%;
   }
 }

@@ -1854,19 +1854,68 @@ const setCustomBtn = ()=>{
 
   btnClass.forEach((btn)=>{
     const btnClassList = btn.classList;
-    const checkMaxWidth = [...btnClassList].filter((cl)=> cl.includes('btn-mx-'));
-    if( !(checkMaxWidth.length == 1) ) {
-      return;
+
+    const checkCols = [...btnClassList].filter(cl => cl.includes('btn-cols-'));
+    console.log(btnClassList);
+    console.log(checkCols);
+    if (checkCols.length > 0) {
+      const firstCheckCol = checkCols[0];
+      const colNumber = firstCheckCol.split('-')[2];
+      const newClassName = `custom-btn-cols-${colNumber}`;
+      
+      const style = document.createElement('style');
+      style.innerHTML = `
+        .${newClassName} {
+          display: grid;
+          grid-template-columns: repeat(${colNumber}, 1fr);
+          display: grid !important;
+          width: 100% !important;
+          grid-column-gap: 5px;
+          grid-row-gap: 5px;
+          max-width: 924px;
+          align-items: stretch;
+        }
+
+        .${newClassName} .element {
+            display: flex;
+            align-items: stretch;
+        }
+      `;
+
+      if (colNumber >= 3) {
+        style.innerHTML += `
+          @media (max-width: 1000px) {
+            .${newClassName} {
+              grid-template-columns: 50% 50%;
+            }
+          }
+        `;
+      }
+
+      style.innerHTML += `
+        @media (max-width: 768px) {
+          .${newClassName} {
+            grid-template-columns: 100%;
+          }
+        }
+      `;
+
+      document.head.appendChild(style);
+
+      const answers = btn.querySelector('.answers');
+      answers.classList.add(newClassName);
     }
 
-    const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
+    const checkMaxWidth = [...btnClassList].filter((cl)=> cl.includes('btn-mx-'));
     const elements = btn.querySelectorAll('.answers .element');
 
     const maxHeight = Array.from(elements).reduce((max, el) => Math.max(max, el.clientHeight), 0);
     elements.forEach(el => el.style.minHeight = `${maxHeight}px`);
 
     elements.forEach((element)=>{
-        element.style.maxWidth = `${setMaxWidth}px`;
+        if( checkMaxWidth.length == 1 ) {
+            element.style.maxWidth = `${setMaxWidth}px`;
+        }
         element.style.minHeight = `${maxHeight}px`;
         const labelNode = element.querySelector('label');
         const inputNode = element.querySelector('input');
