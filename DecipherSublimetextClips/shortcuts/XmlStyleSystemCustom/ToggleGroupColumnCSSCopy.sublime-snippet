@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style name="page.head" copy="tog_group_cols"/>
+<style name="page.head" copy="tog_group_cols" arg:colCount="2"/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>tog.group.cols.copy</tabTrigger>

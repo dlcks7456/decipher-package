@@ -1522,6 +1522,19 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 /* Grid question mobile css */
+
+.custom-label-style() {
+    display: block;
+    width: 100%;
+    padding: 6px;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: background-color 0.5s;
+    &:hover {
+      background-color: @custom-sub-color;
+    }
+}
+
 .grid-list-mode {
     .row-elements {
         border: 1px solid @custom-border-color;
@@ -1545,9 +1558,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
     .mobile-group-legend {
         font-weight: bold;
+        border-top: 1px solid @custom-border-color;
         border-bottom: 1px solid @custom-border-color;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
+        background: fade(@custom-border-color, 40%);
     }
 
     .zeroHeight {
@@ -1559,6 +1572,7 @@ input[type="number"]::-webkit-inner-spin-button {
         border-bottom: 1px solid @custom-border-color;
         padding-bottom: 10px;
         padding-top: 10px;
+        background-color: @custom-sub-color;
     }
 
     .row-legend-group {
@@ -1566,6 +1580,15 @@ input[type="number"]::-webkit-inner-spin-button {
         .box-shadow-style();
         margin-bottom: 7px;
     }
+
+    .cell-text {
+      width: 100%;
+
+      label {
+        .custom-label-style();
+      }
+    }
+
 }
 
 
@@ -2027,17 +2050,10 @@ input[type="number"]::-webkit-inner-spin-button {
     .element {
       .cell-text {
         width: 100%;
+        padding: unset !important;
 
         label {
-          display: block;
-          width: 100%;
-          padding: 3px;
-          border-radius: 5px;
-          overflow: hidden;
-          transition: background-color 0.5s;
-          &:hover {
-            background-color: @custom-sub-color;
-          }
+          .custom-label-style();
         }
       }
     }
@@ -2067,6 +2083,12 @@ input[type="number"]::-webkit-inner-spin-button {
   .ch-group-toggle {
     .ch-group-rows {
       background-color : @answer-error-highlight-color;
+
+      .hasError {
+        .cell-text {
+          border-bottom: 1px solid @error-color;
+        }
+      }
     }
   }
 }
