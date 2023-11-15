@@ -1932,9 +1932,15 @@ const setCustomBtn = ()=>{
         const inputNode = element.querySelector('input');
         const cellText = element.querySelector('.cell-text');
         const cellInput = element.querySelector('.cell-text');
+        const openCheck = element.querySelector('input[type=text]');
+
         element.addEventListener('click', (event) => {
-          if (event.target !== labelNode && event.target !== inputNode) {
+          if (event.target !== labelNode && event.target !== inputNode && event.target !== openCheck) {
             labelNode.click();
+          }
+          
+          if( openCheck && inputNode.checked ) {
+            openCheck.focus();
           }
         });
     });
