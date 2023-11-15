@@ -2023,6 +2023,24 @@ input[type="number"]::-webkit-inner-spin-button {
   .ch-group-rows {
     overflow: hidden;
     transition: max-height 0.5s;
+
+    .element {
+      .cell-text {
+        width: 100%;
+
+        label {
+          display: block;
+          width: 100%;
+          padding: 3px;
+          border-radius: 5px;
+          overflow: hidden;
+          transition: background-color 0.5s;
+          &:hover {
+            background-color: @custom-sub-color;
+          }
+        }
+      }
+    }
   }
 
   .ch-open {
