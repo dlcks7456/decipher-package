@@ -1848,7 +1848,9 @@ const observeElements = ()=>{
 const setCustomBtn = ()=>{
   const btnClass = document.querySelectorAll('.sp-custom-btn');
 
-  if( !btnClass ) return;
+  if( btnClass.length == 0 ){
+    return;
+  }
 
   observeElements();
 
@@ -1856,8 +1858,7 @@ const setCustomBtn = ()=>{
     const btnClassList = btn.classList;
 
     const checkCols = [...btnClassList].filter(cl => cl.includes('btn-cols-'));
-    console.log(btnClassList);
-    console.log(checkCols);
+    
     if (checkCols.length > 0) {
       const firstCheckCol = checkCols[0];
       const colNumber = firstCheckCol.split('-')[2];
