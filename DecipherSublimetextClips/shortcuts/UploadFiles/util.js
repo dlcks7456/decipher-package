@@ -1933,9 +1933,11 @@ const setCustomBtn = ()=>{
         const cellText = element.querySelector('.cell-text');
         const cellInput = element.querySelector('.cell-text');
         const openCheck = element.querySelector('input[type=text]');
+        const rectCheck = element.querySelector('rect');
+        const polygonCheck = element.querySelector('polygon');
 
         element.addEventListener('click', (event) => {
-          if (event.target !== labelNode && event.target !== inputNode && event.target !== openCheck) {
+          if (![labelNode, inputNode, openCheck, rectCheck, polygonCheck].includes(event.target)) {
             labelNode.click();
           }
           
