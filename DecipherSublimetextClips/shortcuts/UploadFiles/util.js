@@ -1864,13 +1864,11 @@ const setCustomBtn = ()=>{
 
     const checkCols = [...btnClassList].filter(cl => cl.includes('btn-cols-'));
     
-    if (checkCols.length > 0) {
-      const firstCheckCol = checkCols[0];
-      const colNumber = firstCheckCol.split('-')[2];
-      const newClassName = `custom-btn-cols-${colNumber}`;
-      
-      const style = document.createElement('style');
-      style.innerHTML = `
+    const colNumber = checkCols.length >= 1 ? checkCols[0].split('-')[2] : 1;
+    const newClassName = `custom-btn-cols-${colNumber}`;
+    
+    const style = document.createElement('style');
+    style.innerHTML = `
         .${newClassName} {
           display: grid;
           grid-template-columns: repeat(${colNumber}, 1fr);
@@ -1896,48 +1894,62 @@ const setCustomBtn = ()=>{
             }
           }
         `;
-      }
-
-      style.innerHTML += `
-        @media (max-width: 768px) {
-          .${newClassName} {
-            grid-template-columns: 100%;
-          }
-        }
-      `;
-
-      document.head.appendChild(style);
-
-      const answers = btn.querySelector('.answers');
-      answers.classList.add(newClassName);
     }
+
+    const answers = btn.querySelector('.answers');
+    answers.classList.add(newClassName);
+    
 
     const checkMaxWidth = [...btnClassList].filter((cl)=> cl.includes('btn-mx-'));
     const elements = btn.querySelectorAll('.answers .element');
 
+    if( checkMaxWidth.length == 1 ) {
+        const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
+        style.innerHTML += `
+            .answers .element {
+                max-width: ${setMaxWidth}px;
+            }
+        `;
+    }
+
     const maxHeight = Array.from(elements).reduce((max, el) => Math.max(max, el.clientHeight), 0);
     elements.forEach(el => el.style.minHeight = `${maxHeight}px`);
 
-    elements.forEach((element)=>{
-        if( checkMaxWidth.length == 1 ) {
-            const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
-            element.style.maxWidth = `${setMaxWidth}px`;
-
-            if( window.innerWidth <= 768 ){
-                element.style.maxWidth = `100%`;
-            }
+    style.innerHTML += `
+        .answers .element {
+            min-height: ${maxHeight}px;
         }
+    `;
+
+    style.innerHTML += `
+        @media (max-width: 768px) {
+          .${newClassName} {
+            grid-template-columns: 100%;
+          }
+
+          .answers .element {
+            max-width: 100% !important;
+          }
+        }
+    `;
+
+    document.head.appendChild(style);
+
+    elements.forEach((element)=>{
+        
         element.style.minHeight = `${maxHeight}px`;
         const labelNode = element.querySelector('label');
         const inputNode = element.querySelector('input');
-        const cellText = element.querySelector('.cell-text');
         const cellInput = element.querySelector('.cell-text');
         const openCheck = element.querySelector('input[type=text]');
         const rectCheck = element.querySelector('rect');
         const polygonCheck = element.querySelector('polygon');
-
+        const circleCheck = element.querySelector('circle');
+        const firCheck = element.querySelector('.fir-icon');
+        firCheck.style.pointerEvents = 'none';
         element.addEventListener('click', (event) => {
-          if (![labelNode, inputNode, openCheck, rectCheck, polygonCheck].includes(event.target)) {
+          
+          if (![labelNode, inputNode, openCheck, rectCheck, polygonCheck, circleCheck, firCheck].includes(event.target)) {
             labelNode.click();
           }
           
