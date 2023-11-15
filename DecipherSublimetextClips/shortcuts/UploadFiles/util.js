@@ -1828,21 +1828,26 @@ const updateLabelStyle = (element, isSelected)=>{
    }
 }
 
-const observeElements = ()=>{
-   const elements = document.querySelectorAll('.answers .element');
-   elements.forEach(element => {
-       const observer = new MutationObserver(mutations => {
-           mutations.forEach(mutation => {
-               if (mutation.attributeName === 'class') {
-                   const firIcon = element.querySelector('.fir-icon');
-                   const isSelected = firIcon && firIcon.classList.contains('selected');
-                   updateLabelStyle(element, isSelected);
-               }
-           });
-       });
+function handleButtonColor(element) {
+    const firIcon = element.querySelector('.fir-icon');
+    const isSelected = firIcon && firIcon.classList.contains('selected');
+    updateLabelStyle(element, isSelected);
+}
 
-       observer.observe(element, { attributes: true, subtree: true });
-   });
+const observeElements = () => {
+    const elements = document.querySelectorAll('.answers .element');
+    elements.forEach(element => {
+        const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                if (mutation.attributeName === 'class') {
+                    handleButtonColor(element);
+                }
+            });
+        });
+
+        observer.observe(element, { attributes: true, subtree: true });
+        handleButtonColor(element);
+    });
 }
 
 const setCustomBtn = ()=>{
@@ -1917,6 +1922,10 @@ const setCustomBtn = ()=>{
         if( checkMaxWidth.length == 1 ) {
             const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
             element.style.maxWidth = `${setMaxWidth}px`;
+
+            if( window.innerWidth <= 768 ){
+                element.style.maxWidth = `100%`;
+            }
         }
         element.style.minHeight = `${maxHeight}px`;
         const labelNode = element.querySelector('label');
