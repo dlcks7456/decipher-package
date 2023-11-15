@@ -1862,8 +1862,21 @@ const setCustomBtn = ()=>{
     const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
     const elements = btn.querySelectorAll('.answers .element');
 
+    const maxHeight = Array.from(elements).reduce((max, el) => Math.max(max, el.clientHeight), 0);
+    elements.forEach(el => el.style.minHeight = `${maxHeight}px`);
+
     elements.forEach((element)=>{
-      element.style.maxWidth = setMaxWidth+'px';
+        element.style.maxWidth = `${setMaxWidth}px`;
+        element.style.minHeight = `${maxHeight}px`;
+        const labelNode = element.querySelector('label');
+        const inputNode = element.querySelector('input');
+        const cellText = element.querySelector('.cell-text');
+        const cellInput = element.querySelector('.cell-text');
+        element.addEventListener('click', (event) => {
+          if (event.target !== labelNode && event.target !== inputNode) {
+            labelNode.click();
+          }
+        });
     });
   });
 }
