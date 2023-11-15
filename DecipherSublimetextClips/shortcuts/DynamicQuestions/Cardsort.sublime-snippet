@@ -2,6 +2,7 @@
 	<content><![CDATA[
 cardsort:animationDuration="200"
 cardsort:dragAndDrop="0"
+cardsort:displayCounter="0"
 uses="cardsort.6"
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
