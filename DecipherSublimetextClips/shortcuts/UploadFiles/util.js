@@ -1867,95 +1867,85 @@ const setCustomBtn = ()=>{
     const colNumber = checkCols.length >= 1 ? checkCols[0].split('-')[2] : 1;
     const newClassName = `custom-btn-cols-${colNumber}`;
     
+    const elements = btn.querySelectorAll('.answers .element');
+    const maxHeight = Array.from(elements).reduce((max, el) => Math.max(max, el.clientHeight), 0);
+
     const style = document.createElement('style');
     style.innerHTML = `
-        .${newClassName} {
-          display: grid;
-          grid-template-columns: repeat(${colNumber}, 1fr);
-          display: grid !important;
-          width: 100% !important;
-          grid-column-gap: 5px;
-          grid-row-gap: 5px;
-          max-width: 924px;
-          align-items: stretch;
-        }
+.cell-sub-wrapper {
+    min-height: ${maxHeight}px;
+}
+.${newClassName} {
+  display: grid;
+  grid-template-columns: repeat(${colNumber}, 1fr);
+  display: grid !important;
+  width: 100% !important;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  max-width: 924px;
+  align-items: stretch;
+}
 
-        .${newClassName} .element {
-            display: flex;
-            align-items: stretch;
-        }
-      `;
+.${newClassName} .element {
+    display: flex;
+    align-items: stretch;
+}`;
 
       if (colNumber >= 3) {
         style.innerHTML += `
-          @media (max-width: 1000px) {
-            .${newClassName} {
-              grid-template-columns: 50% 50%;
-            }
-          }
-        `;
+@media (max-width: 1000px) {
+    .${newClassName} {
+      grid-template-columns: 50% 50%;
+    }
+}`;
     }
 
     const answers = btn.querySelector('.answers');
     answers.classList.add(newClassName);
     
-
     const checkMaxWidth = [...btnClassList].filter((cl)=> cl.includes('btn-mx-'));
-    const elements = btn.querySelectorAll('.answers .element');
 
     if( checkMaxWidth.length == 1 ) {
         const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
         style.innerHTML += `
-            .answers .element {
-                max-width: ${setMaxWidth}px;
-            }
-        `;
+.answers .element {
+    max-width: ${setMaxWidth}px;
+}
+`;
     }
 
-    const maxHeight = Array.from(elements).reduce((max, el) => Math.max(max, el.clientHeight), 0);
-    elements.forEach(el => el.style.minHeight = `${maxHeight}px`);
-
     style.innerHTML += `
-        .answers .element {
-            min-height: ${maxHeight}px;
-        }
-    `;
+@media (max-width: 768px) {
+    .${newClassName} {
+        grid-template-columns: 100%;
+    }
 
-    style.innerHTML += `
-        @media (max-width: 768px) {
-          .${newClassName} {
-            grid-template-columns: 100%;
-          }
+    .answers .element {
+        max-width: 100% !important;
+    }
+}`;
 
-          .answers .element {
-            max-width: 100% !important;
-          }
-        }
-    `;
+    document.querySelector('.answers').appendChild(style);
 
-    document.head.appendChild(style);
-
-    elements.forEach((element)=>{
-        
-        element.style.minHeight = `${maxHeight}px`;
+    elements.forEach((element)=>{        
         const labelNode = element.querySelector('label');
         const inputNode = element.querySelector('input');
-        const cellInput = element.querySelector('.cell-text');
         const openCheck = element.querySelector('input[type=text]');
-        const rectCheck = element.querySelector('rect');
-        const polygonCheck = element.querySelector('polygon');
-        const circleCheck = element.querySelector('circle');
+        
         const firCheck = element.querySelector('.fir-icon');
         firCheck.style.pointerEvents = 'none';
+
+        const notClickNodes = ['label', 'input', 'input[type=text]', 'rect', 'polygon', 'circle', '.fir-icon']
+        const notClickNodesMap = notClickNodes.map((nd)=> element.querySelector(nd));
+        
         element.addEventListener('click', (event) => {
-          
-          if (![labelNode, inputNode, openCheck, rectCheck, polygonCheck, circleCheck, firCheck].includes(event.target)) {
-            labelNode.click();
-          }
-          
-          if( openCheck && inputNode.checked ) {
-            openCheck.focus();
-          }
+            if (!notClickNodesMap.includes(event.target)) {
+                labelNode.click();
+            }
+
+            if( openCheck && inputNode.checked ) {
+                openCheck.focus();
+            }
         });
     });
   });
