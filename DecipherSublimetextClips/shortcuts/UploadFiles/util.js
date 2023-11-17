@@ -1125,7 +1125,6 @@ function groupToggleSetting(toggleClassName=".ch-group-toggle", groupRows=".ch-g
 
         const style = window.getComputedStyle(groupRowCell);
         const padding = style.getPropertyValue('padding');
-        console.log(padding);
 
         groupName.style.cursor = 'pointer';
 
@@ -1914,7 +1913,7 @@ const setCustomBtn = ()=>{
       if (colNumber >= 3) {
         style.innerHTML += `
 @media (max-width: 1000px) {
-    #${btnId} .${newClassName} {
+    #${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
       grid-template-columns: 50% 50%;
     }
 }`;
@@ -1936,7 +1935,7 @@ const setCustomBtn = ()=>{
 
     style.innerHTML += `
 @media (max-width: 768px) {
-    #${btnId} .${newClassName} {
+    #${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
         grid-template-columns: 100%;
     }
 
