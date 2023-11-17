@@ -1074,18 +1074,27 @@ function bmQuestionHanler(questionClassName){
 function groupToggleSetting(toggleClassName=".ch-group-toggle", groupRows=".ch-group-rows", groupTitle=".ch-group-name"){
     const groupToggle = document.querySelectorAll(toggleClassName);
 
-    const maxHeightHandler = (groupRowCell, groupName) => {
+
+    const maxHeightHandler = (groupRowCell, groupName, padding) => {
         const originalMaxHeight = groupRowCell.style.maxHeight;
+
+        let paddingValue = 0;
+        if( padding !== undefined && padding !== null ){
+            paddingValue = parseInt(padding.replace('px', ''));
+        }
+
         groupRowCell.style.maxHeight = 'none';
-        const domMaxHeight = groupRowCell.offsetHeight;
+        const domMaxHeight = groupRowCell.offsetHeight + paddingValue + 3;
         groupRowCell.style.maxHeight = originalMaxHeight;
 
         window.requestAnimationFrame(() => {
             if (groupRowCell.style.maxHeight === '0px') {
                 groupRowCell.style.maxHeight = `${domMaxHeight}px`;
+                groupRowCell.style.padding = padding;
                 groupName.classList.add('ch-open');
             } else {
                 groupRowCell.style.maxHeight = '0px';
+                groupRowCell.style.padding = '0';
                 groupName.classList.remove('ch-open');
             }
         });
@@ -1114,6 +1123,10 @@ function groupToggleSetting(toggleClassName=".ch-group-toggle", groupRows=".ch-g
         const groupRowCell = group.querySelector(groupRows);
         const groupName = group.querySelector(groupTitle);
 
+        const style = window.getComputedStyle(groupRowCell);
+        const padding = style.getPropertyValue('padding');
+        console.log(padding);
+
         groupName.style.cursor = 'pointer';
 
         const arrowDiv = document.createElement('div');
@@ -1122,7 +1135,7 @@ function groupToggleSetting(toggleClassName=".ch-group-toggle", groupRows=".ch-g
 
         groupName.appendChild(arrowDiv);
 
-        const clickHandler = () => maxHeightHandler(groupRowCell, groupName);
+        const clickHandler = () => maxHeightHandler(groupRowCell, groupName, padding);
         clickHandler();
 
         groupName.addEventListener('click', clickHandler);
@@ -1835,7 +1848,7 @@ function handleButtonColor(element) {
 }
 
 const observeElements = () => {
-    const elements = document.querySelectorAll('.answers .element');
+    const elements = document.querySelectorAll('.sp-custom-btn .answers .element');
     elements.forEach(element => {
         const observer = new MutationObserver(mutations => {
             mutations.forEach(mutation => {
@@ -1861,6 +1874,7 @@ const setCustomBtn = ()=>{
 
   btnClass.forEach((btn)=>{
     const btnClassList = btn.classList;
+    const btnId = btn.id;
 
     const checkCols = [...btnClassList].filter(cl => cl.includes('btn-cols-'));
     
@@ -1868,14 +1882,19 @@ const setCustomBtn = ()=>{
     const newClassName = `custom-btn-cols-${colNumber}`;
     
     const elements = btn.querySelectorAll('.answers .element');
-    const maxHeight = Array.from(elements).reduce((max, el) => Math.max(max, el.clientHeight), 0);
+    let maxHeight = Array.from(elements).reduce((max, el) => Math.max(max, el.clientHeight), 0);
+    if( maxHeight <= 42 ){
+        maxHeight = 42;
+    }
 
     const style = document.createElement('style');
+    // With Custom Toggle Group 
+    const groupRow = btn.querySelectorAll('.ch-group-rows');
     style.innerHTML = `
-.cell-sub-wrapper {
+#${btnId} .cell-sub-wrapper {
     min-height: ${maxHeight}px;
 }
-.${newClassName} {
+#${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
   display: grid;
   grid-template-columns: repeat(${colNumber}, 1fr);
   display: grid !important;
@@ -1884,9 +1903,10 @@ const setCustomBtn = ()=>{
   grid-row-gap: 5px;
   max-width: 924px;
   align-items: stretch;
+  ${groupRow.length>=1 ? 'padding: 5px;' : ''}
 }
 
-.${newClassName} .element {
+#${btnId} .${newClassName} .element {
     display: flex;
     align-items: stretch;
 }`;
@@ -1894,7 +1914,7 @@ const setCustomBtn = ()=>{
       if (colNumber >= 3) {
         style.innerHTML += `
 @media (max-width: 1000px) {
-    .${newClassName} {
+    #${btnId} .${newClassName} {
       grid-template-columns: 50% 50%;
     }
 }`;
@@ -1908,7 +1928,7 @@ const setCustomBtn = ()=>{
     if( checkMaxWidth.length == 1 ) {
         const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
         style.innerHTML += `
-.answers .element {
+#${btnId} .answers .element {
     max-width: ${setMaxWidth}px;
 }
 `;
@@ -1916,16 +1936,16 @@ const setCustomBtn = ()=>{
 
     style.innerHTML += `
 @media (max-width: 768px) {
-    .${newClassName} {
+    #${btnId} .${newClassName} {
         grid-template-columns: 100%;
     }
 
-    .answers .element {
+    #${btnId} .answers .element {
         max-width: 100% !important;
     }
 }`;
 
-    document.querySelector('.answers').appendChild(style);
+    btn.querySelector('.answers').appendChild(style);
 
     elements.forEach((element)=>{        
         const labelNode = element.querySelector('label');
