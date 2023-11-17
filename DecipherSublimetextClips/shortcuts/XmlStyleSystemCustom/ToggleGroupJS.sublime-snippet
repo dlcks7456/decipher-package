@@ -1,7 +1,13 @@
 <snippet>
 	<content><![CDATA[
-<style name="question.after" wrap="ready"><![CDATA[
-groupToggleSetting();
+<style name="question.after"><![CDATA[
+<script>
+window.addEventListener('DOMContentLoaded', ()=>{
+	groupToggleSetting({
+		qid: '.label_\$(this.label)'
+	})
+});
+</script>
 ]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

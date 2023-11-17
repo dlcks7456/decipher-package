@@ -1071,8 +1071,14 @@ function bmQuestionHanler(questionClassName){
 }
 
 // Group Toggle setting
-function groupToggleSetting(toggleClassName=".ch-group-toggle", groupRows=".ch-group-rows", groupTitle=".ch-group-name"){
-    const groupToggle = document.querySelectorAll(toggleClassName);
+function groupToggleSetting({qid, toggleClassName=".ch-group-toggle", groupRows=".ch-group-rows", groupTitle=".ch-group-name"}){
+    const base = document.querySelector(qid);
+
+    if( base == undefined || base == null ){
+        return;
+    }
+
+    const groupToggle = base.querySelectorAll(toggleClassName);
 
 
     const maxHeightHandler = (groupRowCell, groupName, padding) => {
@@ -1101,7 +1107,7 @@ function groupToggleSetting(toggleClassName=".ch-group-toggle", groupRows=".ch-g
     };
 
     const groupSelected = () => {
-        const groupToggle = document.querySelectorAll(toggleClassName);
+        const groupToggle = base.querySelectorAll(toggleClassName);
         groupToggle.forEach((group) => {
             const groupRowCell = group.querySelector(groupRows);
             const groupName = group.querySelector(groupTitle);
@@ -1115,7 +1121,7 @@ function groupToggleSetting(toggleClassName=".ch-group-toggle", groupRows=".ch-g
     };
 
     groupSelected();
-    document.querySelector('.answers').addEventListener('click', groupSelected);
+    base.querySelector('.answers').addEventListener('click', groupSelected);
 
     const toggleArrow = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>`;
 
