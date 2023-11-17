@@ -1801,6 +1801,50 @@ class makePipeCommand(sublime_plugin.TextCommand):
             print ('make pipe failed')
             print (e)
 ############# QUESTION ELEMENTS ######################
+def find_duplicates_list(lst):
+    seen = set()
+    duplicates = set()
+    for item in lst:
+        if item in seen:
+            duplicates.add(item)
+        else:
+            seen.add(item)
+    return list(duplicates)
+
+
+def checkDupeElement(check_text) :
+  printLabel = []
+  printText = []
+
+  for line in check_text.split('\n'):
+      if line:
+          # label 값 추출
+          label_start = line.find('label="') + 7
+          label_end = line.find('"', label_start)
+          label = line[label_start:label_end]
+          printLabel.append(label)
+
+          # 텍스트 추출
+          text_start = line.find('>') + 1
+          text_end = line.find('</', text_start)
+          text = line[text_start:text_end]
+          text = text.strip().replace(' ', '')
+          printText.append(text)
+
+  # 중복 검사
+  duplicate_labels = find_duplicates_list(printLabel)
+  duplicate_texts = find_duplicates_list(printText)
+
+  raw_text = check_text
+  if duplicate_labels :
+    dup_label = ', '.join(duplicate_labels)
+    raw_text += "<note>❌ ERROR Duplicate Label : %s</note>\n"%(dup_label)
+  if duplicate_texts :
+    dup_text = ', '.join(duplicate_texts)
+    raw_text += "<note>❌ ERROR Duplicate Text : %s</note>\n"%(dup_text)
+
+  return raw_text
+
 class makeRowCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         try:
@@ -1839,7 +1883,7 @@ class makeRowCommand(sublime_plugin.TextCommand):
                     printPage += "  <row label=\"r%s\"%s>%s</row>\n" % (str(count+1), extra, input[count].strip())
                     count += 1
                 # thanks to replace the regions keep updated with their start and end point
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit,sel, checkDupeElement(printPage))
 
         except Exception as e:
             print (e)
@@ -1882,7 +1926,7 @@ class makeRowAutoValueCommand(sublime_plugin.TextCommand):
                     printPage += "  <row label=\"r%s\"%s value=\"%s\">%s</row>\n" % (str(count+1), extra, str(count+1), input[count].strip())
                     count += 1
                 # thanks to replace the regions keep updated with their start and end point
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit,sel, checkDupeElement(printPage))
 
         except Exception as e:
             print (e)
@@ -1929,7 +1973,7 @@ class makeRowrCommand(sublime_plugin.TextCommand):
                     count -= 1
                     counter +=1
                 # thanks to replace the regions keep updated with their start and end point
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit,sel, checkDupeElement(printPage))
 
         except Exception as e:
             print (e)
@@ -1985,7 +2029,7 @@ class makeRowsMatchLabelCommand(sublime_plugin.TextCommand):
                        count += 1
                        printPage += "  <row label=\"r%s\"%s>%s</row>\n" % (str(count), extra, line)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit,sel, checkDupeElement(printPage))
         except Exception as e:
             print (e)
 
@@ -2034,7 +2078,7 @@ class makeRowsMatchValuesCommand(sublime_plugin.TextCommand):
                     #COMPOSE ROW
                     printPage += "  <row label=\"r%s\" value=\"%s\"%s>%s</row>\n" % (ordinal,ordinal, extra, content)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit,sel, checkDupeElement(printPage))
         except Exception as e:
             print (e)
 
@@ -2072,7 +2116,7 @@ class makeColsCommand(sublime_plugin.TextCommand):
                         printPage += "  <col label=\"c%s\"%s>%s</col>\n" % (str(count+1), extra, input[count].strip())
                         count += 1
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit,sel, checkDupeElement(printPage))
         except Exception as e:
             print (e)
 
@@ -2124,7 +2168,7 @@ class makeColsMatchLabelCommand(sublime_plugin.TextCommand):
                        count += 1
                        printPage += "  <col label=\"c%s\"%s>%s</col>\n" % (str(count), extra, line)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit,sel, checkDupeElement(printPage))
         except Exception as e:
             print (e)
 
@@ -2169,7 +2213,7 @@ class makeColsMatchValueCommand(sublime_plugin.TextCommand):
                      #COMPOSE COLUMN
                      printPage += "  <col label=\"c%s\" value=\"%s\"%s>%s</col>\n" % (ordinal,ordinal, extra, content)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit,sel, checkDupeElement(printPage))
         except Exception as e:
             print (e)
 
@@ -2193,7 +2237,7 @@ class makeChoicesCommand(sublime_plugin.TextCommand):
                 for x in input:
                     printPage += "  <choice label=\"ch%s\">%s</choice>\n" % (str(count+1), input[count].strip())
                     count += 1
-            self.view.replace(edit,sel, printPage)
+            self.view.replace(edit,sel, checkDupeElement(printPage))
         except Exception as e:
             print (e)
 
