@@ -1828,7 +1828,7 @@ def checkDupeElement(check_text) :
           text_start = line.find('>') + 1
           text_end = line.find('</', text_start)
           text = line[text_start:text_end]
-          text = text.strip().replace(' ', '')
+          text = text.strip().replace(' ', '').upper()
           printText.append(text)
 
   # 중복 검사
