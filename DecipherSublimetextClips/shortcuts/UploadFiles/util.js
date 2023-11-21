@@ -517,7 +517,7 @@ function floatHandler(query, validNumber){
     });
 }
 
-function fnLengthCheck(_label, _num){
+function fnLengthCheck(_label, _num, _placeholder){
   const fnNextActivate = (_bol) => {
     const objNextBtn = document.getElementById('btn_continue');
     if (_bol){
@@ -820,6 +820,10 @@ function fnLengthCheck(_label, _num){
       objSection.append(objMarkFailArea);
       objAreaWrap.append(objSection);
     
+      if (!(_placeholder === undefined || _placeholder === 'undefined' || _placeholder === 'None' || _placeholder === 'none' || _placeholder === '0' || _placeholder === '')){
+        objTextArea.setAttribute('placeholder', _placeholder)
+      }
+
       jQuery(objTextArea).on("propertychange change keyup paste input focus", fnInputCheck);
     
       objTextArea.addEventListener('blur', () => {
@@ -834,6 +838,9 @@ function fnLengthCheck(_label, _num){
     for (k = 0; k < numInputTextCount; k++){
       if (document.querySelectorAll(`#question_${_label} input[type=text]`)[k].getAttribute('name') !== null && document.querySelectorAll(`#question_${_label} input[type=text]`)[k].getAttribute('name').indexOf('ans') !== -1){
         let objInputText = document.querySelectorAll(`#question_${_label} input[type=text]`)[k];
+        if (!(_placeholder === undefined || _placeholder === 'undefined' || _placeholder === 'None' || _placeholder === 'none' || _placeholder === '0' || _placeholder === '')){
+          objInputText.setAttribute('placeholder', _placeholder)
+        }
         jQuery(objInputText).on("propertychange change keyup paste input focus", () => {
           fnBadText(objInputText);
         });

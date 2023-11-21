@@ -4,7 +4,7 @@
 <style>
 .ch-group-rows {
     display: grid;
-    grid-template-columns: repeat($(colCount), 1fr);
+    grid-template-columns: repeat(\$(colCount), 1fr);
     align-items: center;
 }
 
