@@ -1903,19 +1903,11 @@ const setCustomBtn = ()=>{
     const colNumber = checkCols.length >= 1 ? checkCols[0].split('-')[2] : 1;
     const newClassName = `custom-btn-cols-${colNumber}`;
     
-    const elements = btn.querySelectorAll('.answers .element');
-    let maxHeight = Array.from(elements).reduce((max, el) => Math.max(max, el.clientHeight), 0);
-    if( maxHeight <= 42 ){
-        maxHeight = 42;
-    }
 
     const style = document.createElement('style');
     // With Custom Toggle Group 
     const groupRow = btn.querySelectorAll('.ch-group-rows');
     style.innerHTML = `
-#${btnId} .cell-sub-wrapper {
-    min-height: ${maxHeight}px;
-}
 #${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
   display: grid;
   grid-template-columns: repeat(${colNumber}, 1fr);
@@ -1967,8 +1959,24 @@ const setCustomBtn = ()=>{
     }
 }`;
 
+
+    const wrapper = btn.querySelectorAll('.answers .element');
+    let maxHeight = Array.from(wrapper).reduce((max, el) => Math.max(max, el.clientHeight), 0);
+
+
+    if( maxHeight <= 62 ){
+        maxHeight = 62;
+    }
+
+    style.innerHTML +=  `
+#${btnId} .cell-sub-wrapper {
+    min-height: ${maxHeight}px;
+}
+    `;
+
     btn.querySelector('.answers').appendChild(style);
 
+    const elements = btn.querySelectorAll('.answers .element');
     elements.forEach((element)=>{        
         const labelNode = element.querySelector('label');
         const inputNode = element.querySelector('input');
