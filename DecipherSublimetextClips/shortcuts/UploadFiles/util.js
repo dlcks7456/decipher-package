@@ -1670,6 +1670,16 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
   }
 }
 
+function fnEventRemove(_label){
+  const objTarget = document.querySelector('#question_' + _label);
+  const objClone = objTarget.cloneNode(true);
+  objTarget.parentNode.replaceChild(objClone, objTarget);
+  objClone.style.pointerEvents = "none";
+  objClone.setAttribute('tabindex', '-1');
+  objClone.oncontextmenu = function(){ return false; };
+  objClone.onselectstart = function(){ return false; };
+  objClone.ondragstart = function(){ return false; };
+}
 
 // Dial
 function hexToRgbA(hex, alpha) {
