@@ -15,7 +15,7 @@ setHoverTextBold();
 
 window.addEventListener("DOMContentLoaded", function(){
   /** IE Browser block **/  
-    blockIE();
+  // blockIE();
 
   /** Restart remove **/
   const restart = document.querySelector(".autosave-restart");
