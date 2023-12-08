@@ -1923,7 +1923,12 @@ const setCustomBtn = ()=>{
 #${btnId} .${newClassName} .element {
     display: flex;
     align-items: stretch;
-}`;
+}
+
+#${btnId} .${newClassName} .element img {
+    pointer-events: none;
+}
+`;
 
       if (colNumber >= 3) {
         style.innerHTML += `
