@@ -1942,12 +1942,12 @@ const setCustomBtn = ()=>{
     const answers = btn.querySelector('.answers');
     answers.classList.add(newClassName);
     
-    const checkMaxWidth = [...btnClassList].filter((cl)=> cl.includes('btn-mx-'));
+    const checkMaxWidth = [...btnClassList].filter((cl)=> cl.includes('btn-mw-'));
 
     if( checkMaxWidth.length == 1 ) {
         const setMaxWidth = checkMaxWidth[0].split('-').slice(-1)[0];
         style.innerHTML += `
-#${btnId} .answers .element {
+#${btnId} .answers {
     max-width: ${setMaxWidth}px;
 }
 `;
