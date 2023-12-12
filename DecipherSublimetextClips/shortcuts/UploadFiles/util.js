@@ -1920,6 +1920,10 @@ const setCustomBtn = ()=>{
   ${groupRow.length>=1 ? 'padding: 5px;' : ''}
 }
 
+#${btnId} .${newClassName} .element img {
+    pointer-events: none;
+}
+
 #${btnId} .${newClassName} .element {
     display: flex;
     align-items: stretch;
@@ -1963,7 +1967,7 @@ const setCustomBtn = ()=>{
     const wrapper = btn.querySelectorAll('.answers .element');
     let maxHeight = Array.from(wrapper).reduce((max, el) => Math.max(max, el.clientHeight), 0);
 
-
+    
     if( maxHeight <= 62 ){
         maxHeight = 62;
     }
