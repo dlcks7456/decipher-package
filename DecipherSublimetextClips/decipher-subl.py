@@ -1414,8 +1414,8 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                             if x.count("value=") > 0:
                                 if x.count("<col") > 0:
                                     shffl = "\n  shuffle=\"rows\""
-                                elif x.count("<row") > 0:
-                                    shffl = "\n  shuffle=\"cols\""
+                                # elif x.count("<row") > 0:
+                                #     shffl = "\n  shuffle=\"cols\""
                     else:
                         comment = "<comment></comment>\n"
 
@@ -1438,8 +1438,8 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                             if x.count("value=") > 0:
                                 if x.count("<col") > 0:
                                     shffl = "\n  shuffle=\"rows\""
-                                elif x.count("<row") > 0:
-                                    shffl = "\n  shuffle=\"cols\""
+                                # elif x.count("<row") > 0:
+                                #     shffl = "\n  shuffle=\"cols\""
                     else:
                         comment = "<comment></comment>\n"
 
@@ -1461,8 +1461,8 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                             if x.count("value=") > 0:
                                 if x.count("<col") > 0:
                                     shffl = "\n  shuffle=\"rows\""
-                                elif x.count("<row") > 0:
-                                    shffl = "\n  shuffle=\"cols\""
+                                # elif x.count("<row") > 0:
+                                #     shffl = "\n  shuffle=\"cols\""
                     else:
                         comment = "<comment></comment>\n"
 
@@ -1481,8 +1481,8 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                             if x.count("value=") > 0:
                                 if x.count("<col") > 0:
                                     shffl = "\n  shuffle=\"rows\""
-                                elif x.count("<row") > 0:
-                                    shffl = "\n  shuffle=\"cols\""
+                                # elif x.count("<row") > 0:
+                                #     shffl = "\n  shuffle=\"cols\""
                     else:
                         comment = "<comment></comment>\n"
 
