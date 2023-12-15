@@ -1905,6 +1905,8 @@ const setCustomBtn = ()=>{
     
 
     const style = document.createElement('style');
+    btn.querySelector('.answers').appendChild(style);
+    
     // With Custom Toggle Group 
     const groupRow = btn.querySelectorAll('.ch-group-rows');
     style.innerHTML = `
@@ -1944,6 +1946,7 @@ const setCustomBtn = ()=>{
     }
 
     const answers = btn.querySelector('.answers');
+
     answers.classList.add(newClassName);
     
     const checkMaxWidth = [...btnClassList].filter((cl)=> cl.includes('btn-mw-'));
@@ -1972,7 +1975,6 @@ const setCustomBtn = ()=>{
     const wrapper = btn.querySelectorAll('.answers .element');
     let maxHeight = Array.from(wrapper).reduce((max, el) => Math.max(max, el.clientHeight), 0);
 
-    
     if( maxHeight <= 62 ){
         maxHeight = 62;
     }
@@ -1982,8 +1984,6 @@ const setCustomBtn = ()=>{
     min-height: ${maxHeight}px;
 }
     `;
-
-    btn.querySelector('.answers').appendChild(style);
 
     const elements = btn.querySelectorAll('.answers .element');
     elements.forEach((element)=>{        
