@@ -1526,7 +1526,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .custom-label-style() {
     display: block;
     width: 100%;
-    padding: 6px;
+    padding: 5px;
     border-radius: 5px;
     overflow: hidden;
     transition: background-color 0.5s;
@@ -2056,6 +2056,10 @@ input[type="number"]::-webkit-inner-spin-button {
         label {
           .custom-label-style();
         }
+
+        input[type=text] {
+          margin-left: 5px;
+        }
       }
     }
   }
@@ -2527,7 +2531,7 @@ input[type='number'] {
       .cell-text {
         width: 100%;
         max-width: 924px;
-        padding: 10px;
+        position: relative;
       }
 
       .cell-sub-wrapper {
@@ -2545,7 +2549,10 @@ input[type='number'] {
       }
 
       label {
-        display: inline-block;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 5px;
       }
 
       input[type=text] {

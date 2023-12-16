@@ -1922,18 +1922,11 @@ const setCustomBtn = ()=>{
   ${groupRow.length>=1 ? 'padding: 5px;' : ''}
 }
 
-#${btnId} .${newClassName} .element img {
-    pointer-events: none;
-}
-
 #${btnId} .${newClassName} .element {
     display: flex;
     align-items: stretch;
 }
 
-#${btnId} .${newClassName} .element img {
-    pointer-events: none;
-}
 `;
 
       if (colNumber >= 3) {
@@ -1992,13 +1985,18 @@ const setCustomBtn = ()=>{
         const openCheck = element.querySelector('input[type=text]');
         
         const firCheck = element.querySelector('.fir-icon');
-        firCheck.style.pointerEvents = 'none';
+        //firCheck.style.pointerEvents = 'none';
 
         const notClickNodes = ['label', 'input', 'input[type=text]', 'rect', 'polygon', 'circle', '.fir-icon']
         const notClickNodesMap = notClickNodes.map((nd)=> element.querySelector(nd));
         
         element.addEventListener('click', (event) => {
-            if (!notClickNodesMap.includes(event.target)) {
+            // if (!notClickNodesMap.includes(event.target)) {
+            //     labelNode.click();
+            // }
+
+            const cond = ['element', 'cell-input', 'cell-text', 'cell-sub-wrapper'].some(className => event.target.classList.contains(className));
+            if( cond ){
                 labelNode.click();
             }
 
@@ -2011,6 +2009,3 @@ const setCustomBtn = ()=>{
 }
 
 window.addEventListener('DOMContentLoaded', setCustomBtn);
-
-
-
