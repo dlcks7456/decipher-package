@@ -1,0 +1,34 @@
+<snippet>
+	<content><![CDATA[
+<style name="question.after"><![CDATA[
+<script>
+const answers = document.querySelector(".answers");
+const otherHandler = ()=>{
+    const otherRow = document.querySelector(".rank-row-r98");
+    if( otherRow ){ 
+      const rank1 = document.querySelector(".answer-rank-1");  
+      if( rank1 ){  
+        otherRow.classList.remove("hidden");
+      }else{  
+        otherRow.classList.add("hidden"); 
+      }
+    }
+}
+
+const observer = new MutationObserver(otherHandler);
+
+const config = { 
+    childList: true,
+    characterData: true,
+    subtree: true
+};
+
+observer.observe(answers, config);
+</script>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>custom.rank.observe</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
