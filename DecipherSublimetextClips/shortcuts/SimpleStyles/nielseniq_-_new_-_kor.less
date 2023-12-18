@@ -1973,9 +1973,10 @@ input[type="number"]::-webkit-inner-spin-button {
     .row-elements {
       display: flex !important;
       flex-direction: column;
+      margin: 0 auto;
       
       .cell {
-        margin-bottom : 5px;
+        margin: 0 auto 5px auto;
         text-align: left;
         padding: 10px;
       }
@@ -2531,7 +2532,6 @@ input[type='number'] {
       .cell-text {
         width: 100%;
         max-width: 924px;
-        position: relative;
       }
 
       .cell-sub-wrapper {
@@ -2545,6 +2545,10 @@ input[type='number'] {
 
         &:hover {
           background-color: @custom-sub-color;
+        }
+
+        .cell-sub-column {
+          height: 100%;
         }
       }
 
