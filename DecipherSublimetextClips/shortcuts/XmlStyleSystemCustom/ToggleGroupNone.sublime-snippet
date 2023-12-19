@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+.none-group {
+  border: unset !important;
+  box-shadow:  unset !important;
+}
+
+.none-group .ch-group-name {
+  display: none;
+}
+
+.none-group .ch-group-rows {
+  grid-template-columns: repeat(1, 1fr) !important;
+}
+
+.none-group .cell-sub-wrapper {
+  min-height: 100px !important;
+  max-height: 100px !important;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tog.group.none</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
