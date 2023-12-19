@@ -1892,6 +1892,64 @@ const setCustomBtn = ()=>{
     return;
   }
 
+  const mainStyle = document.createElement('style');
+  mainStyle.innerHTML = `
+.sp-custom-btn .answers .element {
+  padding: unset;
+  overflow: hidden;
+  border-radius: 7px;
+  margin-bottom: 3px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.sp-custom-btn .answers .element .cell-text {
+  width: 100%;
+  max-width: 924px;
+}
+
+.sp-custom-btn .answers .element .cell-sub-wrapper {
+  padding-left: 0.25em;
+  border-radius: 7px;
+  border: 1px solid #959595;
+  width: 100%;
+  max-width: 924px;
+  transition: background-color 0.5s;
+  overflow: hidden;
+}
+
+.sp-custom-btn .answers .element .cell-sub-wrapper:hover {
+  background-color: #b7ceff;
+}
+
+.sp-custom-btn .answers .element .cell-sub-wrapper .cell-sub-column {
+  height: 100%;
+}
+
+.sp-custom-btn .answers .element label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+
+.sp-custom-btn .answers .element input[type="text"] {
+  margin-left: 2px;
+}
+
+@media (max-width: 768px) {
+  .sp-custom-btn .answers .element {
+    max-width: 100%;
+  }
+
+  .sp-custom-btn .answers .element .cell-sub-wrapper:hover {
+    background-color: unset;
+  }
+}
+  `;
+  document.head.appendChild(mainStyle);
+  
+  
   observeElements();
 
   btnClass.forEach((btn)=>{
