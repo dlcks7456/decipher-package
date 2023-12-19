@@ -1906,6 +1906,7 @@ const setCustomBtn = ()=>{
 .sp-custom-btn .answers .element .cell-text {
   width: 100%;
   max-width: 924px;
+  padding: 5px;
 }
 
 .sp-custom-btn .answers .element .cell-sub-wrapper {
@@ -1934,7 +1935,7 @@ const setCustomBtn = ()=>{
 }
 
 .sp-custom-btn .answers .element input[type="text"] {
-  margin-left: 2px;
+  margin-left: 6px;
 }
 
 @media (max-width: 768px) {
@@ -1944,6 +1945,10 @@ const setCustomBtn = ()=>{
 
   .sp-custom-btn .answers .element .cell-sub-wrapper:hover {
     background-color: unset;
+  }
+
+  .sp-custom-btn .answers .element input[type="text"] {
+    width: 90%;
   }
 }
   `;
