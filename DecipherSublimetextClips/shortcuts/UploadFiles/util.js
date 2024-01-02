@@ -1596,15 +1596,17 @@ function onerowatatime(_label, _row, _col, _answer, _result, _scroll, _next, _mu
     let strMainType = document.querySelectorAll('#question_' + strLabel + ' .grid tbody')[document.querySelectorAll('#question_' + strLabel + ' .grid tbody').length - 1].querySelector('td input').type;
     for(i = 0; i < arrCheckList.length; i++){
       jQuery(arrCheckList[i].querySelector('input[type=' + strMainType + ']')).on("propertychange change input", (e) => {
-        if(fnCheck(e.target.parentNode.parentNode.parentNode.parentNode)){
-          e.target.parentNode.parentNode.parentNode.parentNode.classList.add('clicked');
+        let tempCurrentParent = e.target.parentNode.className.indexOf('clickableCell') !== -1 ? e.target.parentNode.parentNode : e.target.parentNode.parentNode.parentNode.parentNode;
+        let tempParentNext = tempCurrentParent.nextSibling;
+        if(fnCheck(tempCurrentParent)){
+          tempCurrentParent.classList.add('clicked');
         }
         else{
-          e.target.parentNode.parentNode.parentNode.parentNode.classList.remove('clicked');
+          tempCurrentParent.classList.remove('clicked');
         }
         fnResultUpdate();
-        if(e.target.checked && e.target.parentNode.parentNode.parentNode.parentNode.nextSibling !== null){
-          fnFinder(e.target.parentNode.parentNode.parentNode.parentNode.nextSibling, e.target.type, e.target.parentNode.parentNode.parentNode.parentNode);
+        if(e.target.checked && tempParentNext !== null){
+          fnFinder(tempParentNext, e.target.type, tempCurrentParent);
         }
       });
       if(arrCheckList[i].parentNode.nextSibling !== null){
