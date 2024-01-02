@@ -1940,6 +1940,22 @@ const setCustomBtn = ()=>{
   margin-left: 6px;
 }
 
+.hasError .ch-group-toggle .ch-group-rows .hasError .cell-text {
+    border-bottom: unset !important;
+}
+
+.sp-custom-btn .ch-group-toggle .hasError.element .cell-sub-wrapper {
+    border: 1px solid #e7046f;
+}
+
+.sp-custom-btn.hasError .ch-group-toggle .ch-group-rows {
+    background-color: unset !important;
+}
+
+.sp-custom-btn .element.hasError {
+    background-color: unset !important;
+}
+
 @media (max-width: 768px) {
   .sp-custom-btn .answers .element {
     max-width: 100%;
