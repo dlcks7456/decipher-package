@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-ss:questionClassNames="sp-custom-btn btn-mw-500 btn-cols-1"
+ss:questionClassNames="sp-custom-btn btn-mw-500${1: btn-cols-1}"
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>custom.btn</tabTrigger>
