@@ -15,7 +15,7 @@ ex) UID = 4909 (로그인 링크에서 4909를 입력해도 동일한 링크로 
 ${3:https://pacific.surveys.nielseniq.com/survey/selfserve/548/XXX?list=9&UID=4909}
 
 수정 사항은 Project box의 Survey Programming 시트에 업데이트 부탁드립니다.
-수정 사항 작성하실 때 Quesion/Detail/Stage/Type/Change code/Source/Opened Date는 필수로 입력 부탁드립니다.
+수정 사항 작성하실 때 Question/Detail/Stage/Type/Change code/Source/Opened Date는 필수로 입력 부탁드립니다.
 워딩 수정은 테스트 링크 하단의 edit 기능으로 수정 부탁드리며, 프로그래밍 언어는 수정되지 않도록 부탁드립니다.
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
