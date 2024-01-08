@@ -1,0 +1,48 @@
+<snippet>
+    <content><![CDATA[
+<exec when="init">
+def clean_txt(txt) :
+  if txt == None :
+    return 'None'
+  else :
+    return txt.strip().replace(' ', '').upper()
+
+
+def auto_from_oe(auto_qid, *base_qid) :
+  for each in auto_qid.rows :
+    each.val = False
+
+  for qid in base_qid :
+    for eachRow in qid.rows :
+      if eachRow.val == None or eachRow.val == '' :
+        continue
+
+      ans = clean_txt(eachRow.unsafe_val)
+      for txt in auto_qid.rows :
+        if txt.displayed :
+          chk_list = [clean_txt(t) for t in txt.text.split('/')]
+          if ans in chk_list :
+            txt.val = True
+</exec>
+
+<suspend/>
+
+<checkbox 
+label="T${1}"
+where="execute,survey,report">
+  <title><div class="q-name">T${1}</div> (HIDDEN) ${1} Open answer check<br />
+  - 정확하게 입력한 경우만 체크오타리스트 적용 필요하면 확인 필요<br />
+  - 오타 리스트 필요하면 '/'로 구분해서 워딩 수정<br />
+  - 각 워딩에 띄어쓰기는 무시함</title>
+  <exec>
+auto_from_oe(T${1}, ${2})
+  </exec>
+</checkbox>
+
+<suspend/>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>auto.brand</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>
