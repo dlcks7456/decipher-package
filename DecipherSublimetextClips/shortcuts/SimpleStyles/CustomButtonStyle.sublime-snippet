@@ -3,7 +3,7 @@
 ss:questionClassNames="sp-custom-btn btn-mw-500${1: btn-cols-1}"
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>custom.btn</tabTrigger>
+	<tabTrigger>btn</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>
