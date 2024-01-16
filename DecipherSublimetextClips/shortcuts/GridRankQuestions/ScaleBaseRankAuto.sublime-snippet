@@ -1,6 +1,13 @@
 <snippet>
   <content><![CDATA[
+<res label="rate_show_score_text">%s <strong>(%s점)</strong></res>
+
 <exec when="init">
+def rate_show_score(curr, base) :
+  for row in curr.rows :
+    if base.attr(row.label).any :
+      row.text = res.rate_show_score_text%(base.attr(row.label).text, base.cols[base.attr(row.label).val].value)
+
 def scale_rank_items(scale_qid, rank_qid, reverse=True) :
     scale_answer = {x.label: x.val for x in scale_qid.rows.order if x.any}
     sorted_list = sorted(scale_answer.items(), key=lambda item: item[1], reverse=reverse)
@@ -28,17 +35,24 @@ def scale_rank_items(scale_qid, rank_qid, reverse=True) :
 
     rank_able_answer = {}
     rank_auto_row = {}
+    rowCond = []
     for idx, eachCol in enumerate(rank_cols) :
-      rank_able_answer[eachCol.label] = sort_rows[idx]
+      row_label = sort_rows[idx]
+      rank_able_answer[eachCol.label] = row_label
+      rowCond.append(row_label[0])
 
-      if len(sort_rows[idx]) == 1 :
-        auto_label = sort_rows[idx][0]
+      if len(rowCond) ge len(rank_cols) :
+        break
+
+      if len(row_label) == 1 :
+        auto_label = row_label[0]
         rank_auto_row[eachCol.label] = auto_label
         eachCol.val = rank_qid.attr(auto_label).index
 
     rank_qid.rows.order = [scale_qid.attr(each).index for each in sum(sort_rows, [])]
 
     return {
+      'show' : rowCond,
       'able' : rank_able_answer,
       'auto' : rank_auto_row,
     }
