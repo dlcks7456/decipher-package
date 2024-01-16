@@ -33,28 +33,48 @@ def scale_rank_items(scale_qid, rank_qid, reverse=True) :
     if current_group:
         sort_rows.append(current_group)
 
-    rank_able_answer = {}
+    rank_able_answer = []
     rank_auto_row = {}
     rowCond = []
     for idx, eachCol in enumerate(rank_cols) :
       row_label = sort_rows[idx]
-      rank_able_answer[eachCol.label] = row_label
-      rowCond.append(row_label[0])
+      rank_able_answer.append(row_label)
 
       if len(rowCond) ge len(rank_cols) :
-        break
+        continue
 
-      if len(row_label) == 1 :
-        auto_label = row_label[0]
-        rank_auto_row[eachCol.label] = auto_label
-        eachCol.val = rank_qid.attr(auto_label).index
+      for x in row_label :
+        rowCond.append(x)
 
     rank_qid.rows.order = [scale_qid.attr(each).index for each in sum(sort_rows, [])]
 
+    skip_cond = all(len(row)==1 for row in rank_able_answer)
+    
+    print(rank_able_answer)
+    print(rowCond)
+
+    able_ans = {}
+    start_index = 0
+    for row in rank_able_answer :
+      for x in range(start_index, len(row)+start_index) :
+        if x ge len(rank_qid.cols) :
+          break
+        col_label = rank_qid.cols[x].label
+
+        if not col_label in able_ans.keys() :
+          able_ans[col_label] = row
+          start_index+=1
+
+    auto_rows = {}
+    for key, row_list in able_ans.items() :
+      if len(row_list) == 1 :
+        auto_rows[key] = row_list
+        rank_qid.attr(key).val = rank_qid.attr(row_list[0]).index
+
     return {
       'show' : rowCond,
-      'able' : rank_able_answer,
-      'auto' : rank_auto_row,
+      'skip' : skip_cond,
+      'auto' : auto_rows
     }
 </exec>
 ]]></content>
