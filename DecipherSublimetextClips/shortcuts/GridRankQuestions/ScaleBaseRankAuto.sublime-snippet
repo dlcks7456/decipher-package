@@ -1,0 +1,51 @@
+<snippet>
+  <content><![CDATA[
+<exec when="init">
+def scale_rank_items(scale_qid, rank_qid, reverse=True) :
+    scale_answer = {x.label: x.val for x in scale_qid.rows.order if x.any}
+    sorted_list = sorted(scale_answer.items(), key=lambda item: item[1], reverse=reverse)
+
+    rank_cols = [each for each in rank_qid.cols]
+    if not reverse :
+      rank_cols.reverse()
+
+    sort_rows = []
+    current_value = None
+    current_group = []
+
+    for item in sorted_list:
+        key, value = item
+        if value != current_value:
+            if current_group: 
+                sort_rows.append(current_group)
+            current_group = [key]
+            current_value = value
+        else:
+            current_group.append(key)
+
+    if current_group:
+        sort_rows.append(current_group)
+
+    rank_able_answer = {}
+    rank_auto_row = {}
+    for idx, eachCol in enumerate(rank_cols) :
+      rank_able_answer[eachCol.label] = sort_rows[idx]
+
+      if len(sort_rows[idx]) == 1 :
+        auto_label = sort_rows[idx][0]
+        rank_auto_row[eachCol.label] = auto_label
+        eachCol.val = rank_qid.attr(auto_label).index
+
+    rank_qid.rows.order = [scale_qid.attr(each).index for each in sum(sort_rows, [])]
+
+    return {
+      'able' : rank_able_answer,
+      'auto' : rank_auto_row,
+    }
+</exec>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>scale.rank</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
