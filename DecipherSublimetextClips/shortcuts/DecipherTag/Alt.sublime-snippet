@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-alt="${1}"
+<alt>${1}</alt>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>alt</tabTrigger>
