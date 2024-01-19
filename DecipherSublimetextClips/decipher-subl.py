@@ -1533,6 +1533,7 @@ class makeCheckboxCommand(sublime_plugin.TextCommand):
                 label = inputLabelTitle[1]
                 title = inputLabelTitle[2]
                 alt = inputLabelTitle[3]
+
                 if alt :
                   alt = "\n\talt=\"%s\""%(alt)
                 else :
@@ -1662,6 +1663,7 @@ class makeTextareaCommand(sublime_plugin.TextCommand):
                 label = inputLabelTitle[1]
                 title = inputLabelTitle[2]
                 alt = inputLabelTitle[3]
+
                 if alt :
                   alt = "\n\talt=\"%s\""%(alt)
                 else :
@@ -1704,6 +1706,7 @@ class makeTextCommand(sublime_plugin.TextCommand):
                 label = inputLabelTitle[1]
                 title = inputLabelTitle[2]
                 alt = inputLabelTitle[3]
+
                 if alt :
                   alt = "\n\talt=\"%s\""%(alt)
                 else :
@@ -1760,6 +1763,7 @@ class makeNumberCommand(sublime_plugin.TextCommand):
                 label = inputLabelTitle[1]
                 title = inputLabelTitle[2]
                 alt = inputLabelTitle[3]
+
                 if alt :
                   alt = "\n\talt=\"%s\""%(alt)
                 else :
@@ -1801,6 +1805,7 @@ class makeFloatCommand(sublime_plugin.TextCommand):
                 label = inputLabelTitle[1]
                 title = inputLabelTitle[2]
                 alt = inputLabelTitle[3]
+                
                 if alt :
                   alt = "\n\talt=\"%s\""%(alt)
                 else :
