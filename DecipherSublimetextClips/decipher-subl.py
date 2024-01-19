@@ -1325,7 +1325,7 @@ class makeRadioCommand(sublime_plugin.TextCommand):
                 alt = inputLabelTitle[3]
 
                 if alt :
-                  alt = "\n\talt=\"%s\""%(alt)
+                  alt = "  <alt>%s</alt>\n"%(alt)
                 else :
                   alt = ''
 
@@ -1356,7 +1356,7 @@ class makeRadioCommand(sublime_plugin.TextCommand):
 
                 # compose our new radio question
                 if docType == 'FMA':
-                    printPage = "<radio\n  label=\"%s\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                    printPage = "<radio\n  label=\"%s\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
                 elif docType == 'HAP':
 
                     rowlegend = ""
@@ -1366,9 +1366,9 @@ class makeRadioCommand(sublime_plugin.TextCommand):
 
                     # compose our new radio question
                     if "<comment>" not in input:
-                      printPage = "<radio\n  label=\"%s\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), alt, rowlegend, label.strip().replace('x', '-'), title.strip(), comment, output)
+                      printPage = "<radio\n  label=\"%s\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), alt, rowlegend, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                      printPage = "<radio\n  label=\"%s\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), alt, rowlegend, label.strip().replace('x', '-'), title.strip(), output)
+                      printPage = "<radio\n  label=\"%s\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), alt, rowlegend, label.strip().replace('x', '-'), title.strip(), output)
                 elif docType == 'CMB':
                         if (("<row" in output) and ("<col" in output) and (colCount > 1)) or not ("<row" in output):
                             style = ''
@@ -1377,15 +1377,15 @@ class makeRadioCommand(sublime_plugin.TextCommand):
 
                         # compose our new radio question
                         if "<comment>" not in input:
-                          printPage = "<radio\n  label=\"%s\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), alt, style, label.strip().replace('x', '-'), title.strip(), comment, output)
+                          printPage = "<radio\n  label=\"%s\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                         else:
-                          printPage = "<radio\n  label=\"%s\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), alt, style, label.strip().replace('x', '-'), title.strip(), output)
+                          printPage = "<radio\n  label=\"%s\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 else:
                     if "<comment>" not in input:
-                      printPage = "<radio\n  label=\"%s\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                      printPage = "<radio\n  label=\"%s\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                      printPage = "<radio\n  label=\"%s\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                      printPage = "<radio\n  label=\"%s\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
 
 
                 self.view.replace(edit,sel, printPage)
@@ -1410,7 +1410,7 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                 alt = inputLabelTitle[3]
 
                 if alt :
-                  alt = "\n\talt=\"%s\""%(alt)
+                  alt = "  <alt>%s</alt>\n"%(alt)
                 else :
                   alt = ''
 
@@ -1423,7 +1423,7 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                 style = ""
                 comment = ''
                 if docType == 'FMA':
-                    printPage = "<radio\n  label=\"%s%s%s\"\n  type=\"rating\">\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
+                    printPage = "<radio\n  label=\"%s%s%s\"\n  type=\"rating\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 elif docType == 'HAP':
                     #DETERMINE IF WE NEED A 1D OR 2D COMMENT, SHUFFLE 2D ROWS OR COLS, ADD AVERAGES attribute.
@@ -1445,9 +1445,9 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                         rowlegend='\n  rowLegend=\"right\"'
 
                     if "<comment>" not in input:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), rowlegend, shffl, style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), rowlegend, shffl, style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), rowlegend, shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), rowlegend, shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 elif docType == 'CMB':
 
@@ -1469,9 +1469,9 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                         style = '\n  style=\"noGrid\" ss:questionClassNames=\"flexGrid\"'
 
                     if "<comment>" not in input:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
                 elif docType == 'SRG':
 
                     if (("row" in output) or ("rows" in output)) and (("col" in output) or ("cols" in output)):
@@ -1487,9 +1487,9 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                         comment = "<comment></comment>\n"
 
                     if "<comment>" not in input:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
 
 
                 else:
@@ -1507,9 +1507,9 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                         comment = "<comment></comment>\n"
 
                     if "<comment>" not in input:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"\n  uses=\"atmtable.6\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"\n  uses=\"atmtable.6\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"\n  uses=\"atmtable.6\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\"\n  uses=\"atmtable.6\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, alt, label.strip().replace('x', '-'), title.strip(), output)
 
 
                 self.view.replace(edit,sel, printPage)
@@ -1535,7 +1535,7 @@ class makeCheckboxCommand(sublime_plugin.TextCommand):
                 alt = inputLabelTitle[3]
 
                 if alt :
-                  alt = "\n\talt=\"%s\""%(alt)
+                  alt = "  <alt>%s</alt>\n"%(alt)
                 else :
                   alt = ''
 
@@ -1576,9 +1576,9 @@ class makeCheckboxCommand(sublime_plugin.TextCommand):
 
                     # compose the question
                     if "<comment>" not in input:
-                        printPage = "<checkbox\n  label=\"%s\"%s\n  atleast=\"1\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</checkbox>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<checkbox\n  label=\"%s\"%s\n  atleast=\"1\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</checkbox>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<checkbox\n  label=\"%s\"%s\n  atleast=\"1\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<checkbox\n  label=\"%s\"%s\n  atleast=\"1\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 elif docType =='HAP':
                     comment = "<comment></comment>\n"
@@ -1588,29 +1588,29 @@ class makeCheckboxCommand(sublime_plugin.TextCommand):
                         rowlegend ='\n  rowLegend=\"right\"'
                         # compose the question
                     if "<comment>" not in input:
-                            printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</checkbox>\n<suspend/>" % (label.strip(), rowlegend, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                            printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</checkbox>\n<suspend/>" % (label.strip(), rowlegend, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                            printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), rowlegend, alt, label.strip().replace('x', '-'), title.strip(), output)
+                            printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), rowlegend, alt, label.strip().replace('x', '-'), title.strip(), output)
 
 
                 elif docType =='FMA':
                     # compose the question
-                    printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                    printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
                 elif docType =='SRG':
                         comment = "<comment></comment>\n"
                         # compose the question
                         if "<comment>" not in input:
-                            printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                            printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                         else:
-                            printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                            printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
                 else:
                         # set the appropriate comment
                     comment = "<comment></comment>\n"
                     # compose the question
                     if "<comment>" not in input:
-                        printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
                 self.view.replace(edit,sel, printPage)
         except Exception as e:
             print(e)
@@ -1633,7 +1633,7 @@ class makeSelectCommand(sublime_plugin.TextCommand):
                 alt = inputLabelTitle[3]
 
                 if alt :
-                  alt = "\n\talt=\"%s\""%(alt)
+                  alt = "  <alt>%s</alt>\n"%(alt)
                 else :
                   alt = ''
 
@@ -1641,7 +1641,7 @@ class makeSelectCommand(sublime_plugin.TextCommand):
                 output = "\n  " + input
 
                 # compose the select question
-                printPage = "<select\n  label=\"%s\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>  %s\n</select>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                printPage = "<select\n  label=\"%s\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>  %s\n</select>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 self.view.replace(edit,sel, printPage)
         except Exception as e:
@@ -1665,7 +1665,7 @@ class makeTextareaCommand(sublime_plugin.TextCommand):
                 alt = inputLabelTitle[3]
 
                 if alt :
-                  alt = "\n\talt=\"%s\""%(alt)
+                  alt = "  <alt>%s</alt>\n"%(alt)
                 else :
                   alt = ''
 
@@ -1675,15 +1675,15 @@ class makeTextareaCommand(sublime_plugin.TextCommand):
                   output = "  " + output + "\n"
 
                 if docType == 'FMA':
-                       printPage = "<textarea\n  label=\"%s\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n%s</textarea>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                       printPage = "<textarea\n  label=\"%s\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n%s</textarea>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
                 else :
 
                     #COMPOSE OUR QUESTION
                     if "<comment>" not in input:
                         comment = "<comment></comment>"
-                        printPage = "<textarea\n  label=\"%s\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n%s</textarea>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<textarea\n  label=\"%s\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n%s</textarea>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<textarea\n  label=\"%s\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n%s</textarea>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<textarea\n  label=\"%s\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n%s</textarea>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 self.view.replace(edit,sel, printPage)
         except Exception as e:
@@ -1708,7 +1708,7 @@ class makeTextCommand(sublime_plugin.TextCommand):
                 alt = inputLabelTitle[3]
 
                 if alt :
-                  alt = "\n\talt=\"%s\""%(alt)
+                  alt = "  <alt>%s</alt>\n"%(alt)
                 else :
                   alt = ''
 
@@ -1728,19 +1728,19 @@ class makeTextCommand(sublime_plugin.TextCommand):
                         #COMPOSE OUR QUESTION
                         if "<comment>" not in input:
                             comment = "<comment></comment>\n"
-                            printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</text>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                            printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s  %s\n</text>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                         else:
-                            printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\"%s%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</text>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), output)
+                            printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\"%s>\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n</text>\n<suspend/>" % (label.strip(), style, alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 elif docType =='FMA':
-                    printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n%s</text>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                    printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n%s</text>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 else:
                     if "<comment>" not in input:
                         comment = "<comment></comment>"
-                        printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n%s</text>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s\n%s</text>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n%s</text>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n%s</text>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
 
 
                 self.view.replace(edit,sel, printPage)
@@ -1765,7 +1765,7 @@ class makeNumberCommand(sublime_plugin.TextCommand):
                 alt = inputLabelTitle[3]
 
                 if alt :
-                  alt = "\n\talt=\"%s\""%(alt)
+                  alt = "  <alt>%s</alt>\n"%(alt)
                 else :
                   alt = ''
 
@@ -1775,15 +1775,15 @@ class makeNumberCommand(sublime_plugin.TextCommand):
                 if output != "":
                     output = "  " + output + "\n"
                 if docType =='FMA':
-                    printPage = "<number\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n%s</number>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                    printPage = "<number\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n%s</number>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 else:
                     #COMPOSE OUR QUESTION
                     if "<comment>" not in input:
                         comment = "<comment></comment>\n"
-                        printPage = "<number\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s%s</number>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<number\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s%s</number>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<number\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n%s</number>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<number\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n%s</number>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 self.view.replace(edit,sel, printPage)
         except Exception as e:
@@ -1807,7 +1807,7 @@ class makeFloatCommand(sublime_plugin.TextCommand):
                 alt = inputLabelTitle[3]
                 
                 if alt :
-                  alt = "\n\talt=\"%s\""%(alt)
+                  alt = "  <alt>%s</alt>\n"%(alt)
                 else :
                   alt = ''
 
@@ -1817,15 +1817,15 @@ class makeFloatCommand(sublime_plugin.TextCommand):
                 if output != "":
                     output = "  " + output + "\n"
                 if docType =='FMA':
-                    printPage = "<float\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n%s</float>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                    printPage = "<float\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n%s</float>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 else:
                     #COMPOSE OUR QUESTION
                     if "<comment>" not in input:
                         comment = "<comment></comment>\n"
-                        printPage = "<float\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n  %s%s</float>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
+                        printPage = "<float\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n  %s%s</float>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), comment, output)
                     else:
-                        printPage = "<float\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\"%s>\n  <title><div class=\"q-name\">%s</div> %s</title>\n%s</float>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
+                        printPage = "<float\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\">\n%s  <title><div class=\"q-name\">%s</div> %s</title>\n%s</float>\n<suspend/>" % (label.strip(), alt, label.strip().replace('x', '-'), title.strip(), output)
 
                 self.view.replace(edit,sel, printPage)
         except Exception as e:
