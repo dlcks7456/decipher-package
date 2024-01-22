@@ -35,7 +35,17 @@ ${2}
   <comment></comment>
   <exec>
 rate_show_score(${3}, ${4})
+auto_rows = scale_rank_items(${3}, ${4})['auto']
   </exec>
+<style name="page.head"><![CDATA[
+<style>
+\@for x in auto_rows
+.rank-row-\${x} {
+  pointer-events: none !important;
+}
+\@end
+</style>
+]]${-1}></style>
   <col label="c1">1순위</col>
   <col label="c2">2순위</col>
   <col label="c3">3순위</col>
