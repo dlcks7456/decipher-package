@@ -1,0 +1,52 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/syntax.html
+name: Dashboard
+file_extensions:
+  - ec
+scope: source.dashboard
+contexts:
+  main:
+    # Include HTML/JS
+    - include: 'Packages/HTML/HTML.sublime-syntax'
+
+    # character
+    - match: '"'
+      scope: punctuation.definition.string.begin.dashboard
+      push: double_quoted_string
+
+    - match: "'"
+      scope: punctuation.definition.string.begin.dashboard
+      push: double_quoted_string
+
+    # Main Command
+    - match: '\b(chart|table)\b'
+      scope: keyword.command.dashboard
+
+  
+    # Row Command
+    - match: '\brow\b'
+      scope: keyword.row.dashboard
+
+    # Options
+    - match: '\b(id|type)\b'
+      scope: keyword.options.dashboard
+
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.dashboard
+    - match: '\\.'
+      scope: constant.character.escape.dashboard
+    - match: '"'
+      scope: punctuation.definition.string.end.dashboard
+      pop: true
+    - match: "'"
+      scope: punctuation.definition.string.end.dashboard
+      pop: true
+
+
+  script:
+    - match: '(?i)</script>'
+      scope: punctuation.definition.tag.html
+      pop: true
+    - include: Packages/JavaScript/JavaScript.sublime-syntax

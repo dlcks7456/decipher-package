@@ -1,52 +1,61 @@
 <snippet>
 	<content><![CDATA[
-<style name="question.after" wrap="ready" label="this_or_that"><![CDATA[
+<style name="question.after" label="this_or_that"><![CDATA[
+<style>
+.this-or-that {
+  transition: opacity 0.5s;
+}
+</style>
+<script>
 // this-or-that
 // base-this / base-that
-const thisOrThis = document.querySelectorAll('.this-or-that');
-const swichRow = (base) => {
-  const [baseName, baseDelimiter] = base.split('-');
-  const swichDelimiter = baseDelimiter === 'this' ? 'that' : baseDelimiter === 'that' ? 'this' : null;
-  const setClassName = baseName+'-'+swichDelimiter;
-  const currInput = document.querySelector('.'+base+' input[type=radio]');
-  const disableInput = document.querySelectorAll('.'+setClassName);
-  if( currInput.checked ){
-    disableInput.forEach( (item)=>{
-      const firIcon = item.querySelector('.fir-icon');
-      firIcon.classList.remove('selected');
-      const currInput = item.querySelector('input[type=radio]');
-      currInput.checked = false;
+window.addEventListener("DOMContentLoaded", ()=>{
+  const thisOrThis = document.querySelectorAll('.this-or-that');
+  const swichRow = (base) => {
+    const [baseName, baseDelimiter] = base.split('-');
+    const swichDelimiter = baseDelimiter === 'this' ? 'that' : baseDelimiter === 'that' ? 'this' : null;
+    const setClassName = baseName+'-'+swichDelimiter;
+    const currInput = document.querySelector('.'+base+' input[type=checkbox]');
+    const disableInput = document.querySelectorAll('.'+setClassName);
+    if( currInput.checked ){
+      disableInput.forEach( (item)=>{
+        const firIcon = item.querySelector('.fir-icon');
+        firIcon.classList.remove('selected');
+        const currInput = item.querySelector('input[type=checkbox]');
+        currInput.checked = false;
 
-      item.style.opacity = '0.5';
-      item.style.pointerEvents = 'none';
-    });
-  }else{
-    disableInput.forEach( (item)=>{
-      item.style.opacity = '1';
-      item.style.pointerEvents = '';
+        item.style.opacity = '0.5';
+        item.style.pointerEvents = 'none';
+      });
+    }else{
+      disableInput.forEach( (item)=>{
+        item.style.opacity = '1';
+        item.style.pointerEvents = '';
+      });
+    }
+  }
+
+  const executeFnc = ()=>{
+    thisOrThis.forEach( (row) =>{
+      const [baseClass] = [...row.classList].filter( (item) =>  item.includes('base'));
+      swichRow(baseClass);
     });
   }
-}
 
-const executeFnc = ()=>{
   thisOrThis.forEach( (row) =>{
     const [baseClass] = [...row.classList].filter( (item) =>  item.includes('base'));
-    swichRow(baseClass);
+    row.addEventListener('click', ()=>{
+      swichRow(baseClass);
+    });
   });
-}
 
-thisOrThis.forEach( (row) =>{
-  const [baseClass] = [...row.classList].filter( (item) =>  item.includes('base'));
-  row.addEventListener('click', ()=>{
-    swichRow(baseClass);
-  });
-});
-
-const answers = document.querySelector('.answers');
-answers.onchange = ()=>{
+  const answers = document.querySelector('.answers');
+  answers.onchange = ()=>{
+    executeFnc();
+  };
   executeFnc();
-};
-executeFnc();
+});
+</script>
 ]]${-1}></style>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

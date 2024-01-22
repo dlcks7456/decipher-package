@@ -1339,12 +1339,11 @@ class makeRadioCommand(sublime_plugin.TextCommand):
 <radio 
   label=\"%s\"
   optional="1"
-  where="execute">
-  <title>(HIDDEN) %s</title>
+  where="execute">%s\t<title>(HIDDEN) %s</title>
   <row label="r0" value="0">False</row>
   <row label="r1" value="1">True</row>
 </radio>
-<suspend/>""" % (label.strip(), title.strip())
+<suspend/>""" % (label.strip(), '\n%s'%(alt) if not alt == '' else '\n', title.strip())
                     return self.view.replace(edit,sel, printpage)
 
 

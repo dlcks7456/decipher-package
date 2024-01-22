@@ -24,8 +24,8 @@ han('0000', '\$(hanPostText)');
 ]]${-1}></style>
 <style label="hangleClass" name="el.text"><![CDATA[
 <div class="hanchange">
+  <div>\${row.styles.ss.preText if not row.styles.ss.preText == None else ''}&nbsp;</div>
   <div class="han-input-div" style="gap: 0 !important;">
-    <div>\${row.styles.ss.preText if not row.styles.ss.preText == None else ''}&bnsp;</div>
     <div style="display: flex; gap: 10px; align-items: center;">
       <input type="number" name="\$(name)" id="\$(id)" value="\$(value)" size="\$(size)" class="input text-input" \$(extra)/>
       <span>\${row.styles.ss.postText if not row.styles.ss.postText == None else ''}</span>
