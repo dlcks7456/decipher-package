@@ -37,6 +37,9 @@ ${2}
 rate_show_score(${3}, ${4})
 auto_rows = scale_rank_items(${3}, ${4})['auto']
   </exec>
+  <validate>
+scale_rank_vali(${3})
+  </validate>
 <style name="page.head"><![CDATA[
 <style>
 \@for x in auto_rows

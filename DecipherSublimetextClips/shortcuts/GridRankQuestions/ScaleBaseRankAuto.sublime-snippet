@@ -11,15 +11,15 @@ def rate_show_score(scale_qid, rank_qid) :
 def scale_rank_items(scale_qid, rank_qid, reverse=True) :
     scale_answer = {x.label: x.val for x in scale_qid.rows.order if x.any}
     sorted_list = sorted(scale_answer.items(), key=lambda item: item[1], reverse=reverse)
-
+    
     rank_cols = [each for each in rank_qid.cols]
     if not reverse :
       rank_cols.reverse()
-
+ 
     sort_rows = []
     current_value = None
     current_group = []
-
+ 
     for item in sorted_list:
         key, value = item
         if value != current_value:
@@ -29,53 +29,59 @@ def scale_rank_items(scale_qid, rank_qid, reverse=True) :
             current_value = value
         else:
             current_group.append(key)
-
+ 
     if current_group:
         sort_rows.append(current_group)
-
+ 
     rank_able_answer = []
     rank_auto_row = {}
     rowCond = []
     for idx, eachCol in enumerate(rank_cols) :
+      if idx ge len(sort_rows) : 
+        continue
       row_label = sort_rows[idx]
       rank_able_answer.append(row_label)
-
+ 
       if len(rowCond) ge len(rank_cols) :
         continue
-
+ 
       for x in row_label :
         rowCond.append(x)
-
+ 
     rank_qid.rows.order = [scale_qid.attr(each).index for each in sum(sort_rows, [])]
-
+ 
     skip_cond = all(len(row)==1 for row in rank_able_answer)
-    
     print(rank_able_answer)
     print(rowCond)
-
-    able_ans = {}
-    start_index = 0
-    for row in rank_able_answer :
-      for x in range(start_index, len(row)+start_index) :
-        if x ge len(rank_qid.cols) :
-          break
-        col_label = rank_qid.cols[x].label
-
-        if not col_label in able_ans.keys() :
-          able_ans[col_label] = row
-          start_index+=1
-
-    auto_rows = {}
-    for key, row_list in able_ans.items() :
+ 
+    auto_rows = []
+    for idx, row_list in enumerate(rank_able_answer) :
       if len(row_list) == 1 :
-        auto_rows[key] = row_list
-        rank_qid.attr(key).val = rank_qid.attr(row_list[0]).index
-
+        auto_rows.append(row_list[0])
+        rank_qid.cols[idx].val = rank_qid.attr(row_list[0]).index
+      else :
+        break
+ 
     return {
       'show' : rowCond,
       'skip' : skip_cond,
       'auto' : auto_rows
     }
+
+def scale_rank_vali(scale_qid) :
+  for idx, eachCol in enumerate(this.cols) :
+    if idx == (len(this.cols)-1) :
+      continue
+ 
+    curr = eachCol
+    next = this.cols[idx+1]
+ 
+    curr_value = scale_qid.rows[curr.val].val
+    next_value = scale_qid.rows[next.val].val
+ 
+    if next_value gt curr_value :
+      for x in [curr, next] :
+        error(res.chk_plz, col=x)
 </exec>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
