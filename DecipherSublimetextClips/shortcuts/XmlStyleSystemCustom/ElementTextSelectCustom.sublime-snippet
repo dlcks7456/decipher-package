@@ -3,7 +3,7 @@
 <style name="el.text"><![CDATA[
 \@if row.styles.ss.preText or this.styles.ss.preText
 <span class="pre-text">
-  ${row.styles.ss.preText or this.styles.ss.preText or ""}&nbsp;
+  \${row.styles.ss.preText or this.styles.ss.preText or ""}&nbsp;
 </span>                 
 \@endif
 <select name="\$(name)" class="input dropdown"> 
@@ -14,7 +14,7 @@
 </select>
 \@if row.styles.ss.postText or this.styles.ss.postText
 <span class="post-text">
-  &nbsp;${row.styles.ss.postText or this.styles.ss.postText or ""}
+  &nbsp;\${row.styles.ss.postText or this.styles.ss.postText or ""}
 </span>
 \@endif
 ]]${-1}></style>

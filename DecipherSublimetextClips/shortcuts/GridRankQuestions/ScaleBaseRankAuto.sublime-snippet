@@ -3,10 +3,10 @@
 <res label="rate_show_score_text">%s <strong>(%s점)</strong></res>
 
 <exec when="init">
-def rate_show_score(curr, base) :
-  for row in curr.rows :
-    if base.attr(row.label).any :
-      row.text = res.rate_show_score_text%(base.attr(row.label).text, base.cols[base.attr(row.label).val].value)
+def rate_show_score(scale_qid, rank_qid) :
+  for row in rank_qid.rows :
+    if scale_qid.attr(row.label).any :
+      row.text = res.rate_show_score_text%(scale_qid.attr(row.label).text, scale_qid.cols[scale_qid.attr(row.label).val].value)
 
 def scale_rank_items(scale_qid, rank_qid, reverse=True) :
     scale_answer = {x.label: x.val for x in scale_qid.rows.order if x.any}
@@ -79,7 +79,7 @@ def scale_rank_items(scale_qid, rank_qid, reverse=True) :
 </exec>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>scale.rank</tabTrigger>
+  <tabTrigger>scale.rank.def</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.xml</scope>
 </snippet>

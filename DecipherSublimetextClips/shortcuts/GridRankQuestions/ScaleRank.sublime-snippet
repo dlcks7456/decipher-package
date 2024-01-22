@@ -8,6 +8,7 @@ ${2}
   label="${3}"
   shuffle="rows"
   uses="cardrating.1">
+  <alt></alt>
   <title></title>
   <comment></comment>
   <col label="c1" value="1">(1)</col>
@@ -26,11 +27,15 @@ ${2}
   label="${4}"
   unique="1"
   shuffle="rows"
-  shuffleBy="${3}"
-  rowCond="row.label in rate_rank(${3}, 3)"
+  cond="not scale_rank_items(${3}, ${4})['skip']"
+  rowCond="row.label in scale_rank_items(${3}, ${4})['show']"
   grouping="cols">
+  <alt></alt>
   <title></title>
   <comment></comment>
+  <exec>
+rate_show_score(${3}, ${4})
+  </exec>
   <col label="c1">1순위</col>
   <col label="c2">2순위</col>
   <col label="c3">3순위</col>
@@ -39,7 +44,7 @@ ${2}
 <suspend/>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>rate.rank</tabTrigger>
+  <tabTrigger>scale.rank</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.xml</scope>
 </snippet>
