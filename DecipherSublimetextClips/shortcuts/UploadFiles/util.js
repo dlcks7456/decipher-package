@@ -1896,6 +1896,18 @@ const setCustomBtn = ()=>{
 
   const mainStyle = document.createElement('style');
   mainStyle.innerHTML = `
+.answers-before {
+    margin-bottom: 10px;
+}
+
+.answers-after {
+    margin-top: 10px;
+}
+
+.btn-exclusive {
+    max-width: 924px;
+}
+
 .sp-custom-btn .answers .element {
   padding: unset;
   overflow: hidden;
@@ -2020,6 +2032,13 @@ const setCustomBtn = ()=>{
     }
 
     const answers = btn.querySelector('.answers');
+    const mainBefore = document.createElement('div');
+    const mainAfter = document.createElement('div');
+    answers.parentNode.insertBefore(mainBefore, answers);
+    answers.parentNode.insertBefore(mainAfter, answers.nextSibling);
+
+    mainBefore.classList.add('answers', 'btn-exclusive', 'answers-before');
+    mainAfter.classList.add('answers', 'btn-exclusive', 'answers-after');
 
     answers.classList.add(newClassName);
     
@@ -2060,7 +2079,8 @@ const setCustomBtn = ()=>{
     `;
 
     const elements = btn.querySelectorAll('.answers .element');
-    elements.forEach((element)=>{        
+
+    elements.forEach((element)=>{
         const labelNode = element.querySelector('label');
         const inputNode = element.querySelector('input');
         const openCheck = element.querySelector('input[type=text]');
@@ -2071,6 +2091,14 @@ const setCustomBtn = ()=>{
         const notClickNodes = ['label', 'input', 'input[type=text]', 'rect', 'polygon', 'circle', '.fir-icon']
         const notClickNodesMap = notClickNodes.map((nd)=> element.querySelector(nd));
         
+        if( element.classList.contains('btn-top') ){
+            mainBefore.appendChild(element);
+        }
+
+        if( element.classList.contains('btn-bot') ){
+            mainAfter.appendChild(element);
+        }
+
         element.addEventListener('click', (event) => {
             // if (!notClickNodesMap.includes(event.target)) {
             //     labelNode.click();
@@ -2086,6 +2114,7 @@ const setCustomBtn = ()=>{
             }
         });
     });
+
   });
 }
 
