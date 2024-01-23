@@ -824,7 +824,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                     setGroupRows.map((group, groupIndex)=>{
                         return (
                                 <div key={groupIndex}
-                                    className="animate__animated animate__fadeIn rank-group">
+                                    className={`animate__animated animate__fadeIn rank-group group-${group[1]}`}>
                                     <div className="rank-group-title">
                                         <div className="group-title-text" dangerouslySetInnerHTML={{__html: group[2]}}></div>
                                         {toggle ? (
