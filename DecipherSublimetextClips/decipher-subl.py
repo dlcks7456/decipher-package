@@ -18,7 +18,10 @@ def tidyQuestionInput(input):
     alt_check = re.match(r'\[(.*?)\]', input.split('\n')[0])
     alt = None
     if alt_check :
-      alt = alt_check.group(1)
+      # alt = alt_check.group(1)
+      # 0124 update
+      alt = input.split('\n')[0][1:-1]
+      alt = alt.replace('[', '(').replace(']', ')')
       input = '\n'.join(input.split('\n')[1:])
 
     while "\n\n" in input:
