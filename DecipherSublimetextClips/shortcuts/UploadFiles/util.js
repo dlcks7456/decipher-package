@@ -2119,3 +2119,33 @@ const setCustomBtn = ()=>{
 }
 
 window.addEventListener('DOMContentLoaded', setCustomBtn);
+
+
+// Number Question Focus
+const numberQuestionFocus = ()=>{
+    const numberQuestion = document.querySelectorAll('.question.number');
+    if(numberQuestion.length == 0){
+        return;
+    }
+
+    numberQuestion.forEach((numq)=>{
+        const elements = numq.querySelectorAll('.element');
+
+        if( elements.length ==0 ){
+            return
+        }
+
+        elements.forEach((el)=>{
+            const cellInput = el.querySelector('.cell-input');
+
+            cellInput.style.cursor = 'pointer';
+
+            const numberInput = el.querySelector('input[type=number]');
+            cellInput.addEventListener('click', ()=>{
+                numberInput.focus();
+            });
+        });
+    });
+}
+
+window.addEventListener('DOMContentLoaded', numberQuestionFocus);
