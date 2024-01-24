@@ -2135,8 +2135,17 @@ const numberQuestionFocus = ()=>{
             return
         }
 
+        // table mode skip
+        const tableMode = numq.querySelector('.grid-table-mode');
+        if( tableMode ){
+            return;
+        }
+
         elements.forEach((el)=>{
             const cellInput = el.querySelector('.cell-input');
+            if( !cellInput ){
+                return;
+            }
 
             cellInput.style.cursor = 'pointer';
 

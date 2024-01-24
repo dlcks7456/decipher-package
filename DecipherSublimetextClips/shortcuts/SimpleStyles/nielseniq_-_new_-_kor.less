@@ -2522,43 +2522,44 @@ input[type='number'] {
 .question {
   &.number {
     .answers {
-      font-size: 1.5rem;
+      div {
+        &.element {        
+          font-size: 1.5rem;
 
-      .cell-legend-above {
-        width: 100%;
-      }
-
-      .cell-text {
-        border-bottom: 1px solid @custom-border-color;
-        transition: background-color 0.5s;
-
-        label {
+          .cell-legend-above {
             width: 100%;
-            padding: 10px;
-            display: block;
-        }
-      }
+          }
 
-      .cell-input {
-        padding: 10px 10px 10px 13px;
-        display: flex;
-      }
-
-      .cell-sub-wrapper {
-        overflow: hidden;
-        border: 1px solid @custom-border-color;
-        .box-shadow-style();
-        border-radius: 10px;
-    
-        &:hover {
           .cell-text {
-            background-color: @custom-sub-color;
+            border-bottom: 1px solid @custom-border-color;
+            transition: background-color 0.5s;
+
+            label {
+                width: 100%;
+                padding: 10px;
+                display: block;
+            }
+          }
+
+          .cell-input {
+            padding: 10px 10px 10px 13px;
+            display: flex;
+          }
+
+          .cell-sub-wrapper {
+            overflow: hidden;
+            border: 1px solid @custom-border-color;
+            .box-shadow-style();
+            border-radius: 10px;
+        
+            &:hover {
+              .cell-text {
+                background-color: @custom-sub-color;
+              }
+            }
           }
         }
       }
     }
-
-
   }
 }
-
