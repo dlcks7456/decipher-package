@@ -1,9 +1,9 @@
 <snippet>
 	<content><![CDATA[
-exclusive="1" randomize="0" ss:rowClassNames="btn-bot"
+ss:rowClassNames="btn-bot"
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>er</tabTrigger>
+	<tabTrigger>btn.bot</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

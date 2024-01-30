@@ -1910,7 +1910,6 @@ const setCustomBtn = ()=>{
 
 .sp-custom-btn .answers .element {
   padding: unset;
-  overflow: hidden;
   border-radius: 7px;
   margin-bottom: 3px;
   cursor: pointer;
@@ -2006,7 +2005,6 @@ const setCustomBtn = ()=>{
 #${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
   display: grid;
   grid-template-columns: repeat(${colNumber}, 1fr);
-  display: grid !important;
   width: 100% !important;
   grid-column-gap: 5px;
   grid-row-gap: 5px;
@@ -2054,9 +2052,18 @@ const setCustomBtn = ()=>{
     }
 
     style.innerHTML += `
+#${btnId} .answers .cell-text label {
+    word-break: break-all;
+}
+
+
 @media (max-width: 768px) {
     #${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
         grid-template-columns: 100%;
+    }
+
+    #${btnId} .answers {
+        max-width: 100%;
     }
 
     #${btnId} .answers .element {
