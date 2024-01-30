@@ -73,7 +73,7 @@ def setQuestionClassNames(output) :
     btn_class = ['sp-custom-btn']
 
 
-    if not any(tag in output for tag in ['<insert', '<col', '<net', '<choice'])  : 
+    if not any(tag in output for tag in ['<insert', '<col', '<choice', '<group'])  : 
       pattern = r">([^<>]+)<"
       get_text = [re.findall(pattern, x)[0] for x in rows]
       get_text = [x.strip().replace(' ', '') for x in get_text]
@@ -98,7 +98,7 @@ def setQuestionClassNames(output) :
 
     class_name = class_name%(' '.join(btn_class))
 
-    if any(tag in output for tag in ['<col']) :
+    if any(tag in output for tag in ['<col', '<choice', '<group']) :
       class_name = None
 
     return class_name
