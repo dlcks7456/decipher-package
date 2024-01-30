@@ -68,11 +68,12 @@ def setQuestionClassNames(output) :
     # Custom Button Add
     class_name = 'ss:questionClassNames=\"%s\"'
     # sp-custom-btn btn-mw-500 btn-cols-1
-    rows = output.split('\n')
+    rows = [x for x in output.split('\n') if '<row' in x]
     row_cnt = len(rows)
     btn_class = ['sp-custom-btn']
 
-    if not '<insert' in output  : 
+
+    if not any(tag in output for tag in ['<insert', '<col', '<net', '<choice'])  : 
       pattern = r">([^<>]+)<"
       get_text = [re.findall(pattern, x)[0] for x in rows]
       get_text = [x.strip().replace(' ', '') for x in get_text]
@@ -96,6 +97,9 @@ def setQuestionClassNames(output) :
           btn_class.append('btn-mw-700')
 
     class_name = class_name%(' '.join(btn_class))
+
+    if any(tag in output for tag in ['<col']) :
+      class_name = None
 
     return class_name
 
@@ -1378,7 +1382,7 @@ class makeRadioCommand(sublime_plugin.TextCommand):
 
                 # Custom Button Add
                 class_name = setQuestionClassNames(output)
-                class_name = '\n  %s'%(class_name)
+                class_name = '\n  %s'%(class_name) if not class_name == None else ''
 
                 #test for and adjust comment for 2d question
                 if output.strip() == '':
@@ -1596,7 +1600,7 @@ class makeCheckboxCommand(sublime_plugin.TextCommand):
 
                 # Custom Button Add
                 class_name = setQuestionClassNames(output2)
-                class_name = '\n  %s'%(class_name)
+                class_name = '\n  %s'%(class_name) if not class_name == None else ''
 
                 inputSpl = output2.split('\n')
                 output2 = []
