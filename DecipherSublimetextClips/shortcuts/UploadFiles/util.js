@@ -2125,7 +2125,7 @@ const setCustomBtn = ()=>{
   });
 }
 
-window.addEventListener('DOMContentLoaded', setCustomBtn);
+// window.addEventListener('DOMContentLoaded', setCustomBtn);
 
 
 // Number Question Focus

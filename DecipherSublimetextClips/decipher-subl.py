@@ -11,6 +11,7 @@ def returnContext(self):
 # returns array [input, label,title]
 def tidyQuestionInput(input):
     input = input.strip()
+    input = '\n'.join([i.strip() for i in input.split('\n')])
     input = re.sub(r"^(\w?\d+)\.(\d+)",r"\1_\2",input)
 
     # 2024-01-19 alt update
@@ -58,7 +59,6 @@ def tidyQuestionInput(input):
           input_index = min(input_array)
           title = input[0:input_index]
 
-
     input = input.replace(title, "")
     return [input, label, title, alt]
 
@@ -72,29 +72,29 @@ def setQuestionClassNames(output) :
     row_cnt = len(rows)
     btn_class = ['sp-custom-btn']
 
-
     if not any(tag in output for tag in ['<insert', '<col', '<choice', '<group'])  : 
       pattern = r">([^<>]+)<"
       get_text = [re.findall(pattern, x)[0] for x in rows]
-      get_text = [x.strip().replace(' ', '') for x in get_text]
-      text_count = [len(x) for x in get_text]
-      max_count = max(text_count)
-      min_count = min(text_count)
+      if get_text :
+        get_text = [x.strip().replace(' ', '') for x in get_text]
+        text_count = [len(x) for x in get_text]
+        max_count = max(text_count)
+        min_count = min(text_count)
 
-      if row_cnt//5 >= 2 :
-        if not (min_count >= 15) :
-          col_cnt = row_cnt//5
-          btn_class.append('btn-cols-%s'%(col_cnt))
-      else :
-        # 300 = 17 이하
-        # 500 = 30 이하
-        # 700 = 40 이하      
-        if max_count <= 15 :
-          btn_class.append('btn-mw-300')
-        elif max_count <= 30 :
-          btn_class.append('btn-mw-500')
-        elif max_count <= 40 :
-          btn_class.append('btn-mw-700')
+        if row_cnt//5 >= 2 :
+          if not (min_count >= 15) :
+            col_cnt = row_cnt//5
+            btn_class.append('btn-cols-%s'%(col_cnt))
+        else :
+          # 300 = 17 이하
+          # 500 = 30 이하
+          # 700 = 40 이하      
+          if max_count <= 15 :
+            btn_class.append('btn-mw-300')
+          elif max_count <= 30 :
+            btn_class.append('btn-mw-500')
+          elif max_count <= 40 :
+            btn_class.append('btn-mw-700')
 
     class_name = class_name%(' '.join(btn_class))
 
