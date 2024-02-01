@@ -60,6 +60,7 @@ def tidyQuestionInput(input):
           title = input[0:input_index]
 
     input = input.replace(title, "")
+    input = input.replace('\n', '\n\t')
     return [input, label, title, alt]
 
 
