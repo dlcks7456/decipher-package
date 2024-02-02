@@ -906,7 +906,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                 </div>
             </div>
             {showCnt ? (
-                <div className={answerCompleted ? "show-cnt animate__animated animate__bounceOutLeft" : "show-cnt animate__animated animate__bounceIn"}>
+                <div className={answerCompleted || noAnswer ? "show-cnt animate__animated animate__bounceOutLeft" : "show-cnt animate__animated animate__bounceIn"}>
                     {rankAnswers.length}/{cols.length}
                 </div>
             ) : null}
