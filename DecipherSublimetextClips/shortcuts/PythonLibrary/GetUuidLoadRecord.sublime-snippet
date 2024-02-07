@@ -1,0 +1,32 @@
+<snippet>
+  <content><![CDATA[
+<text 
+  label="RawID"
+  size="40"
+  where="execute,survey,report">
+  <title>(HIDDEN) uuid</title>
+  <exec>
+panel_list = {
+  '11' : 'eid',
+  '2' : 'gid',
+  '9' : 'UID',
+  '12' : 'seq',
+  '13' : 'dsid',
+}
+
+if list in panel_list.keys() :
+  panel_label = panel_list[list]
+  rec = loadRecord("selfserve/548/${1}", panel_label, eval(panel_label))
+  if rec:
+    RawID.val = rec.panelist_param.val
+  </exec>
+
+</text>
+
+<suspend/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>get.uuid</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
