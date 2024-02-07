@@ -83,6 +83,7 @@ class makeQnameCommand(sublime_plugin.TextCommand):
             try:
                 sels = self.view.sel()[0]
                 textr = self.view.substr(sels)
+                textr = textr.replace('x', '-')
                 set_text = '<div class=\"q-name\">{}</div> '.format(textr)
                 self.view.replace(edit,sels, set_text)
                 

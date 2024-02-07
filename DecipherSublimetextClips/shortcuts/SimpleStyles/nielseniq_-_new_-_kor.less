@@ -2563,3 +2563,27 @@ input[type='number'] {
     }
   }
 }
+
+
+
+/* NPS */
+.nps-select-style(){
+  border-color: @custom-color;
+  .box-shadow-style();
+}
+.sq-nps {
+  .answers {
+    max-width: 924px;
+  }
+
+  .nps_input {
+    .nps-btn {
+      border: 1px solid #ccc;
+      .box-shadow-style();
+
+      &.nps-hover, &.nps-selected {
+        .nps-select-style();
+      }
+    }
+  }
+}

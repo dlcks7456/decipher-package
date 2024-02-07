@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+<number 
+    label="${1}"
+    ignoreValues="99"
+    optional="0"
+    size="10"
+    uses="nps.1"
+    verify="range(0,10)"
+    nps:leftLegend="${2}"
+    nps:rightLegend="${3}">
+    <title>${4}</title>
+    <comment></comment>
+    <net label="promoter" values="9-10">Promoter</net>
+    <net label="passive" values="7-8">Passive</net>
+    <net label="detractor" values="0-6">Detractor</net>
+</number>
+
+<suspend/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>nps</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml</scope>
+</snippet>
