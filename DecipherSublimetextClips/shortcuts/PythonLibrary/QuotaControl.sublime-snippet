@@ -7,6 +7,10 @@ def quota_control(quota_sheet, unfied_define_label="R" ,defines=[]) :
     # defines : It's a list  | [1, 2, 3]
     # unfied_define_label="", defines=["male", "female"]
 
+    if len(defines) == 1 :
+       print('!!! Defines has only one property !!!')
+       return defines[0]
+
     try :
         quotas = gv.survey.root.quota.getQuotaCells()
 
