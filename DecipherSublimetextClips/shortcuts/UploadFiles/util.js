@@ -2129,13 +2129,48 @@ const setCustomBtn = ()=>{
 
 
 // Number Question Focus
-const numberQuestionFocus = ()=>{
-    const numberQuestion = document.querySelectorAll('.question.number');
-    if(numberQuestion.length == 0){
+const customInputBox = ()=>{
+    const inputBoxQuestion = document.querySelectorAll('.sp-custom-input');
+    if(inputBoxQuestion.length == 0){
         return;
     }
 
-    numberQuestion.forEach((numq)=>{
+    const mainStyle = document.createElement('style');
+    mainStyle.innerHTML = `
+.sp-custom-input .answers div.element .cell-legend-above {
+  width: 100%;
+}
+
+.sp-custom-input .answers div.element .cell-text {
+  border-bottom: 1px solid #ccc;
+  transition: background-color 0.5s;
+}
+
+.sp-custom-input .answers div.element .cell-text label {
+  width: 100%;
+  padding: 10px;
+  display: block;
+}
+
+.sp-custom-input .answers div.element .cell-input {
+  padding: 10px 10px 10px 13px;
+  display: flex;
+}
+
+.sp-custom-input .answers div.element .cell-sub-wrapper {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.sp-custom-input .answers div.element .cell-sub-wrapper:hover .cell-text {
+  background-color: #b7ceff;
+}
+`;
+    document.head.appendChild(mainStyle);
+
+    inputBoxQuestion.forEach((numq)=>{
         const elements = numq.querySelectorAll('.element');
 
         if( elements.length ==0 ){
@@ -2156,12 +2191,12 @@ const numberQuestionFocus = ()=>{
 
             cellInput.style.cursor = 'pointer';
 
-            const numberInput = el.querySelector('input[type=number]');
+            const inputBox = el.querySelector('input[type="number"], input[type="text"]');
             cellInput.addEventListener('click', ()=>{
-                numberInput.focus();
+                inputBox.focus();
             });
         });
     });
 }
 
-window.addEventListener('DOMContentLoaded', numberQuestionFocus);
+window.addEventListener('DOMContentLoaded', customInputBox);

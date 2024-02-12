@@ -240,6 +240,17 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
     // None handler
     const [showNone, setShowNone] = React.useState(false);
 
+    const [isPreventScroll, setIsPreventScroll] = React.useState(false);
+    const showAnswerRef = React.useRef();
+
+    React.useEffect(()=>{
+        if( !isPreventScroll ){
+            if( showAnswerRef.current !== null && showAnswerRef.current !== undefined ) {
+                showAnswerRef.current.scrollTop = showAnswerRef.current.scrollHeight;
+            }
+        }
+    }, [answerList, isPreventScroll]);
+
     React.useEffect(()=>{
         if( rankAnswers.length >= (ableNone-1) ){
             setShowNone(true);
@@ -503,11 +514,12 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
     background-color : #fbfbfb;
     font-size : 1rem;
     min-height : 115px;
+    max-height: 115px;
+    overflow-y: scroll;
     padding : 5px;
     display: flex;
     flex-direction : column;
     gap : 8px;
-    overflow : hidden;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     z-index : 999;
     transform : translateY(-100px);
@@ -775,7 +787,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
             `}</style>
         ) : null}
             {showAnswers && answerList.length > 0 ? (
-                <div className="show-answers answer-rank-">
+                <div className="show-answers" ref={showAnswerRef} onClick={()=>{
+                    setIsPreventScroll(true);
+                }}>
                     {answerList.map((answer, index)=>{
                         const filtRowsAnswer = rows.filter(row=> row.index === answer);
                         const getOnlyText = document.createElement('div');
@@ -819,7 +833,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                     })}
                 </div>
             ) : null}
-            <div className="custom-rank-sort">
+            <div className="custom-rank-sort"  onClick={()=>{
+                    setIsPreventScroll(false);
+                }}>
                 {setGroupRows.length > 0 && showGroups ? (
                     setGroupRows.map((group, groupIndex)=>{
                         return (
