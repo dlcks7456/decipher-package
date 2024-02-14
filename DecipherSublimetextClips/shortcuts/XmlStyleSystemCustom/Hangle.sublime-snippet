@@ -7,6 +7,15 @@
   max-width: 100px !important;
 }
 
+.hangle-text {
+  height:25px;
+  text-align: right;
+}
+
+.hanchange {
+  width: fit-content;
+}
+
 \@media (max-width: 768px) {
   .text-input {
     max-width: 100% !important;
@@ -14,6 +23,10 @@
   
   .show-hangle {
     text-align: center;
+  }
+
+  .hanchange {
+    width: 100%;
   }
 }
 </style>
@@ -32,7 +45,7 @@ han('0000', '\$(hanPostText)');
     </div>
   </div>
 \@if True
-  <div style="height:20px;">
+  <div class="hangle-text">
     <span class="hangle-span"></span>
   </div>
 \@endif
