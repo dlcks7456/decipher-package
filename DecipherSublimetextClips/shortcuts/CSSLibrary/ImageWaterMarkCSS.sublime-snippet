@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+.${1:WATERMARK_IMAGE_CLASS} img {
+    width: 100%!important;
+    height: unset!important;
+    max-width: 400px;
+    background-size: contain;
+    background-position: center center;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>img.wm.css</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

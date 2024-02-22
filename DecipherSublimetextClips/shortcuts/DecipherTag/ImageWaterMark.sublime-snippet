@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+[image ${1:FILE_NAME}.png protected=1 value=\${record} fontSize=70 placement=repeat color=#000000 alpha=10]
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>img.wm</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
