@@ -2,11 +2,12 @@
   <content><![CDATA[
 <res label="rate_show_score_text">%s <b>(%s점)</b></res>
 <res label="rank_order_err">점수가 높은 순서로 응답 부탁드립니다.</res>
+<res label="rank_remain_err">아직 높은 점수로 답변한 항목이 있습니다. 답변을 다시 확인해 주세요.</res>
 <exec when="init">
 def rate_show_score(scale_qid, rank_qid) :
   for row in rank_qid.rows :
     if scale_qid.attr(row.label).any :
-      row.text = res.rate_show_score_text%(scale_qid.attr(row.label).text, scale_qid.cols[scale_qid.attr(row.label).val].value)
+      row.text = res.rate_show_score_text%(scale_qid.cols[scale_qid.attr(row.label).val].value, scale_qid.attr(row.label).text)
 
 def scale_rank_items(scale_qid, rank_qid, reverse=True) :
     if gv.isSST() :
@@ -78,8 +79,13 @@ def scale_rank_items(scale_qid, rank_qid, reverse=True) :
 def scale_rank_vali(scale_qid) :
   if gv.isSST() :
     return
+
+  remain_answer = [r for r in this.rows if not r and scale_qid.attr(r.label).any]
   for idx, eachCol in enumerate(this.cols) :
-    if idx == (len(this.cols)-1) :
+    if not eachCol.displayed :
+      continue
+
+    if idx == (len([c for c in this.cols if c.displayed])-1) :
       continue
  
     curr = eachCol
@@ -91,6 +97,13 @@ def scale_rank_vali(scale_qid) :
     if next_value gt curr_value :
       for x in [curr, next] :
         error(res.rank_order_err, col=x)
+
+    if next_value lt curr_value :
+      remain_value = [scale_qid.attr(r.label).val for r in remain_answer]
+      if curr_value in remain_value :
+        for r in remain_answer :
+          if scale_qid.attr(r.label).val == curr_value :
+            error(res.rank_remain_err, row=r)
 </exec>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
