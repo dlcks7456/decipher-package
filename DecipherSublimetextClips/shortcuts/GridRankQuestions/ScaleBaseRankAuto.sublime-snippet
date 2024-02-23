@@ -9,6 +9,12 @@ def rate_show_score(scale_qid, rank_qid) :
       row.text = res.rate_show_score_text%(scale_qid.attr(row.label).text, scale_qid.cols[scale_qid.attr(row.label).val].value)
 
 def scale_rank_items(scale_qid, rank_qid, reverse=True) :
+    if gv.isSST() :
+      return {
+          'show' : [x.label for x in rank_qid.rows],
+          'skip' : False,
+          'auto' : []
+        }
     scale_answer = {x.label: x.val for x in scale_qid.rows.order if x.any}
     sorted_list = sorted(scale_answer.items(), key=lambda item: item[1], reverse=reverse)
     
@@ -57,7 +63,7 @@ def scale_rank_items(scale_qid, rank_qid, reverse=True) :
     auto_rows = []
     for idx, row_list in enumerate(rank_able_answer) :
       if len(row_list) == 1 :
-        auto_rows.append(row_list[0])
+        auto_rows.append([idx+1, row_list[0]])
         if not gv.isSST() :
           rank_qid.cols[idx].val = rank_qid.attr(row_list[0]).index
       else :
