@@ -325,11 +325,6 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                 const remainLabel = remainRow[0].label;
                 const remainClass = document.querySelector(`.rank-text-${remainLabel}`);
                 remainClass.click();
-
-                // const surveyButtons = document.querySelector('.survey-buttons');
-                // surveyButtons.setAttribute("tabindex", 0);
-                // surveyButtons.focus();
-
                 setClickFlag(false);
             }
         }
