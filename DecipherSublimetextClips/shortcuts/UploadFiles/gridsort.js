@@ -243,6 +243,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
     const [isPreventScroll, setIsPreventScroll] = React.useState(false);
     const showAnswerRef = React.useRef();
 
+    // Auto Remain Attribute click
+    const [clickFlag, setClickFlag] = React.useState(defaultValue.length == cols.length ? false : true);
+
     React.useEffect(()=>{
         if( !isPreventScroll ){
             if( showAnswerRef.current !== null && showAnswerRef.current !== undefined ) {
@@ -314,6 +317,23 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
         }
 
         setAnswerList(rankAnswers);
+
+        const remainAnswerCount = cols.length - rankAnswers.length;
+        if( clickFlag && newError.length == 0 ){
+            if( (remainAnswerCount == 1) && (cols.length == rows.length) ){
+                const remainRow = rows.filter((row)=> !rankAnswers.includes(row.index));
+                const remainLabel = remainRow[0].label;
+                const remainClass = document.querySelector(`.rank-text-${remainLabel}`);
+                remainClass.click();
+
+                // const surveyButtons = document.querySelector('.survey-buttons');
+                // surveyButtons.setAttribute("tabindex", 0);
+                // surveyButtons.focus();
+
+                setClickFlag(false);
+            }
+        }
+
     }, [rankAnswers]);
 
     const noAnswerSelect = (flag)=>{
@@ -422,6 +442,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
     return (
         <>
         <style jsx="true">{`
+.surveyContainer {
+    scroll-behavior: smooth;
+}
 .custom-rank-sort {
     width : 100%;
     max-width : ${gridColCnt.length >= 2 ? "924px" : "500px"};
