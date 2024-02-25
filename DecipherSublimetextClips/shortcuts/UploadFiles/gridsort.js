@@ -367,9 +367,12 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
     }, [rankAnswers]);
 
 
+    const [focusNext, setFocusNext] = React.useState(true);
+
     React.useEffect(()=>{
-        if( answerCompleted ){
+        if( answerCompleted && focusNext ){
             autoScroll();
+            setFocusNext(false);
         }
     }, [answerCompleted])
 
