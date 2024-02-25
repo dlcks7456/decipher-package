@@ -40,13 +40,37 @@ auto_rows = scale_rank_items(${3}, ${4})['auto']
   <validate>
 scale_rank_vali(${3})
   </validate>
+<style arg:ableNone="1" arg:ableSort="true" arg:colCnt="2" arg:noneLabel="null" arg:showAnswers="true" arg:showCnt="true" arg:showGroups="true" arg:toggle="false" copy="custom_rank" name="question.after"/>
 <style name="page.head"><![CDATA[
 <style>
-\@for x in auto_rows
+\@for rank, x in auto_rows
+.answer-rank-\${rank} {
+  pointer-events: none !important;
+}
+
+.answer-rank-\${rank} svg {
+  pointer-events: none !important;
+  visibility: hidden;
+}
+
 .rank-row-\${x} {
   pointer-events: none !important;
 }
+\@if rank == len(auto_rows)
+.answer-rank-\${rank+1} .rk-up {
+  pointer-events: none !important;
+  display: none;
+}
+
+.answer-rank-\${rank+1} .ans-hd-grid {
+  display: block !important;
+}
+\@endif
 \@end
+
+.rank-text {
+  text-align: center;
+}
 </style>
 ]]${-1}></style>
   <col label="c1">1순위</col>
