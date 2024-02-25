@@ -1,3 +1,38 @@
+const smoothScrollToBottom = (selector)=>{
+  console.log(selector);
+  const element = document.querySelector(selector);
+  if (!element) return;
+
+  const start = element.scrollTop;
+  const end = element.scrollHeight - element.clientHeight;
+  console.log(start, end);
+
+  const change = end - start;
+  const duration = 300;
+  let startTime = null;
+
+  const animateScroll = (timestamp) => {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    element.scrollTop = start + change * progress;
+
+    if (elapsed < duration) {
+      requestAnimationFrame(animateScroll);
+    }
+  }
+
+  requestAnimationFrame(animateScroll);
+}
+
+
+const autoScroll = ()=>{
+    smoothScrollToBottom("#surveyContainer");
+    smoothScrollToBottom("html");
+    document.querySelector('#btn_continue').focus({preventScroll: true});
+}
+
 const HiddenInputs = ({qid, uid, cols, answers, noAnswers, noAnswerCheck})=>{
     // Hidden Input
     return (
@@ -330,6 +365,14 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
         }
 
     }, [rankAnswers]);
+
+
+    React.useEffect(()=>{
+        if( answerCompleted ){
+            autoScroll();
+        }
+    }, [answerCompleted])
+
 
     const noAnswerSelect = (flag)=>{
         if(flag){
