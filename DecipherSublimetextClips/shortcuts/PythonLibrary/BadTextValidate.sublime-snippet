@@ -1,30 +1,22 @@
 <snippet>
 	<content><![CDATA[
 def badtext() :
-  tt=[i.replace(" ","") for i in this.values if not i==None]
-  badhan=(res.badhan)
-  badhan=badhan.split(',')
+  text_answer = [unicode(i, 'utf-8').replace(" ","") for i in this.values if not i==None]
+  badhan = (res.badhan)
+  badhan = [unicode(t, 'utf-8') for t in badhan.split(',')]
 
-  badspa=(res.badspa)
-  badspa=badspa.split(',')
-
-
-  for i in range(0,len(tt)) :
-    current_v=tt[i]
-    current_len=len(current_v)
-    for j in range(0,int(current_len),3) :
-      fn=j
-      ln=int(j)+3
-      if current_v[fn:ln] in badhan :
-        if decLang == 'korean' :
-          error(res.badhan_err)
+  badspa = (res.badspa)
+  badspa = [unicode(t, 'utf-8') for t in badspa.split(',')]
 
 
-  for i in range(0,len(tt)) :
-    current_v=tt[i]
-    current_len=len(current_v)
-    for j in range(0,int(current_len),1) :
-      if current_v[j] in badspa :
+  for ans in text_answer :
+    ans_len=len(ans)
+    for j in range(0, ans_len) :
+      if ans[j] in badhan :
+        if decLang == 'korean' or LQ.korean :
+         error(res.badhan_err)
+
+      if ans[j] in badspa :
         error(res.badspa_err)
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
