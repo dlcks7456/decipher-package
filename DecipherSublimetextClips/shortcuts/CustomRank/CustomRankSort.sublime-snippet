@@ -14,7 +14,7 @@ const group_info = [
 ];
 SettingGridRankSort({
   json: \${jsexport()}, 
-  defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None]}, 
+  defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None and v.displayed]}, 
   colCnt: \$(colCnt),
   showGroups : \$(showGroups),
   groups: group_info, 
