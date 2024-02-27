@@ -18,8 +18,8 @@ brand_model_check(use_open=True, use_none=True)
     <col label="brand" ss:colClassNames="brand">${3}</col>
     <col label="model" ss:colClassNames="model">${4}</col>
     <row label="r1">${5}</row>
-    <insert as="choices" source="brandList"/>
-    <insert as="choices" source="modelList"/>
+    <insert as="choices" source="brand_list"/>
+    <insert as="choices" source="model_list"/>
   </select>
 
   <text 

@@ -136,8 +136,8 @@ def set_pipe_value(base_qid, set_qid) :
   optional="1"
   where="execute,survey,report">
   <title>(HIDDEN) Brand/Model logic base question</title>
-  <insert source="brandList"/>
-  <insert source="modelList"/>
+  <insert source="brand_list"/>
+  <insert source="model_list"/>
 </radio>
 
 <suspend/>

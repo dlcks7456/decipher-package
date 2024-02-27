@@ -12,8 +12,8 @@ brand_model_check()
     <style cols="model" copy="modelSelect" name="el.select.element"/>
     <col label="brand" ss:colClassNames="brand">${3}</col>
     <col label="model" ss:colClassNames="model">${4}</col>
-    <insert as="choices" source="${5:brandList}"/>
-    <insert as="choices" source="${6:modelList}"/>
+    <insert as="choices" source="${5:brand_list}"/>
+    <insert as="choices" source="${6:model_list}"/>
 </select>
 
 <suspend/>

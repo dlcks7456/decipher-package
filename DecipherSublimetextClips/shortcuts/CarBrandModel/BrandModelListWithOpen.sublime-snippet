@@ -1,0 +1,536 @@
+<snippet>
+    <content><![CDATA[
+<define label="brand_list">
+  <row label="b1" value="1">기아</row>
+  <row label="b2" value="2">현대</row>
+  <row label="b3" value="3">제네시스</row>
+  <row label="b4" value="4">KG모빌리티(쌍용)</row>
+  <row label="b5" value="5">르노코리아</row>
+  <row label="b6" value="6">쉐보레</row>
+  <row label="b7" value="7">메르세데스 벤츠</row>
+  <row label="b8" value="8">아우디</row>
+  <row label="b9" value="9">BMW</row>
+  <row label="b10" value="10">볼보</row>
+  <row label="b11" value="11">테슬라</row>
+  <row label="b12" value="12">폴스타</row>
+  <row label="b13" value="13">렉서스</row>
+  <row label="b14" value="14">포르쉐</row>
+  <row label="b15" value="15">닛산</row>
+  <row label="b16" value="16">토요타</row>
+  <row label="b17" value="17">혼다</row>
+  <row label="b18" value="18">인피니티</row>
+  <row label="b19" value="19">폭스바겐</row>
+  <row label="b20" value="20">랜드로버</row>
+  <row label="b21" value="21">링컨</row>
+  <row label="b22" value="22">미니</row>
+  <row label="b23" value="23">시트로엥</row>
+  <row label="b24" value="24">재규어</row>
+  <row label="b25" value="25">지프</row>
+  <row label="b26" value="26">캐딜락</row>
+  <row label="b27" value="27">크라이슬러</row>
+  <row label="b28" value="28">포드</row>
+  <row label="b29" value="29">푸조</row>
+  <row label="b30" value="30">피아트</row>
+  <row label="b31" value="31">마세라티</row>
+  <row label="b32" value="32">람보르기니</row>
+  <row label="b33" value="33">벤틀리</row>
+  <row label="b34" value="34">롤스로이스</row>
+  <row label="b35" value="35">GMC</row>
+  <row label="b98" value="98" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+</define>
+
+<define label="model_list">
+  <row label="m101" value="101">EV6</row>
+  <row label="m102" value="102">K3</row>
+  <row label="m103" value="103">K5</row>
+  <row label="m104" value="104">K7</row>
+  <row label="m105" value="105">K8</row>
+  <row label="m106" value="106">K9</row>
+  <row label="m107" value="107">니로 EV</row>
+  <row label="m108" value="108">니로 플러그인 하이브리드</row>
+  <row label="m109" value="109">니로 하이브리드</row>
+  <row label="m110" value="110">레이</row>
+  <row label="m111" value="111">레이 EV</row>
+  <row label="m112" value="112">모닝</row>
+  <row label="m113" value="113">모하비</row>
+  <row label="m114" value="114">셀토스</row>
+  <row label="m115" value="115">스토닉</row>
+  <row label="m116" value="116">스팅어</row>
+  <row label="m117" value="117">스포티지</row>
+  <row label="m118" value="118">쏘렌토</row>
+  <row label="m119" value="119">쏘울</row>
+  <row label="m120" value="120">쏘울 EV</row>
+  <row label="m121" value="121">카니발</row>
+  <row label="m122" value="122">카렌스</row>
+  <row label="m123" value="123">프라이드</row>
+  <row label="m124" value="124">EV9</row>
+  <row label="m198" value="198" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m201" value="201">i30</row>
+  <row label="m202" value="202">I40</row>
+  <row label="m203" value="203">I40 살룬</row>
+  <row label="m204" value="204">그랜드 스타렉스</row>
+  <row label="m205" value="205">그랜저</row>
+  <row label="m206" value="206">넥쏘</row>
+  <row label="m207" value="207">맥스크루즈</row>
+  <row label="m208" value="208">베뉴</row>
+  <row label="m209" value="209">베라크루즈</row>
+  <row label="m210" value="210">벨로스터</row>
+  <row label="m211" value="211">벨로스터N</row>
+  <row label="m212" value="212">스타리아</row>
+  <row label="m213" value="213">싼타페</row>
+  <row label="m214" value="214">쏘나타</row>
+  <row label="m215" value="215">아반떼</row>
+  <row label="m216" value="216">아슬란</row>
+  <row label="m217" value="217">아이오닉</row>
+  <row label="m218" value="218">아이오닉 일렉트릭</row>
+  <row label="m219" value="219">아이오닉5</row>
+  <row label="m220" value="220">아이오닉6</row>
+  <row label="m221" value="221">아이오닉7</row>
+  <row label="m222" value="222">액센트</row>
+  <row label="m223" value="223">에쿠스</row>
+  <row label="m224" value="224">제네시스</row>
+  <row label="m225" value="225">제네시스 쿠페</row>
+  <row label="m226" value="226">캐스퍼</row>
+  <row label="m227" value="227">코나</row>
+  <row label="m228" value="228">코나 하이브리드</row>
+  <row label="m229" value="229">코나 일렉트릭</row>
+  <row label="m230" value="230">투싼</row>
+  <row label="m231" value="231">팰리세이드</row>
+  <row label="m298" value="298" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m301" value="301">EQ900</row>
+  <row label="m302" value="302">G70</row>
+  <row label="m303" value="303">G80</row>
+  <row label="m304" value="304">G80 Electric</row>
+  <row label="m305" value="305">G90</row>
+  <row label="m306" value="306">GV60</row>
+  <row label="m307" value="307">GV70</row>
+  <row label="m308" value="308">GV70 Electric</row>
+  <row label="m309" value="309">GV80</row>
+  <row label="m398" value="398" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m401" value="401">렉스턴</row>
+  <row label="m402" value="402">렉스턴 스포츠</row>
+  <row label="m403" value="403">렉스턴 스포츠 칸</row>
+  <row label="m404" value="404">체어맨</row>
+  <row label="m405" value="405">코란도</row>
+  <row label="m406" value="406">코란도 C</row>
+  <row label="m407" value="407">코란도 e-motion EV</row>
+  <row label="m408" value="408">코란도 투리스모</row>
+  <row label="m409" value="409">토레스</row>
+  <row label="m410" value="410">티볼리</row>
+  <row label="m498" value="498" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m501" value="501">QM3</row>
+  <row label="m502" value="502">QM5</row>
+  <row label="m503" value="503">QM6</row>
+  <row label="m504" value="504">SM3</row>
+  <row label="m505" value="505">SM3 EV</row>
+  <row label="m506" value="506">SM5</row>
+  <row label="m507" value="507">SM6</row>
+  <row label="m508" value="508">SM7</row>
+  <row label="m509" value="509">XM3</row>
+  <row label="m510" value="510">조에</row>
+  <row label="m511" value="511">캡처</row>
+  <row label="m512" value="512">클리오</row>
+  <row label="m513" value="513">트위지</row>
+  <row label="m598" value="598" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m601" value="601">다마스</row>
+  <row label="m602" value="602">마티즈</row>
+  <row label="m603" value="603">말리부</row>
+  <row label="m604" value="604">볼트</row>
+  <row label="m605" value="605">볼트 EUV</row>
+  <row label="m606" value="606">볼트 EV</row>
+  <row label="m607" value="607">스파크</row>
+  <row label="m608" value="608">스파크 EV</row>
+  <row label="m609" value="609">아베오</row>
+  <row label="m610" value="610">알페온</row>
+  <row label="m611" value="611">올란도</row>
+  <row label="m612" value="612">이쿼녹스</row>
+  <row label="m613" value="613">임팔라</row>
+  <row label="m614" value="614">젠트라</row>
+  <row label="m615" value="615">카마로</row>
+  <row label="m616" value="616">캡티바</row>
+  <row label="m617" value="617">콜로라도</row>
+  <row label="m618" value="618">크루즈</row>
+  <row label="m619" value="619">타호</row>
+  <row label="m620" value="620">트래버스</row>
+  <row label="m621" value="621">트랙스</row>
+  <row label="m622" value="622">트레일블레이저</row>
+  <row label="m698" value="698" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m701" value="701">A-AMG-Class</row>
+  <row label="m702" value="702">A-Class</row>
+  <row label="m703" value="703">B-Class</row>
+  <row label="m704" value="704">C-amg-class</row>
+  <row label="m705" value="705">C-class</row>
+  <row label="m706" value="706">CLA-AMG-Class</row>
+  <row label="m707" value="707">CLA-class</row>
+  <row label="m708" value="708">CLS-amg-class</row>
+  <row label="m709" value="709">CLS-class</row>
+  <row label="m710" value="710">E-amg-class</row>
+  <row label="m711" value="711">E-class</row>
+  <row label="m712" value="712">EQA</row>
+  <row label="m713" value="713">EQB</row>
+  <row label="m714" value="714">EQC</row>
+  <row label="m715" value="715">EQE</row>
+  <row label="m716" value="716">EQE SUV</row>
+  <row label="m717" value="717">EQS</row>
+  <row label="m718" value="718">EQS SUV</row>
+  <row label="m719" value="719">EQS-AMG</row>
+  <row label="m720" value="720">G-AMG-Class</row>
+  <row label="m721" value="721">G-Class</row>
+  <row label="m722" value="722">GLA-AMG-Class</row>
+  <row label="m723" value="723">GLA-Class</row>
+  <row label="m724" value="724">GLB-AMG-Class</row>
+  <row label="m725" value="725">GLB-Class</row>
+  <row label="m726" value="726">GLC-AMG-Class</row>
+  <row label="m727" value="727">GLC-Class</row>
+  <row label="m728" value="728">GLE-AMG-Class</row>
+  <row label="m729" value="729">GLE-Class</row>
+  <row label="m730" value="730">GLK-Class</row>
+  <row label="m731" value="731">GLS-Class</row>
+  <row label="m732" value="732">GT-AMG-Class</row>
+  <row label="m733" value="733">Maybach GLS</row>
+  <row label="m734" value="734">Maybach S</row>
+  <row label="m735" value="735">ML-Class</row>
+  <row label="m736" value="736">S-AMG-Class</row>
+  <row label="m737" value="737">S-class</row>
+  <row label="m738" value="738">SL-AMG-Class</row>
+  <row label="m739" value="739">SLC-AMG-Class</row>
+  <row label="m740" value="740">SLC-Class</row>
+  <row label="m741" value="741">SL-Class</row>
+  <row label="m742" value="742">SLK-AMG-Class</row>
+  <row label="m743" value="743">SLK-Class</row>
+  <row label="m798" value="798" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m801" value="801">A1</row>
+  <row label="m802" value="802">A3</row>
+  <row label="m803" value="803">A4</row>
+  <row label="m804" value="804">A5</row>
+  <row label="m805" value="805">A6</row>
+  <row label="m806" value="806">A7</row>
+  <row label="m807" value="807">A8</row>
+  <row label="m808" value="808">E-Tron</row>
+  <row label="m809" value="809">E-Tron GT</row>
+  <row label="m810" value="810">E-Tron S</row>
+  <row label="m811" value="811">Q2</row>
+  <row label="m812" value="812">Q3</row>
+  <row label="m813" value="813">Q4</row>
+  <row label="m814" value="814">Q4 e-tron</row>
+  <row label="m815" value="815">Q5</row>
+  <row label="m816" value="816">Q7</row>
+  <row label="m817" value="817">Q8</row>
+  <row label="m818" value="818">R8</row>
+  <row label="m819" value="819">RS</row>
+  <row label="m820" value="820">RS e-tron GT</row>
+  <row label="m821" value="821">RS5</row>
+  <row label="m822" value="822">RS6</row>
+  <row label="m823" value="823">RS7</row>
+  <row label="m824" value="824">S3</row>
+  <row label="m825" value="825">S4</row>
+  <row label="m826" value="826">S5</row>
+  <row label="m827" value="827">S6</row>
+  <row label="m828" value="828">S7</row>
+  <row label="m829" value="829">S8</row>
+  <row label="m830" value="830">SQ5</row>
+  <row label="m831" value="831">SQ8</row>
+  <row label="m832" value="832">TT</row>
+  <row label="m833" value="833">TTS</row>
+  <row label="m898" value="898" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m901" value="901">1-series</row>
+  <row label="m902" value="902">2-series</row>
+  <row label="m903" value="903">3-series</row>
+  <row label="m904" value="904">4-series</row>
+  <row label="m905" value="905">5-series</row>
+  <row label="m906" value="906">6-series</row>
+  <row label="m907" value="907">7-series</row>
+  <row label="m908" value="908">8-series</row>
+  <row label="m909" value="909">Active Hybrid5</row>
+  <row label="m910" value="910">Active Tourer</row>
+  <row label="m911" value="911">GT</row>
+  <row label="m912" value="912">i3</row>
+  <row label="m913" value="913">i4</row>
+  <row label="m914" value="914">I5</row>
+  <row label="m915" value="915">i7</row>
+  <row label="m916" value="916">i8</row>
+  <row label="m917" value="917">iX</row>
+  <row label="m918" value="918">iX3</row>
+  <row label="m919" value="919">M1</row>
+  <row label="m920" value="920">M2</row>
+  <row label="m921" value="921">M3</row>
+  <row label="m922" value="922">M4</row>
+  <row label="m923" value="923">M5</row>
+  <row label="m924" value="924">M6</row>
+  <row label="m925" value="925">M7</row>
+  <row label="m926" value="926">M8</row>
+  <row label="m927" value="927">X1</row>
+  <row label="m928" value="928">X2</row>
+  <row label="m929" value="929">X3</row>
+  <row label="m930" value="930">X4</row>
+  <row label="m931" value="931">X5</row>
+  <row label="m932" value="932">X6</row>
+  <row label="m933" value="933">X7</row>
+  <row label="m934" value="934">Z4</row>
+  <row label="m998" value="998" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1001" value="1001">C40</row>
+  <row label="m1002" value="1002">C40 Recharge</row>
+  <row label="m1003" value="1003">S60</row>
+  <row label="m1004" value="1004">S80</row>
+  <row label="m1005" value="1005">S90</row>
+  <row label="m1006" value="1006">V40</row>
+  <row label="m1007" value="1007">V60</row>
+  <row label="m1008" value="1008">V90</row>
+  <row label="m1009" value="1009">XC40</row>
+  <row label="m1010" value="1010">XC40 Recharge</row>
+  <row label="m1011" value="1011">XC60</row>
+  <row label="m1012" value="1012">XC70</row>
+  <row label="m1013" value="1013">XC90</row>
+  <row label="m1014" value="1014">EX90</row>
+  <row label="m1098" value="1098" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1101" value="1101">모델 3</row>
+  <row label="m1102" value="1102">모델 S</row>
+  <row label="m1103" value="1103">모델 X</row>
+  <row label="m1104" value="1104">모델  Y</row>
+  <row label="m1198" value="1198" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1201" value="1201">2</row>
+  <row label="m1298" value="1298" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1301" value="1301">CT</row>
+  <row label="m1302" value="1302">ES</row>
+  <row label="m1303" value="1303">GS</row>
+  <row label="m1304" value="1304">IS</row>
+  <row label="m1305" value="1305">LC</row>
+  <row label="m1306" value="1306">LS</row>
+  <row label="m1307" value="1307">NX</row>
+  <row label="m1308" value="1308">RC</row>
+  <row label="m1309" value="1309">RX</row>
+  <row label="m1310" value="1310">RX450</row>
+  <row label="m1311" value="1311">UX</row>
+  <row label="m1398" value="1398" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1401" value="1401">718 Boxster</row>
+  <row label="m1402" value="1402">718 Cayman</row>
+  <row label="m1403" value="1403">911 Carrera</row>
+  <row label="m1404" value="1404">911 Carrera 4</row>
+  <row label="m1405" value="1405">918 Spyder</row>
+  <row label="m1406" value="1406">박스터</row>
+  <row label="m1407" value="1407">카이옌</row>
+  <row label="m1408" value="1408">카이옌 S</row>
+  <row label="m1409" value="1409">카이맨</row>
+  <row label="m1410" value="1410">마칸</row>
+  <row label="m1411" value="1411">파나메라</row>
+  <row label="m1412" value="1412">파나메라 S</row>
+  <row label="m1413" value="1413">타이칸</row>
+  <row label="m1498" value="1498" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1501" value="1501">370Z</row>
+  <row label="m1502" value="1502">알티마</row>
+  <row label="m1503" value="1503">큐브</row>
+  <row label="m1504" value="1504">GT-R</row>
+  <row label="m1505" value="1505">쥬크</row>
+  <row label="m1506" value="1506">리프</row>
+  <row label="m1507" value="1507">막시마</row>
+  <row label="m1508" value="1508">무라노</row>
+  <row label="m1509" value="1509">패스파인더</row>
+  <row label="m1510" value="1510">콰스콰이</row>
+  <row label="m1511" value="1511">엑스 트레일</row>
+  <row label="m1598" value="1598" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1601" value="1601">86</row>
+  <row label="m1602" value="1602">아발론</row>
+  <row label="m1603" value="1603">아발론 하이브리드</row>
+  <row label="m1604" value="1604">캠리</row>
+  <row label="m1605" value="1605">프리우스</row>
+  <row label="m1606" value="1606">프리우스 C</row>
+  <row label="m1607" value="1607">라브 4 (Rav4)</row>
+  <row label="m1608" value="1608">시에나 (Sienna)</row>
+  <row label="m1609" value="1609">수프라</row>
+  <row label="m1698" value="1698" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1701" value="1701">어코드</row>
+  <row label="m1702" value="1702">시빅</row>
+  <row label="m1703" value="1703">시빅 스포츠</row>
+  <row label="m1704" value="1704">CR-V</row>
+  <row label="m1705" value="1705">HR-V</row>
+  <row label="m1706" value="1706">레전드</row>
+  <row label="m1707" value="1707">오디세이</row>
+  <row label="m1708" value="1708">파일럿</row>
+  <row label="m1798" value="1798" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1801" value="1801">Q30</row>
+  <row label="m1802" value="1802">Q50</row>
+  <row label="m1803" value="1803">Q60</row>
+  <row label="m1804" value="1804">Q70</row>
+  <row label="m1805" value="1805">QX30</row>
+  <row label="m1806" value="1806">QX50</row>
+  <row label="m1807" value="1807">QX60</row>
+  <row label="m1808" value="1808">QX70</row>
+  <row label="m1809" value="1809">QX80</row>
+  <row label="m1898" value="1898" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1901" value="1901">아르테온 (Arteon)</row>
+  <row label="m1902" value="1902">비틀 (Beetle)</row>
+  <row label="m1903" value="1903">CC</row>
+  <row label="m1904" value="1904">골프 (Golf)</row>
+  <row label="m1905" value="1905">ID.4</row>
+  <row label="m1906" value="1906">제타 (Jetta)</row>
+  <row label="m1907" value="1907">파사트 (Passat)</row>
+  <row label="m1908" value="1908">페이톤 (Phaeton)</row>
+  <row label="m1909" value="1909">폴로 (Polo)</row>
+  <row label="m1910" value="1910">시로코 (Scirocco)</row>
+  <row label="m1911" value="1911">티구안 (Tiguan)</row>
+  <row label="m1912" value="1912">티구안 올스페이스 (Tiguan Allspace)</row>
+  <row label="m1913" value="1913">투어락 (Touareg)</row>
+  <row label="m1914" value="1914">xlfhr (T-Roc)</row>
+  <row label="m1998" value="1998" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2001" value="2001">디펜더</row>
+  <row label="m2002" value="2002">디스커버리</row>
+  <row label="m2003" value="2003">디스커버리 스포츠</row>
+  <row label="m2004" value="2004">이보크 (Evoque)</row>
+  <row label="m2005" value="2005">프리랜더 (Freelander)</row>
+  <row label="m2006" value="2006">레인지 로버</row>
+  <row label="m2007" value="2007">레인즈 로버 이보크</row>
+  <row label="m2008" value="2008">레인지 로버 스포츠</row>
+  <row label="m2009" value="2009">레인지 로버 벨라 (Velar)</row>
+  <row label="m2098" value="2098" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2101" value="2101">에이비에이터 (Aviator)</row>
+  <row label="m2102" value="2102">컨티넨탈 (Continental)</row>
+  <row label="m2103" value="2103">커세어 (Corsair)</row>
+  <row label="m2104" value="2104">MKC</row>
+  <row label="m2105" value="2105">MKS</row>
+  <row label="m2106" value="2106">MKX</row>
+  <row label="m2107" value="2107">MKZ</row>
+  <row label="m2108" value="2108">노틸러스 (Nautilus)</row>
+  <row label="m2109" value="2109">네비게이터 (Navigator)</row>
+  <row label="m2198" value="2198" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2201" value="2201">미니쿠퍼</row>
+  <row label="m2202" value="2202">미니쿠퍼 클럽맨</row>
+  <row label="m2203" value="2203">미니쿠퍼 컨트리맨</row>
+  <row label="m2204" value="2204">미니쿠퍼 D</row>
+  <row label="m2205" value="2205">미니쿠퍼 D 클럽맨</row>
+  <row label="m2206" value="2206">미니쿠퍼 D 컨트리맨</row>
+  <row label="m2207" value="2207">미니쿠퍼 S</row>
+  <row label="m2208" value="2208">미니쿠퍼 S 클럽맨</row>
+  <row label="m2209" value="2209">미니쿠퍼 S 컨트리맨</row>
+  <row label="m2210" value="2210">미니쿠퍼 SD</row>
+  <row label="m2211" value="2211">미니쿠퍼 SD 클럽맨</row>
+  <row label="m2212" value="2212">미니쿠퍼 SD 컨트리맨</row>
+  <row label="m2213" value="2213">미니쿠퍼 SE</row>
+  <row label="m2214" value="2214">미니 존</row>
+  <row label="m2215" value="2215">미니 존 쿠퍼 웍스</row>
+  <row label="m2216" value="2216">미니 존 쿠퍼 웍스 컨트리맨</row>
+  <row label="m2298" value="2298" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2301" value="2301">C3 에어크로스</row>
+  <row label="m2302" value="2302">C4 칵투스</row>
+  <row label="m2303" value="2303">C4 그랜드 피카소</row>
+  <row label="m2304" value="2304">C4 그랜드 스페이스 투어러</row>
+  <row label="m2305" value="2305">C4 피카소</row>
+  <row label="m2306" value="2306">C4 스페이스 투어러</row>
+  <row label="m2307" value="2307">C5 에어크로스</row>
+  <row label="m2308" value="2308">DS3</row>
+  <row label="m2309" value="2309">DS3 e-Tense</row>
+  <row label="m2310" value="2310">DS4</row>
+  <row label="m2311" value="2311">DS5</row>
+  <row label="m2312" value="2312">DS7</row>
+  <row label="m2313" value="2313">DS7 크로스백</row>
+  <row label="m2314" value="2314">그랜드 C4</row>
+  <row label="m2398" value="2398" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2401" value="2401">E-PACE</row>
+  <row label="m2402" value="2402">F-PACE</row>
+  <row label="m2403" value="2403">F-TYPE</row>
+  <row label="m2404" value="2404">I-PACE</row>
+  <row label="m2405" value="2405">XE</row>
+  <row label="m2406" value="2406">XF</row>
+  <row label="m2407" value="2407">XFR</row>
+  <row label="m2408" value="2408">XJ</row>
+  <row label="m2409" value="2409">XJR</row>
+  <row label="m2498" value="2498" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2501" value="2501">체로키 (Cherokee)</row>
+  <row label="m2502" value="2502">컴패스 (Compass)</row>
+  <row label="m2503" value="2503">글라디에이터 (Gladiator)</row>
+  <row label="m2504" value="2504">그랜드 체로키 (Grand Cherokee)</row>
+  <row label="m2505" value="2505">그래드 체로키 L (Grand Cherokee L)</row>
+  <row label="m2506" value="2506">그랜드 보이저 (Grand Voyager)</row>
+  <row label="m2507" value="2507">레니게이드 (Renegade)</row>
+  <row label="m2508" value="2508">랭글러 루비콘 (Wrangler Rubicon)</row>
+  <row label="m2509" value="2509">랭글러 사하라 (Wrangler Sahara)</row>
+  <row label="m2510" value="2510">랭글러 스포츠 (Wrangler SPORT)</row>
+  <row label="m2598" value="2598" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2601" value="2601">ATS</row>
+  <row label="m2602" value="2602">CT4</row>
+  <row label="m2603" value="2603">CT5</row>
+  <row label="m2604" value="2604">CT5-V</row>
+  <row label="m2605" value="2605">CT6</row>
+  <row label="m2606" value="2606">CTS</row>
+  <row label="m2607" value="2607">에스컬레이드 (Escalade)</row>
+  <row label="m2608" value="2608">SRX</row>
+  <row label="m2609" value="2609">XT4</row>
+  <row label="m2610" value="2610">XT5</row>
+  <row label="m2611" value="2611">XT6</row>
+  <row label="m2612" value="2612">리릭(Lyriq)</row>
+  <row label="m2698" value="2698" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2701" value="2701">200</row>
+  <row label="m2702" value="2702">300</row>
+  <row label="m2798" value="2798" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2801" value="2801">이스케이프 (Escape)</row>
+  <row label="m2802" value="2802">익스페디션</row>
+  <row label="m2803" value="2803">익스플로러</row>
+  <row label="m2804" value="2804">포커스</row>
+  <row label="m2805" value="2805">퓨전 (Fusion)</row>
+  <row label="m2806" value="2806">쿠가 (Kuga)</row>
+  <row label="m2807" value="2807">몬데오 (Mondeo)</row>
+  <row label="m2808" value="2808">머스탱</row>
+  <row label="m2809" value="2809">머스탱 마하-e (Mustang Mach-E)</row>
+  <row label="m2810" value="2810">레인저</row>
+  <row label="m2811" value="2811">타우로스 (Taurus)</row>
+  <row label="m2812" value="2812">브롱코 (Bronco)</row>
+  <row label="m2898" value="2898" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2901" value="2901">208</row>
+  <row label="m2902" value="2902">308</row>
+  <row label="m2903" value="2903">508</row>
+  <row label="m2904" value="2904">2008</row>
+  <row label="m2905" value="2905">3008</row>
+  <row label="m2906" value="2906">5008</row>
+  <row label="m2907" value="2907">e-2008</row>
+  <row label="m2908" value="2908">e-208</row>
+  <row label="m2998" value="2998" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3001" value="3001">500</row>
+  <row label="m3002" value="3002">500C</row>
+  <row label="m3003" value="3003">500X</row>
+  <row label="m3004" value="3004">500e</row>
+  <row label="m3098" value="3098" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3101" value="3101">기블리 (Ghibli)</row>
+  <row label="m3102" value="3102">그란카브리오 (GranCabrio)</row>
+  <row label="m3103" value="3103">그란 투리스모 (GranTurismo)</row>
+  <row label="m3104" value="3104">그라칼레 (Grecale)</row>
+  <row label="m3105" value="3105">르반테 (Levante)</row>
+  <row label="m3106" value="3106">MC20</row>
+  <row label="m3107" value="3107">콰트로포르테 (Quattroporte)</row>
+  <row label="m3198" value="3198" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3201" value="3201">아벤타도르</row>
+  <row label="m3202" value="3202">우라칸</row>
+  <row label="m3203" value="3203">우르스</row>
+  <row label="m3298" value="3298" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3301" value="3301">벤테이가 V8</row>
+  <row label="m3302" value="3302">벤테이가 W12</row>
+  <row label="m3303" value="3303">컨티넨탈 GT</row>
+  <row label="m3304" value="3304">플라잉 스퍼</row>
+  <row label="m3305" value="3305">뮬산 (Mulsanne)</row>
+  <row label="m3398" value="3398" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3401" value="3401">컬리넌</row>
+  <row label="m3402" value="3402">던 (Dawn)</row>
+  <row label="m3403" value="3403">고스트</row>
+  <row label="m3404" value="3404">팬텀</row>
+  <row label="m3405" value="3405">레이스 (Wraith)</row>
+  <row label="m3498" value="3498" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3501" value="3501">시에라 (Sierra)</row>
+  <row label="m3502" value="3502" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m9801" value="9801" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+</define>
+
+<define label="PT_list">
+  <row label="p1" value="1">가솔린</row>
+  <row label="p2" value="2">디젤</row>
+  <row label="p3" value="3">하이브리드 (HEV)</row>
+  <row label="p4" value="4">EV (BEV)</row>
+  <row label="p5" value="5">플러그 인 하이브리드 (PHEV)</row>
+  <row label="p6" value="6">FCEV</row>
+  <row label="p7" value="7">LPG</row>
+  <row label="p98" value="98" open="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+</define>
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>bm.list.oe</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>
