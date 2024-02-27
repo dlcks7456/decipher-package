@@ -1,0 +1,476 @@
+model	p1	p2	p3	p4	p5	p6	p7	p98
+101				O				O
+102	O	O	O		O		O	O
+103	O	O	O		O		O	O
+104	O	O	O		O		O	O
+105	O	O	O		O		O	O
+106	O	O	O		O		O	O
+107				O				O
+108	O	O			O			O
+109	O	O	O					O
+110	O	O	O		O		O	O
+111				O				O
+112	O	O	O		O		O	O
+113	O	O	O		O		O	O
+114	O	O	O		O		O	O
+115	O	O	O		O		O	O
+116	O	O	O		O		O	O
+117	O	O	O		O		O	O
+118	O	O	O		O		O	O
+119	O	O	O		O		O	O
+120				O				O
+121	O	O	O		O		O	O
+122	O	O	O		O		O	O
+123	O	O	O		O		O	O
+124				O				O
+198	O	O	O	O	O	O	O	O
+201	O	O	O		O		O	O
+202	O	O	O		O		O	O
+203	O	O	O		O		O	O
+204	O	O	O		O		O	O
+205	O	O	O		O		O	O
+206			O	O	O	O		O
+207	O	O	O		O		O	O
+208	O	O	O		O		O	O
+209	O	O	O		O		O	O
+210	O	O	O		O		O	O
+211	O	O	O		O		O	O
+212	O	O	O		O		O	O
+213	O	O	O		O		O	O
+214	O	O	O		O		O	O
+215	O	O	O		O		O	O
+216	O	O	O		O		O	O
+217	O	O	O		O		O	O
+218				O				O
+219				O				O
+220				O				O
+221				O				O
+222	O	O	O		O		O	O
+223	O	O	O		O		O	O
+224	O	O	O		O		O	O
+225	O	O	O		O		O	O
+226	O	O	O		O			O
+227	O	O	O	O	O		O	O
+228			O		O			O
+229				O				O
+230	O	O	O		O		O	O
+231	O	O	O		O		O	O
+298	O	O	O	O	O		O	O
+301	O	O						O
+302	O	O	O	O	O		O	O
+303	O	O	O	O	O		O	O
+304				O				O
+305	O	O	O		O		O	O
+306				O				O
+307	O	O	O	O	O		O	O
+308				O				O
+309	O	O	O		O		O	O
+398	O	O	O	O	O	O	O	O
+401	O	O	O		O		O	O
+402	O	O	O		O		O	O
+403	O	O	O		O		O	O
+404	O	O	O		O		O	O
+405	O	O	O		O		O	O
+406	O	O	O		O		O	O
+407				O				O
+408	O	O	O		O		O	O
+409	O	O	O		O		O	O
+410	O	O	O		O		O	O
+498	O	O	O	O	O	O	O	O
+501	O	O	O		O		O	O
+502	O	O	O		O		O	O
+503	O	O	O		O		O	O
+504	O	O	O		O		O	O
+505				O				O
+506	O	O	O		O		O	O
+507	O	O	O		O		O	O
+508	O	O	O		O		O	O
+509	O	O	O		O		O	O
+510				O				O
+511	O	O	O		O		O	O
+512	O	O	O		O		O	O
+513				O				O
+598	O	O	O	O	O	O	O	O
+601	O	O	O		O		O	O
+602	O	O	O		O		O	O
+603	O	O	O		O		O	O
+604	O	O	O		O		O	O
+605				O				O
+606				O				O
+607	O	O	O		O		O	O
+608				O				O
+609	O	O	O		O		O	O
+610	O	O	O		O		O	O
+611	O	O	O		O		O	O
+612	O	O	O		O		O	O
+613	O	O	O		O		O	O
+614	O	O	O		O		O	O
+615	O	O	O		O		O	O
+616	O	O	O		O		O	O
+617	O	O	O		O		O	O
+618	O	O	O		O		O	O
+619	O	O	O		O		O	O
+620	O	O	O		O		O	O
+621	O	O	O		O		O	O
+622	O	O	O		O		O	O
+698	O	O	O	O	O	O	O	O
+701	O	O	O		O		O	O
+702	O	O	O		O		O	O
+703	O	O	O		O		O	O
+704	O	O	O		O		O	O
+705	O	O	O		O		O	O
+706	O	O	O		O		O	O
+707	O	O	O		O		O	O
+708	O	O	O		O		O	O
+709	O	O	O		O		O	O
+710	O	O	O		O		O	O
+711	O	O	O		O		O	O
+712				O				O
+713				O				O
+714				O				O
+715				O				O
+716				O				O
+717				O				O
+718				O				O
+719				O				O
+720	O	O	O		O		O	O
+721	O	O	O		O		O	O
+722	O	O	O		O		O	O
+723	O	O	O		O		O	O
+724	O	O	O		O		O	O
+725	O	O	O		O		O	O
+726	O	O	O		O		O	O
+727	O	O	O		O		O	O
+728	O	O	O		O		O	O
+729	O	O	O		O		O	O
+730	O	O	O		O		O	O
+731	O	O	O		O		O	O
+732	O	O	O		O		O	O
+733	O	O	O		O		O	O
+734	O	O	O		O		O	O
+735	O	O	O		O		O	O
+736	O	O	O		O		O	O
+737	O	O	O		O		O	O
+738	O	O	O		O		O	O
+739	O	O	O		O		O	O
+740	O	O	O		O		O	O
+741	O	O	O		O		O	O
+742	O	O	O		O		O	O
+743	O	O	O		O		O	O
+798	O	O	O	O	O	O	O	O
+801	O	O	O		O		O	O
+802	O	O	O		O		O	O
+803	O	O	O		O		O	O
+804	O	O	O		O		O	O
+805	O	O	O		O		O	O
+806	O	O	O		O		O	O
+807	O	O	O		O		O	O
+808				O				O
+809				O				O
+810				O				O
+811	O	O	O		O		O	O
+812	O	O	O		O		O	O
+813	O	O	O		O		O	O
+814				O				O
+815	O	O	O		O		O	O
+816	O	O	O		O		O	O
+817	O	O	O		O		O	O
+818	O	O	O		O		O	O
+819	O	O	O		O		O	O
+820				O				O
+821	O	O	O		O		O	O
+822	O	O	O		O		O	O
+823	O	O	O		O		O	O
+824	O	O	O		O		O	O
+825	O	O	O		O		O	O
+826	O	O	O		O		O	O
+827	O	O	O		O		O	O
+828	O	O	O		O		O	O
+829	O	O	O		O		O	O
+830	O	O	O		O		O	O
+831	O	O	O		O		O	O
+832	O	O	O		O		O	O
+833	O	O	O		O		O	O
+898	O	O	O	O	O	O	O	O
+901	O	O	O		O		O	O
+902	O	O	O		O		O	O
+903	O	O	O		O		O	O
+904	O	O	O		O		O	O
+905	O	O	O		O		O	O
+906	O	O	O		O		O	O
+907	O	O	O		O		O	O
+908	O	O	O		O		O	O
+909	O	O	O		O		O	O
+910	O	O	O		O		O	O
+911	O	O	O		O		O	O
+912				O				O
+913				O				O
+914				O				O
+915				O				O
+916	O	O	O	O	O		O	O
+917				O				O
+918				O				O
+919	O	O	O		O		O	O
+920	O	O	O		O		O	O
+921	O	O	O		O		O	O
+922	O	O	O		O		O	O
+923	O	O	O		O		O	O
+924	O	O	O		O		O	O
+925	O	O	O		O		O	O
+926	O	O	O		O		O	O
+927	O	O	O		O		O	O
+928	O	O	O		O		O	O
+929	O	O	O		O		O	O
+930	O	O	O		O		O	O
+931	O	O	O		O		O	O
+932	O	O	O		O		O	O
+933	O	O	O		O		O	O
+934	O	O	O		O		O	O
+998	O	O	O	O	O	O	O	O
+1001	O	O	O	O	O		O	O
+1002				O				O
+1003	O	O	O		O		O	O
+1004	O	O	O		O		O	O
+1005	O	O	O		O		O	O
+1006	O	O	O		O		O	O
+1007	O	O	O		O		O	O
+1008	O	O	O		O		O	O
+1009	O	O	O		O		O	O
+1010				O				O
+1011	O	O	O		O		O	O
+1012	O	O	O		O		O	O
+1013	O	O	O		O		O	O
+1014	O	O	O		O		O	O
+1098	O	O	O	O	O	O	O	O
+1101				O				O
+1102				O				O
+1103				O				O
+1104				O				O
+1198				O				O
+1201				O				O
+1298				O				O
+1301	O	O	O		O		O	O
+1302	O	O	O		O		O	O
+1303	O	O	O		O		O	O
+1304	O	O	O		O		O	O
+1305	O	O	O		O		O	O
+1306	O	O	O		O		O	O
+1307	O	O	O		O		O	O
+1308	O	O	O		O		O	O
+1309	O	O	O		O		O	O
+1310	O	O	O		O		O	O
+1311	O	O	O		O		O	O
+1398	O	O	O	O	O	O	O	O
+1401	O	O						O
+1402	O	O						O
+1403	O	O						O
+1404	O	O						O
+1405	O	O						O
+1406	O	O	O		O		O	O
+1407	O	O	O		O		O	O
+1408	O	O	O		O		O	O
+1409	O	O	O		O		O	O
+1410	O	O	O		O		O	O
+1411	O	O	O		O		O	O
+1412	O	O	O		O		O	O
+1413				O				O
+1498	O	O	O	O	O	O	O	O
+1501	O	O	O		O		O	O
+1502	O	O	O		O		O	O
+1503	O	O	O		O		O	O
+1504	O	O	O		O		O	O
+1505	O	O	O		O		O	O
+1506				O				O
+1507	O	O	O		O		O	O
+1508	O	O	O		O		O	O
+1509	O	O	O		O		O	O
+1510	O	O	O		O		O	O
+1511	O	O	O		O		O	O
+1598	O	O	O	O	O	O	O	O
+1601	O	O	O	O	O		O	O
+1602	O	O	O	O	O		O	O
+1603	O	O	O		O			O
+1604	O	O	O		O		O	O
+1605	O	O	O		O		O	O
+1606	O	O	O		O		O	O
+1607	O	O	O		O		O	O
+1608	O	O	O		O		O	O
+1609	O	O	O		O		O	O
+1698	O	O	O	O	O	O	O	O
+1701	O	O	O		O		O	O
+1702	O	O	O		O		O	O
+1703	O	O	O		O		O	O
+1704	O	O	O		O		O	O
+1705	O	O	O		O		O	O
+1706	O	O	O		O		O	O
+1707	O	O	O		O		O	O
+1708	O	O	O		O		O	O
+1798	O	O	O	O	O	O	O	O
+1801	O	O	O		O		O	O
+1802	O	O	O		O		O	O
+1803	O	O	O		O		O	O
+1804	O	O	O		O		O	O
+1805	O	O	O		O		O	O
+1806	O	O	O		O		O	O
+1807	O	O	O		O		O	O
+1808	O	O	O		O		O	O
+1809	O	O	O		O		O	O
+1898	O	O	O	O	O	O	O	O
+1901	O	O	O		O		O	O
+1902	O	O	O		O		O	O
+1903	O	O	O		O		O	O
+1904	O	O	O		O		O	O
+1905				O				O
+1906	O	O	O		O		O	O
+1907	O	O	O		O		O	O
+1908	O	O	O		O		O	O
+1909	O	O	O		O		O	O
+1910	O	O	O		O		O	O
+1911	O	O	O		O		O	O
+1912	O	O	O		O		O	O
+1913	O	O	O		O		O	O
+1914	O	O	O		O		O	O
+1998	O	O	O	O	O	O	O	O
+2001	O	O	O	O	O		O	O
+2002	O	O	O		O		O	O
+2003	O	O	O		O		O	O
+2004	O	O	O		O		O	O
+2005	O	O	O		O		O	O
+2006	O	O	O		O		O	O
+2007	O	O	O		O		O	O
+2008	O	O	O		O		O	O
+2009	O	O	O		O		O	O
+2098	O	O	O	O	O	O	O	O
+2101	O	O	O		O		O	O
+2102	O	O	O		O		O	O
+2103	O	O	O		O		O	O
+2104	O	O	O		O		O	O
+2105	O	O	O		O		O	O
+2106	O	O	O		O		O	O
+2107	O	O	O		O		O	O
+2108	O	O	O		O		O	O
+2109	O	O	O		O		O	O
+2198	O	O	O	O	O	O	O	O
+2201	O	O	O		O		O	O
+2202	O	O	O		O		O	O
+2203	O	O	O		O		O	O
+2204	O	O	O		O		O	O
+2205	O	O	O		O		O	O
+2206	O	O	O		O		O	O
+2207	O	O	O		O		O	O
+2208	O	O	O		O		O	O
+2209	O	O	O		O		O	O
+2210	O	O	O		O		O	O
+2211	O	O	O		O		O	O
+2212	O	O	O		O		O	O
+2213	O	O	O	O	O		O	O
+2214	O	O	O		O		O	O
+2215	O	O	O		O		O	O
+2216	O	O	O		O		O	O
+2298	O	O	O		O		O	O
+2301	O	O	O		O		O	O
+2302	O	O	O		O		O	O
+2303	O	O	O		O		O	O
+2304	O	O	O		O		O	O
+2305	O	O	O		O		O	O
+2306	O	O	O		O		O	O
+2307	O	O	O		O		O	O
+2308	O	O	O		O		O	O
+2309				O				O
+2310	O	O	O		O		O	O
+2311	O	O	O		O		O	O
+2312	O	O	O		O		O	O
+2313	O	O	O		O		O	O
+2314	O	O	O		O		O	O
+2398	O	O	O	O	O	O	O	O
+2401	O	O	O		O		O	O
+2402	O	O	O		O		O	O
+2403	O	O	O		O		O	O
+2404				O				O
+2405	O	O	O		O		O	O
+2406	O	O	O		O		O	O
+2407	O	O	O		O		O	O
+2408	O	O	O		O		O	O
+2409	O	O	O		O		O	O
+2498	O	O	O	O	O	O	O	O
+2501	O	O					O	O
+2502	O	O					O	O
+2503	O	O					O	O
+2504	O	O					O	O
+2505	O	O					O	O
+2506	O	O					O	O
+2507	O	O					O	O
+2508	O	O					O	O
+2509	O	O					O	O
+2510	O	O					O	O
+2598	O	O	O		O		O	O
+2601	O	O	O	O	O		O	O
+2602	O	O	O		O		O	O
+2603	O	O	O		O		O	O
+2604	O	O	O		O		O	O
+2605	O	O	O		O		O	O
+2606	O	O	O		O		O	O
+2607	O	O	O		O		O	O
+2608	O	O	O		O		O	O
+2609	O	O	O		O		O	O
+2610	O	O	O		O		O	O
+2611	O	O	O		O		O	O
+2612				O				O
+2698	O	O	O	O	O	O	O	O
+2701	O	O					O	O
+2702	O	O					O	O
+2798	O	O	O	O	O	O	O	O
+2801	O	O	O		O		O	O
+2802	O	O	O		O		O	O
+2803	O	O	O		O		O	O
+2804	O	O	O				O	O
+2805	O	O	O				O	O
+2806	O	O	O				O	O
+2807	O	O	O				O	O
+2808	O	O						O
+2809				O				O
+2810	O	O						O
+2811	O	O						O
+2812	O	O						O
+2898	O	O	O	O	O	O	O	O
+2901	O	O	O		O			O
+2902	O	O	O		O			O
+2903	O	O	O		O			O
+2904	O	O	O		O			O
+2905	O	O	O		O			O
+2906	O	O	O		O			O
+2907				O				O
+2908				O				O
+2998	O	O	O	O	O	O	O	O
+3001	O	O	O		O		O	O
+3002	O	O	O		O		O	O
+3003	O	O	O		O		O	O
+3004				O				O
+3098	O	O	O	O	O	O	O	O
+3101	O	O						O
+3102	O	O						O
+3103	O	O						O
+3104	O	O						O
+3105	O	O						O
+3106	O	O						O
+3107	O	O						O
+3198	O	O						O
+3201	O	O						O
+3202	O	O						O
+3203	O	O						O
+3298	O	O	O	O	O	O	O	O
+3301	O	O						O
+3302	O	O						O
+3303	O	O						O
+3304	O	O						O
+3305	O	O						O
+3398	O	O	O	O	O	O	O	O
+3401	O	O						O
+3402	O	O						O
+3403	O	O						O
+3404	O	O						O
+3405	O	O						O
+3498	O	O	O	O	O	O	O	O
+3501	O	O	O		O		O	O
+3502	O	O	O	O	O	O	O	O
+9801	O	O	O	O	O	O	O	O

@@ -1300,9 +1300,10 @@ function stepQuestion(bundleClassName){
                 [...nextSelect.options].slice(1).forEach( (item) => {
                     const showValues = showOptions.map((opt)=>{return opt.value});
                     const currValue = item.value;
-                    if( !showValues.includes(currValue) ){
-                        item.parentNode.removeChild(item);
-                    }
+                    item.parentNode.removeChild(item);
+                    // if( !showValues.includes(currValue) ){
+                    //     item.parentNode.removeChild(item);
+                    // }
                 });
 
                 const alreadyShowValues = [...nextSelect.options].map((opt)=>{return opt.value});

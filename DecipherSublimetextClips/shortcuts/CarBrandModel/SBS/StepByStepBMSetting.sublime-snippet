@@ -36,7 +36,7 @@
   <row label="b33" value="33">벤틀리</row>
   <row label="b34" value="34">롤스로이스</row>
   <row label="b35" value="35">GMC</row>
-  <row label="b98" value="98" randomize="0">기타 (구체적으로:)</row>
+  <row label="b98" value="98" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
 </define>
 
 <define label="model_list">
@@ -64,7 +64,7 @@
   <row label="m122" value="122">카렌스</row>
   <row label="m123" value="123">프라이드</row>
   <row label="m124" value="124">EV9</row>
-  <row label="m198" value="198" randomize="0">기타 (구체적으로:)</row>
+  <row label="m198" value="198" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m201" value="201">i30</row>
   <row label="m202" value="202">I40</row>
   <row label="m203" value="203">I40 살룬</row>
@@ -96,7 +96,7 @@
   <row label="m229" value="229">코나 일렉트릭</row>
   <row label="m230" value="230">투싼</row>
   <row label="m231" value="231">팰리세이드</row>
-  <row label="m298" value="298" randomize="0">기타 (구체적으로:)</row>
+  <row label="m298" value="298" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m301" value="301">EQ900</row>
   <row label="m302" value="302">G70</row>
   <row label="m303" value="303">G80</row>
@@ -106,7 +106,7 @@
   <row label="m307" value="307">GV70</row>
   <row label="m308" value="308">GV70 Electric</row>
   <row label="m309" value="309">GV80</row>
-  <row label="m398" value="398" randomize="0">기타 (구체적으로:)</row>
+  <row label="m398" value="398" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m401" value="401">렉스턴</row>
   <row label="m402" value="402">렉스턴 스포츠</row>
   <row label="m403" value="403">렉스턴 스포츠 칸</row>
@@ -117,7 +117,7 @@
   <row label="m408" value="408">코란도 투리스모</row>
   <row label="m409" value="409">토레스</row>
   <row label="m410" value="410">티볼리</row>
-  <row label="m498" value="498" randomize="0">기타 (구체적으로:)</row>
+  <row label="m498" value="498" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m501" value="501">QM3</row>
   <row label="m502" value="502">QM5</row>
   <row label="m503" value="503">QM6</row>
@@ -131,7 +131,7 @@
   <row label="m511" value="511">캡처</row>
   <row label="m512" value="512">클리오</row>
   <row label="m513" value="513">트위지</row>
-  <row label="m598" value="598" randomize="0">기타 (구체적으로:)</row>
+  <row label="m598" value="598" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m601" value="601">다마스</row>
   <row label="m602" value="602">마티즈</row>
   <row label="m603" value="603">말리부</row>
@@ -154,7 +154,7 @@
   <row label="m620" value="620">트래버스</row>
   <row label="m621" value="621">트랙스</row>
   <row label="m622" value="622">트레일블레이저</row>
-  <row label="m698" value="698" randomize="0">기타 (구체적으로:)</row>
+  <row label="m698" value="698" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m701" value="701">A-AMG-Class</row>
   <row label="m702" value="702">A-Class</row>
   <row label="m703" value="703">B-Class</row>
@@ -198,7 +198,7 @@
   <row label="m741" value="741">SL-Class</row>
   <row label="m742" value="742">SLK-AMG-Class</row>
   <row label="m743" value="743">SLK-Class</row>
-  <row label="m798" value="798" randomize="0">기타 (구체적으로:)</row>
+  <row label="m798" value="798" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m801" value="801">A1</row>
   <row label="m802" value="802">A3</row>
   <row label="m803" value="803">A4</row>
@@ -232,7 +232,7 @@
   <row label="m831" value="831">SQ8</row>
   <row label="m832" value="832">TT</row>
   <row label="m833" value="833">TTS</row>
-  <row label="m898" value="898" randomize="0">기타 (구체적으로:)</row>
+  <row label="m898" value="898" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m901" value="901">1-series</row>
   <row label="m902" value="902">2-series</row>
   <row label="m903" value="903">3-series</row>
@@ -267,7 +267,7 @@
   <row label="m932" value="932">X6</row>
   <row label="m933" value="933">X7</row>
   <row label="m934" value="934">Z4</row>
-  <row label="m998" value="998" randomize="0">기타 (구체적으로:)</row>
+  <row label="m998" value="998" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1001" value="1001">C40</row>
   <row label="m1002" value="1002">C40 Recharge</row>
   <row label="m1003" value="1003">S60</row>
@@ -282,14 +282,14 @@
   <row label="m1012" value="1012">XC70</row>
   <row label="m1013" value="1013">XC90</row>
   <row label="m1014" value="1014">EX90</row>
-  <row label="m1098" value="1098" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1098" value="1098" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1101" value="1101">모델 3</row>
   <row label="m1102" value="1102">모델 S</row>
   <row label="m1103" value="1103">모델 X</row>
   <row label="m1104" value="1104">모델  Y</row>
-  <row label="m1198" value="1198" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1198" value="1198" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1201" value="1201">2</row>
-  <row label="m1298" value="1298" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1298" value="1298" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1301" value="1301">CT</row>
   <row label="m1302" value="1302">ES</row>
   <row label="m1303" value="1303">GS</row>
@@ -301,7 +301,7 @@
   <row label="m1309" value="1309">RX</row>
   <row label="m1310" value="1310">RX450</row>
   <row label="m1311" value="1311">UX</row>
-  <row label="m1398" value="1398" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1398" value="1398" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1401" value="1401">718 Boxster</row>
   <row label="m1402" value="1402">718 Cayman</row>
   <row label="m1403" value="1403">911 Carrera</row>
@@ -315,7 +315,7 @@
   <row label="m1411" value="1411">파나메라</row>
   <row label="m1412" value="1412">파나메라 S</row>
   <row label="m1413" value="1413">타이칸</row>
-  <row label="m1498" value="1498" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1498" value="1498" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1501" value="1501">370Z</row>
   <row label="m1502" value="1502">알티마</row>
   <row label="m1503" value="1503">큐브</row>
@@ -327,7 +327,7 @@
   <row label="m1509" value="1509">패스파인더</row>
   <row label="m1510" value="1510">콰스콰이</row>
   <row label="m1511" value="1511">엑스 트레일</row>
-  <row label="m1598" value="1598" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1598" value="1598" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1601" value="1601">86</row>
   <row label="m1602" value="1602">아발론</row>
   <row label="m1603" value="1603">아발론 하이브리드</row>
@@ -337,7 +337,7 @@
   <row label="m1607" value="1607">라브 4 (Rav4)</row>
   <row label="m1608" value="1608">시에나 (Sienna)</row>
   <row label="m1609" value="1609">수프라</row>
-  <row label="m1698" value="1698" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1698" value="1698" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1701" value="1701">어코드</row>
   <row label="m1702" value="1702">시빅</row>
   <row label="m1703" value="1703">시빅 스포츠</row>
@@ -346,7 +346,7 @@
   <row label="m1706" value="1706">레전드</row>
   <row label="m1707" value="1707">오디세이</row>
   <row label="m1708" value="1708">파일럿</row>
-  <row label="m1798" value="1798" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1798" value="1798" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1801" value="1801">Q30</row>
   <row label="m1802" value="1802">Q50</row>
   <row label="m1803" value="1803">Q60</row>
@@ -356,7 +356,7 @@
   <row label="m1807" value="1807">QX60</row>
   <row label="m1808" value="1808">QX70</row>
   <row label="m1809" value="1809">QX80</row>
-  <row label="m1898" value="1898" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1898" value="1898" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m1901" value="1901">아르테온 (Arteon)</row>
   <row label="m1902" value="1902">비틀 (Beetle)</row>
   <row label="m1903" value="1903">CC</row>
@@ -371,7 +371,7 @@
   <row label="m1912" value="1912">티구안 올스페이스 (Tiguan Allspace)</row>
   <row label="m1913" value="1913">투어락 (Touareg)</row>
   <row label="m1914" value="1914">xlfhr (T-Roc)</row>
-  <row label="m1998" value="1998" randomize="0">기타 (구체적으로:)</row>
+  <row label="m1998" value="1998" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2001" value="2001">디펜더</row>
   <row label="m2002" value="2002">디스커버리</row>
   <row label="m2003" value="2003">디스커버리 스포츠</row>
@@ -381,7 +381,7 @@
   <row label="m2007" value="2007">레인즈 로버 이보크</row>
   <row label="m2008" value="2008">레인지 로버 스포츠</row>
   <row label="m2009" value="2009">레인지 로버 벨라 (Velar)</row>
-  <row label="m2098" value="2098" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2098" value="2098" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2101" value="2101">에이비에이터 (Aviator)</row>
   <row label="m2102" value="2102">컨티넨탈 (Continental)</row>
   <row label="m2103" value="2103">커세어 (Corsair)</row>
@@ -391,7 +391,7 @@
   <row label="m2107" value="2107">MKZ</row>
   <row label="m2108" value="2108">노틸러스 (Nautilus)</row>
   <row label="m2109" value="2109">네비게이터 (Navigator)</row>
-  <row label="m2198" value="2198" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2198" value="2198" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2201" value="2201">미니쿠퍼</row>
   <row label="m2202" value="2202">미니쿠퍼 클럽맨</row>
   <row label="m2203" value="2203">미니쿠퍼 컨트리맨</row>
@@ -408,7 +408,7 @@
   <row label="m2214" value="2214">미니 존</row>
   <row label="m2215" value="2215">미니 존 쿠퍼 웍스</row>
   <row label="m2216" value="2216">미니 존 쿠퍼 웍스 컨트리맨</row>
-  <row label="m2298" value="2298" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2298" value="2298" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2301" value="2301">C3 에어크로스</row>
   <row label="m2302" value="2302">C4 칵투스</row>
   <row label="m2303" value="2303">C4 그랜드 피카소</row>
@@ -423,7 +423,7 @@
   <row label="m2312" value="2312">DS7</row>
   <row label="m2313" value="2313">DS7 크로스백</row>
   <row label="m2314" value="2314">그랜드 C4</row>
-  <row label="m2398" value="2398" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2398" value="2398" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2401" value="2401">E-PACE</row>
   <row label="m2402" value="2402">F-PACE</row>
   <row label="m2403" value="2403">F-TYPE</row>
@@ -433,7 +433,7 @@
   <row label="m2407" value="2407">XFR</row>
   <row label="m2408" value="2408">XJ</row>
   <row label="m2409" value="2409">XJR</row>
-  <row label="m2498" value="2498" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2498" value="2498" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2501" value="2501">체로키 (Cherokee)</row>
   <row label="m2502" value="2502">컴패스 (Compass)</row>
   <row label="m2503" value="2503">글라디에이터 (Gladiator)</row>
@@ -444,7 +444,7 @@
   <row label="m2508" value="2508">랭글러 루비콘 (Wrangler Rubicon)</row>
   <row label="m2509" value="2509">랭글러 사하라 (Wrangler Sahara)</row>
   <row label="m2510" value="2510">랭글러 스포츠 (Wrangler SPORT)</row>
-  <row label="m2598" value="2598" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2598" value="2598" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2601" value="2601">ATS</row>
   <row label="m2602" value="2602">CT4</row>
   <row label="m2603" value="2603">CT5</row>
@@ -457,10 +457,10 @@
   <row label="m2610" value="2610">XT5</row>
   <row label="m2611" value="2611">XT6</row>
   <row label="m2612" value="2612">리릭(Lyriq)</row>
-  <row label="m2698" value="2698" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2698" value="2698" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2701" value="2701">200</row>
   <row label="m2702" value="2702">300</row>
-  <row label="m2798" value="2798" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2798" value="2798" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2801" value="2801">이스케이프 (Escape)</row>
   <row label="m2802" value="2802">익스페디션</row>
   <row label="m2803" value="2803">익스플로러</row>
@@ -473,7 +473,7 @@
   <row label="m2810" value="2810">레인저</row>
   <row label="m2811" value="2811">타우로스 (Taurus)</row>
   <row label="m2812" value="2812">브롱코 (Bronco)</row>
-  <row label="m2898" value="2898" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2898" value="2898" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m2901" value="2901">208</row>
   <row label="m2902" value="2902">308</row>
   <row label="m2903" value="2903">508</row>
@@ -482,12 +482,12 @@
   <row label="m2906" value="2906">5008</row>
   <row label="m2907" value="2907">e-2008</row>
   <row label="m2908" value="2908">e-208</row>
-  <row label="m2998" value="2998" randomize="0">기타 (구체적으로:)</row>
+  <row label="m2998" value="2998" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m3001" value="3001">500</row>
   <row label="m3002" value="3002">500C</row>
   <row label="m3003" value="3003">500X</row>
   <row label="m3004" value="3004">500e</row>
-  <row label="m3098" value="3098" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3098" value="3098" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m3101" value="3101">기블리 (Ghibli)</row>
   <row label="m3102" value="3102">그란카브리오 (GranCabrio)</row>
   <row label="m3103" value="3103">그란 투리스모 (GranTurismo)</row>
@@ -495,26 +495,26 @@
   <row label="m3105" value="3105">르반테 (Levante)</row>
   <row label="m3106" value="3106">MC20</row>
   <row label="m3107" value="3107">콰트로포르테 (Quattroporte)</row>
-  <row label="m3198" value="3198" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3198" value="3198" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m3201" value="3201">아벤타도르</row>
   <row label="m3202" value="3202">우라칸</row>
   <row label="m3203" value="3203">우르스</row>
-  <row label="m3298" value="3298" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3298" value="3298" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m3301" value="3301">벤테이가 V8</row>
   <row label="m3302" value="3302">벤테이가 W12</row>
   <row label="m3303" value="3303">컨티넨탈 GT</row>
   <row label="m3304" value="3304">플라잉 스퍼</row>
   <row label="m3305" value="3305">뮬산 (Mulsanne)</row>
-  <row label="m3398" value="3398" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3398" value="3398" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m3401" value="3401">컬리넌</row>
   <row label="m3402" value="3402">던 (Dawn)</row>
   <row label="m3403" value="3403">고스트</row>
   <row label="m3404" value="3404">팬텀</row>
   <row label="m3405" value="3405">레이스 (Wraith)</row>
-  <row label="m3498" value="3498" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3498" value="3498" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
   <row label="m3501" value="3501">시에라 (Sierra)</row>
-  <row label="m3502" value="3502" randomize="0">기타 (구체적으로:)</row>
-  <row label="m9801" value="9801" randomize="0">기타 (구체적으로:)</row>
+  <row label="m3502" value="3502" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
+  <row label="m9801" value="9801" open="1" openOptional="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
 </define>
 
 <define label="PT_list">
@@ -528,9 +528,65 @@
   <row label="p98" value="98" open="1" openSize="25" randomize="0">기타 (구체적으로:)</row>
 </define>
 
+
+
+<radio 
+  label="BMbase"
+  cond="0"
+  optional="1"
+  where="execute,survey,notdp">
+  <title>(HIDDEN) Brand/Model logic base question</title>
+  <insert source="brand_list"/>
+  <insert source="model_list"/>
+</radio>
+
+
+<text
+  label="PTbase"
+  size="40"
+  cond="0"
+  optional="1"
+  where="execute,survey,notdp">
+  <title><div class="q-name">PTbase</div> Model PT show code base</title>
+  <comment></comment>
+  <insert source="model_list"/>
+</text>
+
+<suspend/>
+
+<exec>
+circle_dict = dat_to_dict('pt_show.dat', 'model')
+base = PTbase
+for x in base.rows :
+  circle = [pt.replace('p', '') for pt, cc in circle_dict[str(x.value)].items() if cc != None and cc.upper() == 'O']
+  x.val = ','.join(circle)
+</exec>
+
+
+<suspend/>
+
+<exec when="init">
+def return_car_answer(base) :
+  if base.any :
+    lb = base.choices[base.val].label
+    if hasattr(BMbase.attr(lb), 'open') :
+      oe_name = '%soe'%(base.label)
+      return allQuestions[oe_name].unsafe_val
+    else :
+      return BMbase.attr(lb).text
+
+def return_pipe_text(base) :
+  join_list = [return_car_answer(x) for x in base]
+  if join_list :
+    return ' '.join(join_list)
+  else :
+    return None
+</exec>
+
+<suspend/>
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <tabTrigger>bm.list</tabTrigger>
+    <tabTrigger>sbs.bm.setting</tabTrigger>
     <!-- Optional: Set a scope to limit where the snippet will trigger -->
     <scope>text.xml</scope>
 </snippet>

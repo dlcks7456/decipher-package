@@ -1,0 +1,30 @@
+<snippet>
+    <content><![CDATA[
+<text
+  label="PTbase"
+  size="40"
+  cond="0"
+  optional="1"
+  where="execute,survey,notdp">
+  <title><div class="q-name">PTbase</div> Model PT show code base</title>
+  <comment></comment>
+  <insert source="model_list"/>
+</text>
+
+<suspend/>
+
+<exec>
+circle_dict = dat_to_dict('pt_show.dat', 'model')
+base = PTbase
+for x in base.rows :
+  circle = [pt.replace('p', '') for pt, cc in circle_dict[str(x.value)].items() if cc != None and cc.upper() == 'O']
+  x.val = ','.join(circle)
+</exec>
+
+<suspend/>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>bm.pt</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.xml</scope>
+</snippet>
