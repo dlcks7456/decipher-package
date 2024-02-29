@@ -854,7 +854,7 @@ function fnLengthCheck(_label, _num, _placeholder){
 
 function fnSemiOpenBadText(){
   const fnOpenFilltering = (_obj) => {
-    if (_obj.getAttribute('type') === 'text' && !_obj.disabled && _obj.getAttribute('class').indexOf('badText') !== -1){
+    if (_obj.getAttribute('type') === 'text' && !_obj.disabled){
       let strMainText = _obj.value;
       let bolFlag = false;
       let strFillteringWord = 'ㄱ,ㄲ,ㄴ,ㄷ,ㄸ,ㄹ,ㅁ,ㅂ,ㅃ,ㅅ,ㅆ,ㅇ,ㅈ,ㅉ,ㅊ,ㅋ,ㅌ,ㅍ,ㅎ,ㅏ,ㅐ,ㅑ,ㅒ,ㅓ,ㅔ,ㅕ,ㅖ,ㅗ,ㅘ,ㅙ,ㅚ,ㅛ,ㅜ,ㅝ,ㅞ,ㅟ,ㅠ,ㅡ,ㅢ,ㅣ,ㄳ,ㄵ,ㄶ,ㄺ,ㄻ,ㄼ,ㄽ,ㄾ,ㄿ,ㅀ,ㅄ,ㆍ,ᆢ';
@@ -885,7 +885,7 @@ function fnSemiOpenBadText(){
     }
   }
   const fnOpenCheck = (_obj) => {
-    if (_obj.getAttribute('type') === 'text' && !_obj.disabled && _obj.getAttribute('class').indexOf('badText') !== -1){
+    if (_obj.getAttribute('type') === 'text' && !_obj.disabled){
       let strBeforeText = _obj.value;
       let strAfterText;
       strBeforeText = strBeforeText.replace(/\n\n\n\n\n\n\n\n\n\n|\n\n\n\n\n\n\n\n\n|\n\n\n\n\n\n\n\n|\n\n\n\n\n\n\n|\n\n\n\n\n\n|\n\n\n\n\n|\n\n\n\n|\n\n\n|\n\n/g, '\n');
@@ -925,8 +925,47 @@ function fnSemiOpenBadText(){
       }
   }
   let objAllOpen = document.querySelectorAll('#primary input[type=text]');
+  let objAnswers = document.querySelectorAll('.answers')
+  for (i = 0; i < objAnswers.length; i++){
+    objAnswers[i].addEventListener('animationend', (event) => {
+      for (k = 0; k < event.target.querySelectorAll('.custom-rank-sort input[type=text]').length; k++){
+        if (event.target.querySelectorAll('.custom-rank-sort input[type=text]')[k].className.indexOf('customBadText') === -1){
+          event.target.querySelectorAll('.custom-rank-sort input[type=text]')[k].classList.add('customBadText');
+          event.target.querySelectorAll('.custom-rank-sort input[type=text]')[k].addEventListener('propertychange', (e) => {
+            fnOpenCheck(e.target);
+          })
+          event.target.querySelectorAll('.custom-rank-sort input[type=text]')[k].addEventListener('change', (e) => {
+            fnOpenCheck(e.target);
+          })
+          event.target.querySelectorAll('.custom-rank-sort input[type=text]')[k].addEventListener('keyup', (e) => {
+            fnOpenCheck(e.target);
+          })
+          event.target.querySelectorAll('.custom-rank-sort input[type=text]')[k].addEventListener('paste', (e) => {
+            fnOpenCheck(e.target);
+          })
+          event.target.querySelectorAll('.custom-rank-sort input[type=text]')[k].addEventListener('input', (e) => {
+            fnOpenCheck(e.target);
+          })
+          event.target.querySelectorAll('.custom-rank-sort input[type=text]')[k].addEventListener('focus', (e) => {
+            fnOpenCheck(e.target);
+          })
+          event.target.querySelectorAll('.custom-rank-sort input[type=text]')[k].addEventListener('blur', (e) => {
+            fnOpenFilltering(e.target);
+          })
+        }
+      }
+    })
+  }
+
   for (i = 0; i < objAllOpen.length; i++){
     if (objAllOpen[i].getAttribute('name') !== null && objAllOpen[i].getAttribute('name').indexOf('oe') !== -1){
+      if (objAllOpen[i].className.indexOf('badText') === -1){
+        objAllOpen[i].classList.add('badText');
+      }
+    }
+  }
+  for (i = 0; i < objAllOpen.length; i++){
+    if (objAllOpen[i].getAttribute('name') !== null && objAllOpen[i].getAttribute('class').indexOf('other-open') !== -1){
       if (objAllOpen[i].className.indexOf('badText') === -1){
         objAllOpen[i].classList.add('badText');
       }
