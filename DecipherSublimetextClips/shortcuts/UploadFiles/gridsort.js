@@ -203,7 +203,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
                         }
                     }
                 }}>
-                <div style={{pointerEvents: 'none'}} dangerouslySetInnerHTML={{__html: row.text}}></div>
+                <div className={"rank-row-text"} style={{pointerEvents: 'none'}} dangerouslySetInnerHTML={{__html: row.text}}></div>
                 {row.open === 1 ? (
                     <div style={{
                         marginTop : '5px',
