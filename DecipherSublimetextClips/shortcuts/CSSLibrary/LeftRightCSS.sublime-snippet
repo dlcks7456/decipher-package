@@ -1,0 +1,95 @@
+<snippet>
+	<content><![CDATA[
+      <style label="type_a_text" name="question.left-blank-legend"><![CDATA[
+<\$(tag) class="cell empty empty-left empty-\$(pos) unused \${"desktop" if this.grouping.cols else "mobile"} border-collapse">타입 A</\$(tag)>
+]]${-1}></style>
+      <style label="type_b_text" name="question.right-blank-legend"><![CDATA[
+<\$(tag) class="cell empty empty-right empty-\$(pos) unused \${"desktop" if this.grouping.cols else "mobile"} border-collapse">타입 B</\$(tag)>
+]]${-1}></style>
+      <style label="left_right_css" name="page.head"><![CDATA[
+<style>
+.grid-table-mode tbody th.col-legend:nth-child(2) { background-color: #d1dfff; }
+.grid-table-mode tbody th.col-legend:nth-child(3) { background-color: #e1efff; }
+.grid-table-mode tbody th.col-legend:nth-child(4) { background-color: #f1ffff; }
+
+.grid-table-mode tbody th.col-legend:nth-last-child(2) { background-color: #f4a0b7; }
+.grid-table-mode tbody th.col-legend:nth-last-child(3) { background-color: #f8b5c5; }
+.grid-table-mode tbody th.col-legend:nth-last-child(4) { background-color: #fbcad3; }
+
+
+.empty-top, .empty-bottom {
+  text-align: center;
+  font-weight: bold;
+}
+
+.empty-left, .type-a-comment {
+  color: #0a52ed;
+}
+
+.empty-right, .type-b-comment {
+  color: #ed0a9d;
+}
+
+.type-a-text, .type-b-text {
+  font-weight: bold;
+}
+
+.type-text {
+  display: none;
+}
+
+\@media (max-width: 768px){
+  .type-text {
+    display: inline;
+  }
+  .type-a-text {
+    color: #0a52ed;
+  }
+
+  .type-b-text {
+    color: #ed0a9d;
+  }
+}
+
+.grid-list-mode .row-legend-left {
+  margin-top: unset;
+  background: #daebff;
+}
+
+.grid-list-mode .row-legend-right {
+  margin-bottom: unset;
+  background: #fdd4de;
+}
+</style>
+]]${-1}></style>
+      <style label="js_onerowatatime" arg:completeWord="default" arg:multiControl="true" arg:nextControl="true" arg:resultPosFix="true" arg:resultView="true" arg:scrollMove="true" name="question.after" wrap="ready"><![CDATA[
+onerowatatime("\${this.label}", \${len([eachRow.label for eachRow in \$(this.label).rows if eachRow.displayed and not eachRow.disabled])}, \${len([eachCol.label for eachCol in \$(this.label).cols if eachCol.displayed and not eachCol.disabled])}, \${len([eachRow.label for eachRow in \$(this.label).rows if eachRow.any])}, \$(resultView), \$(scrollMove), \$(nextControl), \$(multiControl), "\$(completeWord)", \$(resultPosFix));
+]]${-1}></style>
+      <style label="left_xml" name="question.left"><![CDATA[
+\@if this.styles.ss.legendColWidth
+    <\$(tag) scope="row" class="cell nonempty legend row-legend row-legend-left \${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic \${"mobile-left-row-legend " if force else ""}\$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"row-legend-both-space " if ec.haveRightLegend and ec.haveLeftLegend and (not row.group or not row.index==0) else "border-collapse "} \$(row.styles.ss.rowClassNames)" style="width:\${this.styles.ss.legendColWidth}; min-width:\${this.styles.ss.legendColWidth}">
+        <span class="type-a-text">(A) </span>\$(text)
+    </\$(tag)>
+\@else
+    <\$(tag) scope="row" class="cell nonempty legend row-legend row-legend-left \${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic \${"mobile-left-row-legend " if force else ""}\$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"row-legend-both-space " if ec.haveRightLegend and ec.haveLeftLegend and (row.group or not row.index==0) else "border-collapse "} \$(row.styles.ss.rowClassNames)">
+        <span class="type-text type-a-text">(A) </span> \$(text)
+    </\$(tag)>
+\@endif
+]]${-1}></style>
+      <style label="right_xml" name="question.right"><![CDATA[
+\@if this.styles.ss.legendColWidth
+    <\$(tag) scope="row" class="cell nonempty legend row-legend row-legend-right \${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic \$(levels) \${"desktop" if this.grouping.cols else "mobile"} border-collapse \$(row.styles.ss.rowClassNames)" style="width:\${this.styles.ss.legendColWidth}; min-width:\${this.styles.ss.legendColWidth}">
+        <span class="type-text type-b-text">(B) </span>\$(text)
+    </\$(tag)>
+\@else
+    <\$(tag) scope="row" class="cell nonempty legend row-legend row-legend-right \${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic \$(levels) \${"desktop" if this.grouping.cols else "mobile"} border-collapse \$(row.styles.ss.rowClassNames)">
+        <span class="type-text type-b-text">(B) </span>\$(text)
+    </\$(tag)>
+\@endif
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>left.right.css</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
