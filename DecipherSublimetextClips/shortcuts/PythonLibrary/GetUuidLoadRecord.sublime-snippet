@@ -12,6 +12,7 @@ panel_list = {
   '9' : 'UID',
   '12' : 'seq',
   '13' : 'dsid',
+  '105' : 'psid',
 }
 
 if list in panel_list.keys() :
