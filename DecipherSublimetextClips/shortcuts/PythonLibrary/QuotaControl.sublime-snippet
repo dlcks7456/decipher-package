@@ -7,13 +7,18 @@ def quota_control(quota_sheet, unfied_define_label="R" ,defines=[]) :
     # defines : It's a list  | [1, 2, 3]
     # unfied_define_label="", defines=["male", "female"]
 
+    quotas = gv.survey.root.quota.getQuotaCells()
+
     if len(defines) == 1 :
-       print('!!! Defines has only one property !!!')
-       return defines[0]
+        print('!!! Defines has only one property !!!')
+        quota_cell = "%s/%s%s"%(quota_sheet, unfied_define_label, defines[0])
+        current, limit, overquota = quotas[quota_cell]
 
+        if (limit == 0) or (current ge limit):
+            return None
+        else :
+            return defines[0]
     try :
-        quotas = gv.survey.root.quota.getQuotaCells()
-
         cells = {}
         for define in defines :
             quota_cell = "%s/%s%s"%(quota_sheet, unfied_define_label, define)
