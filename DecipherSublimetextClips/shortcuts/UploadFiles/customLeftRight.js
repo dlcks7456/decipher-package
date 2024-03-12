@@ -297,6 +297,16 @@ const SetLeftRight = ({json, left, right, answers})=>{
     transform: translateX(10px);
 }
 
+@media (max-width: 768px) {
+    .lr-arrow-left:hover {
+        transform: translateX(0px);
+    }
+
+    .lr-arrow-right:hover {
+        transform: translateX(0px);
+    }
+}
+
 .lr-answer-count {
     font-size: 1rem;
 }
@@ -389,7 +399,7 @@ const SetLeftRight = ({json, left, right, answers})=>{
     background-color: ${brandSubColor};
 }
 
-@media (max-width: 924px){
+@media (max-width: 768px){
     .lr-col-left.mouse-over, .lr-col-right.mouse-over {
         background-color: unset;
     }
