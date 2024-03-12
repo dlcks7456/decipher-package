@@ -17,7 +17,7 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent})=>{
         <div className="lr-btn-container">
             <input type="radio" name={inputName} value={index} id={inputID} style={{display: "none"}} checked={col.index == row.answer ? true : false}></input>
             <label className={"lr-col-btn"} htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent}>
-                <p>{text}</p>
+                <p dangerouslySetInnerHTML={{__html: text}}></p>
             </label>
         </div>
     )
@@ -324,7 +324,7 @@ const SetLeftRight = ({json, left, right, answers})=>{
 }
 
 .arrow-container {
-    height: 10px;
+    height: 8px;
     width: 90%;
     position: relative;
     display: flex;
@@ -356,14 +356,14 @@ const SetLeftRight = ({json, left, right, answers})=>{
 }
 
 .arrow-left {
-    transform: translateX(-25px);
+    transform: translateX(-25px) translateY(0.5px);
 }
 .arrow-left::after {
     transform: rotateZ(150deg);
 }
 
 .arrow-right {
-    transform: translateX(25px);
+    transform: translateX(25px) translateY(0.5px);
 }
 .arrow-right::after {
     transform: rotateZ(-150deg);
@@ -387,6 +387,12 @@ const SetLeftRight = ({json, left, right, answers})=>{
 
 .lr-col-left.mouse-over, .lr-col-right.mouse-over {
     background-color: ${brandSubColor};
+}
+
+@media (max-width: 924px){
+    .lr-col-left.mouse-over, .lr-col-right.mouse-over {
+        background-color: unset;
+    }
 }
 
 /* hasError */
@@ -450,8 +456,8 @@ const SetLeftRight = ({json, left, right, answers})=>{
                             return (
                                 <div key={rowIndex} className={"lr-card"}>
                                     <div className={classHandler(rowIndex == ansIndex, "lr-row-legend", "show")}>
-                                        <div className={"lr-row-card lr-row-left"}>{row.text}</div>
-                                        <div className={"lr-row-card lr-row-right"}>{row.rightLegend}</div>
+                                        <div className={"lr-row-card lr-row-left"} dangerouslySetInnerHTML={{__html: row.text}}></div>
+                                        <div className={"lr-row-card lr-row-right"} dangerouslySetInnerHTML={{__html: row.rightLegend}}></div>
                                     </div>
                                     <div className={classHandler(rowIndex == ansIndex, "lr-rating", "show")}>
                                         <div className={"arrow-container"}>
@@ -459,8 +465,8 @@ const SetLeftRight = ({json, left, right, answers})=>{
                                             <div className={"arrow-right"}></div>
                                         </div>
                                         <div className={"lr-col-legend-box"}>
-                                            <div className={classHandler(leftFlag, "lr-col-legend lr-col-left", "mouse-over")}>{left}</div>
-                                            <div className={classHandler(rightFlag, "lr-col-legend lr-col-right", "mouse-over")}>{right}</div>
+                                            <div className={classHandler(leftFlag, "lr-col-legend lr-col-left", "mouse-over")} dangerouslySetInnerHTML={{__html: left}}></div>
+                                            <div className={classHandler(rightFlag, "lr-col-legend lr-col-right", "mouse-over")} dangerouslySetInnerHTML={{__html: right}}></div>
                                         </div>
                                         <div className={"lr-col-btn-box show"}>
                                         {cols.map((col, colIndex)=>{
