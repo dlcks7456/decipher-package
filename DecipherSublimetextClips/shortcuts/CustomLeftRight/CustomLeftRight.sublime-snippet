@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+<style name="question.after" label="custom_left_right" arg:leftText="${1}" arg:rightText="${2}"><![CDATA[
+<style>.answers .grid-table-mode, .answers .grid-list-mode {display: none;}</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel" src="[rel customLeftRight.js]"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<div class="custom-loader"></div>
+<script type="text/babel">
+CustomLeftRight({
+    json: \${jsexport()},
+    leftText: "\$(leftText)",
+    rightText: "\$(rightText)",
+    answers: \${[x.val if x.val != None else 'null' for x in \$(this.label).rows if x.displayed]},
+});
+</script>
+]]${-1}></style>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>custom.left.right</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>
