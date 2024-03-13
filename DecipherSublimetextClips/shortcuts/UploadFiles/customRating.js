@@ -213,6 +213,7 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
 .sp-row-card {
     min-height: 100px;
     background-color: #fff;
+    text-align: center;
 }
 
 .sp-btn-container {
@@ -545,9 +546,13 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
                                         </div>
                                     ) : null}
                                     <div className={classHandler(rowIndex == ansIndex, "sp-row-legend", "show")}>
-                                        <div className={"sp-row-card sp-row-left"} dangerouslySetInnerHTML={{__html: row.text}}></div>
+                                        <div className={"sp-row-card sp-row-left"}>
+                                            <p dangerouslySetInnerHTML={{__html: row.text}}></p>
+                                        </div>
                                         {haveRightLegend ? (
-                                            <div className={"sp-row-card sp-row-right"} dangerouslySetInnerHTML={{__html: row.rightLegend}}></div>
+                                            <div className={"sp-row-card sp-row-right"}>
+                                                <p dangerouslySetInnerHTML={{__html: row.rightLegend}}></p>
+                                            </div>
                                         ) : null}
                                     </div>
                                     <div className={classHandler(rowIndex == ansIndex, "sp-rating", "show")}>
