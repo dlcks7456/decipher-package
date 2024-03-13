@@ -8,40 +8,51 @@ const classHandler = (cond, className, addClass) => {
     }
 }
 
-const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent})=>{
+const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, autoNumber})=>{
     const {text, index} = col;
     const inputName = `ans${uid}.0.${row.index}`;
     const inputID = `ans${uid}.${index}.${row.index}`;
 
     return (
-        <div className="lr-btn-container">
+        <div className={`sp-btn-container sp-btn-${row.label}-${col.label}`}>
             <input type="radio" name={inputName} value={index} id={inputID} style={{display: "none"}} checked={col.index == row.answer ? true : false}></input>
-            <label className={"lr-col-btn"} htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent}>
-                <p dangerouslySetInnerHTML={{__html: text}}></p>
+            <label className={"sp-col-btn"} htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent}>
+                {autoNumber ? (
+                        <>
+                            <p className={"sp-col-score"} dangerouslySetInnerHTML={{__html: col.scoreText}}></p>
+                            {col.text != null ? (<p dangerouslySetInnerHTML={{__html: col.text}}></p>) : null}
+                        </>
+                    ) : (
+                    <>
+                        <p dangerouslySetInnerHTML={{__html: col.text != null ? col.text : `(${col.value})`}}></p>
+                    </>)}
             </label>
         </div>
     )
 }
 
-const SetLeftRight = ({json, left, right, answers})=>{
+const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow=false, autoNumber})=>{
     const brandColor = "#2d6df6";
     const brandSubColor = "#b7ceff";
-    let {uid, cols, rows} = json;
+    let {uid, cols, rows, haveRightLegend} = json;
     const colSeparator = Math.floor(cols.length/2);
     const leftCols = cols.slice(0, colSeparator).map((col)=>{return col.index});
     const rightCols = cols.slice(cols.length%2 > 0 ? colSeparator+1 : colSeparator, cols.length).map((col)=>{return col.index});
 
+    console.log(cols);
+
     /* Default Answers */
-    rows.forEach((row, index)=>{
-        row['answer'] = answers[index];
+    rows.forEach((row)=>{
+        row['answer'] = answers[row.label];
     });
 
     const [elRows, setElRows] = React.useState(rows);
+    const currAnswer = elRows.filter((row)=>row.answer != 'null');
     /* 
         Answer Row Index 
         Default : 0;
     */
-    const currAnswer = elRows.filter((row)=>row.answer != 'null');
+    
     const [ansIndex, setAnsIndex] = React.useState(currAnswer.length);
     const [answer, setAnswer] = React.useState(elRows.map((row)=>{
         if(row.answer == 'null'){
@@ -78,22 +89,34 @@ const SetLeftRight = ({json, left, right, answers})=>{
     
     const containerRef = React.useRef(null);
 
+
     React.useEffect(() => {
-        if(containerRef.current) {
-            const cards = containerRef.current.querySelectorAll('.lr-card');
+        const container = containerRef.current;
+        if (!container) return;
+
+        const cards = Array.from(container.querySelectorAll('.sp-card'));
+        if (cards.length === 0) return;
+
+        const updateMinHeight = () => {
             let maxHeight = 0;
             cards.forEach(card => {
-                const height = card.offsetHeight;
-                if(height > maxHeight) {
-                    maxHeight = height;
-                }
+                maxHeight = Math.max(maxHeight, card.offsetHeight);
             });
+            container.style.minHeight = `${maxHeight+40}px`;
+        };
 
-            if(maxHeight > 0) {
-                containerRef.current.style.minHeight = `${maxHeight+40}px`;
-            }
-        }
-    }, [ansIndex]);
+        const resizeObserver = new ResizeObserver(entries => {
+            updateMinHeight();
+        });
+
+        cards.forEach(card => resizeObserver.observe(card));
+
+        updateMinHeight();
+
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, [containerRef]);
 
 
     const [ansserComplete, setAnswerComplete] = React.useState(false);
@@ -105,7 +128,6 @@ const SetLeftRight = ({json, left, right, answers})=>{
         }else{
             setAnswerComplete(false);
         }
-
     }, [answer])
 
     React.useEffect(()=>{
@@ -116,8 +138,11 @@ const SetLeftRight = ({json, left, right, answers})=>{
                 continueBtn.style.pointerEvents = "auto";
 
                 const hasError = document.querySelector('.hasError');
-                if( hasError === null){
+                if( hasError === null ){
                     continueBtn.focus();
+                    if( autoContinue ){
+                        continueBtn.click();
+                    }
                 }
             }else{
                 continueBtn.style.opacity = "0.5";
@@ -152,24 +177,24 @@ const SetLeftRight = ({json, left, right, answers})=>{
 #btn_continue {
     transition: opacity 0.5s;
 }
-.lr-col-legend-box, .lr-row-legend {
+.sp-col-legend-box, .sp-row-legend {
     width: 100%;
     display: flex;
     justify-content: space-between;
     transition: transform 0.3s;
 }
 
-.lr-row-legend {
+.sp-row-legend {
     transform: rotateX(90deg);
     pointer-events: none;
 }
 
-.lr-row-legend.show {
+.sp-row-legend.show {
     transform: rotateX(0);
     pointer-events: auto;
 }
 
-.lr-col-legend, .lr-row-card {
+.sp-col-legend, .sp-row-card {
     width: 50%;
     display: flex;
     align-items: center;
@@ -183,33 +208,34 @@ const SetLeftRight = ({json, left, right, answers})=>{
     padding: 5px;
 }
 
-.lr-col-legend {
+.sp-col-legend {
     transition: background-color 0.3s;
 }
 
-.lr-row-card {
+.sp-row-card {
     min-height: 100px;
     background-color: #fff;
 }
 
-.lr-btn-container {
+.sp-btn-container {
     display: flex;
     width: 100%;
 }
 
-.lr-col-btn-box {
+.sp-col-btn-box {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
 }
 
-.lr-col-btn {
+.sp-col-btn {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    gap: 5px;
     justify-content: center;
     align-items: center;
     font-size: 1.1rem;
-    font-weight: bold;
     color: #333;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -218,13 +244,19 @@ const SetLeftRight = ({json, left, right, answers})=>{
     cursor: pointer;
     transition: background-color 0.5s;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.lr-col-btn:hover {
+.sp-col-score {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.sp-col-btn:hover {
     background-color: ${brandSubColor};
 }
  
-.lr-row-container {
+.sp-row-container {
     min-height: 150px;
     display: flex;
     justify-content: center;
@@ -233,13 +265,13 @@ const SetLeftRight = ({json, left, right, answers})=>{
     width: 100%;
 }
 
-.lr-btn-container input:checked + label {
+.sp-btn-container input:checked + label {
     background-color: ${brandColor};
     color: #fff;
 }
 
 
-.lr-row-left, .lr-row-right {
+.sp-row-left, .sp-row-right {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -252,15 +284,15 @@ const SetLeftRight = ({json, left, right, answers})=>{
     text-align: center;
 }
 
-.lr-row-inputs {
+.sp-row-inputs {
     display: none;
 }
 
-.lr-card-container {
+.sp-card-container {
     position: relative;
 }
 
-.lr-card {
+.sp-card {
     position: absolute;
     top: 0;
     width: 100%;
@@ -269,13 +301,13 @@ const SetLeftRight = ({json, left, right, answers})=>{
     align-items: center;
 }
 
-.lr-arrow-btn {
+.sp-arrow-btn {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.lr-arrow-left, .lr-arrow-right {
+.sp-arrow-left, .sp-arrow-right {
     width: 40px;
     padding: 7px;
     background-color: ${brandColor};
@@ -289,43 +321,43 @@ const SetLeftRight = ({json, left, right, answers})=>{
     transition: transform 0.5s, opacity 0.5s;
 }
 
-.lr-arrow-left:hover {
+.sp-arrow-left:hover {
     transform: translateX(-10px);
 }
 
-.lr-arrow-right:hover {
+.sp-arrow-right:hover {
     transform: translateX(10px);
 }
 
 @media (max-width: 768px) {
-    .lr-arrow-left:hover {
+    .sp-arrow-left:hover {
         transform: translateX(0px);
     }
 
-    .lr-arrow-right:hover {
+    .sp-arrow-right:hover {
         transform: translateX(0px);
     }
 }
 
-.lr-answer-count {
+.sp-answer-count {
     font-size: 1rem;
 }
 
-.lr-answer-count.hide {
+.sp-answer-count.hide {
     display: none;
     pointer-events: none;
 }
 
-.lr-arrow-icon {
+.sp-arrow-icon {
     width: 30px;
 }
 
-.lr-rating {
+.sp-rating {
     display: none;
     pointer-events: none;
 }
 
-.lr-rating.show {
+.sp-rating.show {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -384,34 +416,34 @@ const SetLeftRight = ({json, left, right, answers})=>{
     pointer-events: none;
 }
 
-.lr-complete {
+.sp-complete {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.lr-complete svg {
+.sp-complete svg {
     width: 80px;
     color: ${brandColor};
 }
 
-.lr-col-left.mouse-over, .lr-col-right.mouse-over {
+.sp-col-left.mouse-over, .sp-col-right.mouse-over {
     background-color: ${brandSubColor};
 }
 
 @media (max-width: 768px){
-    .lr-col-left.mouse-over, .lr-col-right.mouse-over {
+    .sp-col-left.mouse-over, .sp-col-right.mouse-over {
         background-color: unset;
     }
 }
 
 /* hasError */
-.hasError .lr-row-legend {
+.hasError .sp-row-legend {
     transform: rotateX(0) !important;
     pointer-events: auto !important;
 }
 
-.hasError .lr-rating {
+.hasError .sp-rating {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -419,7 +451,7 @@ const SetLeftRight = ({json, left, right, answers})=>{
     pointer-events: auto;
 }
 
-.hasError .lr-card {
+.hasError .sp-card {
     position: unset;
     margin-top: 40px;
     border: 1px solid #737373;
@@ -427,58 +459,80 @@ const SetLeftRight = ({json, left, right, answers})=>{
     border-radius: 10px;
 }
 
-.hasError .lr-arrow-btn {
+.hasError .sp-arrow-btn {
     display: none;
 }
 
-.hasError .lr-complete {
+.hasError .sp-complete {
     display: none;
 }
             `}</style>
-            <div className={"lr-question animate__animated animate__fadeIn"} ref={containerRef}>
-                <div className={"lr-container"}>
-                    <div className={"lr-arrow-btn"}>
-                        <div className={classHandler(ansIndex == 0, "lr-arrow-left", "disabled-arrow")} 
+            {!haveRightLegend ? (
+                <>
+                    <style jsx="true">{`
+@media (max-width: 768px){
+    .sp-col-btn-box {
+        flex-direction: column;
+    }
+
+    .sp-col-btn {
+        flex-direction: row;
+    }
+}
+                    `}</style>
+                </>
+            ) : null}
+            <div className={"sp-question animate__animated animate__fadeIn"} ref={containerRef}>
+                <div className={"sp-container"}>
+                    <div className={"sp-arrow-btn"}>
+                        <div className={classHandler(ansIndex == 0, "sp-arrow-left", "disabled-arrow")} 
                             onClick={()=>{
                                 pageOnClick(-1);
                                 setAutoNext(false);
                             }
                             }>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"lr-arrow-icon"}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"sp-arrow-icon"}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </div>
-                        <div className={classHandler(ansIndex == elRows.length, "lr-answer-count", "hide")}>
+                        <div className={classHandler(ansIndex == elRows.length, "sp-answer-count", "hide")}>
                             {ansIndex+1}/{elRows.length}
                         </div>
-                        <div className={classHandler((ansIndex == (elRows.length)) || (elRows[ansIndex]['answer'] == 'null'), "lr-arrow-right", "disabled-arrow")} 
+                        <div className={classHandler((ansIndex == (elRows.length)) || (elRows[ansIndex]['answer'] == 'null'), "sp-arrow-right", "disabled-arrow")} 
                             onClick={()=>{
                                 pageOnClick(1);
                                 setAutoNext(true);
                             }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"lr-arrow-icon"}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"sp-arrow-icon"}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </div>
                     </div>
-                    <div className={classHandler(ansIndex == elRows.length, "lr-card-container", "hide")}>
+                    <div className={classHandler(ansIndex == elRows.length, "sp-card-container", "hide")}>
                         {elRows.map((row, rowIndex)=>{
                             return (
-                                <div key={rowIndex} className={"lr-card"}>
-                                    <div className={classHandler(rowIndex == ansIndex, "lr-row-legend", "show")}>
-                                        <div className={"lr-row-card lr-row-left"} dangerouslySetInnerHTML={{__html: row.text}}></div>
-                                        <div className={"lr-row-card lr-row-right"} dangerouslySetInnerHTML={{__html: row.rightLegend}}></div>
+                                <div key={rowIndex} className={"sp-card"}>
+                                    <div className={classHandler(rowIndex == ansIndex, "sp-row-legend", "show")}>
+                                        <div className={"sp-row-card sp-row-left"} dangerouslySetInnerHTML={{__html: row.text}}></div>
+                                        {haveRightLegend ? (
+                                            <div className={"sp-row-card sp-row-right"} dangerouslySetInnerHTML={{__html: row.rightLegend}}></div>
+                                        ) : null}
                                     </div>
-                                    <div className={classHandler(rowIndex == ansIndex, "lr-rating", "show")}>
-                                        <div className={"arrow-container"}>
-                                            <div className={"arrow-left"}></div>
-                                            <div className={"arrow-right"}></div>
-                                        </div>
-                                        <div className={"lr-col-legend-box"}>
-                                            <div className={classHandler(leftFlag, "lr-col-legend lr-col-left", "mouse-over")} dangerouslySetInnerHTML={{__html: left}}></div>
-                                            <div className={classHandler(rightFlag, "lr-col-legend lr-col-right", "mouse-over")} dangerouslySetInnerHTML={{__html: right}}></div>
-                                        </div>
-                                        <div className={"lr-col-btn-box show"}>
+                                    <div className={classHandler(rowIndex == ansIndex, "sp-rating", "show")}>
+                                        {showArrow || haveRightLegend ? (
+                                            <div className={"arrow-container"}>
+                                                <div className={"arrow-left"}></div>
+                                                <div className={"arrow-right"}></div>
+                                            </div>
+                                        ) : null}
+                                        {haveRightLegend ? (
+                                            <div className={"sp-col-legend-box"}>
+                                                <div className={classHandler(leftFlag, "sp-col-legend sp-col-left", "mouse-over")} dangerouslySetInnerHTML={{__html: left}}></div>
+                                                <div className={classHandler(rightFlag, "sp-col-legend sp-col-right", "mouse-over")} dangerouslySetInnerHTML={{__html: right}}></div>
+                                            </div>
+                                        ) : null}
+
+                                        <div className={"sp-col-btn-box show"}>
                                         {cols.map((col, colIndex)=>{
                                             return (
                                                 <ColButton
@@ -486,6 +540,7 @@ const SetLeftRight = ({json, left, right, answers})=>{
                                                     key={colIndex}
                                                     row={row}
                                                     col={col}
+                                                    autoNumber={autoNumber}
                                                     ansUpdate={()=>{answerUpdate(rowIndex, col.index)}}
                                                     mouseOverEvent={()=>{hoverEvent(col.index, true)}}
                                                     mouseOutEvent={()=>{hoverEvent(col.index, false)}}
@@ -499,7 +554,7 @@ const SetLeftRight = ({json, left, right, answers})=>{
                         })}
                     </div>
                     {ansIndex == elRows.length ? (
-                        <div className={"lr-complete animate__animated animate__bounceIn"}>
+                        <div className={"sp-complete animate__animated animate__bounceIn"}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
@@ -511,19 +566,50 @@ const SetLeftRight = ({json, left, right, answers})=>{
     )
 }
 
-const CustomLeftRight = ({
+const CustomRating = ({
     json, 
     leftText, 
     rightText, 
     answers,
+    autoContinue=false,
+    autoNumber=true,
+    showArrow=false,
     loadingQuery='.custom-loader'})=>{
     const root = document.querySelector('.answers');
+    const {cols, rows} = json;
+    const filteredAnswers = Object.values(answers).filter(value => value !== 'null');
+
+    const regex = /(\(\d+\))\s*(.*)/;;
+
+    let numberFlag = autoNumber;
+    /* Col numbering */
+    if( autoNumber ){
+        cols.forEach((col, index)=>{
+            const colText = col.text;
+            const colNumber = colText.match(regex);
+            if( colNumber !== null ){
+                const numberChk = colNumber[1];
+                const mainText = colText.replace(numberChk, '').trim();
+                col['text'] = mainText == '' ? null : mainText;
+                col['scoreText'] = numberChk;
+                json['cols'][index] = col;
+            }
+            if( colNumber === null ){
+                numberFlag = false;
+                return
+            }
+        });
+    }
+
     ReactDOM.render(
         <SetLeftRight
             json={json}
             left={leftText} 
             right={rightText}
             answers={answers}
+            showArrow={showArrow}
+            autoContinue={rows.length != filteredAnswers.length ? autoContinue : false}
+            autoNumber={numberFlag}
         />, root
     );
     const loading = document.querySelector(loadingQuery);
