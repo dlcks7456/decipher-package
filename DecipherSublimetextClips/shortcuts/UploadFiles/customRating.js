@@ -31,15 +31,13 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, aut
     )
 }
 
-const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow=false, autoNumber})=>{
+const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow=false, autoNumber, showGroup=false, groupInfo={}})=>{
     const brandColor = "#2d6df6";
     const brandSubColor = "#b7ceff";
     let {uid, cols, rows, haveRightLegend} = json;
     const colSeparator = Math.floor(cols.length/2);
     const leftCols = cols.slice(0, colSeparator).map((col)=>{return col.index});
     const rightCols = cols.slice(cols.length%2 > 0 ? colSeparator+1 : colSeparator, cols.length).map((col)=>{return col.index});
-
-    console.log(cols);
 
     /* Default Answers */
     rows.forEach((row)=>{
@@ -466,6 +464,30 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
 .hasError .sp-complete {
     display: none;
 }
+
+.sp-rate-group {
+    width: 100%;
+    padding: 5px;
+}
+
+.sp-group-text {
+    width: 100%;
+    background-color: #ccc;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: transform 0.5s;
+    transform: rotateX(90deg);
+}
+
+.sp-group-text.show {
+    transform: rotateX(0);
+}
+
+.hasError .sp-group-text {
+    transform: rotateX(0);
+}
             `}</style>
             {!haveRightLegend ? (
                 <>
@@ -512,6 +534,13 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
                         {elRows.map((row, rowIndex)=>{
                             return (
                                 <div key={rowIndex} className={"sp-card"}>
+                                    {Object.keys(groupInfo).length > 0 && showGroup ? (
+                                        <div className={"sp-rate-group"}>
+                                            <div className={classHandler((!(ansIndex == elRows.length) && (groupInfo[row.label].label == groupInfo[rows[ansIndex].label].label)), `sp-group-text sp-group-${groupInfo[row.label].label}`, 'show')}>
+                                                {groupInfo[row.label].text}
+                                            </div>
+                                        </div>
+                                    ) : null}
                                     <div className={classHandler(rowIndex == ansIndex, "sp-row-legend", "show")}>
                                         <div className={"sp-row-card sp-row-left"} dangerouslySetInnerHTML={{__html: row.text}}></div>
                                         {haveRightLegend ? (
@@ -574,6 +603,8 @@ const CustomRating = ({
     autoContinue=false,
     autoNumber=true,
     showArrow=false,
+    showGroup=false,
+    groupInfo={},
     loadingQuery='.custom-loader'})=>{
     const root = document.querySelector('.answers');
     const {cols, rows} = json;
@@ -608,6 +639,8 @@ const CustomRating = ({
             right={rightText}
             answers={answers}
             showArrow={showArrow}
+            showGroup={showGroup}
+            groupInfo={groupInfo}
             autoContinue={rows.length != filteredAnswers.length ? autoContinue : false}
             autoNumber={numberFlag}
         />, root
