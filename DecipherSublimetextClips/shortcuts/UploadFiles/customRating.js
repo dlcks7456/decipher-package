@@ -198,7 +198,6 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    font-weight: bold;
     color: #333;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -207,6 +206,7 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
 }
 
 .sp-col-legend {
+    font-weight: bold;
     transition: background-color 0.3s;
 }
 
@@ -475,7 +475,6 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
     background-color: #ccc;
     padding: 5px;
     text-align: center;
-    font-weight: bold;
     border-radius: 5px;
     transition: transform 0.5s;
     transform: rotateX(90deg);
@@ -499,6 +498,11 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
 
     .sp-col-btn {
         flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+    }
+    .arrow-container {
+        display: ${haveRightLegend ? 'flex' : 'none'};
     }
 }
                     `}</style>
@@ -548,7 +552,7 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
                                         ) : null}
                                     </div>
                                     <div className={classHandler(rowIndex == ansIndex, "sp-rating", "show")}>
-                                        {showArrow || haveRightLegend ? (
+                                        {showArrow ? (
                                             <div className={"arrow-container"}>
                                                 <div className={"arrow-left"}></div>
                                                 <div className={"arrow-right"}></div>

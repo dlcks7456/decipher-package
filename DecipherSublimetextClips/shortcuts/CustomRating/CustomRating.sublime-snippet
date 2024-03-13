@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style label="custom_rating" arg:autoContinue="true" arg:autoNumber="true" arg:showGroup="true" arg:leftText="${1}" arg:rightText="${2}" name="question.after"><![CDATA[
+<style label="custom_rating" arg:autoContinue="true" arg:autoNumber="true" arg:leftText="" arg:rightText="" arg:showArrow="false" arg:showGroup="true" name="question.after"><![CDATA[
 <style>.answers .grid-table-mode, .answers .grid-list-mode {display: none;}</style>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -24,6 +24,7 @@ CustomRating({
 	answers: \${dict([[x.label, x.val if x.val != None else 'null'] for x in \$(this.label).rows if x.displayed])},
 	showGroup: \$(showGroup),
 	groupInfo: groupInfo,
+	showArrow: \$(showArrow),
 	autoContinue: \$(autoContinue),
 	autoNumber: \$(autoNumber),
 });
