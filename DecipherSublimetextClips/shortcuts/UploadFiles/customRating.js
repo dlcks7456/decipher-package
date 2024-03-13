@@ -275,7 +275,6 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
     justify-content: center;
     align-items: center;
     font-size: 1.3rem;
-    font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
