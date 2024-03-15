@@ -27,10 +27,14 @@ const smoothScrollToBottom = (selector)=>{
 }
 
 
-const autoScroll = ()=>{
+const autoScroll = (continueFlag)=>{
     smoothScrollToBottom("#surveyContainer");
     smoothScrollToBottom("html");
-    document.querySelector('#btn_continue').focus({preventScroll: true});
+    const continueBtn = document.querySelector('#btn_continue');
+    continueBtn.focus({preventScroll: true});
+    if( continueFlag ){
+        continueBtn.click();
+    }
 }
 
 const HiddenInputs = ({qid, uid, cols, answers, noAnswers, noAnswerCheck})=>{
@@ -74,7 +78,7 @@ const ShowRank = ({rankNum})=>{
     )
 }
 
-const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple, isNone=false, showNone=null, isNoanswer=false, noAnswer=false, noAnswerFnc=null, errors})=>{
+const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple, isNone=false, showNone=null, isNoanswer=false, noAnswer=false, noAnswerFnc=null, errors, setFocusNext})=>{
     const [isHover, setIsHover] = React.useState(false);
     const [isSelected, setIsSelected] = React.useState(answers.includes(row.index) ? true : false);
     const styleFlag = ()=>{
@@ -175,7 +179,11 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
                 }}
                 onClick={(e)=>{
                     if( !isNoanswer ){
+                        setFocusNext(true);
                         const openInput = e.target.querySelector('input[type=text]');
+                        if( openInput ){
+                            setFocusNext(false);
+                        }
                         if( answers.includes(row.index) ){
                             if( e.target.type !== 'text' ){
                                 setAnswers( answers.filter((item)=>item !== row.index) );
@@ -228,7 +236,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
 }
 
 
-const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[], noneIndex, ableNone, ableSort, showAnswers, toggle, showCnt})=>{
+const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[], noneIndex, ableNone, ableSort, showAnswers, toggle, showCnt, autoContinue=false})=>{
     const {label, uid, cols, rows, noanswers, errors} = json;
     const [newError, setNewError] = React.useState(
         errors.map((err)=>{
@@ -371,7 +379,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
 
     React.useEffect(()=>{
         if( answerCompleted && focusNext ){
-            autoScroll();
+            autoScroll(autoContinue);
             setFocusNext(false);
         }
     }, [answerCompleted])
@@ -925,7 +933,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                                                 answerComplete={answerCompleted}
                                                 noAnswer={noAnswer}
                                                 setAnswerComple={setAnswerCompleted}
-                                                errors={newError}/>
+                                                errors={newError}
+                                                setFocusNext={setFocusNext}
+                                                />
                                             )
                                     })}
                                     </div>
@@ -945,7 +955,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                                 answerComplete={answerCompleted}
                                 noAnswer={noAnswer}
                                 setAnswerComple={setAnswerCompleted}
-                                errors={newError}/>
+                                errors={newError}
+                                setFocusNext={setFocusNext}
+                                />
                             )
                     })}
                     </div>
@@ -964,7 +976,9 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                                 isNone={true}
                                 showNone={showNone}
                                 setAnswerComple={setAnswerCompleted}
-                                errors={newError}/>
+                                errors={newError}
+                                setFocusNext={setFocusNext}
+                                />
                             )
                     })}
                     {noanswers.map((noanswer, index)=>{
@@ -980,7 +994,8 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                                 setAnswerComple={setAnswerCompleted}
                                 noAnswerFnc={noAnswerSelect}
                                 isNoanswer={true}
-                                errors={newError}/>
+                                errors={newError}
+                                setFocusNext={setFocusNext}/>
                             )
                     })}
                 </div>
@@ -1019,11 +1034,16 @@ const LoadingComp = () =>{
     )
 }
 
-const SettingGridRankSort = ({json, defaultValue, showGroups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader', toggle=false, showCnt=true})=>{
+const SettingGridRankSort = ({json, defaultValue, showGroups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader', toggle=false, showCnt=true, autoContinue=false})=>{
     const root = document.querySelector('.answers');
     let toggleFlag = toggle;
     if( !showGroups ){
         toggleFlag = false;
+    }
+    const defaultAnswerLength = defaultValue.length;
+    let focusFlag = autoContinue;
+    if( defaultAnswerLength > 0 ){
+        focusFlag = false;
     }
     ReactDOM.render(
         <GridRankSort
@@ -1038,6 +1058,7 @@ const SettingGridRankSort = ({json, defaultValue, showGroups=false, groups=[], c
             showAnswers={showAnswers}
             toggle={toggleFlag}
             showCnt={showCnt}
+            autoContinue={focusFlag}
         />, root
     );
     document.querySelector(loadingQuery).remove();

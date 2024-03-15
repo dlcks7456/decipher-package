@@ -2240,3 +2240,58 @@ const customInputBox = ()=>{
 }
 
 window.addEventListener('DOMContentLoaded', customInputBox);
+
+
+const checkElement = (el) => {
+    return (el !== undefined && el !== null)
+}
+
+const autoClickContinue = (flag)=>{
+    if(!flag){ return }
+
+    const questions = document.querySelectorAll('.question');
+    const questionRadio = document.querySelectorAll('.question.radio.noCols, .question.radio.noRows');
+    
+    if( questions === undefined || questions === null ){
+        return
+    }
+
+    if( (questions.length > 1) ){ 
+        return 
+    }
+
+    const continueBtn = document.querySelector('#btn_continue');
+
+    [...questionRadio].forEach((radio)=>{
+        // atmtable
+        if( radio.classList.contains('sq-atmtable') ){
+            const atmtableBtn = radio.querySelectorAll('.sq-atmtable-btn');
+            [...atmtableBtn].forEach((btn)=>{
+                btn.addEventListener('click', ()=>{
+                    const btnInput = btn.querySelector('input[type=radio]');
+                    btnInput.checked = true;
+                    btn.classList.add('.sq-atmtable-btn-selected');
+                    continueBtn.click();
+                });
+            })
+        }else{
+            const elements = radio.querySelectorAll('.element');
+            if( elements.length == 0 ){
+                return;
+            }
+
+            elements.forEach((element)=>{
+                element.addEventListener('click', ()=>{
+                    const inputRadio = element.querySelector('input[type=radio]:checked');
+                    const inputText = element.querySelector('input[type=text]');
+
+                    if( !checkElement(inputText) ){
+                        if( checkElement(inputRadio) ){
+                            continueBtn.click();
+                        }
+                    }
+                });
+            });
+        }
+    });
+}
