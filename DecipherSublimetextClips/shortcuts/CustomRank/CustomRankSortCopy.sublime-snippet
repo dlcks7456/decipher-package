@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style copy="custom_rank" arg:colCnt="1" arg:noneLabel="null" arg:ableNone="2" arg:showAnswers="true" arg:ableSort="true" arg:showGroups="false" arg:toggle="false" arg:showCnt="true" name="question.after"/>
+<style copy="custom_rank" arg:autoContinue="true" arg:colCnt="1" arg:noneLabel="null" arg:ableNone="2" arg:showAnswers="true" arg:ableSort="true" arg:showGroups="false" arg:toggle="false" arg:showCnt="true" name="question.after"/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>custom.rank.copy</tabTrigger>
