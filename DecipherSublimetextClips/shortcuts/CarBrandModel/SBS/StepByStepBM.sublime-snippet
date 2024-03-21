@@ -9,14 +9,14 @@
           <title><div class="q-name">${1:[QID]}</div> </title>
           <alt>브랜드</alt>
 <validate>
-for bm in [[QID]x1, [QID]x2] :
+for bm in [${1:[QID]}x1, ${1:[QID]}x2] :
     for each in bm.choices :
         if each and hasattr(BMbase.attr(each.label), 'open') :
             oe = allQuestions['%soe'%(bm.label)]
             if oe.val == None or oe.val == '' :
                 error(this.lget('extraInfo'))
 
-pt = [QID]x3
+pt = ${1:[QID]}x3
 if pt.p98  :
     oe = allQuestions['%soe'%(pt.label)]
     if oe.val == None or oe.val == '' :
