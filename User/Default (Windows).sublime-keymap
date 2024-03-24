@@ -96,5 +96,12 @@
               "key": "selector", "operator": "equal", "operand":"text.xml"
             }
         ]
+    },
+    { 
+        "keys": ["ctrl+shift+a"], "command": "make_alt", "context": [
+            {
+              "key": "selector", "operator": "equal", "operand":"text.xml"
+            }
+        ]
     }
 ]

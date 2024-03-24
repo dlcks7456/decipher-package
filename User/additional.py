@@ -77,6 +77,17 @@ class makeStrongCommand(sublime_plugin.TextCommand):
             except Exception as e:
                 print (e) 
 
+class makeAltCommand(sublime_plugin.TextCommand):
+        def run (self, edit):
+            try:
+                sels = self.view.sel()[0]
+                textr = self.view.substr(sels)
+                set_text = '<alt>{}</alt>'.format(textr)
+                self.view.replace(edit,sels, set_text)
+                
+            except Exception as e:
+                print (e) 
+
 
 class makeQnameCommand(sublime_plugin.TextCommand):
         def run (self, edit):
