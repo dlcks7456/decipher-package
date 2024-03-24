@@ -82,7 +82,7 @@ class makeAltCommand(sublime_plugin.TextCommand):
             try:
                 sels = self.view.sel()[0]
                 textr = self.view.substr(sels)
-                set_text = '<alt>{}</alt>'.format(textr)
+                set_text = '<alt>{}</alt>'.format(textr.strip())
                 self.view.replace(edit,sels, set_text)
                 
             except Exception as e:
