@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style label="custom_rating" arg:autoContinue="true" arg:autoNumber="true" arg:leftText="" arg:rightText="" arg:showArrow="false" arg:showGroup="true" name="question.after"><![CDATA[
+<style label="custom_rating" arg:autoContinue="false" arg:autoNumber="true" arg:leftText="" arg:rightText="" arg:showArrow="false" arg:showGroup="true" name="question.after"><![CDATA[
 <style>.answers .grid-table-mode, .answers .grid-list-mode {display: none;}</style>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>

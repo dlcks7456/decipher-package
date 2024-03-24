@@ -2195,6 +2195,7 @@ const customInputBox = ()=>{
 .sp-custom-input .answers div.element .cell-input {
   padding: 10px 10px 10px 13px;
   display: flex;
+  align-items: center;
 }
 
 .sp-custom-input .answers div.element .cell-sub-wrapper {
@@ -2231,7 +2232,7 @@ const customInputBox = ()=>{
 
             cellInput.style.cursor = 'pointer';
 
-            const inputBox = el.querySelector('input[type="number"], input[type="text"]');
+            const inputBox = el.querySelector('input[type="number"], input[type="text"], select');
             cellInput.addEventListener('click', ()=>{
                 inputBox.focus();
             });
