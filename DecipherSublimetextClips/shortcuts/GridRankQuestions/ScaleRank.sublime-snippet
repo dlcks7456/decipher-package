@@ -29,6 +29,7 @@ ${2}
   shuffle="rows"
   cond="not scale_rank_items(${3}, ${4})['skip']"
   rowCond="row.label in scale_rank_items(${3}, ${4})['show']"
+  colCond="col.index lt len(scale_rank_items(${3}, ${4})['show'])"
   grouping="cols">
   <alt></alt>
   <title></title>
