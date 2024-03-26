@@ -566,17 +566,20 @@ for x in base.rows :
 <suspend/>
 
 <exec when="init">
-def return_car_answer(base) :
-  if base.any :
-    lb = base.choices[base.val].label
-    if hasattr(BMbase.attr(lb), 'open') :
-      oe_name = '%soe'%(base.label)
-      return allQuestions[oe_name].unsafe_val
-    else :
-      return BMbase.attr(lb).text
+def return_car_answer(base, label=None) :
+    row_base = base.attr(label) if label != None else base
+    if row_base.any :
+      lb = base.choices[row_base.val].label
+      if hasattr(BMbase.attr(lb), 'open') :
+        oe_name = '%soe'%(base.label)
+        oe_base = allQuestions[oe_name]
+        oe_answer = oe_base.attr(label).unsafe_val if label != None else oe_base.unsafe_val
+        return oe_answer
+      else :
+        return BMbase.attr(lb).text
 
 def return_pipe_text(base) :
-  join_list = [return_car_answer(x) for x in base]
+  join_list = [return_car_answer(base=x[0]) if len(x) == 1 else return_car_answer(base=x[0], label=x[1]) for x in base]
   if join_list :
     return ' '.join(join_list)
   else :

@@ -7,8 +7,8 @@
     ss:questionClassNames="sbs-question"
     surveyDisplay="mobile">
       <title><div class="q-name">${2}</div> </title>
-      <style name="el.select.header" label="sbs_select_header"><![CDATA[
-<select name="\$(name)" id="\$(id)" class="input dropdown step-by-step" \$(extra)>
+      <style name="el.select.header" label="sbs_select_header" arg:step="1" arg:stepBase="" arg:stepKey=""><![CDATA[
+<select name="\$(name)" id="\$(id)" class="input dropdown step-by-step step-\$(step)" data-stepbase="\$(stepBase)" data-stepkey="\$(stepKey)" \$(extra)>
 ]]${-1}></style>
       <style arg:stepName="${3}" name="el.select.default" label="sbs_select_default"><![CDATA[
 <option value="-1" \$(selected)>\$(stepName)</option>
@@ -25,7 +25,7 @@
     rightOf="${2}a">
       <title>${2}b</title>
       <style name="el.select.header" copy="sbs_select_header"/>
-      <style arg:stepName="${4}" name="el.select.default" copy="sbs_select_default"/>
+      <style arg:stepName="${4}" name="el.select.default" copy="sbs_select_default" arg:step="2" arg:stepBase="1" arg:stepKey="base"/>
       <style name="el.select.element"><![CDATA[
 <option value="\$(value)" data-code="\${choice.value//100}" data-base="\${choice.value}" \$(selected) class="\${choice.styles.ss.choiceClassNames if ec.choice else ""}" data-open="\${1 if choice.open else 0}">\$(text)</option>
 ]]${-1}></style>
