@@ -1319,9 +1319,22 @@ function stepQuestion(bundleClassName){
             const nextSelectCopy = [...sts[nextIndex].options].map((option) => option.cloneNode(true));
             const nextSelect = sts[nextIndex];
 
+            let stepBase = parseInt(nextSelect.dataset.stepbase);
+            let stepKey = nextSelect.dataset.stepkey;
 
             const optionHandler = ()=>{
                 let base = step.options[step.selectedIndex].dataset.base;
+
+                if( (!isNaN(stepBase)) & ( stepKey !== undefined ) ){
+                    const baseSelect = el.querySelector(`.step-by-step.step-${stepBase}`);
+                    if( (baseSelect !== undefined && baseSelect !== null) && baseSelect.selectedIndex !== 0 ){
+                        if( stepKey === "" || stepKey === undefined || stepKey === null){
+                            stepKey = "base";
+                        }
+                        base = baseSelect.options[baseSelect.selectedIndex].dataset[stepKey];
+                        //console.log(base);
+                    }
+                }
 
                 if( base === null || base === undefined ){
                     [...nextSelect.options].slice(1).forEach( (item) => {
@@ -1361,10 +1374,12 @@ function stepQuestion(bundleClassName){
             step.addEventListener('change', ()=>{
                 // reset
                 [...sts].slice(index+1).forEach((rst)=>{
+
                     rst.selectedIndex = 0;
-                    if( step.selectedIndex === 0 ){
-                        rst.disabled = true;
-                    }
+                    rst.disabled = true;
+                    // if( step.selectedIndex === 0 ){
+                    //     rst.disabled = true;
+                    // }
                     const openDiv = rst.parentElement.nextElementSibling;
 
                     if( openDiv === null || openDiv === undefined ){
