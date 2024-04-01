@@ -1,3 +1,24 @@
+const setMinHeightForRankText = ()=>{
+    const rankTextElements = document.querySelectorAll('.rank-text');
+    let maxHeight = 0;
+    
+    if( [...rankTextElements].length > 0 ){
+        rankTextElements.forEach(element => {
+            element.style.minHeight = '0';
+        });
+
+        rankTextElements.forEach(element => {
+            if (element.offsetHeight > maxHeight) {
+                maxHeight = element.offsetHeight;
+            }
+        });
+
+        rankTextElements.forEach(element => {
+            element.style.minHeight = maxHeight + 'px';
+        });            
+    }
+}
+
 const smoothScrollToBottom = (selector)=>{
   console.log(selector);
   const element = document.querySelector(selector);
@@ -444,6 +465,10 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
     
 
     React.useEffect(()=>{
+        setMinHeightForRankText();
+        window.addEventListener('resize', setMinHeightForRankText);
+
+
         if( !toggle ){
             return;
         }
