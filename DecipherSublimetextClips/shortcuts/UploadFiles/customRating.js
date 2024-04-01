@@ -16,11 +16,11 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, aut
     return (
         <div className={`sp-btn-container sp-btn-${row.label}-${col.label}`}>
             <input type="radio" name={inputName} value={index} id={inputID} style={{display: "none"}} checked={col.index == row.answer ? true : false}></input>
-            <label className={"sp-col-btn"} htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent}>
+            <label className={"sp-col-btn"} style={{"justifyContent": col.scoreText === null ? 'center' : null}} htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent}>
                 {autoNumber ? (
                         <>
-                            <p className={"sp-col-score"} dangerouslySetInnerHTML={{__html: col.scoreText}}></p>
-                            {col.text != null ? (<p dangerouslySetInnerHTML={{__html: col.text}}></p>) : null}
+                            {col.scoreText !== null ? (<p className={"sp-col-score"} dangerouslySetInnerHTML={{__html: col.scoreText}}></p>) : null}
+                            {col.text !== null ? (<p dangerouslySetInnerHTML={{__html: col.text}}></p>) : null}
                         </>
                     ) : (
                     <>
@@ -232,7 +232,7 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
     display: flex;
     flex-direction: column;
     gap: 5px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-size: 1.1rem;
     color: #333;
@@ -632,11 +632,14 @@ const CustomRating = ({
                 col['text'] = mainText == '' ? null : mainText;
                 col['scoreText'] = numberChk;
                 json['cols'][index] = col;
+            }else{
+                col['scoreText'] = null;
+                json['cols'][index] = col;
             }
-            if( colNumber === null ){
-                numberFlag = false;
-                return
-            }
+            // if( colNumber === null ){
+            //     numberFlag = false;
+            //     return
+            // }
         });
     }
 
