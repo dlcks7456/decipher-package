@@ -2196,12 +2196,12 @@ const customInputBox = ()=>{
   width: 100%;
 }
 
-.sp-custom-input .answers div.element .cell-text {
+.sp-custom-input .answers div.element.groupingCols .cell-text {
   border-bottom: 1px solid #ccc;
   transition: background-color 0.5s;
 }
 
-.sp-custom-input .answers div.element .cell-text label {
+.sp-custom-input .answers div.element.groupingCols .cell-text label {
   width: 100%;
   padding: 10px;
   display: block;
@@ -2213,14 +2213,14 @@ const customInputBox = ()=>{
   align-items: center;
 }
 
-.sp-custom-input .answers div.element .cell-sub-wrapper {
+.sp-custom-input .answers div.element.groupingCols .cell-sub-wrapper {
   overflow: hidden;
   border: 1px solid #ccc;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
-.sp-custom-input .answers div.element .cell-sub-wrapper:hover .cell-text {
+.sp-custom-input .answers div.element.groupingCols .cell-sub-wrapper:hover .cell-text {
   background-color: #b7ceff;
 }
 `;
@@ -2249,7 +2249,9 @@ const customInputBox = ()=>{
 
             const inputBox = el.querySelector('input[type="number"], input[type="text"], select');
             cellInput.addEventListener('click', ()=>{
-                inputBox.focus();
+                if( inputBox ){
+                    inputBox.focus();
+                }
             });
         });
     });
