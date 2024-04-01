@@ -252,7 +252,7 @@ function slideShowSetting({
     slideshowBody.classList.add('animate__fadeIn');
     slideshowBody.style.width = '100%';
     slideshowBody.style.display = 'grid';
-    slideshowBody.style.gridTemplateColumns = '10% 80% 10%';
+    slideshowBody.style.gridTemplateColumns = '5% 90% 5%';
 
     leftBtn.classList.add('slideshow-btn');
     slideshow.classList.add('slideshow-pages');
@@ -449,8 +449,8 @@ function slideShowSetting({
         pageHandler(pageIndex);
     }
 
-    const btnMouseOver = (e)=>{
-        const arrow = e.target.querySelector('.slideshow-arrow');
+    const btnMouseOver = (curr)=>{
+        const arrow = curr.querySelector('.slideshow-arrow');
         if( arrow === null || arrow === undefined ){
             return
         }
@@ -458,8 +458,8 @@ function slideShowSetting({
         arrow.style.color = activeFontColor;
     }
 
-    const btnMouseLeave = (e)=>{
-        const arrow = e.target.querySelector('.slideshow-arrow');
+    const btnMouseLeave = (curr)=>{
+        const arrow = curr.querySelector('.slideshow-arrow');
         if( arrow === null || arrow === undefined ){
             return
         }
@@ -489,8 +489,8 @@ function slideShowSetting({
 
     [leftBtn, rightBtn].forEach((btn)=>{
         btn.style.cursor = 'pointer';
-        btn.addEventListener('mouseover', btnMouseOver);
-        btn.addEventListener('mouseleave', btnMouseLeave);
+        btn.addEventListener('mouseover',  ()=>{btnMouseOver(btn);});
+        btn.addEventListener('mouseleave', ()=>{btnMouseLeave(btn);});
     })
 
     dotList.addEventListener('click', dotHandler);
