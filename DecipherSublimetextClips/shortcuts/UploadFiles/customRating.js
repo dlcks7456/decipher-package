@@ -16,7 +16,7 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, aut
     return (
         <div className={`sp-btn-container sp-btn-${row.label}-${col.label}`}>
             <input type="radio" name={inputName} value={index} id={inputID} style={{display: "none"}} checked={col.index == row.answer ? true : false}></input>
-            <label className={"sp-col-btn"} style={{"justifyContent": col.scoreText === null ? 'center' : null}} htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent}>
+            <label className={classHandler(col.scoreText === null, "sp-col-btn", "sp-col-center") } htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent}>
                 {autoNumber ? (
                         <>
                             {col.scoreText !== null ? (<p className={"sp-col-score"} dangerouslySetInnerHTML={{__html: col.scoreText}}></p>) : null}
@@ -246,6 +246,10 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
     text-align: center;
 }
 
+.sp-col-center {
+    justify-content: center;
+}
+
 .sp-col-score {
     font-weight: bold;
     font-size: 1rem;
@@ -334,6 +338,10 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
 
     .sp-arrow-right:hover {
         transform: translateX(0px);
+    }
+
+    .sp-col-center {
+        justify-content: flex-start;
     }
 }
 

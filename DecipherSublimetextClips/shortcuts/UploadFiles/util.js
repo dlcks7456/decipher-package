@@ -174,6 +174,7 @@ function slideShowSetting({
     force=false,
     forceText,
     forceSwitch='.continue',
+    holdPageSec=0,
 }){
     if(setSlideshowQuery === null || setSlideshowQuery === undefined || setSlideshowQuery === ''){
         console.log('Slideshow setSlideshowQuery error');
@@ -285,7 +286,7 @@ function slideShowSetting({
         arrow.style.alignItems = 'center';
         arrow.style.borderRadius = '5px';
         arrow.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)';
-        arrow.style.transition = 'background-color 0.2s'
+        arrow.style.transition = 'background-color 0.2s, opacity 0.2s';
     });
 
     leftBtn.querySelector('.slideshow-arrow').innerHTML = leftArrowSVG;
@@ -390,14 +391,32 @@ function slideShowSetting({
 
     /* Slide show handlers */
     let pageIndex = 0;
+    let slideComplete = false;
+
     const pageHandler = (calcNum)=>{
         if( calcNum === null || calcNum === undefined ){
             return
         }
         const lastPageIndex = slides.length - 1;
         pageIndex = calcNum;
-
         if(force){
+            rightBtn.addEventListener('click', () => {
+                if(holdPageSec > 0) { // holdPageSec가 0보다 클 때만 작동
+                    if((pageIndex !== lastPageIndex) && (!slideComplete)){
+                        rightBtn.style.opacity = '0.5';
+                        rightBtn.style.pointerEvents = 'none';
+                        
+                        // holdPageSec 만큼의 시간이 지난 후에 스타일 해제
+                        setTimeout(() => {
+                            rightBtn.style.opacity = '';
+                            rightBtn.style.pointerEvents = '';
+                        }, holdPageSec * 1000); // milliseconds로 변환
+                    }else{
+                        slideComplete = true;
+                    }
+                }
+            });
+
             if(pageIndex === lastPageIndex){
                 leftBtn.style.pointerEvents = '';
                 const leftArrow = leftBtn.querySelector('.slideshow-arrow');
@@ -478,6 +497,7 @@ function slideShowSetting({
 
         const nextBtn = document.querySelector(forceSwitch);
         nextBtn.disabled = true;
+
     }
 
     leftBtn.addEventListener('click', ()=>{
