@@ -8,12 +8,13 @@
 <!-- /.question-text -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 ]]${-1}></style>
-<style name="question.after" wrap="ready" label="slideshow_html"><![CDATA[
+<style name="question.after" wrap="ready" label="slideshow_html" arg:holdPageSec="0"><![CDATA[
 slideShowSetting({
     mode : 'html',
     slides: [${1}],
     force: true,
     forceText: '\${res.slideshow_force_text}',
+    holdPageSec: \$(holdPageSec),
 })
 ]]${-1}></style>
 ]]></content>

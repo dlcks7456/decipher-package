@@ -7,7 +7,7 @@
 <h1 title="@(question)" class="question-text" id="question_text_\${this.label}">\${this.styles.html.showNumber and (str(number) + '. ') or ''}\$(title)</h1>
 <!-- /.question-text -->
 ]]${-1}></style>
-<style name="question.after" wrap="ready" label="slideshow_image"><![CDATA[
+<style name="question.after" wrap="ready" label="slideshow_image" arg:holdPageSec="0"><![CDATA[
 slideShowSetting({
     mode : 'image',
     slides: [${1}],
@@ -15,6 +15,7 @@ slideShowSetting({
     imageClassName: 'slideshow-image',
     force: true,
     forceText: '\${res.slideshow_force_text}',
+    holdPageSec: \$(holdPageSec),
 })
 ]]${-1}></style>
 ]]></content>

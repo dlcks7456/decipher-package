@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 <style name="survey.question" copy="slideshow_title"/>
-<style name="question.after" wrap="ready" copy="slideshow_image"/>
+<style name="question.after" wrap="ready" copy="slideshow_image" arg:holdPageSec="0"/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>slideshow.image.copy</tabTrigger>
