@@ -2042,6 +2042,10 @@ const setCustomBtn = ()=>{
     background-color: unset !important;
 }
 
+.sp-custom-btn .element.hasError .cell-sub-wrapper{
+  border-color: #e7046f!important;
+}
+
 @media (max-width: 768px) {
   .sp-custom-btn .answers .element {
     max-width: 100%;
