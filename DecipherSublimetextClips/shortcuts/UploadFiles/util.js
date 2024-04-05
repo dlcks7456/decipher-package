@@ -1975,6 +1975,10 @@ const setCustomBtn = ()=>{
     margin-bottom: 10px;
 }
 
+.btn-hover {
+  background-color: #b7ceff;
+}
+
 .answers-after {
     margin-top: 10px;
 }
@@ -1997,19 +2001,20 @@ const setCustomBtn = ()=>{
   padding: 5px;
 }
 
+.sp-custom-btn .answers .element { 
+    transition: background-color 0.5s;
+}
+
+
 .sp-custom-btn .answers .element .cell-sub-wrapper {
   padding-left: 0.25em;
   border-radius: 7px;
   border: 1px solid #959595;
   width: 100%;
   max-width: 924px;
-  transition: background-color 0.5s;
   overflow: hidden;
 }
 
-.sp-custom-btn .answers .element .cell-sub-wrapper:hover {
-  background-color: #b7ceff;
-}
 
 .sp-custom-btn .answers .element .cell-sub-wrapper .cell-sub-column {
   height: 100%;
@@ -2051,10 +2056,6 @@ const setCustomBtn = ()=>{
     max-width: 100%;
   }
 
-  .sp-custom-btn .answers .element .cell-sub-wrapper:hover {
-    background-color: unset;
-  }
-
   .sp-custom-btn .answers .element input[type="text"] {
     width: 90%;
   }
@@ -2070,9 +2071,17 @@ const setCustomBtn = ()=>{
     const btnId = btn.id;
 
     const checkCols = [...btnClassList].filter(cl => cl.includes('btn-cols-'));
-    
-    const colNumber = checkCols.length >= 1 ? checkCols[0].split('-')[2] : 1;
+
+    const minColClass = [...btnClassList].filter(cl => cl.includes('min-col-'));
+    const minColCount = minColClass.length >= 1 ? minColClass[0].split('-')[2] : 1;
+
+    let colNumber = checkCols.length >= 1 ? checkCols[0].split('-')[2] : 1;
+    if( minColCount > 1 && colNumber == 1 ){
+        colNumber = minColCount; 
+    }
     const newClassName = `custom-btn-cols-${colNumber}`;
+
+
     
 
     const style = document.createElement('style');
@@ -2103,7 +2112,7 @@ const setCustomBtn = ()=>{
         style.innerHTML += `
 @media (max-width: 1000px) {
     #${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
-      grid-template-columns: 50% 50%;
+      grid-template-columns: repeat(${minColCount == 1 ? 2 : minColCount}, 1fr);
     }
 }`;
     }
@@ -2138,7 +2147,7 @@ const setCustomBtn = ()=>{
 
 @media (max-width: 768px) {
     #${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
-        grid-template-columns: 100%;
+        grid-template-columns: repeat(${minColCount}, 1fr);
     }
 
     #${btnId} .answers {
@@ -2198,6 +2207,17 @@ const setCustomBtn = ()=>{
             if( openCheck && inputNode.checked ) {
                 openCheck.focus();
             }
+        });
+
+        ['touchstart', 'mouseover'].forEach((ev)=>{
+            element.addEventListener(ev, () => {
+                element.classList.add('btn-hover');
+            });
+        });
+        ['touchend', 'mouseout'].forEach((ev)=>{
+            element.addEventListener(ev, () => {
+                element.classList.remove('btn-hover');
+            });
         });
     });
 
