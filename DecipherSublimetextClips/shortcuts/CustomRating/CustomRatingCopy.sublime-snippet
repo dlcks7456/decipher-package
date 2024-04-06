@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style copy="custom_rating" arg:autoContinue="false" arg:autoNumber="true" arg:leftText="" arg:rightText="" arg:showArrow="false" arg:showGroup="true" name="question.after"/>
+<style copy="custom_rating" arg:autoContinue="false" arg:autoNumber="true" arg:btnDirection="column" arg:leftText="" arg:rightText="" arg:showArrow="false" arg:showGroup="true" name="question.after"/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>custom.rate.copy</tabTrigger>

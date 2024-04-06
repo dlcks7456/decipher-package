@@ -32,10 +32,20 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, aut
     )
 }
 
-const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow=false, autoNumber, showGroup=false, groupInfo={}})=>{
+const SetLeftRight = ({json, left, right, answers, flexDirection="row", autoContinue=false, showArrow=false, autoNumber, showGroup=false, groupInfo={}})=>{
     const brandColor = "#2d6df6";
     const brandSubColor = "#b7ceff";
-    let {uid, cols, rows, haveRightLegend} = json;
+    let {uid, cols, rows, haveRightLegend, grouping} = json;
+    if( grouping === "cols" ){
+        const copy_rows = rows
+        const copy_cols = cols
+
+        rows = copy_cols;
+        cols = copy_rows;
+    }
+
+    let colDirection = haveRightLegend ? 'row' : flexDirection;
+
     const colSeparator = Math.floor(cols.length/2);
     const leftCols = cols.slice(0, colSeparator).map((col)=>{return col.index});
     const rightCols = cols.slice(cols.length%2 > 0 ? colSeparator+1 : colSeparator, cols.length).map((col)=>{return col.index});
@@ -241,6 +251,7 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
 
 .sp-col-btn-box {
     display: flex;
+    flex-direction: ${colDirection};
     align-items: stretch;
     width: 100%;
 }
@@ -639,6 +650,7 @@ const CustomRating = ({
     leftText, 
     rightText, 
     answers,
+    flexDirection="row",
     autoContinue=false,
     autoNumber=true,
     showArrow=false,
@@ -680,6 +692,7 @@ const CustomRating = ({
             left={leftText} 
             right={rightText}
             answers={answers}
+            flexDirection={flexDirection}
             showArrow={showArrow}
             showGroup={showGroup}
             groupInfo={groupInfo}
