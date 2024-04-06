@@ -2142,7 +2142,7 @@ const setCustomBtn = ()=>{
         style.innerHTML += `
 @media (max-width: 1000px) {
     #${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
-      grid-template-columns: repeat(${minColCount == 1 ? 2 : minColCount}, 1fr);
+      grid-template-columns: repeat(${minColCount == 1 ? 2 : (colNumber-1 > minColCount ? colNumber-1 : minColCount)}, 1fr);
     }
 }`;
     }
