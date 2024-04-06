@@ -20,13 +20,11 @@ const setMinHeightForRankText = ()=>{
 }
 
 const smoothScrollToBottom = (selector)=>{
-  console.log(selector);
   const element = document.querySelector(selector);
   if (!element) return;
 
   const start = element.scrollTop;
   const end = element.scrollHeight - element.clientHeight;
-  console.log(start, end);
 
   const change = end - start;
   const duration = 300;
@@ -99,7 +97,7 @@ const ShowRank = ({rankNum})=>{
     )
 }
 
-const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple, isNone=false, showNone=null, isNoanswer=false, noAnswer=false, noAnswerFnc=null, errors, setFocusNext})=>{
+const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple, isNone=false, showNone=null, isNoanswer=false, noAnswer=false, noAnswerFnc=null, errors, setFocusNext, qaShow})=>{
     const [isHover, setIsHover] = React.useState(false);
     const [isSelected, setIsSelected] = React.useState(answers.includes(row.index) ? true : false);
     const styleFlag = ()=>{
@@ -232,7 +230,7 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
                         }
                     }
                 }}>
-                <div className={"rank-row-text"} style={{pointerEvents: 'none'}} dangerouslySetInnerHTML={{__html: row.text}}></div>
+                <div className={"rank-row-text"} style={{pointerEvents: 'none'}} dangerouslySetInnerHTML={{__html: qaShow ? `<div class="rank-qaCode"><div class="qaCode-label">[${row.label}]</div><div>${row.text}</div></div>` : row.text}}></div>
                 {row.open === 1 ? (
                     <div style={{
                         marginTop : '5px',
@@ -463,11 +461,19 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
         }, 1000));
     }
     
+    const [qaShow, setQaShow] = React.useState(false);
 
     React.useEffect(()=>{
         setMinHeightForRankText();
         window.addEventListener('resize', setMinHeightForRankText);
 
+        // QA Code On
+        const qaCodes = document.querySelectorAll('.qaCode');
+        const controlBar = document.querySelector('.controlbarContainer');
+
+        if( controlBar && qaCodes.length > 0 ){
+            setQaShow(true);
+        }
 
         if( !toggle ){
             return;
@@ -516,6 +522,16 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
     return (
         <>
         <style jsx="true">{`
+.rank-qaCode {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.rank-qaCode .qaCode-label {
+    font-weight: bold;
+}
+
 .surveyContainer {
     scroll-behavior: smooth;
 }
@@ -960,6 +976,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                                                 setAnswerComple={setAnswerCompleted}
                                                 errors={newError}
                                                 setFocusNext={setFocusNext}
+                                                qaShow={qaShow}
                                                 />
                                             )
                                     })}
@@ -982,6 +999,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                                 setAnswerComple={setAnswerCompleted}
                                 errors={newError}
                                 setFocusNext={setFocusNext}
+                                qaShow={qaShow}
                                 />
                             )
                     })}
@@ -1003,6 +1021,7 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                                 setAnswerComple={setAnswerCompleted}
                                 errors={newError}
                                 setFocusNext={setFocusNext}
+                                qaShow={qaShow}
                                 />
                             )
                     })}
@@ -1020,7 +1039,8 @@ const GridRankSort = ({json, defaultValue, gridColumnCount, showGroups, groups=[
                                 noAnswerFnc={noAnswerSelect}
                                 isNoanswer={true}
                                 errors={newError}
-                                setFocusNext={setFocusNext}/>
+                                setFocusNext={setFocusNext}
+                                qaShow={qaShow}/>
                             )
                     })}
                 </div>
@@ -1059,8 +1079,8 @@ const LoadingComp = () =>{
     )
 }
 
-const SettingGridRankSort = ({json, defaultValue, showGroups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader', toggle=false, showCnt=true, autoContinue=false})=>{
-    const root = document.querySelector('.answers');
+const SettingGridRankSort = ({setRoot, json, defaultValue, showGroups=false, groups=[], colCnt=1, noneIndex=null, ableNone=1, showAnswers=true, ableSort=true, loadingQuery='.custom-loader', toggle=false, showCnt=true, autoContinue=false})=>{
+    const root = document.querySelector(setRoot);
     let toggleFlag = toggle;
     if( !showGroups ){
         toggleFlag = false;

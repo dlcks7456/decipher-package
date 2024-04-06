@@ -1940,6 +1940,39 @@ const updateLabelStyle = (element, isSelected)=>{
    }
 }
 
+const maxHeightHandler = (applyElement, baseElement, init=true, padding='5px') => {
+    const originalMaxHeight = applyElement.style.maxHeight;
+
+    let paddingValue = 0;
+    if( padding !== undefined && padding !== null ){
+        paddingValue = parseInt(padding.replace('px', ''));
+    }
+
+    applyElement.style.maxHeight = 'none';
+    const domMaxHeight = applyElement.offsetHeight + paddingValue + 3;
+    applyElement.style.maxHeight = originalMaxHeight;
+
+    if( init ){
+        window.requestAnimationFrame(() => {
+            if (applyElement.style.maxHeight === '0px') {
+                applyElement.style.maxHeight = `${domMaxHeight}px`;
+                applyElement.style.padding = padding;
+                baseElement.classList.add('ch-open');
+            } else {
+                applyElement.style.maxHeight = '0px';
+                applyElement.style.padding = '0';
+                baseElement.classList.remove('ch-open');
+            }
+        });
+    }else{
+        window.requestAnimationFrame(() => {
+            applyElement.style.maxHeight = `${domMaxHeight}px`;
+            applyElement.style.padding = padding;
+            baseElement.classList.add('ch-open');
+        });
+    }
+};
+
 function handleButtonColor(element) {
     const firIcon = element.querySelector('.fir-icon');
     const isSelected = firIcon && firIcon.classList.contains('selected');
@@ -1971,18 +2004,6 @@ const setCustomBtn = ()=>{
 
   const mainStyle = document.createElement('style');
   mainStyle.innerHTML = `
-.answers-before {
-    margin-bottom: 10px;
-}
-
-.btn-hover {
-  background-color: #b7ceff;
-}
-
-.answers-after {
-    margin-top: 10px;
-}
-
 .btn-exclusive {
     max-width: 924px;
 }
@@ -2005,6 +2026,9 @@ const setCustomBtn = ()=>{
     transition: background-color 0.5s;
 }
 
+.sp-custom-btn .answers .element img { 
+    pointer-events: none;
+}
 
 .sp-custom-btn .answers .element .cell-sub-wrapper {
   padding-left: 0.25em;
@@ -2043,12 +2067,16 @@ const setCustomBtn = ()=>{
     background-color: unset !important;
 }
 
-.sp-custom-btn .element.hasError {
+.sp-custom-btn .element.hasError:not(.btn-hover) {
     background-color: unset !important;
 }
 
 .sp-custom-btn .element.hasError .cell-sub-wrapper{
   border-color: #e7046f!important;
+}
+
+.btn-hover {
+  background-color: #b7ceff!important;
 }
 
 @media (max-width: 768px) {
@@ -2066,7 +2094,9 @@ const setCustomBtn = ()=>{
   
   observeElements();
 
-  btnClass.forEach((btn)=>{
+
+  btnClass.forEach((btn, btnIndex)=>{
+
     const btnClassList = btn.classList;
     const btnId = btn.id;
 
@@ -2081,8 +2111,8 @@ const setCustomBtn = ()=>{
     }
     const newClassName = `custom-btn-cols-${colNumber}`;
 
-
     
+
 
     const style = document.createElement('style');
     btn.querySelector('.answers').appendChild(style);
@@ -2160,6 +2190,8 @@ const setCustomBtn = ()=>{
 }`;
 
 
+
+
     const wrapper = btn.querySelectorAll('.answers .element');
     let maxHeight = Array.from(wrapper).reduce((max, el) => Math.max(max, el.clientHeight), 0);
 
@@ -2220,6 +2252,139 @@ const setCustomBtn = ()=>{
             });
         });
     });
+
+  
+    // Loop Custom Btn
+    const btnFocusFlag = btn.classList.contains('btn-focus');
+    if( btnFocusFlag ){
+        style.innerHTML += `
+#${btnId}.question.sp-custom-btn {
+  max-width: 924px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#${btnId}.question.sp-custom-btn .question-text {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: unset;
+}
+
+#${btnId}.question.sp-custom-btn .instruction-text {
+  display: none;
+}
+
+#${btnId}.answers-before {
+  display: none;
+}
+
+#${btnId}.question.sp-custom-btn .answers {
+  padding: 5px;
+}
+
+
+.question-error-text {
+    padding: 5px;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+`;
+        const questionText = btn.querySelector('.question-text');
+        questionText.setAttribute('tabindex', btnIndex);
+
+        // Toggle TBD
+        // const baseElement = btn.querySelector('.question-text');
+        // const applyElement = btn.querySelectorAll('.answers');
+
+        // const clickHandler = (init=true)=>{
+        //     [...applyElement].forEach((el, index)=>{
+        //          maxHeightHandler(el, baseElement, init);
+        //     });
+        // }
+
+        // if( btn.classList.contains('hasError') ){
+        //     clickHandler(false);
+        // }else{
+        //     if( btnIndex === 0 ){
+        //         clickHandler(false);
+        //     }else{
+        //         clickHandler();
+        //     }
+        // }
+
+        // baseElement.addEventListener('click', ()=>{
+        //     clickHandler();
+        // });
+
+    } else {
+        style.innerHTML += `
+.answers-before {
+    margin-bottom: 7px;
+}
+
+.answers-after {
+    margin-top: 7px;
+}
+`;
+    }
+
+
+    // Focus Setting
+    if( btn.classList.contains('noCols', 'radio') || btn.classList.contains('noRows', 'radio') ){
+        const focusBase = btn.querySelector('.question-text');
+        const selectedStatus = (document.querySelectorAll('.fir-icon.selected').length == 0 || document.querySelectorAll('.hasError').length == 0);
+
+        const lastIndex = btnClass.length-1;
+        const continueBtn = document.querySelector('.button.continue');
+        elements.forEach((el)=>{
+            const hasOpen = el.querySelector('input[type=text]');
+
+            el.addEventListener('click', ()=>{
+                const elRadio = el.querySelector('input[type=radio]');
+                if( hasOpen ){
+                    hasOpen.focus();
+                }else{
+                    if(el.querySelector('.fir-icon.selected')){
+                        if( btnIndex === lastIndex ){
+                            continueBtn.focus();
+                            if( btn.classList.contains('auto-continue') && selectedStatus ){
+                                continueBtn.click();
+                            }
+                        }else{
+                            let nextFocus = btnIndex+1
+                            let continueClickFlag = false;
+                            while (true) {
+                                if( nextFocus >= [...btnClass].length ){
+                                    continueClickFlag = true;
+                                    break
+                                }
+                                let chkFir = [...btnClass][nextFocus].querySelectorAll('.fir-icon.selected');
+                                if( chkFir.length === 0 ){
+                                    break;
+                                }
+                                nextFocus++;
+                            }
+
+                            if( !continueClickFlag ){
+                                const nextQuestionText = [...btnClass][nextFocus].querySelector('.question-text');
+                                nextQuestionText.focus();                                
+                            }else{
+                                continueBtn.focus();
+                                if( btn.classList.contains('auto-continue') && selectedStatus ){
+                                    continueBtn.click();
+                                }
+                            }
+
+                        }
+                    }
+                }
+            });
+        });
+    }
 
   });
 }

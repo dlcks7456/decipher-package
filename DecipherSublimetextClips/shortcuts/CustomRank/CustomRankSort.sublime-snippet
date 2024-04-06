@@ -17,6 +17,7 @@ const group_info = [
 \@end
 ];
 SettingGridRankSort({
+  setRoot: '.label_\$(this.label) .answers',
   json: \${jsexport()}, 
   defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None and v.displayed]}, 
   colCnt: \$(colCnt),

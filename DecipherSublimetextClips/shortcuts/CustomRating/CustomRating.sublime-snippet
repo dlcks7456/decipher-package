@@ -18,6 +18,7 @@ const groupInfo = {
 };
 
 CustomRating({
+	setRoot: '.label_\$(this.label) .answers',
 	json: \${jsexport()},
 	leftText: `\$(leftText)`,
 	rightText: `\$(rightText)`,

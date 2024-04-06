@@ -8,7 +8,7 @@ const classHandler = (cond, className, addClass) => {
     }
 }
 
-const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, autoNumber})=>{
+const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, autoNumber, qaShow})=>{
     const {text, index} = col;
     const inputName = `ans${uid}.0.${row.index}`;
     const inputID = `ans${uid}.${index}.${row.index}`;
@@ -17,6 +17,7 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, aut
         <div className={`sp-btn-container sp-btn-${row.label}-${col.label}`}>
             <input type="radio" name={inputName} value={index} id={inputID} style={{display: "none"}} checked={col.index == row.answer ? true : false}></input>
             <label className={classHandler(col.scoreText === null, "sp-col-btn", "sp-col-center") } htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent}>
+                {qaShow ? (<p className="qaCode-label">[{col.label}]</p>) : null}
                 {autoNumber ? (
                         <>
                             {col.scoreText !== null ? (<p className={"sp-col-score"} dangerouslySetInnerHTML={{__html: col.scoreText}}></p>) : null}
@@ -169,9 +170,26 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
         }
     }
 
+
+    // QA Codes On
+    const [qaShow, setQaShow] = React.useState(false);
+    React.useEffect(()=>{
+        // QA Code On
+        const qaCodes = document.querySelectorAll('.qaCode');
+        const controlBar = document.querySelector('.controlbarContainer');
+
+        if( controlBar && qaCodes.length > 0 ){
+            setQaShow(true);
+        }
+    }, []);
+
     return (
         <>
             <style jsx="true">{`
+.qaCode-label {
+    font-weight: bold;
+}
+
 #btn_continue {
     transition: opacity 0.5s;
 }
@@ -277,6 +295,7 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
 .sp-row-left, .sp-row-right {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 1.3rem;
@@ -555,10 +574,12 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
                                     ) : null}
                                     <div className={classHandler(rowIndex == ansIndex, "sp-row-legend", "show")}>
                                         <div className={"sp-row-card sp-row-left"}>
+                                            {qaShow ? (<p className="qaCode-label">[{row.label}]{haveRightLegend ? ("_left") : null}</p>) : null}
                                             <p dangerouslySetInnerHTML={{__html: row.text}}></p>
                                         </div>
                                         {haveRightLegend ? (
                                             <div className={"sp-row-card sp-row-right"}>
+                                                {qaShow ? (<p className="qaCode-label">[{row.label}]_right</p>) : null}
                                                 <p dangerouslySetInnerHTML={{__html: row.rightLegend}}></p>
                                             </div>
                                         ) : null}
@@ -589,6 +610,7 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
                                                     ansUpdate={()=>{answerUpdate(rowIndex, col.index)}}
                                                     mouseOverEvent={()=>{hoverEvent(col.index, true)}}
                                                     mouseOutEvent={()=>{hoverEvent(col.index, false)}}
+                                                    qaShow={qaShow}
                                                 />
                                             )
                                         })}
@@ -612,6 +634,7 @@ const SetLeftRight = ({json, left, right, answers, autoContinue=false, showArrow
 }
 
 const CustomRating = ({
+    setRoot,
     json, 
     leftText, 
     rightText, 
@@ -622,7 +645,7 @@ const CustomRating = ({
     showGroup=false,
     groupInfo={},
     loadingQuery='.custom-loader'})=>{
-    const root = document.querySelector('.answers');
+    const root = document.querySelector(setRoot);
     const {cols, rows} = json;
     const filteredAnswers = Object.values(answers).filter(value => value !== 'null');
 
