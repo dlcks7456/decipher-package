@@ -2334,56 +2334,58 @@ const setCustomBtn = ()=>{
 
 
     // Focus Setting
-    if( btn.classList.contains('noCols', 'radio') || btn.classList.contains('noRows', 'radio') ){
-        const focusBase = btn.querySelector('.question-text');
-        const selectedStatus = (document.querySelectorAll('.fir-icon.selected').length == 0 || document.querySelectorAll('.hasError').length == 0);
+    if( btnFocusFlag ){
+        if( btn.classList.contains('noCols', 'radio') || btn.classList.contains('noRows', 'radio') ){
+            const focusBase = btn.querySelector('.question-text');
+            const selectedStatus = (document.querySelectorAll('.fir-icon.selected').length == 0 || document.querySelectorAll('.hasError').length == 0);
 
-        const lastIndex = btnClass.length-1;
-        const continueBtn = document.querySelector('.button.continue');
-        elements.forEach((el)=>{
-            const hasOpen = el.querySelector('input[type=text]');
+            const lastIndex = btnClass.length-1;
+            const continueBtn = document.querySelector('.button.continue');
+            elements.forEach((el)=>{
+                const hasOpen = el.querySelector('input[type=text]');
 
-            el.addEventListener('click', ()=>{
-                const elRadio = el.querySelector('input[type=radio]');
-                if( hasOpen ){
-                    hasOpen.focus();
-                }else{
-                    if(el.querySelector('.fir-icon.selected')){
-                        if( btnIndex === lastIndex ){
-                            continueBtn.focus();
-                            if( btn.classList.contains('auto-continue') && selectedStatus ){
-                                continueBtn.click();
-                            }
-                        }else{
-                            let nextFocus = btnIndex+1
-                            let continueClickFlag = false;
-                            while (true) {
-                                if( nextFocus >= [...btnClass].length ){
-                                    continueClickFlag = true;
-                                    break
-                                }
-                                let chkFir = [...btnClass][nextFocus].querySelectorAll('.fir-icon.selected');
-                                if( chkFir.length === 0 ){
-                                    break;
-                                }
-                                nextFocus++;
-                            }
-
-                            if( !continueClickFlag ){
-                                const nextQuestionText = [...btnClass][nextFocus].querySelector('.question-text');
-                                nextQuestionText.focus();                                
-                            }else{
+                el.addEventListener('click', ()=>{
+                    const elRadio = el.querySelector('input[type=radio]');
+                    if( hasOpen ){
+                        hasOpen.focus();
+                    }else{
+                        if(el.querySelector('.fir-icon.selected')){
+                            if( btnIndex === lastIndex ){
                                 continueBtn.focus();
                                 if( btn.classList.contains('auto-continue') && selectedStatus ){
                                     continueBtn.click();
                                 }
-                            }
+                            }else{
+                                let nextFocus = btnIndex+1
+                                let continueClickFlag = false;
+                                while (true) {
+                                    if( nextFocus >= [...btnClass].length ){
+                                        continueClickFlag = true;
+                                        break
+                                    }
+                                    let chkFir = [...btnClass][nextFocus].querySelectorAll('.fir-icon.selected');
+                                    if( chkFir.length === 0 ){
+                                        break;
+                                    }
+                                    nextFocus++;
+                                }
 
+                                if( !continueClickFlag ){
+                                    const nextQuestionText = [...btnClass][nextFocus].querySelector('.question-text');
+                                    nextQuestionText.focus();                                
+                                }else{
+                                    continueBtn.focus();
+                                    if( btn.classList.contains('auto-continue') && selectedStatus ){
+                                        continueBtn.click();
+                                    }
+                                }
+
+                            }
                         }
                     }
-                }
+                });
             });
-        });
+        }
     }
 
   });
