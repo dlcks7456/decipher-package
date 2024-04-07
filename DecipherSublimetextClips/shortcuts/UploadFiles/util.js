@@ -2049,6 +2049,7 @@ const setCustomBtn = ()=>{
   width: 100%;
   height: 100%;
   padding: 5px;
+  font-size: 1.2rem;
 }
 
 .sp-custom-btn .answers .element input[type="text"] {
