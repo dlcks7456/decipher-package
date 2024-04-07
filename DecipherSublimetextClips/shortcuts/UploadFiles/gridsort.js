@@ -196,6 +196,12 @@ const RankBtn = ({row, idx, answers, setAnswers, answerComplete, setAnswerComple
                 onMouseOut={()=>{
                     setIsHover(false);
                 }}
+                onTouchStart={()=>{
+                    setIsHover(true);
+                }}
+                onTouchEnd={()=>{
+                    setIsHover(false);
+                }}
                 onClick={(e)=>{
                     if( !isNoanswer ){
                         setFocusNext(true);

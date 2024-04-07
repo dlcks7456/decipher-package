@@ -16,7 +16,7 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, aut
     return (
         <div className={`sp-btn-container sp-btn-${row.label}-${col.label}`}>
             <input type="radio" name={inputName} value={index} id={inputID} style={{display: "none"}} checked={col.index == row.answer ? true : false}></input>
-            <label className={classHandler(col.scoreText === null, "sp-col-btn", "sp-col-center") } htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent}>
+            <label className={classHandler(col.scoreText === null, "sp-col-btn", "sp-col-center") } htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent} onTouchStart={mouseOverEvent} onTouchEnd={mouseOutEvent}>
                 {qaShow ? (<p className="qaCode-label">[{col.label}]</p>) : null}
                 {autoNumber ? (
                         <>
