@@ -82,7 +82,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
         setAnswer(newAnswer);
     
         const newElRows = elRows.map((row, index) => {
-            if(answerChageFlag && ["up", "low"].includes(mode) && index > setIndex) {
+            if(answerChageFlag && ["up", "down"].includes(mode) && index > setIndex) {
                 return { ...row, answer: "null" };
             }else if (index === setIndex) {
                 return { ...row, answer: ans };
@@ -631,7 +631,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
                                                     />
                                                 )
                                             }else{
-                                                if( ["up", "low"].includes(mode) ){
+                                                if( ["up", "down"].includes(mode) ){
                                                     if( rowIndex === 0 ){
                                                         return (
                                                             <ColButton
@@ -704,7 +704,7 @@ const CustomRating = ({
     groupInfo={},
     loadingQuery='.custom-loader'})=>{
     //Model Check
-    if( !["rating", "up", "low"].includes(mode) ){
+    if( !["rating", "up", "down"].includes(mode) ){
         console.log("❌ The Mode argument can be entered as rating, up, low");
         return;
     }
