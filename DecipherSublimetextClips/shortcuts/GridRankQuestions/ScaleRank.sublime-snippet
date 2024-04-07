@@ -1,16 +1,16 @@
 <snippet>
   <content><![CDATA[
 <define label="${1}">
-${2}
+
 </define>
 
 <radio
-  label="${3}"
-  shuffle="rows"
-  uses="cardrating.1">
+  label="${2}"
+  shuffle="rows">
   <alt></alt>
   <title></title>
   <comment></comment>
+  <style copy="custom_rating" arg:qmode="rating" arg:autoContinue="false" arg:autoNumber="true" arg:btnDirection="row" arg:leftText="" arg:rightText="" arg:showArrow="false" arg:showGroup="true" name="question.after"/>
   <col label="c1" value="1">(1)</col>
   <col label="c2" value="2">(2)</col>
   <col label="c3" value="3">(3)</col>
@@ -24,22 +24,22 @@ ${2}
 <suspend/>
 
 <radio
-  label="${4}"
+  label="${3}"
   unique="1"
   shuffle="rows"
-  cond="not scale_rank_items(${3}, ${4})['skip']"
-  rowCond="row.label in scale_rank_items(${3}, ${4})['show']"
-  colCond="col.index lt len(scale_rank_items(${3}, ${4})['show'])"
+  cond="not scale_rank_items(${2}, ${3})['skip']"
+  rowCond="row.label in scale_rank_items(${2}, ${3})['show']"
+  colCond="col.index lt len(scale_rank_items(${2}, ${3})['show'])"
   grouping="cols">
   <alt></alt>
   <title></title>
   <comment></comment>
   <exec>
-rate_show_score(${3}, ${4})
-auto_rows = scale_rank_items(${3}, ${4})['auto']
+rate_show_score(${2}, ${3})
+auto_rows = scale_rank_items(${2}, ${3})['auto']
   </exec>
   <validate>
-scale_rank_vali(${3})
+scale_rank_vali(${2})
   </validate>
 <style arg:ableNone="1"  arg:autoContinue="false" arg:ableSort="true" arg:colCnt="2" arg:noneLabel="null" arg:showAnswers="true" arg:showCnt="true" arg:showGroups="true" arg:toggle="false" copy="custom_rank" name="question.after"/>
 <style name="page.head"><![CDATA[
@@ -69,8 +69,10 @@ scale_rank_vali(${3})
 \@endif
 \@end
 
-.rank-text {
-  text-align: center;
+.rank-score {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 </style>
 ]]${-1}></style>
