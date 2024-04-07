@@ -32,7 +32,7 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, aut
     )
 }
 
-const SetLeftRight = ({json, left, right, answers, flexDirection="row", autoContinue=false, showArrow=false, autoNumber, showGroup=false, groupInfo={}})=>{
+const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", autoContinue=false, showArrow=false, autoNumber, showGroup=false, groupInfo={}})=>{
     const brandColor = "#2d6df6";
     const brandSubColor = "#b7ceff";
     let {uid, cols, rows, haveRightLegend, grouping} = json;
@@ -72,14 +72,19 @@ const SetLeftRight = ({json, left, right, answers, flexDirection="row", autoCont
     }));
 
     const [autoNext, setAutoNext] = React.useState(true);
+    const [leftFlag, setLeftFlag] = React.useState(false);
+    const [rightFlag, setRightFlag] = React.useState(false);
 
     const answerUpdate = (setIndex, ans) => {
         const newAnswer = [...answer];
+        const answerChageFlag = newAnswer[setIndex] !== ans;
         newAnswer[setIndex] = ans;
         setAnswer(newAnswer);
     
         const newElRows = elRows.map((row, index) => {
-            if(index === setIndex) {
+            if(answerChageFlag && ["up", "low"].includes(mode) && index > setIndex) {
+                return { ...row, answer: "null" };
+            }else if (index === setIndex) {
                 return { ...row, answer: ans };
             }
             return row;
@@ -131,7 +136,9 @@ const SetLeftRight = ({json, left, right, answers, flexDirection="row", autoCont
     const [ansserComplete, setAnswerComplete] = React.useState(false);
     React.useEffect(()=>{
         const currAnswer = [...answer];
+
         const filtAnswer = currAnswer.filter((row)=> row == 'null');
+
         if( filtAnswer.length == 0 ){
             setAnswerComplete(true);
         }else{
@@ -162,8 +169,6 @@ const SetLeftRight = ({json, left, right, answers, flexDirection="row", autoCont
     }, [ansserComplete]);
 
 
-    const [leftFlag, setLeftFlag] = React.useState(false);
-    const [rightFlag, setRightFlag] = React.useState(false);
 
     const hoverEvent = (index, flag)=>{
         const hasError = document.querySelector('.hasError');
@@ -611,19 +616,59 @@ const SetLeftRight = ({json, left, right, answers, flexDirection="row", autoCont
 
                                         <div className={"sp-col-btn-box show"}>
                                         {cols.map((col, colIndex)=>{
-                                            return (
-                                                <ColButton
-                                                    uid={uid}
-                                                    key={colIndex}
-                                                    row={row}
-                                                    col={col}
-                                                    autoNumber={autoNumber}
-                                                    ansUpdate={()=>{answerUpdate(rowIndex, col.index)}}
-                                                    mouseOverEvent={()=>{hoverEvent(col.index, true)}}
-                                                    mouseOutEvent={()=>{hoverEvent(col.index, false)}}
-                                                    qaShow={qaShow}
-                                                />
-                                            )
+                                            if( mode === "rating" ){
+                                                return (
+                                                    <ColButton
+                                                        uid={uid}
+                                                        key={colIndex}
+                                                        row={row}
+                                                        col={col}
+                                                        autoNumber={autoNumber}
+                                                        ansUpdate={()=>{answerUpdate(rowIndex, col.index)}}
+                                                        mouseOverEvent={()=>{hoverEvent(col.index, true)}}
+                                                        mouseOutEvent={()=>{hoverEvent(col.index, false)}}
+                                                        qaShow={qaShow}
+                                                    />
+                                                )
+                                            }else{
+                                                if( ["up", "low"].includes(mode) ){
+                                                    if( rowIndex === 0 ){
+                                                        return (
+                                                            <ColButton
+                                                                uid={uid}
+                                                                key={colIndex}
+                                                                row={row}
+                                                                col={col}
+                                                                autoNumber={autoNumber}
+                                                                ansUpdate={()=>{answerUpdate(rowIndex, col.index)}}
+                                                                mouseOverEvent={()=>{hoverEvent(col.index, true)}}
+                                                                mouseOutEvent={()=>{hoverEvent(col.index, false)}}
+                                                                qaShow={qaShow}
+                                                            />
+                                                        );
+                                                    }
+
+                                                    const beforeRow = rowIndex - 1;
+                                                    const beforeAnswer = elRows[beforeRow].answer;
+                                                    if( beforeAnswer !== undefined && beforeAnswer !== null && beforeAnswer !== "null" ){
+                                                        if( mode === "up" ? colIndex >= beforeAnswer : colIndex <= beforeAnswer ){
+                                                            return (
+                                                                <ColButton
+                                                                    uid={uid}
+                                                                    key={colIndex}
+                                                                    row={row}
+                                                                    col={col}
+                                                                    autoNumber={autoNumber}
+                                                                    ansUpdate={()=>{answerUpdate(rowIndex, col.index)}}
+                                                                    mouseOverEvent={()=>{hoverEvent(col.index, true)}}
+                                                                    mouseOutEvent={()=>{hoverEvent(col.index, false)}}
+                                                                    qaShow={qaShow}
+                                                                />
+                                                            );
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         })}
                                         </div>
                                     </div>
@@ -647,6 +692,7 @@ const SetLeftRight = ({json, left, right, answers, flexDirection="row", autoCont
 const CustomRating = ({
     setRoot,
     json, 
+    mode="rating",
     leftText, 
     rightText, 
     answers,
@@ -657,6 +703,12 @@ const CustomRating = ({
     showGroup=false,
     groupInfo={},
     loadingQuery='.custom-loader'})=>{
+    //Model Check
+    if( !["rating", "up", "low"].includes(mode) ){
+        console.log("❌ The Mode argument can be entered as rating, up, low");
+        return;
+    }
+
     const root = document.querySelector(setRoot);
     const {cols, rows} = json;
     const filteredAnswers = Object.values(answers).filter(value => value !== 'null');
@@ -691,6 +743,7 @@ const CustomRating = ({
             json={json}
             left={leftText} 
             right={rightText}
+            mode={mode}
             answers={answers}
             flexDirection={flexDirection}
             showArrow={showArrow}
