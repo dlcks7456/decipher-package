@@ -2210,7 +2210,7 @@ const setCustomBtn = ()=>{
     elements.forEach((element)=>{
         const labelNode = element.querySelector('label');
         const inputNode = element.querySelector('input');
-        const openCheck = element.querySelector('input[type=text]');
+        const openCheck = element.querySelector('input[type=text], input[type=number], select');
         
         const firCheck = element.querySelector('.fir-icon');
         //firCheck.style.pointerEvents = 'none';
@@ -2342,7 +2342,7 @@ const setCustomBtn = ()=>{
             const lastIndex = btnClass.length-1;
             const continueBtn = document.querySelector('.button.continue');
             elements.forEach((el)=>{
-                const hasOpen = el.querySelector('input[type=text]');
+                const hasOpen = el.querySelector('input[type=text], input[type=number], select');
 
                 el.addEventListener('click', ()=>{
                     const elRadio = el.querySelector('input[type=radio]');
