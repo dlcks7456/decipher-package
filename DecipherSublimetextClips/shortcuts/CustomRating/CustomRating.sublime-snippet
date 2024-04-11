@@ -10,31 +10,40 @@
 <div class="custom-loader"></div>
 <script type="text/babel">
 const groupInfo = {
+\@if this.grouping.rows
 \@for eachRow in this.rows
 \@if eachRow.group
-	'\${eachRow.label}': {'label': `\${eachRow.group.label}`, 'text': `\${eachRow.group.text}`},
+  '\${eachRow.label}': {'label': `\${eachRow.group.label}`, 'text': `\${eachRow.group.text}`},
 \@endif
 \@end
+\@endif
+\@if this.grouping.cols
+\@for eachCol in this.cols
+\@if eachCol.group
+  '\${eachCol.label}': {'label': `\${eachCol.group.label}`, 'text': `\${eachCol.group.text}`},
+\@endif
+\@end
+\@endif
 };
 
 CustomRating({
-	setRoot: '.label_\$(this.label) .answers',
-	json: \${jsexport()},
-	mode: "\$(qmode)",
-	leftText: `\$(leftText)`,
-	rightText: `\$(rightText)`,
+  setRoot: '.label_\$(this.label) .answers',
+  json: \${jsexport()},
+  mode: "\$(qmode)",
+  leftText: `\$(leftText)`,
+  rightText: `\$(rightText)`,
 \@if this.grouping.rows
-  	answers: ${dict([[x.label, x.val if x.val != None else 'null'] for x in $(this.label).rows if x.displayed])},
+  answers: \${dict([[x.label, x.val if x.val != None else 'null'] for x in \$(this.label).rows if x.displayed])},
 \@endif
 \@if this.grouping.cols
-  	answers: ${dict([[x.label, x.val if x.val != None else 'null'] for x in $(this.label).cols if x.displayed])},
+  answers: \${dict([[x.label, x.val if x.val != None else 'null'] for x in \$(this.label).cols if x.displayed])},
 \@endif
-	flexDirection: "\$(btnDirection)",
-	showGroup: \$(showGroup),
-	groupInfo: groupInfo,
-	showArrow: \$(showArrow),
-	autoContinue: \$(autoContinue),
-	autoNumber: \$(autoNumber),
+  flexDirection: "\$(btnDirection)",
+  showGroup: \$(showGroup),
+  groupInfo: groupInfo,
+  showArrow: \$(showArrow),
+  autoContinue: \$(autoContinue),
+  autoNumber: \$(autoNumber),
 });
 </script>
 ]]${-1}></style>
