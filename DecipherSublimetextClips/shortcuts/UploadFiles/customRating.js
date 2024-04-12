@@ -19,14 +19,14 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, aut
             <label className={classHandler(col.scoreText === null, "sp-col-btn", "sp-col-center") } htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent} onTouchStart={mouseOverEvent} onTouchEnd={mouseOutEvent}>
                 {qaShow ? (<p className="qaCode-label">[{col.label}]</p>) : null}
                 {autoNumber ? (
-                        <>
+                        <div>
                             {col.scoreText !== null ? (<p className={"sp-col-score"} dangerouslySetInnerHTML={{__html: col.scoreText}}></p>) : null}
                             {col.text !== null ? (<p dangerouslySetInnerHTML={{__html: col.text}}></p>) : null}
-                        </>
+                        </div>
                     ) : (
-                    <>
+                    <div>
                         <p dangerouslySetInnerHTML={{__html: col.text != null ? col.text : `(${col.value})`}}></p>
-                    </>)}
+                    </div>)}
             </label>
         </div>
     )
@@ -199,7 +199,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
     }, []);
 
     return (
-        <>
+        <div>
             <style jsx="true">{`
 .qaCode-label {
     font-weight: bold;
@@ -532,7 +532,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
 }
             `}</style>
             {!haveRightLegend ? (
-                <>
+                <div>
                     <style jsx="true">{`
 @media (max-width: 768px){
     .sp-col-btn-box {
@@ -549,7 +549,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
     }
 }
                     `}</style>
-                </>
+                </div>
             ) : null}
             <div className={"sp-question animate__animated animate__fadeIn"} ref={containerRef}>
                 <div className={"sp-container"}>
@@ -685,7 +685,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
                     ) : null}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

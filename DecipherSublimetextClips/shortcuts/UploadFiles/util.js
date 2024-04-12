@@ -2337,6 +2337,9 @@ const setCustomBtn = ()=>{
     // Focus Setting
     if( btnFocusFlag ){
         if( btn.classList.contains('noCols', 'radio') || btn.classList.contains('noRows', 'radio') ){
+            if( btn.classList.contains('checkbox') ){
+                return;
+            }
             const focusBase = btn.querySelector('.question-text');
             const selectedStatus = (document.querySelectorAll('.fir-icon.selected').length == 0 || document.querySelectorAll('.hasError').length == 0);
 
