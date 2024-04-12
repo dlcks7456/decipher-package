@@ -2,11 +2,6 @@
 	<content><![CDATA[
 <style label="custom_rank" arg:colCnt="${1:1}" arg:autoContinue="false" arg:ableNone="${2:2}" arg:noneLabel="${3:r99}" arg:showAnswers="true" arg:ableSort="true" arg:showGroups="false" arg:toggle="false" arg:showCnt="true" name="question.after"><![CDATA[
 <style>.grid-table-mode, .grid-list-mode, .col-legend, .element {display: none !important;}</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" integrity="sha512-8Q6Y9XnTbOE+JNvjBQwJ2H8S+UV4uA6hiRykhdtIyDYZ2TprdNmWOUaKdGzOhyr4dCyk287OejbPvwl7lrfqrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" integrity="sha512-MOCpqoRoisCTwJ8vQQiciZv0qcpROCidek3GTFS6KTk2+y7munJIlKCVkFCYY+p3ErYFXCjmFjnfTTRSC1OHWQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.4/babel.min.js" integrity="sha512-YpL+cyxeD6yi05xXUGpdeHyf7F4LFthEdJvNFp0kGSTssHu0M7kWxVQTZ6jD7s5z5cbibg6JpleJrO2wOKd0YA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script type="text/babel" src="[rel gridsort.js]"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <div class="custom-loader"></div>
 <script type="text/babel">
 const group_info = [

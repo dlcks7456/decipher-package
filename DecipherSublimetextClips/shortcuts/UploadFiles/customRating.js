@@ -8,9 +8,9 @@ const classHandler = (cond, className, addClass) => {
     }
 }
 
-const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, autoNumber, qaShow})=>{
+const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, autoNumber, qaShow, grouping})=>{
     const {text, index} = col;
-    const inputName = `ans${uid}.0.${row.index}`;
+    const inputName = grouping === "rows" ? `ans${uid}.0.${row.index}` : `ans${uid}.${row.index}.0`;
     const inputID = `ans${uid}.${index}.${row.index}`;
 
     return (
@@ -628,6 +628,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
                                                         mouseOverEvent={()=>{hoverEvent(col.index, true)}}
                                                         mouseOutEvent={()=>{hoverEvent(col.index, false)}}
                                                         qaShow={qaShow}
+                                                        grouping={grouping}
                                                     />
                                                 )
                                             }else{
@@ -644,6 +645,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
                                                                 mouseOverEvent={()=>{hoverEvent(col.index, true)}}
                                                                 mouseOutEvent={()=>{hoverEvent(col.index, false)}}
                                                                 qaShow={qaShow}
+                                                                grouping={grouping}
                                                             />
                                                         );
                                                     }
@@ -663,6 +665,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
                                                                     mouseOverEvent={()=>{hoverEvent(col.index, true)}}
                                                                     mouseOutEvent={()=>{hoverEvent(col.index, false)}}
                                                                     qaShow={qaShow}
+                                                                    grouping={grouping}
                                                                 />
                                                             );
                                                         }
