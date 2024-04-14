@@ -6,9 +6,9 @@
   sst="0"
   uses="videocapture.2"
   width="50">
-  <title>${2}</title>
-  <comment>${3}</comment>
-  <noanswer label="na_${1}">NA</noanswer>
+  <title><div class="q-name">${1}</div> ${2}</title>
+  <comment></comment>
+  <noanswer label="na">${3:NA}</noanswer>
 </textarea>
 
 <suspend/>

@@ -6,7 +6,7 @@
 		<details \$(detailsOpen)>
 		  <summary>\${res.detail_text}</summary>
 		  <div class="img-div">
-		      <img src="\${imgdr}/\${LQ.selected.label}/\$(imgName)" class="popup"/>
+		      <img src="\${imgdr}/\$(imgName)" class="popup"/>
 		  </div>
 		</details>
 	</div>

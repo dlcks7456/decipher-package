@@ -1,6 +1,5 @@
 <snippet>
 	<content><![CDATA[
-<style copy="clean_group_style" name="page.head"/>
 <style copy="clean_group" name="question.group"/>
 <style copy="clean_group_depth2" name='question.group-2'/>
 ]]></content>

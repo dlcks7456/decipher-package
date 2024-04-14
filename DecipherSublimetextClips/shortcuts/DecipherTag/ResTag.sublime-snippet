@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<res label="${1}">${0}</res>
+<res label="${1}">${2}</res>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>res</tabTrigger>

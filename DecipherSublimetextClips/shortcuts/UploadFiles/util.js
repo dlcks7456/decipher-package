@@ -2088,6 +2088,10 @@ const setCustomBtn = ()=>{
   .sp-custom-btn .answers .element input[type="text"] {
     width: 90%;
   }
+
+  .sp-custom-btn .answers .element label { 
+    font-size: 1.1rem;
+  }
 }
   `;
   document.head.appendChild(mainStyle);
@@ -2171,11 +2175,6 @@ const setCustomBtn = ()=>{
     }
 
     style.innerHTML += `
-#${btnId} .answers .cell-text label {
-    word-break: break-all;
-}
-
-
 @media (max-width: 768px) {
     #${btnId} .${newClassName} ${groupRow.length>=1 ? '.ch-group-rows' : ''}{
         grid-template-columns: repeat(${minColCount}, 1fr);
@@ -2196,8 +2195,8 @@ const setCustomBtn = ()=>{
     const wrapper = btn.querySelectorAll('.answers .element');
     let maxHeight = Array.from(wrapper).reduce((max, el) => Math.max(max, el.clientHeight), 0);
 
-    if( maxHeight <= 62 ){
-        maxHeight = 62;
+    if( maxHeight <= 50 ){
+        maxHeight = 50;
     }
 
     style.innerHTML +=  `

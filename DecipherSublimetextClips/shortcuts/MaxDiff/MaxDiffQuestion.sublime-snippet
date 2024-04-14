@@ -21,7 +21,7 @@ for x in p.markers:
       <block label="${1}_md_block" randomize="1">
 
         <radio label="${1}_[loopvar: task]" adim="cols" grouping="cols" unique="1" ss:questionClassNames="maxdiff">
-          <title>${3}</title>
+          <title><div class="q-name">${1}-[loopvar: task]</div>  ${3}</title>
           <comment></comment>
           <exec>
 ${1}_md = setupMaxDiffFile("${4}.dat")

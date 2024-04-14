@@ -1,37 +1,29 @@
 <snippet>
   <content><![CDATA[
 <samplesource list="2">
-    <title>Toluna</title>
-    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
-    <completed>It seems you have already entered this survey.</completed>
-    <var name="GID" unique="1"/>
-    <var name="sname" required="1"/>
-    <exit cond="terminated" url="http://ups.surveyrouter.com/trafficui/mscui/SOTerminated.aspx?sname=\${sname}&amp;TolunaEnc=\${HQTolunaEnc.val}&amp;GID=\${GID}"/>
-    <exit cond="overquota" url="http://ups.surveyrouter.com/trafficui/mscui/SOQuotafull.aspx?sname=\${sname}&amp;TolunaEnc=\${HQTolunaEnc.val}&amp;GID=\${GID}"/>
-    <exit cond="qualified" url="http://ups.surveyrouter.com/trafficui/mscui/SOQualified.aspx?sname=\${sname}&amp;TolunaEnc=\${HQTolunaEnc.val}&amp;GID=\${GID}"/>
+  <title>Toluna</title>
+  <invalid>URL에 정보가 누락되었습니다. 기존의 초대받은 URL을 확인해 주시기 바랍니다.</invalid>
+  <completed>귀하께서는 이미 본 설문에 접속 하신 것으로 확인 됩니다.</completed>
+  <var name="CO" required="1" values="GB,DE,IT,ES,FR,KR"/>
+  <var name="gid" unique="1"/>
+  <var name="sname" required="1"/>
+  <var name="test"/>
+  <exit cond="terminated and not gv.isSST()" url="https://ups.surveyrouter.com/trafficui/mscui/SOTerminated.aspx?sname=\${sname}&amp;gid=\${gid}"/>
+  <exit cond="overquota and not gv.isSST()" url="https://ups.surveyrouter.com/trafficui/mscui/SOQuotafull.aspx?sname=\${sname}&amp;gid=\${gid}"/>
+  <exit cond="qualified and not gv.isSST()" url="https://ups.surveyrouter.com/trafficui/mscui/SOQualified.aspx?TolunaEnc=\${p.TolunaEncKey}&amp;sname=\${sname}&amp;gid=\${gid}"/>
 </samplesource>
 
-<exec sst="0">
-if list=="2":
-
- # TolunaEncKey = (int(int(GID) + 3) % 4001) * 17
- TolunaEncKey = (int(GID)+3) % 5743
- HQTolunaEnc.val = TolunaEncKey
- #setExtra("TolunaEnc",str(TolunaEncKey))
-</exec>
-
-<suspend/>
-
-<text 
-  label="HQTolunaEnc"
-  randomize="0"
-  size="25"
-  translateable="0"
-  where="execute,survey,report">
-  <title>TolunaEnc</title>
-</text>
-
-<suspend/>
+<samplesource list="22">
+  <title>Kurundata</title>
+  <invalid>URL에 정보가 누락되었습니다. 기존의 초대받은 URL을 확인해 주시기 바랍니다.</invalid>
+  <completed>귀하께서는 이미 본 설문에 접속 하신 것으로 확인 됩니다.</completed>
+  <var name="CO" required="1" values="GB,DE,IT,ES,FR,KR"/>
+  <var name="qquid" unique="1"/>
+  <var name="test"/>
+  <exit cond="terminated and not gv.isSST()" url="https://transfer.sumpanel.com/surveypc/end.aspx?qquid=\${qquid}&amp;menu=S"/>
+  <exit cond="overquota and not gv.isSST()" url="https://transfer.sumpanel.com/surveypc/end.aspx?qquid=\${qquid}&amp;menu=Q"/>
+  <exit cond="qualified and not gv.isSST()" url="https://transfer.sumpanel.com/surveypc/end.aspx?qquid=\${qquid}&amp;menu=C"/>
+</samplesource>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>toluna</tabTrigger>

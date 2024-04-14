@@ -1,14 +1,15 @@
 <snippet>
   <content><![CDATA[
 <define label="${1}">
-${5}
+${7}
 </define>
 
 <checkbox
   label="${2}a"
   atleast="1"
-  shuffle="rows">
-  <title>${6} </title>
+  shuffle="rows"
+  ss:questionClassNames="sp-custom-btn${6: btn-mw-500 btn-cols-1}">
+  <title><div class="q-name">${2}a</div> ${4}</title>
   <insert source="${1}"/>
   ${3:<row label="r98" value="98" open="1" openSize="25" randomize="0">기타 (구체적으로:)</row>}
 </checkbox>
@@ -18,10 +19,11 @@ ${5}
   label="${2}b"
   rowCond="${2}a[row]"
   shuffle="rows"
-  shuffleBy="${2}a">
-  <title>${7} </title>
+  shuffleBy="${2}a"
+  ss:questionClassNames="sp-custom-btn${6: btn-mw-500 btn-cols-1}">
+  <title><div class="q-name">${2}b</div> ${5}</title>
   <insert source="${1}"/>
-  ${4:<row label="r98" value="98" randomize="0">\${$2a.r98.open\}</row>}
+  ${3:<row label="r98" value="98" randomize="0">\${$2a.r98.open\}</row>}
 </radio>
 <suspend/>
 ]]></content>

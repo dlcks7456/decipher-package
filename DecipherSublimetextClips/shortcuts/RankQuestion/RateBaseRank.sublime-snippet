@@ -1,14 +1,15 @@
 <snippet>
   <content><![CDATA[
 <define label="${1}">
-
+${6}
 </define>
 
 <radio
   label="${2}"
-  shuffle="rows">
+  shuffle="rows"
+  uses="atmtable.6">
   <alt></alt>
-  <title></title>
+  <title><div class="q-name">${2}</div> ${4}</title>
   <comment></comment>
   <style copy="custom_rating" arg:qmode="rating" arg:autoContinue="false" arg:autoNumber="true" arg:btnDirection="row" arg:leftText="" arg:rightText="" arg:showArrow="false" arg:showGroup="true" name="question.after"/>
   <col label="c1" value="1">(1)</col>
@@ -30,9 +31,10 @@
   cond="not scale_rank_items(${2}, ${3})['skip']"
   rowCond="row.label in scale_rank_items(${2}, ${3})['show']"
   colCond="col.index lt len(scale_rank_items(${2}, ${3})['show'])"
-  grouping="cols">
+  grouping="cols"
+  ss:questionClassNames="niq-rk-question">
   <alt></alt>
-  <title></title>
+  <title><div class="q-name">${3}</div> ${5}</title>
   <comment></comment>
   <exec>
 rate_show_score(${2}, ${3})
@@ -84,7 +86,7 @@ scale_rank_vali(${2})
 <suspend/>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>scale.rank</tabTrigger>
+  <tabTrigger>rate.rank</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.xml</scope>
 </snippet>

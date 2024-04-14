@@ -1,46 +1,5 @@
 <snippet>
 	<content><![CDATA[
-<style label="clean_group_style" name="page.head"><![CDATA[
-<style>
-.clean-group{
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ccc;
-  width: 100%;
-  max-width: 700px;
-  text-align: left;
-  font-size: 1.5rem;
-  padding-left: 20px;
-}
-
-.clean-group-depth2{
-  font-size : 1.6rem;
-  margin : 50px 10px 5px 10px;
-  width : 100%;
-  max-width : 180px;
-  text-align : center;
-  padding : 5px;
-  border-radius : 10px;
-  border : 1px solid #ccc;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  font-weight : bold;
-  background-color : white;
-}
-
-\@media all and (max-width: 750px){
-  .clean-group{
-    max-width: 100%;
-    text-align: center;
-    padding-left: 0px;
-  }
-  .clean-group-depth2 {
-    max-width : 100%;
-    margin : 50px auto -10px auto;
-  }
-}
-</style>
-]]${-1}></style>
 <style label="clean_group" name="question.group"><![CDATA[
 <\$(tagRow) class="row row-group row-group-1 rowGroup group1">
     <\$(tagCell) scope="rowgroup" colspan="\$(span)" id="\$(this.label)_\$(group.label)" class="cell nonempty legend row-legend row-legend-left row-legend-group \$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"row-legend-group-space" if row.index!=0 and ec.haveRightLegend and ec.haveLeftLegend else "border-collapse"} \$(group.styles.ss.groupClassNames)">

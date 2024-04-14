@@ -2,7 +2,7 @@
   <content><![CDATA[
 rec = loadRecord("selfserve/548/${1}", "${2}", ${2})
 if rec:
-  
+  ${3}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>rec</tabTrigger>

@@ -4,7 +4,7 @@
   label="RawID"
   size="40"
   where="execute,survey,report">
-  <title>(HIDDEN) uuid</title>
+  <title>(HIDDEN) Get uuid : Only Online Panel Survey</title>
   <exec>
 panel_list = {
   '11' : 'eid',

@@ -2,6 +2,7 @@
 	<content><![CDATA[
 <block label="${1}" cond="${2}">
 
+${3}
 </block>
 <note>${1} END</note>
 <suspend/>

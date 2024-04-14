@@ -160,14 +160,10 @@ def scale_rank_vali(scale_qid, reverse=True) :
       rv_cols = this.cols[::-1]
       for idx, low in enumerate(low_labels) :
         rv_cols[idx].val = this.attr(low).index
-      
-def rankCnt(this_qid) :
-  show_cols = [eachCol for eachCol in this_qid.cols if eachCol.displayed]
-  return len(show_cols)
 </exec>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>scale.rank.def</tabTrigger>
+  <tabTrigger>rate.rank.def</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.xml</scope>
 </snippet>

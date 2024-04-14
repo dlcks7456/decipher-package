@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 <style label="custom_rating" arg:qmode="rating" arg:autoContinue="false" arg:autoNumber="true" arg:btnDirection="row" arg:leftText="" arg:rightText="" arg:showArrow="false" arg:showGroup="true" name="question.after"><![CDATA[
-<style>.answers .grid-table-mode, .answers .grid-list-mode {display: none;}</style>
+<style>.answers {display: none;}</style>
 <div class="custom-loader"></div>
 <script type="text/babel">
 const groupInfo = {
@@ -21,25 +21,34 @@ const groupInfo = {
 \@endif
 };
 
-CustomRating({
-  setRoot: '.label_\$(this.label) .answers',
-  json: \${jsexport()},
-  mode: "\$(qmode)",
-  leftText: `\$(leftText)`,
-  rightText: `\$(rightText)`,
+let thisAnswers = document.querySelector('.label_\$(this.label) .answers');
+let loader = '.custom-loader';
+try {
+  CustomRating({
+    setRoot: '.label_\$(this.label) .answers',
+    json: \${jsexport()},
+    mode: "\$(qmode)",
+    leftText: `\$(leftText)`,
+    rightText: `\$(rightText)`,
 \@if this.grouping.rows
-  answers: \${dict([[x.label, x.val if x.val != None else 'null'] for x in \$(this.label).rows if x.displayed])},
+    answers: \${dict([[x.label, x.val if x.val != None else 'null'] for x in \$(this.label).rows if x.displayed])},
 \@endif
 \@if this.grouping.cols
-  answers: \${dict([[x.label, x.val if x.val != None else 'null'] for x in \$(this.label).cols if x.displayed])},
+    answers: \${dict([[x.label, x.val if x.val != None else 'null'] for x in \$(this.label).cols if x.displayed])},
 \@endif
-  flexDirection: "\$(btnDirection)",
-  showGroup: \$(showGroup),
-  groupInfo: groupInfo,
-  showArrow: \$(showArrow),
-  autoContinue: \$(autoContinue),
-  autoNumber: \$(autoNumber),
-});
+    flexDirection: "\$(btnDirection)",
+    showGroup: \$(showGroup),
+    groupInfo: groupInfo,
+    showArrow: \$(showArrow),
+    autoContinue: \$(autoContinue),
+    autoNumber: \$(autoNumber),
+  });
+  thisAnswers.style.display = 'table';
+} catch (error) {
+  console.error("Rendering error:", error);
+  thisAnswers.style.display = 'table';
+  document.querySelector(loader)?.remove();
+}
 </script>
 ]]${-1}></style>
 ]]></content>

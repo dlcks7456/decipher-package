@@ -4,7 +4,7 @@
 qArray = []
 labelArray = []
 
-qidArray = [${0}]
+qidArray = [${1}]
 
 for q in qidArray :
   if q in allQuestions.keys():
@@ -14,7 +14,7 @@ for q in qidArray :
       qArray.append(base.val)
       labelArray.append(base_ko.label)
 
-trData = dict(q=qArray,target="ko",key="AIzaSyD2PtmC5OORvmVWQ9lsL024d-ia3kkJfdo")
+trData = dict(q=qArray, target="ko", key="AIzaSyD2PtmC5OORvmVWQ9lsL024d-ia3kkJfdo")
 </exec>
 
   <logic label="trCall" cond="not(gv.isSST()) " api:method="POST" api:params="trData" api:url="https://translation.googleapis.com/language/translate/v2" uses="api.1">
@@ -41,7 +41,7 @@ else:
   <suspend/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>tr-set</tabTrigger>
+	<tabTrigger>tr.set</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

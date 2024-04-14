@@ -1,28 +1,28 @@
 <snippet>
 	<content><![CDATA[
 <number 
-   label="$1"
-   amount="100"
-   autosum:postText="%"
-   optional="0"
-   size="3"
-   uses="autosum.5"
-   verify="range(0,100)">
-    <title>$2 </title>
+    label="${1}"
+    amount="100"
+    autosum:postText="%"
+    optional="0"
+    size="3"
+    uses="autosum.5"
+    verify="range(0,100)">
+    <title><div class="q-name">${1}</div> ${2}</title>
 <style name="page.head"><![CDATA[
 <style>
 .grid-table-mode{
-  max-width: 415px !important;
+  max-width: ${3:415}px !important;
 }
 .grid.grid-table-mode .row-legend{
   text-align: center !important;
 }
 </style>
 ]]${-1}></style>
-$3
-  </number>
+${4}
+</number>
 
-  <suspend/>
+<suspend/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>sum100</tabTrigger>

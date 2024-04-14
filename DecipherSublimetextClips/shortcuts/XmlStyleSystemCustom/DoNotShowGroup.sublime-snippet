@@ -1,26 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<style label="group_hidden" name="question.group"><![CDATA[
-<\$(tagRow) class="row row-group row-group-1 rowGroup group1">
-    <\$(tagCell) scope="rowgroup" colspan="\$(span)" id="\$(this.label)_\$(group.label)" class="cell nonempty legend row-legend row-legend-left row-legend-group \$(levels) \${"desktop" if this.grouping.cols else "mobile"} \${"row-legend-group-space" if row.index!=0 and ec.haveRightLegend and ec.haveLeftLegend else "border-collapse"} \$(group.styles.ss.groupClassNames)">
-    </\$(tagCell)>
-</\$(tagRow)>
-]]${-1}></style>
-<style label="group_label_hidden" name='question.element'><![CDATA[
-\@if ec.simpleList
-<div class="element \$(rowStyle) \$(extraClasses) \${col.group.styles.ss.groupClassNames if col.group else (row.group.styles.ss.groupClassNames if row.group else "")} \$(col.styles.ss.colClassNames) \$(row.styles.ss.rowClassNames) \${"clickableCell" if isClickable else ""}"\$(extra)>
-    \${v2_insertStyle('el.label.start')}
-    \$(text)
-    \${v2_insertStyle('el.label.end')}
-</div>
-\@else
-<\$(tag) \$(headers) class="cell nonempty element \${"desktop" if this.grouping.cols else "mobile"} border-collapse \$(extraClasses) \${col.group.styles.ss.groupClassNames if col.group else (row.group.styles.ss.groupClassNames if row.group else "")} \$(col.styles.ss.colClassNames) \$(row.styles.ss.rowClassNames) \${"clickableCell" if isClickable else ""}"\$(extra)>
-    \${v2_insertStyle('el.label.start')}
-    \$(text)
-    \${v2_insertStyle('el.label.end')}
-</\$(tag)>
-\@endif
-]]${-1}></style>
+<style name="question.group"/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>no.group</tabTrigger>

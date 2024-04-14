@@ -22,7 +22,7 @@ brand_model_check()
 <text 
     label="P${1}"
     size="40"
-    where="execute,survey,report">
+    where="execute,survey,notdp">
     <title>(HIDDEN) ${1} PIPE</title>
     <exec>
 set_pipe_value(${1}, P${1})

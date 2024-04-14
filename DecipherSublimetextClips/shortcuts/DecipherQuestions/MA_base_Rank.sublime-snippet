@@ -1,34 +1,36 @@
 <snippet>
 	<content><![CDATA[
 <define label="${1}">
-$5
+${7}
 </define>
 
 <checkbox
   label="${2}a"
   atleast="1"
-  shuffle="rows">
-  <title>$6 </title>
-  <insert source="$1"/>
+  shuffle="rows"
+  ss:questionClassNames="sp-custom-btn${6: btn-mw-500 btn-cols-1}">
+  <title><div class="q-name">${2}a</div> ${4}</title>
+  <insert source="${1}"/>
   ${3:<row label="r98" value="98" open="1" openSize="25" randomize="0">기타 (구체적으로:)</row>}
 </checkbox>
 <suspend/>
 
 <radio
-  label="$2b"
+  label="${2}b"
   grouping="cols"
   unique="1"
-  rowCond="$2a[row]"
-  colCond="col.index lt $2a.count"
+  rowCond="${2}a[row]"
+  colCond="col.index lt ${2}a.count"
   shuffle="rows"
-  shuffleBy="$2a"
-  ss:questionClassNames="gridRank">
-  <title>$7 \${rankCnt($2b)}</title>
+  shuffleBy="${2}a"
+  ss:questionClassNames="niq-rk-question">
+  <title><div class="q-name">${2}a</div> ${5} \${rankCnt(${2}b)}</title>
+  <style copy="custom_rank" arg:autoContinue="false" arg:colCnt="1" arg:noneLabel="null" arg:ableNone="2" arg:showAnswers="true" arg:ableSort="true" arg:showGroups="false" arg:toggle="false" arg:showCnt="true" name="question.after"/>
   <col label="c1">1순위</col>
   <col label="c2">2순위</col>
   <col label="c3">3순위</col>
-  <insert source="$1"/>
-  ${4:<row label="r98" value="98" randomize="0">\${$2a.r98.open\}</row>}
+  <insert source="${1}"/>
+  ${3:<row label="r98" value="98" randomize="0">\${${2}a.r98.open\}</row>}
 </radio>
 <suspend/>
 ]]></content>

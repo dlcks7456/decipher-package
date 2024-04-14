@@ -134,7 +134,7 @@ def set_pipe_value(base_qid, set_qid) :
   label="BMbase"
   cond="0"
   optional="1"
-  where="execute,survey,report">
+  where="execute,survey,notdp">
   <title>(HIDDEN) Brand/Model logic base question</title>
   <insert source="brand_list"/>
   <insert source="model_list"/>

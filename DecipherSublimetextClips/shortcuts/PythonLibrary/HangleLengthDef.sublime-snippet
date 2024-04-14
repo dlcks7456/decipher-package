@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
-def hangle_length(num) :
-  txt = str(this.unsafe_val)
+def oe_length(num) :
+  txt = str(this.unsafe_val).replace(' ', '')
   utxt = unicode(txt, 'utf-8') 
   curr_val = len(utxt)
   
@@ -9,7 +9,7 @@ def hangle_length(num) :
     error(this.lget("lenAtLeast", min=num, count=curr_val))
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>han.len</tabTrigger>
+  <tabTrigger>oe.len</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.xml</scope>
 </snippet>

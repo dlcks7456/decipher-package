@@ -1,9 +1,10 @@
 <snippet>
   <content><![CDATA[
-<samplesource list="1">
+<samplesource list="11">
   <title>Tillion</title>
-  <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
-  <completed>It seems you have already entered this survey.</completed>
+  <invalid>URL에 정보가 누락되었습니다. 기존의 초대받은 URL을 확인해 주시기 바랍니다.</invalid>
+  <completed>귀하께서는 이미 본 설문에 접속 하신 것으로 확인 됩니다.</completed>
+  <var name="CO" required="1" values="GB,DE,IT,ES,FR,KR"/>
   <var name="sid" required="1"/>
   <var name="eid" unique="1"/>
   <exit cond="terminated" url="http://out.pmirnc.com/?sid=\${sid}&amp;eid=\${eid}&amp;st=S&amp;stdt=SO1"/>

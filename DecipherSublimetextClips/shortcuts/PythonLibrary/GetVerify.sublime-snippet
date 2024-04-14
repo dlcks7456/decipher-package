@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 import re
-[verify] = re.findall('\(([^)]+)', ${1}.o.verify)
+[verify] = re.findall('\(([^)]+)', ${1:QID}.o.verify)
 minv, maxv = map(lambda x : int(x), verify.split(","))
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

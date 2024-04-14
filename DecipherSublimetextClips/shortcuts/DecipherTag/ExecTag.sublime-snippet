@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 <exec>
-${0}
+${1}
 </exec>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

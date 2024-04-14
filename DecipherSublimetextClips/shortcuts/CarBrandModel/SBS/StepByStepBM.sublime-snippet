@@ -106,7 +106,7 @@ document.querySelector('.\$(this.label)-\$(row.label)').appendChild(document.que
       label="${1:[QID]}_name"
       optional="0"
       size="40"
-      where="execute,survey,report,notdp">
+      where="execute,survey,notdp">
           <title><div class="q-name">${1:[QID]}name</div> ${1:[QID]} pipe</title>
           <exec>
 ${1:[QID]}_name.val = return_pipe_text([[${1:[QID]}x1], [${1:[QID]}x2]])

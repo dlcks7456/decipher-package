@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<term cond="${1}">${2}</term>
+<term label="${1}_Term" cond="${2}">${1} term</term>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>term</tabTrigger>

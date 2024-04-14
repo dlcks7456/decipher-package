@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-<note>${0}</note>
+<note>${1}</note>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>note</tabTrigger>

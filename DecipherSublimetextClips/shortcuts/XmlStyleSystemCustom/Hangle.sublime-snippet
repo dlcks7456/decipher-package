@@ -32,7 +32,7 @@
 </style>
 ]]${-1}></style>
 <style label="hangleConverter" arg:hanPostText="${1}" name="question.after" wrap="ready"><![CDATA[
-han('0000', '\$(hanPostText)');
+han('', '\$(hanPostText)');
 //han('0000', '\$(hanPostText)'); //만원 단위
 ]]${-1}></style>
 <style label="hangleClass" name="el.text"><![CDATA[

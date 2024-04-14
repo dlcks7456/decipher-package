@@ -1,6 +1,11 @@
 <snippet>
     <content><![CDATA[
-<html where="survey" label="${1:label}">${0}</html>
+<html label="${1:label}" where="survey">
+<div class="comment-box">
+${2}
+</div>
+</html>
+<suspend/>
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>html</tabTrigger>

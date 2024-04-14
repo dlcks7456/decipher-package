@@ -12,11 +12,6 @@
 .none-group .ch-group-rows {
   grid-template-columns: repeat(1, 1fr) !important;
 }
-
-.none-group .cell-sub-wrapper {
-  min-height: 100px !important;
-  max-height: 100px !important;
-}
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>tog.group.none</tabTrigger>

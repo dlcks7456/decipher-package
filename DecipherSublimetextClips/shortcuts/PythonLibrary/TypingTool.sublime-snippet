@@ -57,7 +57,7 @@ ${3}
 <text 
 label="${2:[QID]}_RAW"
 size="40"
-where="execute,survey,report">
+where="execute,survey,notdp">
   <title>(HIDDEN) Typing Tool RAW</title>
   <insert source="${2:[QID]}_seg_list"/>
 </text>

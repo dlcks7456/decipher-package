@@ -117,7 +117,7 @@ document.querySelector('.\$(this.label)-\$(row.label)').appendChild(document.que
       label="${1:[QID]}_name"
       optional="0"
       size="40"
-      where="execute,survey,report,notdp"
+      where="execute,survey,notdp"
       onLoad="copy('${1:[QID]}x1', rows=True)">
           <title><div class="q-name">${1:[QID]}name</div> ${1:[QID]} pipe</title>
           <exec>

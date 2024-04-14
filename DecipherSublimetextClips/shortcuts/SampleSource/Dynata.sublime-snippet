@@ -1,15 +1,16 @@
 <snippet>
 	<content><![CDATA[
-  <samplesource keyring="sys/dynata" list="105" sign="out,in">
-    <title>Dynata</title>
-    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
-    <completed>It seems you have already entered this survey.</completed>
-    <var name="psid" pii="4" unique="1"/>
-    <var name="pid" unique="1"/>
-    <exit cond="terminated" url="https://dkr1.ssisurveys.com/projects/end?rst=2&amp;psid=\${psid}"/>
-    <exit cond="overquota" url="https://dkr1.ssisurveys.com/projects/end?rst=3&amp;psid=\${psid}"/>
-    <exit cond="qualified" url="https://dkr1.ssisurveys.com/projects/end?rst=1&amp;psid=\${psid}"/>
-  </samplesource>
+<samplesource keyring="sys/dynata" list="105" sign="out,in">
+  <title>Dynata</title>
+  <invalid>URL에 정보가 누락되었습니다. 기존의 초대받은 URL을 확인해 주시기 바랍니다.</invalid>
+  <completed>귀하께서는 이미 본 설문에 접속 하신 것으로 확인 됩니다.</completed>
+  <var name="CO" required="1" values="GB,DE,IT,ES,FR,KR"/>
+  <var name="psid" unique="1"/>
+  <exit cond="terminated and hasMarker('Auto_QCScreen_On') and hasMarker('QC_Failed') and not gv.isSST()" url="https://dkr1.ssisurveys.com/projects/end?rst=2&amp;_d=\${gv.survey.path}&amp;qflag=3&amp;psid=\${psid}"/>
+  <exit cond="terminated" url="https://dkr1.ssisurveys.com/projects/end?rst=2&amp;_d=\${gv.survey.path}&amp;psid=\${psid}"/>
+  <exit cond="overquota" url="https://dkr1.ssisurveys.com/projects/end?rst=3&amp;_d=\${gv.survey.path}&amp;psid=\${psid}"/>
+  <exit cond="qualified" url="https://dkr1.ssisurveys.com/projects/end?rst=1&amp;_d=\${gv.survey.path}&amp;psid=\${psid}"/>
+</samplesource>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>dynata</tabTrigger>

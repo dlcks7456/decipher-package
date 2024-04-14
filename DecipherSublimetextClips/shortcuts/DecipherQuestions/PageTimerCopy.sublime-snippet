@@ -1,13 +1,14 @@
 <snippet>
 	<content><![CDATA[
-  <radio 
-    label="${2}"
-    optional="1">
-    <title>${3}</title>
+<radio 
+  label="${1}"
+  optional="1"
+  where="survey,notdp">
+  <title>${3}</title>
 	<style copy="timer_head" name='survey.question'/>
-	<style copy="timer_js" arg:timer="${1}" name="question.after" wrap="ready"/>
+	<style copy="timer_js" arg:timer="${2}" name="question.after" wrap="ready"/>
 	<row label="dummy" ss:rowClassNames="hidden"/>
-	</radio>
+</radio>
 <suspend/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

@@ -1,10 +1,10 @@
 <snippet>
 	<content><![CDATA[
-  <select 
- label="${1}"
- optional="0"
- uses="sliderpoints.3">
-    <title>${2}</title>
+<select 
+   label="${1}"
+   optional="0"
+   uses="sliderpoints.3">
+    <title><div class="q-name">${1}</div> ${2}</title>
     <comment>${3}</comment>
     <choice label="ch1" value="1">(1)</choice>
     <choice label="ch2" value="2">(2)</choice>
@@ -13,15 +13,11 @@
     <choice label="ch5" value="5">(5)</choice>
     <choice label="ch6" value="6">(6)</choice>
     <choice label="ch7" value="7">(7)</choice>
-    <choice label="ch8" value="8">(8)</choice>
-    <choice label="ch9" value="9">(9)</choice>
-    <choice label="ch10" value="10">(10)</choice>
-  </select>
-
-  <suspend/>
+</select>
+<suspend/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>rate.slider</tabTrigger>
+	<tabTrigger>sliderpoint</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

@@ -1,0 +1,22 @@
+<snippet>
+	<content><![CDATA[
+<radio 
+  label="${1:QID}"
+  grouping="cols"
+  shuffle="rows"
+  unique="1"
+  ss:questionClassNames="niq-rk-question">
+  <title><div class="q-name">${1:QID}</div> ${2}</title>
+  <style copy="custom_rank" arg:autoContinue="false" arg:colCnt="${3:1}" arg:ableNone="${5:1}" arg:noneLabel="${6:null}" arg:showAnswers="true" arg:ableSort="true" arg:showGroups="false" arg:toggle="false" arg:showCnt="true" name="question.after"/>
+  <col label="c1">1순위</col>
+  <col label="c2">2순위</col>
+  ${4:<row label="r99" okUnique="1" randomize="0" ss:rowClassNames="exclusive" value="99">없음</row>}
+</radio>
+
+<suspend/>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>rk2</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.xml</scope>
+</snippet>

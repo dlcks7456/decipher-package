@@ -1,8 +1,7 @@
 <snippet>
 	<content><![CDATA[
-<quota sheet="${0}" label="${0}"/>
+<quota label="${1}" sheet="${1}"/>
 <suspend/>
-
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>quota</tabTrigger>

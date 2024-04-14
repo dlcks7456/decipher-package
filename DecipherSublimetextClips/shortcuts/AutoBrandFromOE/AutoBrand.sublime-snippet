@@ -29,7 +29,7 @@ def auto_from_oe(auto_qid, *base_qid) :
 
 <checkbox 
 label="T${1}"
-where="execute,survey,report">
+where="execute,survey,notdp">
   <title><div class="q-name">T${1}</div> (HIDDEN) ${1} Open answer check<br />
   - 정확하게 입력한 경우만 체크오타리스트 적용 필요하면 확인 필요<br />
   - 오타 리스트 필요하면 '/'로 구분해서 워딩 수정<br />

@@ -6,7 +6,7 @@
   size="25"
   uses="fvdatepicker.1"
   verify="dateRange(yyyy/mm/dd, any, any)">
-  <title>${2}</title>
+  <title><div class="q-name">${1}</div> ${2}</title>
   <comment></comment>
 </text>
 

@@ -1,25 +1,25 @@
 <snippet>
 	<content><![CDATA[
 <radio 
-   label="$1"
-   shuffle="rows"
-   uses="leftright.1">
-    <title>$2 </title>
-    <col label="c1" value="1">[1]</col>
-    <col label="c2" value="2">[2]</col>
-    <col label="c3" value="3">[3]</col>
-    <col label="c4" value="4">[4]</col>
-    <col label="c5" value="5">[5]</col>
-    <col label="c6" value="6">[6]</col>
-    <row label="r1" rightLegend=""> </row>
-    <row label="r2" rightLegend=""> </row>
-    <row label="r3" rightLegend=""> </row>
+   label="${1}"
+   shuffle="rows">
+    <title><div class="q-name">${1}</div> ${2}</title>
+    <style copy="custom_rating" arg:qmode="rating" arg:autoContinue="false" arg:autoNumber="true" arg:btnDirection="row" arg:leftText="${3}" arg:rightText="${4}" arg:showArrow="true" arg:showGroup="true" name="question.after"/>
+    <col label="c1" value="1">(1)</col>
+    <col label="c2" value="2">(2)</col>
+    <col label="c3" value="3">(3)</col>
+    <col label="c4" value="4">(4)</col>
+    <col label="c5" value="5">(5)</col>
+    <col label="c6" value="6">(6)</col>
+    <row label="r1" legend="both" rightLegend=""></row>
+    <row label="r2" legend="both" rightLegend=""></row>
+    <row label="r3" legend="both" rightLegend=""></row>
   </radio>
 
   <suspend/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>leftright</tabTrigger>
+	<tabTrigger>left.right</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

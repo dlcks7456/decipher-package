@@ -1,3 +1,24 @@
+const setMinHeightForColBtn = ()=>{
+    const rankTextElements = document.querySelectorAll('.sp-btn-container');
+    let maxHeight = 0;
+    
+    if( [...rankTextElements].length > 0 ){
+        rankTextElements.forEach(element => {
+            element.style.minHeight = '0';
+        });
+
+        rankTextElements.forEach(element => {
+            if (element.offsetHeight > maxHeight) {
+                maxHeight = element.offsetHeight;
+            }
+        });
+
+        rankTextElements.forEach(element => {
+            element.style.minHeight = maxHeight + 'px';
+        });            
+    }
+}
+
 const classHandler = (cond, className, addClass) => {
     const splitClass = className.split(" ");
     if(cond){
@@ -19,9 +40,9 @@ const ColButton = ({uid, row, col, ansUpdate, mouseOverEvent, mouseOutEvent, aut
             <label className={classHandler(col.scoreText === null, "sp-col-btn", "sp-col-center") } htmlFor={inputID} onClick={ansUpdate} onMouseOver={mouseOverEvent} onMouseOut={mouseOutEvent} onTouchStart={mouseOverEvent} onTouchEnd={mouseOutEvent}>
                 {qaShow ? (<p className="qaCode-label">[{col.label}]</p>) : null}
                 {autoNumber ? (
-                        <div>
+                        <div className={"sp-col-btn-text"}>
                             {col.scoreText !== null ? (<p className={"sp-col-score"} dangerouslySetInnerHTML={{__html: col.scoreText}}></p>) : null}
-                            {col.text !== null ? (<p dangerouslySetInnerHTML={{__html: col.text}}></p>) : null}
+                            {col.text !== null ? (<p className={"sp-col-label"} dangerouslySetInnerHTML={{__html: col.text}}></p>) : null}
                         </div>
                     ) : (
                     <div>
@@ -75,34 +96,12 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
     const [leftFlag, setLeftFlag] = React.useState(false);
     const [rightFlag, setRightFlag] = React.useState(false);
 
-    const answerUpdate = (setIndex, ans) => {
-        const newAnswer = [...answer];
-        const answerChageFlag = newAnswer[setIndex] !== ans;
-        newAnswer[setIndex] = ans;
-        setAnswer(newAnswer);
-    
-        const newElRows = elRows.map((row, index) => {
-            if(answerChageFlag && ["up", "down"].includes(mode) && index > setIndex) {
-                return { ...row, answer: "null" };
-            }else if (index === setIndex) {
-                return { ...row, answer: ans };
-            }
-            return row;
-        });
-        setElRows(newElRows);
-        const hasError = document.querySelector('.hasError');
-        if( autoNext && (hasError === undefined || hasError === null) ){
-            setAnsIndex(ansIndex + 1);
-        }
-    }
+    const containerRef = React.useRef(null);
 
     const pageOnClick = (calValue)=>{
         const currIndex = ansIndex;
         setAnsIndex(currIndex+(calValue));
     }
-    
-    const containerRef = React.useRef(null);
-
 
     React.useEffect(() => {
         const container = containerRef.current;
@@ -134,6 +133,33 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
 
 
     const [ansserComplete, setAnswerComplete] = React.useState(false);
+
+    const answerUpdate = (setIndex, ans) => {
+        const newAnswer = [...answer];
+        const answerChageFlag = newAnswer[setIndex] !== ans;
+        newAnswer[setIndex] = ans;
+        setAnswer(newAnswer);
+    
+        const newElRows = elRows.map((row, index) => {
+            if(answerChageFlag && ["up", "down"].includes(mode) && index > setIndex) {
+                return { ...row, answer: "null" };
+            }else if (index === setIndex) {
+                return { ...row, answer: ans };
+            }
+            return row;
+        });
+        setElRows(newElRows);
+        const hasError = document.querySelector('.hasError');
+        const hasErrorFlag = (hasError === undefined || hasError === null);
+        if( autoNext && hasErrorFlag ){
+            setAnsIndex(ansIndex + 1);
+        }
+
+        if( hasErrorFlag ){
+            containerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
     React.useEffect(()=>{
         const currAnswer = [...answer];
 
@@ -189,6 +215,8 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
     // QA Codes On
     const [qaShow, setQaShow] = React.useState(false);
     React.useEffect(()=>{
+        setMinHeightForColBtn();
+        window.addEventListener('resize', setMinHeightForColBtn);
         // QA Code On
         const qaCodes = document.querySelectorAll('.qaCode');
         const controlBar = document.querySelector('.controlbarContainer');
@@ -280,6 +308,10 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
     text-align: center;
 }
 
+.sp-col-btn-text {
+    width: 100%;
+}
+
 .sp-col-center {
     justify-content: center;
 }
@@ -287,6 +319,10 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
 .sp-col-score {
     font-weight: bold;
     font-size: 1rem;
+}
+
+.sp-col-label {
+    width: 100%;
 }
 
 .sp-col-btn:hover {
@@ -342,6 +378,7 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 5px 0 5px;
 }
 
 .sp-arrow-left, .sp-arrow-right {
@@ -377,6 +414,12 @@ const SetLeftRight = ({json, mode, left, right, answers, flexDirection="row", au
 
     .sp-col-center {
         justify-content: flex-start;
+    }
+
+    .sp-col-btn-text {
+        display: flex;
+        gap: 5px;
+        align-items: center;
     }
 }
 

@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-def quota_control(quota_sheet, unfied_define_label="R" ,defines=[]) :
+def quota_control(quota_sheet, unfied_define_label="R", defines=[]) :
     # exmaple
     # quota_sheet : "/HQ15_Quotas"
     # unfied_define_label = "HQ15R" | "Q1R" 

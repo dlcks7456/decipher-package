@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 <style label="custom_rank" arg:colCnt="${1:1}" arg:autoContinue="false" arg:ableNone="${2:2}" arg:noneLabel="${3:r99}" arg:showAnswers="true" arg:ableSort="true" arg:showGroups="false" arg:toggle="false" arg:showCnt="true" name="question.after"><![CDATA[
-<style>.grid-table-mode, .grid-list-mode, .col-legend, .element {display: none !important;}</style>
+<style>.answers {display: none;}</style>
 <div class="custom-loader"></div>
 <script type="text/babel">
 const group_info = [
@@ -11,22 +11,31 @@ const group_info = [
 \@endif
 \@end
 ];
-SettingGridRankSort({
-  setRoot: '.label_\$(this.label) .answers',
-  json: \${jsexport()}, 
-  defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None and v.displayed]}, 
-  colCnt: \$(colCnt),
-  showGroups : \$(showGroups),
-  groups: group_info, 
-  ableNone : \$(ableNone),
-  showAnswers : \$(showAnswers),
-  noneIndex : \${\$(this.label).\$(noneLabel).index if hasattr(\$(this.label), '\$(noneLabel)') else 'null'},
-  ableSort: \$(ableSort),
-  loadingQuery : '.custom-loader',
-  toggle: \$(toggle),
-  showCnt: \$(showCnt),
-  autoContinue: \$(autoContinue),
-});
+let thisAnswers = document.querySelector('.label_\$(this.label) .answers');
+let loader = '.custom-loader';
+try {
+  SettingGridRankSort({
+    setRoot: '.label_\$(this.label) .answers',
+    json: \${jsexport()}, 
+    defaultValue: \${[v.val for v in \$(this.label).cols if not v.val == None and v.displayed]}, 
+    colCnt: \$(colCnt),
+    showGroups : \$(showGroups),
+    groups: group_info, 
+    ableNone : \$(ableNone),
+    showAnswers : \$(showAnswers),
+    noneIndex : \${\$(this.label).\$(noneLabel).index if hasattr(\$(this.label), '\$(noneLabel)') else 'null'},
+    ableSort: \$(ableSort),
+    loadingQuery : loader,
+    toggle: \$(toggle),
+    showCnt: \$(showCnt),
+    autoContinue: \$(autoContinue),
+  });
+  thisAnswers.style.display = 'table';
+} catch (error) {
+  console.error("Rendering error:", error);
+  thisAnswers.style.display = 'table';
+  document.querySelector(loader)?.remove();
+}
 </script>
 ]]${-1}></style>
 ]]></content>

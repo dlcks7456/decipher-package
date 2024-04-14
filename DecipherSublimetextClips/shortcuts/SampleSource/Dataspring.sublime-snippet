@@ -1,15 +1,28 @@
 <snippet>
   <content><![CDATA[
-  <samplesource list="4">
-    <title>dataspring</title>
-    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
-    <completed>It seems you have already entered this survey.</completed>
-    <var name="duid" unique="1"/>
-    <var name="dkey" required="1"/>
-    <exit cond="terminated" url="https://d8aspring.post-survey.com/ans/back/?key=\${dkey}&amp;status=scrout&amp;uid=\${duid}"/>
-    <exit cond="overquota" url="https://d8aspring.post-survey.com/ans/back/?key=\${dkey}&amp;status=quotafull&amp;uid=\${duid}"/>
-    <exit cond="qualified" url="https://d8aspring.post-survey.com/ans/back/?key=\${dkey}&amp;status=comp&amp;uid=\${duid}"/>
-  </samplesource>
+<samplesource list="13">
+  <title>DataSpring</title>
+  <invalid>URL에 정보가 누락되었습니다. 기존의 초대받은 URL을 확인해 주시기 바랍니다.</invalid>
+  <completed>귀하께서는 이미 본 설문에 접속 하신 것으로 확인 됩니다.</completed>
+  <var name="CO" required="1" values="GB,DE,IT,ES,FR,KR"/>
+  <var name="dsid" unique="1"/>
+  <var name="dskey" required="1"/>
+  <exit cond="terminated" url="https://d8aspring.post-survey.com/ans/back/?key=\${dskey}&amp;status=scrout"/>
+  <exit cond="overquota" url="https://d8aspring.post-survey.com/ans/back/?key=\${dskey}&amp;status=quotafull"/>
+  <exit cond="qualified" url="https://d8aspring.post-survey.com/ans/back/?key=\${dskey}&amp;status=comp"/>
+</samplesource>
+
+<samplesource list="23">
+  <title>DataSpring MCP</title>
+  <invalid>URL에 정보가 누락되었습니다. 기존의 초대받은 URL을 확인해 주시기 바랍니다.</invalid>
+  <completed>귀하께서는 이미 본 설문에 접속 하신 것으로 확인 됩니다.</completed>
+  <var name="CO" required="1" values="GB,DE,IT,ES,FR,KR"/>
+  <var name="dsmcpKEY" required="1"/>
+  <var name="dsmcpID" unique="1"/>
+  <exit cond="terminated" url="https://survey1.datadata.co.kr/?ACCESS_KEY=\${dsmcpKEY}&amp;grpid=&amp;Q=STID&amp;UID=\${dsmcpID}&amp;status=scrout"/>
+  <exit cond="overquota" url="https://survey1.datadata.co.kr/?ACCESS_KEY=\${dsmcpKEY}&amp;grpid=&amp;Q=STID&amp;UID=\${dsmcpID}&amp;status=quotafull"/>
+  <exit cond="qualified" url="https://survey1.datadata.co.kr/?ACCESS_KEY=\${dsmcpKEY}&amp;grpid=&amp;Q=STID&amp;UID=\${dsmcpID}&amp;status=comp"/>
+</samplesource>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>dataspring</tabTrigger>

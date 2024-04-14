@@ -1,17 +1,17 @@
 <snippet>
   <content><![CDATA[
-  <samplesource list="3">
-    <title>Cint</title>
-    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
-    <completed>It seems you have already entered this survey.</completed>
-    <var name="CO" required="1" values="GB,DE,IT,ES,FR,KR"/>
-    <var name="GUID" unique="1"/>
-    <var name="ctTerm" required="1"/>
-    <var name="ctComp" required="1"/>
-    <exit cond="terminated" url="https://s.cint.com/Survey/EarlyScreenOut?ProjectToken=\${ctTerm}&amp;GUID=\${GUID}"/>
-    <exit cond="overquota" url="https://s.cint.com/Survey/QuotaFull?ProjectToken=\${ctTerm}&amp;GUID=\${GUID}"/>
-    <exit cond="qualified" url="https://s.cint.com/Survey/Complete?ProjectToken=\${ctComp}&amp;GUID=\${GUID}"/>
-  </samplesource>
+<samplesource list="14">
+  <title>Cint</title>
+  <invalid>URL에 정보가 누락되었습니다. 기존의 초대받은 URL을 확인해 주시기 바랍니다.</invalid>
+  <completed>귀하께서는 이미 본 설문에 접속 하신 것으로 확인 됩니다.</completed>
+  <var name="CO" required="1" values="GB,DE,IT,ES,FR,KR"/>
+  <var name="GUID" unique="1"/>
+  <var name="ctTerm" required="1"/>
+  <var name="ctComp" required="1"/>
+  <exit cond="terminated" url="https://s.cint.com/Survey/EarlyScreenOut?ProjectToken=\${ctTerm}&amp;GUID=\${GUID}"/>
+  <exit cond="overquota" url="https://s.cint.com/Survey/QuotaFull?ProjectToken=\${ctTerm}&amp;GUID=\${GUID}"/>
+  <exit cond="qualified" url="https://s.cint.com/Survey/Complete?ProjectToken=\${ctComp}&amp;GUID=\${GUID}"/>
+</samplesource>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>cint</tabTrigger>

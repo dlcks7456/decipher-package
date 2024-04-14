@@ -1,15 +1,14 @@
 <snippet>
   <content><![CDATA[
 <exec>
-status(${1},"${2}")
+status(${1}, "${2}")
 </exec>
 
 <term label="${2}_Term" cond="${1}">${2} term</term>
 
 <suspend/>
 
-<row label="${2}" value="${3}">${2} ScreenOut</row>
-
+${4:<row label="${2}" value="${3}">${2} ScreenOut</row>}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>scr</tabTrigger>

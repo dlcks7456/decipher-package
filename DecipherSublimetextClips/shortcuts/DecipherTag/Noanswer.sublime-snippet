@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-<noanswer label="na">${1}</noanswer>
+<noanswer label="${1:na}">${2}</noanswer>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>noanswer</tabTrigger>

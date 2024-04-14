@@ -4,7 +4,8 @@
   <checkbox 
     label="${1}_title"
     ss:questionClassNames="custom-card-loop"
-    sst="0">
+    sst="0"
+    where="survey,notdp">
     <title>${2}</title>
     <style name="question.after"><![CDATA[
 <div class="custom-card-loop">
@@ -35,7 +36,8 @@
   <checkbox 
     label="${1}_after"
     ss:questionClassNames="hidden"
-    sst="0">
+    sst="0"
+    where="survey,notdp">
     <title>(HIDDEN)</title>
     <style name="question.header"><![CDATA[
   </div>
@@ -54,7 +56,7 @@
 <suspend/>
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>custom.card.loop.flex</tabTrigger>
+	<tabTrigger>custom.loop.flex</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.xml</scope>
 </snippet>

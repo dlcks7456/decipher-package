@@ -9,8 +9,8 @@
  optional="0"
  videocapture:providenoanswer="0"
  width="50">
-  <title>${2}</title>
-  <comment>${3}</comment>
+  <title><div class="q-name">${1}</div> ${2}</title>
+  <comment></comment>
 </textarea>
 
 <suspend/>
