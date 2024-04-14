@@ -14,7 +14,7 @@ for q in qidArray :
       qArray.append(base.val)
       labelArray.append(base_ko.label)
 
-trData = dict(q=qArray, target="ko", key="AIzaSyD2PtmC5OORvmVWQ9lsL024d-ia3kkJfdo")
+trData = dict(q=qArray, target="ko", key="${2}")
 </exec>
 
   <logic label="trCall" cond="not(gv.isSST()) " api:method="POST" api:params="trData" api:url="https://translation.googleapis.com/language/translate/v2" uses="api.1">
